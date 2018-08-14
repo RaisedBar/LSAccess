@@ -30,12 +30,18 @@
     <ClInclude Include="LinnStrument.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LSAccessFrame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LSAccess.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LSAccessFrame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
