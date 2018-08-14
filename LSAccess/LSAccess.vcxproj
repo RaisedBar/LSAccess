@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="LinnStrument.h" />
     <ClInclude Include="LSAccess.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
