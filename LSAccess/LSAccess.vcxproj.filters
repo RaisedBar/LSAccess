@@ -15,15 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="LSAccess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -33,15 +24,21 @@
     <ClInclude Include="LSAccessFrame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LeftSplitDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="LSAccess.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LSAccessFrame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LinnStrument.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LeftSplitDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

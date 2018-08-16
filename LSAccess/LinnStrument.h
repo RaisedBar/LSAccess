@@ -1,7 +1,10 @@
 // LinnStrument.h
-// Constants and related code to support Roger Linn's LinnStrument device
+// Constants, classes and related code to support Roger Linn's LinnStrument device
 
 #pragma once
+
+#include <RtMidi.h>
+#include <vector>
 
 /*
 The following definitions are derived from:
@@ -691,3 +694,17 @@ const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW8 = 270;
 
 const unsigned int REQUEST_VALUE_OF_NRPN = 299;
 
+
+class LinnStrument
+{
+public:
+	LinnStrument();
+	void ProcessMessage(std::vector <unsigned char> vBytes);
+
+private:
+		// MIDI devices
+RtMidiIn m_MIDIIn;
+	RtMidiOut m_MIDIOut;
+	};
+
+void LSCallback(double deltatime, std::vector< unsigned char > *message, void *pLinnStrument);

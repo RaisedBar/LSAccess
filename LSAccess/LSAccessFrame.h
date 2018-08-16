@@ -3,87 +3,70 @@
 
 #pragma once
 
-#include <wx/frame.h>
-#include <wx/panel.h>
-#include <wx/accel.h>
-#include <wx/sizer.h>
-#include <wx/menu.h>
-
-
-#ifdef __WINDOWS__ 
-#include <wx/msw/helpchm.h> // (MS HTML Help controller)
-#else
-#include <wx/generic/helpext.h>
+// For compilers that support precompilation, includes "wx/wx.h".
+#include "wx/wxprec.h"
+#ifdef __BORLANDC__
+#pragma hdrstop
 #endif
 
-// ID values and strings for menus and dialogs
-const std::wstring wstrFileMenu = L"&File";
+// for all others, include the necessary headers (this file is usually all you
+// need because it includes almost all "standard" wxWidgets headers)
+#ifndef WX_PRECOMP
+#include "wx/wx.h"
+#endif
 
-const std::wstring wstrOptionsMenu = L"&Options";
-const unsigned int ID_NoteMute = 2001;
-const std::wstring wstrNoteMute = L"&Mute note names";
-const std::wstring wstrNoteMuteHelp = L"Stops speech announcing note names as you press LinnStrument's pads";
+// IDs for the controls and the menu commands
+enum
+{
+	// File menu
+	LSAccess_Quit = wxID_EXIT,
+	
+// View menu
+	LSAccess_LeftSplitSettings,
+	LSAccess_RightSplitSettings,
+LSAccess_OctaveTransposeSettings,	
+LSAccess_StepSequencerSettings,
+LSAccess_GlobalSettings,
 
-const std::wstring wstrHelpMenu = L"&Help";
-unsigned int ID_HelpContents = 2002;
-std::wstring wstrHelpContents = L"&Contents...";
+// Status bar
+LSAccess_Switch1Status,
+LSAccess_Switch2Status,
+LSAccess_SplitButton1Status,
+LSAccess_SplitButton2Status,
+	
+// Volume settings
 
+// Presets
 
-// Number of accellerator keys to be defined
-const unsigned int nKeys = 13;
-
-// Screen positions
-const int LEFT_MARGIN = 60;
-const int TOP_MARGIN = 60;
-const int NORMAL_WIDTH = 150;
-const int TEXT_WIDTH = 600;
+// Help menu
+// it is important for the id corresponding to the "About" command to have
+	// this standard value as otherwise it won't be handled properly under Mac
+	// (where it is special and put into the "Apple" menu)
+	LSAccess_About = wxID_ABOUT
+};
 
 
 class LSAccessFrame : public wxFrame
 {
 public:
-	LSAccessFrame(const wxString& title, bool EncryptionMode);
-	~LSAccessFrame();
+	LSAccessFrame(const wxString& title);
 
-	void Shutdown();
-
-private:
-	bool InitData();
-	void 	InitMenus();
-	void UpdateStatusBar();
-	// 	bool OpenLSPorts(LSPointer pMyLinnStrument);
-	// 	void CloseLSPorts(LSPointer pMyLinnStrument);
-	// 	std::string GetPortErrorReport(LSPointer pMyLinnStrument);
-	// bool LoadOptions();
-	// bool SaveOptions();
-
-	// event handlers 
-	void onStatusUpdate(wxCommandEvent& event);
+	// event handlers (these functions should _not_ be virtual)
+	// File menu
 	void OnQuit(wxCommandEvent& event);
 
-	void OnHelpContents(wxCommandEvent& event);
-	void OnHelpAbout(wxCommandEvent& event);
+// View menu
+	void OnLeftSplitSettings(wxCommandEvent& event);
+		void OnRightSplitSettings(wxCommandEvent& event);
+		void OnOctaveTransposeSettings(wxCommandEvent& event);
+		void OnStepSequencerSettings(wxCommandEvent& event);
+		void OnGlobalSettings(wxCommandEvent& event);
 
-	// internal storage
-	wxPanel *myPanel;
-	wxMenuBar *myMenuBar;
+// Help menu
+	void OnAbout(wxCommandEvent& event);
 
-	// UI options, etc.
-	// LSAccessOptions myOptions;
-
-	// Menus
-	wxMenu * FileMenu;
-	wxMenu * OptionsMenu;
-	wxMenu * HelpMenu;
-
-	std::wstring wstrHelpFileName;
-
-	// Platform-dependent help systems
-#ifdef __WINDOWS__ 
-	wxCHMHelpController * pHelpController;
-#else
-	wxExtHelpController * pHelpController;
-#endif
-
-	DECLARE_EVENT_TABLE()
+private:
+	wxDECLARE_EVENT_TABLE();
 };
+
+
