@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include "LinnStrument.h"
+
 // For compilers that support precompilation, includes "wx/wx.h".
 #include "wx/wxprec.h"
 #ifdef __BORLANDC__
@@ -66,6 +68,9 @@ public:
 	void OnAbout(wxCommandEvent& event);
 
 private:
+	// Internal storage
+	LinnStrument * pLinnStrument;
+
 	wxDECLARE_EVENT_TABLE();
 };
 

@@ -35,48 +35,27 @@ The split is determined by its active MIDI mode channels
 c is the channel, p is the preset number
 11111110              Active Sensing          During manufacturing test, show green led at col 25 row 2
 
-MIDI Control Change input
-======================== =
-
-CC Number   Used for
------------------------------------------------------------------------------------------------------------- -
-1 - 8         Change the position of the CC faders, the split is determined by its active MIDI mode channels
-9           Configure User Firmware X - axis row slide, the channel specifies the row(0: disable, 1 : enable)
-10          Configure User Firmware X - axis data, the channel specifies the row, default is off(0: disable, 1 : enable)
-11          Configure User Firmware Y - axis data, the channel specifies the row, default is off(0: disable, 1 : enable)
-12          Configure User Firmware Z - axis data, the channel specifies the row, default is off(0: disable, 1 : enable)
-13          Configure User Firmware MIDI decimation rate in milliseconds(minimum 12 ms in low power mode)
-20          Column coordinate for cell color change with CC 22 (starts from 0)
-21          Row coordinate for cell color change with CC 22 (starts from 0)
-22          Change the color of the cell with the provided column and row coordinates
-see color value table below, 11 + : default color
 */
+// CC messages
+const unsigned char FADER1 = 1; // Change the position of the CC faders, the split is determined by its active MIDI mode channels
+const unsigned char FADER2 = 2;
+const unsigned char FADER3 = 3;
+const unsigned char FADER4 = 4;
+const unsigned char FADER5 = 5;
+const unsigned char FADER6 = 6;
+const unsigned char FADER7 = 7;
+const unsigned char FADER8 = 8;
+const unsigned char USER_FIRMWARE_X_AXIS_ROW_SLIDE = 9;  //  Configure User Firmware X - axis row slide, the channel specifies the row(0: disable, 1 : enable)
+const unsigned char USER_FIRMWARE_X_AXIS_ROW_DATA = 10;           // Configure User Firmware X - axis data, the channel specifies the row, default is off(0: disable, 1 : enable)
+const unsigned char USER_FIRMWARE_Y_AXIS_ROW_DATA = 11;           // Configure User Firmware Y - axis data, the channel specifies the row, default is off(0: disable, 1 : enable)
+const unsigned char USER_FIRMWARE_Z_AXIS_ROW_DATA = 12;           // Configure User Firmware Z - axis data, the channel specifies the row, default is off(0: disable, 1 : enable)
+const unsigned char USER_FIRMWARE_MIDI_DECIMATION_RATE = 13;           // Configure User Firmware MIDI decimation rate in milliseconds(minimum 12 ms in low power mode)
+const unsigned char CELL_COLOR_CHANGE_COLUMN = 20;           // Column coordinate for cell color change with CC 22 (starts from 0)
+const unsigned char CELL_COLOR_CHANGE_ROW = 21;           // Row coordinate for cell color change with CC 22 (starts from 0)
+const unsigned char CELL_COLOR_CHANGE = 22;           // Change the color of the cell with the provided column and row coordinates
 
-/*
-NRPN input
-==========
-
-NRPN messages are a series of MIDI CC messages that allow changing more parameters than are supported by
-the standard MIDI CC message list. LinnStrument always expects an exact series of 6 MIDI CC messages to be
-received for setting one NRPN to a different value. The first two select the NRPN parameter number, the
-next two set the NRPN parameter value(both MSB and LSB are used), and the last two reset the active NRPN
-parameter number. Failure to reset the NRPN parameter number can result in other MIDI input messages to
-behave unpredictably.
-
-This is an overview of the message chain :
-
-1011nnnn   01100011 (99)  0vvvvvvv         NRPN parameter number MSB CC
-1011nnnn   01100010 (98)  0vvvvvvv         NRPN parameter number LSB CC
-1011nnnn   00000110 (6)  0vvvvvvv         NRPN parameter value MSB CC
-1011nnnn   00100110 (38)  0vvvvvvv         NRPN parameter value LSB CC
-1011nnnn   01100101 (101)  01111111 (127)   RPN parameter number Reset MSB CC
-1011nnnn   01100100 (100)  01111111 (127)   RPN parameter number Reset LSB CC
-
-The following table lists all the NRPN input values that LinnStrument understands.
-
-NRPN   Value   Description
------------------------------------------------------------------------------------------------------------- -
-*/
+// Name of LinnStrument when connected over USB
+const std::string LSUSBName = "LinnStrument MIDI";
 
 // Values for toggle parameters
 enum class LSToggleValue
@@ -699,12 +678,314 @@ class LinnStrument
 {
 public:
 	LinnStrument();
+	int GetUSBInPortID();
+	int GetUSBOutPortID();
+
 	void ProcessMessage(std::vector <unsigned char> vBytes);
 
+	// Getters:
+	// Left-hand split
+// Toggles:
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_1_NRPN();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_2_NRPN();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_3_NRPN();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_4_NRPN();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_5_NRPN();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_6_NRPN();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_7_NRPN();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_8_NRPN();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_9_NRPN();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_10_NRPN();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_11_NRPN();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_12_NRPN3();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_13_NRPN();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_14_NRPN();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_15_NRPN();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_16_NRPN();
+	// Value is a MIDI channel number:
+	unsigned int GetSPLIT_LEFT_MIDI_PER_ROW_LOWEST_CHANNEL_NRPN();
+	// Value is from LSBendRange
+	unsigned int GetSPLIT_LEFT_BEND_RANGE_NRPN();
+	// Toggles:
+	unsigned int GetSPLIT_LEFT_BEND_TOGGLE_NRPN();
+	unsigned int GetSPLIT_LEFT_BEND_QUANTIZE_TOGGLE_NRPN();
+	// Value is from LSPitchQuantize
+	unsigned int GetSPLIT_LEFT_PITCH_QUANTIZE_NRPN();
+	// Toggles:
+	unsigned int GetSPLIT_LEFT_RESET_PITCH_ON_RELEASE_NRPN();
+	unsigned int GetSPLIT_LEFT_SEND_Y_NRPN();
+	// Values are constrained by MIN_CC and MAX_CC
+	// CC 1 or CC 74 are recommended, any CC is possible though
+	unsigned int GetSPLIT_LEFT_CC_FOR_Y_NRPN();
+	// Toggle:
+	unsigned int GetSPLIT_LEFT_RELATIVE_Y_NRPN();
+	unsigned int GetSPLIT_LEFT_RELATIVE_Z_NRPN();
+	// Value is an LSExpressionZ
+	unsigned int GetSPLIT_LEFT_MIDI_EXPRESSION_FOR_Z_NRPN();
+	// Values are constrained by MIN_CC and MAX_CC
+	// CC 11 is recommended, any CC is possible though
+	unsigned int GetSPLIT_LEFT_CC_FOR_Z_NRPN();
+	// Values are defined in LSColor
+	unsigned int GetSPLIT_LEFT_COLOR_MAIN_NRPN();
+	unsigned int GetSPLIT_LEFT_COLOR_ACCENT_NRPN();
+	unsigned int GetSPLIT_LEFT_COLOR_PLAYED_NRPN();
+	unsigned int GetSPLIT_LEFT_COLOR_LOWROW_NRPN();
+	// Value is an LSLowRowMode
+	unsigned int GetSPLIT_LEFT_LOWROW_MODE_NRPN();
+	// Value is an LSSpecial:
+	unsigned int GetSPLIT_LEFT_SPECIAL_NRPN();
+	// Value is an LSOctave
+	unsigned int GetSPLIT_LEFT_OCTAVE_NRPN();
+	// Values are from LSPitch
+	unsigned int GetSPLIT_LEFT_PITCH_TRANSPOSE_NRPN();
+	unsigned int GetSPLIT_LEFT_TRANSPOSE_LIGHTS_NRPN();
+	// Value is an LSExpressionY
+	unsigned int GetSPLIT_LEFT_EXPRESSION_FOR_Y_NRPN();
+	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+	unsigned int GetSPLIT_LEFT_CC_FOR_FADER1_NRPN();
+	unsigned int GetSPLIT_LEFT_CC_FOR_FADER2_NRPN();
+	unsigned int GetSPLIT_LEFT_CC_FOR_FADER3_NRPN();
+	unsigned int GetSPLIT_LEFT_CC_FOR_FADER4_NRPN();
+	unsigned int GetSPLIT_LEFT_CC_FOR_FADER5_NRPN();
+	unsigned int GetSPLIT_LEFT_CC_FOR_FADER6_NRPN();
+	unsigned int GetSPLIT_LEFT_CC_FOR_FADER7_NRPN();
+	unsigned int GetSPLIT_LEFT_CC_FOR_FADER8_NRPN();
+	// Value is an LSLowRowBehaviour
+	unsigned int GetSPLIT_LEFT_LOWROW_X_BEHAVIOUR_NRPN();
+	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+	unsigned int GetSPLIT_LEFT_CC_FOR_LOWROW_NRPN();
+	// Value is an LSLowRowBehaviour
+	unsigned int GetSPLIT_LEFT_LOWROW_XYZ_BEHAVIOUR_NRPN();
+	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+	unsigned int GetSPLIT_LEFT_CC_FOR_LOWROW_XYZ_NRPN();
+	unsigned int GetSPLIT_LEFT_CC_FOR_LOWROW_XYZ_Y_NRPN();
+	unsigned int GetSPLIT_LEFT_CC_FOR_LOWROW_XYZ_Z_NRPN();
+	// Values are constrained by MIN_CC and MAX_CC
+	unsigned int GetSPLIT_LEFT_MIN_CC_FOR_Y_NRPN();
+	unsigned int GetSPLIT_LEFT_MAX_CC_FOR_Y_NRPN();
+	unsigned int GetSPLIT_LEFT_MIN_CC_FOR_Z_NRPN();
+	unsigned int GetSPLIT_LEFT_MAX_CC_FOR_Z_NRPN();
+	unsigned int GetSPLIT_LEFT_14BIT_CC_VALUE_FOR_Z_NRPN();
+	unsigned int GetSPLIT_LEFT_INITIAL_RELATIVE_VALUE_FOR_Y_NRPN();
+	// Value is an LSChannelOrder
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_ROW_ORDER();
+	// Value is an LSAnimation
+	unsigned int GetSPLIT_LEFT_TOUCH_ANIMATION();
+	// Toggle:
+	unsigned int GetSPLIT_LEFT_SEQUENCER_TOGGLE_PLAY_NRPN();
+	unsigned int GetSPLIT_LEFT_SEQUENCER_PREVIOUS_PATTERN_NRPN();
+	unsigned int GetSPLIT_LEFT_SEQUENCER_NEXT_PATTERN_NRPN();
+	// Value is an LSPatternNumber
+	unsigned int GetSPLIT_LEFT_SEQUENCER_PATTERN_NRPN();
+	unsigned int GetSPLIT_LEFT_SEQUENCER_TOGGLE_MUTE_NRPN();
+
+// Setters:
+// Left-hand split
+// Toggles:
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_1_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_2_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_3_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_4_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_5_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_6_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_7_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_8_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_9_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_10_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_11_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_12_NRPN3(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_13_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_14_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_15_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_16_NRPN(unsigned int nValue);
+	// Value is a MIDI channel number:
+	void SetSPLIT_LEFT_MIDI_PER_ROW_LOWEST_CHANNEL_NRPN(unsigned int nValue);
+	// Value is from LSBendRange
+	void SetSPLIT_LEFT_BEND_RANGE_NRPN(unsigned int nValue);
+	// Toggles:
+	void SetSPLIT_LEFT_BEND_TOGGLE_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_BEND_QUANTIZE_TOGGLE_NRPN(unsigned int nValue);
+	// Value is from LSPitchQuantize
+	void SetSPLIT_LEFT_PITCH_QUANTIZE_NRPN(unsigned int nValue);
+	// Toggles:
+	void SetSPLIT_LEFT_RESET_PITCH_ON_RELEASE_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_SEND_Y_NRPN(unsigned int nValue);
+	// Values are constrained by MIN_CC and MAX_CC
+	// CC 1 or CC 74 are recommended, any CC is possible though
+	void SetSPLIT_LEFT_CC_FOR_Y_NRPN(unsigned int nValue);
+	// Toggle:
+	void SetSPLIT_LEFT_RELATIVE_Y_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_RELATIVE_Z_NRPN(unsigned int nValue);
+	// Value is an LSExpressionZ
+	void SetSPLIT_LEFT_MIDI_EXPRESSION_FOR_Z_NRPN(unsigned int nValue);
+	// Values are constrained by MIN_CC and MAX_CC
+	// CC 11 is recommended, any CC is possible though
+	void SetSPLIT_LEFT_CC_FOR_Z_NRPN(unsigned int nValue);
+	// Values are defined in LSColor
+	void SetSPLIT_LEFT_COLOR_MAIN_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_COLOR_ACCENT_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_COLOR_PLAYED_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_COLOR_LOWROW_NRPN(unsigned int nValue);
+	// Value is an LSLowRowMode
+	void SetSPLIT_LEFT_LOWROW_MODE_NRPN(unsigned int nValue);
+	// Value is an LSSpecial:
+	void SetSPLIT_LEFT_SPECIAL_NRPN(unsigned int nValue);
+	// Value is an LSOctave
+	void SetSPLIT_LEFT_OCTAVE_NRPN(unsigned int nValue);
+	// Values are from LSPitch
+	void SetSPLIT_LEFT_PITCH_TRANSPOSE_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_TRANSPOSE_LIGHTS_NRPN(unsigned int nValue);
+	// Value is an LSExpressionY
+	void SetSPLIT_LEFT_EXPRESSION_FOR_Y_NRPN(unsigned int nValue);
+	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+	void SetSPLIT_LEFT_CC_FOR_FADER1_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_FADER2_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_FADER3_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_FADER4_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_FADER5_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_FADER6_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_FADER7_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_FADER8_NRPN(unsigned int nValue);
+	// Value is an LSLowRowBehaviour
+	void SetSPLIT_LEFT_LOWROW_X_BEHAVIOUR_NRPN(unsigned int nValue);
+	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+	void SetSPLIT_LEFT_CC_FOR_LOWROW_NRPN(unsigned int nValue);
+	// Value is an LSLowRowBehaviour
+	void SetSPLIT_LEFT_LOWROW_XYZ_BEHAVIOUR_NRPN(unsigned int nValue);
+	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+	void SetSPLIT_LEFT_CC_FOR_LOWROW_XYZ_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_LOWROW_XYZ_Y_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_LOWROW_XYZ_Z_NRPN(unsigned int nValue);
+	// Values are constrained by MIN_CC and MAX_CC
+	void SetSPLIT_LEFT_MIN_CC_FOR_Y_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_MAX_CC_FOR_Y_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_MIN_CC_FOR_Z_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_MAX_CC_FOR_Z_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_14BIT_CC_VALUE_FOR_Z_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_INITIAL_RELATIVE_VALUE_FOR_Y_NRPN(unsigned int nValue);
+	// Value is an LSChannelOrder
+	void SetSPLIT_LEFT_CHANNEL_PER_ROW_ORDER(unsigned int nValue);
+	// Value is an LSAnimation
+	void SetSPLIT_LEFT_TOUCH_ANIMATION(unsigned int nValue);
+	// Toggle:
+	void SetSPLIT_LEFT_SEQUENCER_TOGGLE_PLAY_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_SEQUENCER_PREVIOUS_PATTERN_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_SEQUENCER_NEXT_PATTERN_NRPN(unsigned int nValue);
+	// Value is an LSPatternNumber
+	void SetSPLIT_LEFT_SEQUENCER_PATTERN_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_SEQUENCER_TOGGLE_MUTE_NRPN(unsigned int nValue);
+
+
+
+
 private:
-		// MIDI devices
-RtMidiIn m_MIDIIn;
-	RtMidiOut m_MIDIOut;
+	void SendCC(unsigned char CCNumber, unsigned char CCValue);
+	void SendNRPN(unsigned int NRPNNumber, unsigned int NRPNValue);
+
+	// MIDI devices
+RtMidiIn * m_MIDIIn;
+	RtMidiOut * m_MIDIOut;
+	// MIDI port ID values;
+	int m_InputID, m_OutputID;
+
+	// Data values
+	// Left-hand split
+// Toggles:
+	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_1_NRPN;
+	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_2_NRPN;
+	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_3_NRPN;
+	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_4_NRPN;
+	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_5_NRPN;
+	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_6_NRPN;
+	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_7_NRPN;
+	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_8_NRPN;
+	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_9_NRPN;
+	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_10_NRPN;
+	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_11_NRPN;
+	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_12_NRPN3;
+	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_13_NRPN;
+	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_14_NRPN;
+	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_15_NRPN;
+	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_16_NRPN;
+	// Value is a MIDI channel number:
+	unsigned int m_SPLIT_LEFT_MIDI_PER_ROW_LOWEST_CHANNEL_NRPN;
+	// Value is from LSBendRange
+	unsigned int m_SPLIT_LEFT_BEND_RANGE_NRPN;
+	// Toggles:
+	unsigned int m_SPLIT_LEFT_BEND_TOGGLE_NRPN;
+	unsigned int m_SPLIT_LEFT_BEND_QUANTIZE_TOGGLE_NRPN;
+	// Value is from LSPitchQuantize
+	unsigned int m_SPLIT_LEFT_PITCH_QUANTIZE_NRPN;
+	// Toggles:
+	unsigned int m_SPLIT_LEFT_RESET_PITCH_ON_RELEASE_NRPN;
+	unsigned int m_SPLIT_LEFT_SEND_Y_NRPN;
+	// Values are constrained by MIN_CC and MAX_CC
+	// CC 1 or CC 74 are recommended, any CC is possible though
+	unsigned int m_SPLIT_LEFT_CC_FOR_Y_NRPN;
+	// Toggle:
+	unsigned int m_SPLIT_LEFT_RELATIVE_Y_NRPN;
+	unsigned int m_SPLIT_LEFT_RELATIVE_Z_NRPN;
+	// Value is an LSExpressionZ
+	unsigned int m_SPLIT_LEFT_MIDI_EXPRESSION_FOR_Z_NRPN;
+	// Values are constrained by MIN_CC and MAX_CC
+	// CC 11 is recommended, any CC is possible though
+	unsigned int m_SPLIT_LEFT_CC_FOR_Z_NRPN;
+	// Values are defined in LSColor
+	unsigned int m_SPLIT_LEFT_COLOR_MAIN_NRPN;
+	unsigned int m_SPLIT_LEFT_COLOR_ACCENT_NRPN;
+	unsigned int m_SPLIT_LEFT_COLOR_PLAYED_NRPN;
+	unsigned int m_SPLIT_LEFT_COLOR_LOWROW_NRPN;
+	// Value is an LSLowRowMode
+	unsigned int m_SPLIT_LEFT_LOWROW_MODE_NRPN;
+	// Value is an LSSpecial:
+	unsigned int m_SPLIT_LEFT_SPECIAL_NRPN;
+	// Value is an LSOctave
+	unsigned int m_SPLIT_LEFT_OCTAVE_NRPN;
+	// Values are from LSPitch
+	unsigned int m_SPLIT_LEFT_PITCH_TRANSPOSE_NRPN;
+	unsigned int m_SPLIT_LEFT_TRANSPOSE_LIGHTS_NRPN;
+	// Value is an LSExpressionY
+	unsigned int m_SPLIT_LEFT_EXPRESSION_FOR_Y_NRPN;
+	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+	unsigned int m_SPLIT_LEFT_CC_FOR_FADER1_NRPN;
+	unsigned int m_SPLIT_LEFT_CC_FOR_FADER2_NRPN;
+	unsigned int m_SPLIT_LEFT_CC_FOR_FADER3_NRPN;
+	unsigned int m_SPLIT_LEFT_CC_FOR_FADER4_NRPN;
+	unsigned int m_SPLIT_LEFT_CC_FOR_FADER5_NRPN;
+	unsigned int m_SPLIT_LEFT_CC_FOR_FADER6_NRPN;
+	unsigned int m_SPLIT_LEFT_CC_FOR_FADER7_NRPN;
+	unsigned int m_SPLIT_LEFT_CC_FOR_FADER8_NRPN;
+	// Value is an LSLowRowBehaviour
+	unsigned int m_SPLIT_LEFT_LOWROW_X_BEHAVIOUR_NRPN;
+	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+	unsigned int m_SPLIT_LEFT_CC_FOR_LOWROW_NRPN;
+	// Value is an LSLowRowBehaviour
+	unsigned int m_SPLIT_LEFT_LOWROW_XYZ_BEHAVIOUR_NRPN;
+	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+	unsigned int m_SPLIT_LEFT_CC_FOR_LOWROW_XYZ_NRPN;
+	unsigned int m_SPLIT_LEFT_CC_FOR_LOWROW_XYZ_Y_NRPN;
+	unsigned int m_SPLIT_LEFT_CC_FOR_LOWROW_XYZ_Z_NRPN;
+	// Values are constrained by MIN_CC and MAX_CC
+	unsigned int m_SPLIT_LEFT_MIN_CC_FOR_Y_NRPN;
+	unsigned int m_SPLIT_LEFT_MAX_CC_FOR_Y_NRPN;
+	unsigned int m_SPLIT_LEFT_MIN_CC_FOR_Z_NRPN;
+	unsigned int m_SPLIT_LEFT_MAX_CC_FOR_Z_NRPN;
+	unsigned int m_SPLIT_LEFT_14BIT_CC_VALUE_FOR_Z_NRPN;
+	unsigned int m_SPLIT_LEFT_INITIAL_RELATIVE_VALUE_FOR_Y_NRPN;
+	// Value is an LSChannelOrder
+	unsigned int m_SPLIT_LEFT_CHANNEL_PER_ROW_ORDER;
+	// Value is an LSAnimation
+	unsigned int m_SPLIT_LEFT_TOUCH_ANIMATION;
+	// Toggle:
+	unsigned int m_SPLIT_LEFT_SEQUENCER_TOGGLE_PLAY_NRPN;
+	unsigned int m_SPLIT_LEFT_SEQUENCER_PREVIOUS_PATTERN_NRPN;
+	unsigned int m_SPLIT_LEFT_SEQUENCER_NEXT_PATTERN_NRPN;
+	// Value is an LSPatternNumber
+	unsigned int m_SPLIT_LEFT_SEQUENCER_PATTERN_NRPN;
+	unsigned int m_SPLIT_LEFT_SEQUENCER_TOGGLE_MUTE_NRPN;
+
+
+
 	};
 
 void LSCallback(double deltatime, std::vector< unsigned char > *message, void *pLinnStrument);

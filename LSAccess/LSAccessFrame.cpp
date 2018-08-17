@@ -38,6 +38,9 @@ LSAccessFrame::LSAccessFrame(const wxString& title)
 	// create a status bar 
 	CreateStatusBar(2);
 	SetStatusText("Welcome to LSAccess!");
+
+// Initialize the LinnStrument itself
+pLinnStrument = new LinnStrument()	;
 }
 
 
@@ -46,8 +49,8 @@ LSAccessFrame::LSAccessFrame(const wxString& title)
 void LSAccessFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 {
 	// true forces the frame to close
-	Close(true);
-}
+		Close(true);
+	}
 
 void LSAccessFrame::OnLeftSplitSettings(wxCommandEvent& event)
 {
