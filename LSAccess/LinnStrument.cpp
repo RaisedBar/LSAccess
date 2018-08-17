@@ -48,6 +48,28 @@ LinnStrument::LinnStrument()
 }
 
 
+LinnStrument::~LinnStrument()
+{
+	try
+	{
+		if (m_MIDIIn->isPortOpen())
+		{
+			m_MIDIIn->closePort();
+		}
+
+		if (m_MIDIOut->isPortOpen())
+		{
+			m_MIDIOut->closePort();
+		}
+	}
+		catch (RtMidiError &error)
+	{
+		std::string wstrError(error.getMessage());
+		m_OutputID = -1;
+	}
+}
+
+
 int LinnStrument::GetUSBInPortID()
 {
 	int nID;
@@ -110,296 +132,424 @@ void LinnStrument::SendNRPN(unsigned int NRPNNumber, unsigned int NRPNValue)
 }
 
 
+
+// Getters
 // Left-hand split
-// Toggles:
+
 unsigned int LinnStrument::GetSPLIT_LEFT_CHANNEL_PER_NOTE_1_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CHANNEL_PER_NOTE_1_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CHANNEL_PER_NOTE_2_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CHANNEL_PER_NOTE_2_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CHANNEL_PER_NOTE_3_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CHANNEL_PER_NOTE_3_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CHANNEL_PER_NOTE_4_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CHANNEL_PER_NOTE_4_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CHANNEL_PER_NOTE_5_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CHANNEL_PER_NOTE_5_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CHANNEL_PER_NOTE_6_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CHANNEL_PER_NOTE_6_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CHANNEL_PER_NOTE_7_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CHANNEL_PER_NOTE_7_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CHANNEL_PER_NOTE_8_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CHANNEL_PER_NOTE_8_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CHANNEL_PER_NOTE_9_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CHANNEL_PER_NOTE_9_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CHANNEL_PER_NOTE_10_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CHANNEL_PER_NOTE_10_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CHANNEL_PER_NOTE_11_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CHANNEL_PER_NOTE_11_NRPN;
+}
 
 
-unsigned int LinnStrument::GetSPLIT_LEFT_CHANNEL_PER_NOTE_12_NRPN3()
-{}
+unsigned int LinnStrument::GetSPLIT_LEFT_CHANNEL_PER_NOTE_12_NRPN()
+{
+	return m_SPLIT_LEFT_CHANNEL_PER_NOTE_12_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CHANNEL_PER_NOTE_13_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CHANNEL_PER_NOTE_13_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CHANNEL_PER_NOTE_14_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CHANNEL_PER_NOTE_14_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CHANNEL_PER_NOTE_15_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CHANNEL_PER_NOTE_15_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CHANNEL_PER_NOTE_16_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CHANNEL_PER_NOTE_16_NRPN;
+}
 
 
 // Value is a MIDI channel number:
 unsigned int LinnStrument::GetSPLIT_LEFT_MIDI_PER_ROW_LOWEST_CHANNEL_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_MIDI_PER_ROW_LOWEST_CHANNEL_NRPN;
+}
 
 
 // Value is from LSBendRange
-{}
-
-
 unsigned int LinnStrument::GetSPLIT_LEFT_BEND_RANGE_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_BEND_RANGE_NRPN;
+}
 
 
 // Toggles:
 unsigned int LinnStrument::GetSPLIT_LEFT_BEND_TOGGLE_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_BEND_TOGGLE_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_BEND_QUANTIZE_TOGGLE_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_BEND_QUANTIZE_TOGGLE_NRPN;
+}
 
 
 // Value is from LSPitchQuantize
 unsigned int LinnStrument::GetSPLIT_LEFT_PITCH_QUANTIZE_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_PITCH_QUANTIZE_NRPN;
+}
 
 
 // Toggles:
 unsigned int LinnStrument::GetSPLIT_LEFT_RESET_PITCH_ON_RELEASE_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_RESET_PITCH_ON_RELEASE_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_SEND_Y_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_SEND_Y_NRPN;
+}
 
 
 // Values are constrained by MIN_CC and MAX_CC
 // CC 1 or CC 74 are recommended, any CC is possible though
 unsigned int LinnStrument::GetSPLIT_LEFT_CC_FOR_Y_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CC_FOR_Y_NRPN;
+}
 
 
 // Toggle:
 unsigned int LinnStrument::GetSPLIT_LEFT_RELATIVE_Y_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_RELATIVE_Y_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_RELATIVE_Z_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_RELATIVE_Z_NRPN;
+}
 
 
 // Value is an LSExpressionZ
 unsigned int LinnStrument::GetSPLIT_LEFT_MIDI_EXPRESSION_FOR_Z_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_MIDI_EXPRESSION_FOR_Z_NRPN;
+}
 
 
 // Values are constrained by MIN_CC and MAX_CC
 // CC 11 is recommended, any CC is possible though
 unsigned int LinnStrument::GetSPLIT_LEFT_CC_FOR_Z_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CC_FOR_Z_NRPN;
+}
 
 
 // Values are defined in LSColor
 unsigned int LinnStrument::GetSPLIT_LEFT_COLOR_MAIN_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_COLOR_MAIN_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_COLOR_ACCENT_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_COLOR_ACCENT_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_COLOR_PLAYED_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_COLOR_PLAYED_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_COLOR_LOWROW_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_COLOR_LOWROW_NRPN;
+}
 
 
 // Value is an LSLowRowMode
 unsigned int LinnStrument::GetSPLIT_LEFT_LOWROW_MODE_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_LOWROW_MODE_NRPN;
+}
 
 
 // Value is an LSSpecial:
 unsigned int LinnStrument::GetSPLIT_LEFT_SPECIAL_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_SPECIAL_NRPN;
+}
 
 
 // Value is an LSOctave
 unsigned int LinnStrument::GetSPLIT_LEFT_OCTAVE_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_OCTAVE_NRPN;
+}
 
 
 // Values are from LSPitch
 unsigned int LinnStrument::GetSPLIT_LEFT_PITCH_TRANSPOSE_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_PITCH_TRANSPOSE_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_TRANSPOSE_LIGHTS_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_TRANSPOSE_LIGHTS_NRPN;
+}
 
 
 // Value is an LSExpressionY
 unsigned int LinnStrument::GetSPLIT_LEFT_EXPRESSION_FOR_Y_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_EXPRESSION_FOR_Y_NRPN;
+}
 
 
 // Value is constrained by MIN_FADER_CC and MAX_FADER_CC
 unsigned int LinnStrument::GetSPLIT_LEFT_CC_FOR_FADER1_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CC_FOR_FADER1_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CC_FOR_FADER2_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CC_FOR_FADER2_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CC_FOR_FADER3_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CC_FOR_FADER3_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CC_FOR_FADER4_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CC_FOR_FADER4_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CC_FOR_FADER5_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CC_FOR_FADER5_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CC_FOR_FADER6_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CC_FOR_FADER6_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CC_FOR_FADER7_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CC_FOR_FADER7_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CC_FOR_FADER8_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CC_FOR_FADER8_NRPN;
+}
 
 
 // Value is an LSLowRowBehaviour
 unsigned int LinnStrument::GetSPLIT_LEFT_LOWROW_X_BEHAVIOUR_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_LOWROW_X_BEHAVIOUR_NRPN;
+}
 
 
 // Value is constrained by MIN_FADER_CC and MAX_FADER_CC
 unsigned int LinnStrument::GetSPLIT_LEFT_CC_FOR_LOWROW_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CC_FOR_LOWROW_NRPN;
+}
 
 
 // Value is an LSLowRowBehaviour
 unsigned int LinnStrument::GetSPLIT_LEFT_LOWROW_XYZ_BEHAVIOUR_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_LOWROW_XYZ_BEHAVIOUR_NRPN;
+}
 
 
 // Value is constrained by MIN_FADER_CC and MAX_FADER_CC
 unsigned int LinnStrument::GetSPLIT_LEFT_CC_FOR_LOWROW_XYZ_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CC_FOR_LOWROW_XYZ_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CC_FOR_LOWROW_XYZ_Y_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CC_FOR_LOWROW_XYZ_Y_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_CC_FOR_LOWROW_XYZ_Z_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_CC_FOR_LOWROW_XYZ_Z_NRPN;
+}
 
 
 // Values are constrained by MIN_CC and MAX_CC
 unsigned int LinnStrument::GetSPLIT_LEFT_MIN_CC_FOR_Y_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_MIN_CC_FOR_Y_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_MAX_CC_FOR_Y_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_MAX_CC_FOR_Y_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_MIN_CC_FOR_Z_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_MIN_CC_FOR_Z_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_MAX_CC_FOR_Z_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_MAX_CC_FOR_Z_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_14BIT_CC_VALUE_FOR_Z_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_14BIT_CC_VALUE_FOR_Z_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_INITIAL_RELATIVE_VALUE_FOR_Y_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_INITIAL_RELATIVE_VALUE_FOR_Y_NRPN;
+}
 
 
 // Value is an LSChannelOrder
 unsigned int LinnStrument::GetSPLIT_LEFT_CHANNEL_PER_ROW_ORDER()
-{}
+{
+	return m_SPLIT_LEFT_CHANNEL_PER_ROW_ORDER;
+}
 
 
 // Value is an LSAnimation
 unsigned int LinnStrument::GetSPLIT_LEFT_TOUCH_ANIMATION()
-{}
+{
+	return m_SPLIT_LEFT_TOUCH_ANIMATION;
+}
 
 
 // Toggle:
 unsigned int LinnStrument::GetSPLIT_LEFT_SEQUENCER_TOGGLE_PLAY_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_SEQUENCER_TOGGLE_PLAY_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_SEQUENCER_PREVIOUS_PATTERN_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_SEQUENCER_PREVIOUS_PATTERN_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_SEQUENCER_NEXT_PATTERN_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_SEQUENCER_NEXT_PATTERN_NRPN;
+}
 
 
 // Value is an LSPatternNumber
 unsigned int LinnStrument::GetSPLIT_LEFT_SEQUENCER_PATTERN_NRPN()
-{}
+{
+	return m_SPLIT_LEFT_SEQUENCER_PATTERN_NRPN;
+}
 
 
 unsigned int LinnStrument::GetSPLIT_LEFT_SEQUENCER_TOGGLE_MUTE_NRPN()
 {
+	return m_SPLIT_LEFT_SEQUENCER_TOGGLE_MUTE_NRPN;
 }
 
 
@@ -451,7 +601,7 @@ void LinnStrument::SetSPLIT_LEFT_CHANNEL_PER_NOTE_11_NRPN(unsigned int nValue)
 {}
 
 
-void LinnStrument::SetSPLIT_LEFT_CHANNEL_PER_NOTE_12_NRPN3(unsigned int nValue)
+void LinnStrument::SetSPLIT_LEFT_CHANNEL_PER_NOTE_12_NRPN(unsigned int nValue)
 {}
 
 

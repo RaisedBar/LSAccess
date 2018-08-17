@@ -678,6 +678,8 @@ class LinnStrument
 {
 public:
 	LinnStrument();
+	~LinnStrument();
+
 	int GetUSBInPortID();
 	int GetUSBOutPortID();
 
@@ -697,7 +699,7 @@ public:
 	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_9_NRPN();
 	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_10_NRPN();
 	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_11_NRPN();
-	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_12_NRPN3();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_12_NRPN();
 	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_13_NRPN();
 	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_14_NRPN();
 	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_15_NRPN();
@@ -793,7 +795,7 @@ public:
 	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_9_NRPN(unsigned int nValue);
 	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_10_NRPN(unsigned int nValue);
 	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_11_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_12_NRPN3(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_12_NRPN(unsigned int nValue);
 	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_13_NRPN(unsigned int nValue);
 	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_14_NRPN(unsigned int nValue);
 	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_15_NRPN(unsigned int nValue);
@@ -902,7 +904,7 @@ RtMidiIn * m_MIDIIn;
 	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_9_NRPN;
 	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_10_NRPN;
 	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_11_NRPN;
-	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_12_NRPN3;
+	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_12_NRPN;
 	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_13_NRPN;
 	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_14_NRPN;
 	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_15_NRPN;
