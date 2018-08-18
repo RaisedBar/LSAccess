@@ -13,6 +13,9 @@ LeftSplitDlg::LeftSplitDlg( const wxString& title)
 		wxPanel * myPanel = new wxPanel(this, -1);
 		wxBoxSizer * hBoxSettings = new wxBoxSizer(wxHORIZONTAL);
 
+		// Controls
+
+		
 		// Dialog buttons
 wxBoxSizer * hBoxButtons= new wxBoxSizer( wxHORIZONTAL);
 wxButton * OKButton = new wxButton(myPanel, wxID_OK, L"&OK", wxDefaultPosition, wxSize( wxDefaultSize));
