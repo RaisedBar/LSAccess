@@ -17,6 +17,8 @@
 #include "wx/wx.h"
 #endif
 
+#include "LSPerSplit.h"
+
 class LeftSplitDlg: public wxDialog
 {
 public:
@@ -28,6 +30,7 @@ private:
 void OnCancel( wxCommandEvent& event);
 DECLARE_EVENT_TABLE()
 
+// controls
 // Toggles:
 wxCheckBox * chkSPLIT_LEFT_CHANNEL_PER_NOTE_1_NRPN;
 wxCheckBox * chkSPLIT_LEFT_CHANNEL_PER_NOTE_2_NRPN;
