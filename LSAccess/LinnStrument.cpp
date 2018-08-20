@@ -1,7 +1,6 @@
 // LinnStrument.cpp
 
 #include "LinnStrument.h"
-#include <wx/msgdlg.h>
 
 void LSCallback(double deltatime, std::vector< unsigned char > *message, void *pLinnStrument)
 {
@@ -73,13 +72,14 @@ LinnStrument::~LinnStrument()
 int LinnStrument::GetUSBInPortID()
 {
 	int nID;
-	unsigned int nTest = m_MIDIIn->getPortCount();
-		wxMessageBox( wxString::Format( "%d", nTest), L"Test");
-
+	
 		for ( nID = 0; nID < (int) m_MIDIIn->getPortCount(); nID++)
 	{
-		wxMessageBox(m_MIDIIn->getPortName(nID), L"Test");
-			   					if (m_MIDIIn->getPortName(nID).compare(LSUSBName) == 0)
+			std::string strTemp = m_MIDIIn->getPortName(nID);
+			unsigned int nPos = strTemp.find_last_of(" ");
+			strTemp = strTemp.substr(0, nPos);
+
+						if (strTemp.compare(LSUSBName) == 0)
 		{
 			return nID;
 		}
@@ -91,10 +91,22 @@ int LinnStrument::GetUSBInPortID()
 
 int LinnStrument::GetUSBOutPortID()
 {
-	int nID = -1;
+	int nID;
 
-	return nID;
-	}
+	for (nID = 0; nID < (int)m_MIDIOut->getPortCount(); nID++)
+	{
+		std::string strTemp = m_MIDIOut->getPortName(nID);
+		unsigned int nPos = strTemp.find_last_of(" ");
+		strTemp = strTemp.substr(0, nPos);
+
+		if (strTemp.compare(LSUSBName) == 0)
+		{
+			return nID;
+		}
+	}  // end for
+
+	return -1;
+}
 
 
 void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
