@@ -2,16 +2,9 @@
 
 #include "LSMemory.h"
 
-LSMemoryLocation::LSMemoryLocation(unsigned int nMemoryNumber)
-{
-	m_MemoryNumber = nMemoryNumber;
-}
+LSMemoryLocation::LSMemoryLocation()
+{}
 
-
-unsigned int LSMemoryLocation::GetMemoryNumber()
-{
-	return m_MemoryNumber;
-}
 
 LSPerSplitSettings LSMemoryLocation::GetPerSplitSettings()
 {

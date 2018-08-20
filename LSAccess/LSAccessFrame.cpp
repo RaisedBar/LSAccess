@@ -54,16 +54,8 @@ void LSAccessFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 
 void LSAccessFrame::OnLeftSplitSettings(wxCommandEvent& event)
 {
-	LeftSplitDlg * myLeftSplitDlg = new LeftSplitDlg(L"Left-Hand Split Settings");
-		if (myLeftSplitDlg->ShowModal() == wxID_OK)
-		{
-			// Do something
-		}
-		else
-		{
-		// Handle error
-		}
-
+	LeftSplitDlg * myLeftSplitDlg = new LeftSplitDlg(L"Left-Hand Split Settings", pLinnStrument);
+	myLeftSplitDlg->Show(true);
 }
 
 void LSAccessFrame::OnRightSplitSettings(wxCommandEvent& event)

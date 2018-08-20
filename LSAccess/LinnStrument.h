@@ -3,6 +3,7 @@
 #pragma once
 
 #include <RtMidi.h>
+#include <sapi53.h>
 #include <vector>
 #include "LSMemory.h"
 #include "LSGeneral.h"
@@ -385,24 +386,33 @@ public:
 
 	int GetUSBInPortID();
 	int GetUSBOutPortID();
-	LSMemoryLocation GetMemoryLocation(unsigned int nMemoryNumber);
+	unsigned int GetActiveMemoryNumber();
+		LSMemoryLocation GetMemoryLocation(unsigned int nMemoryNumber);
 	void SetMemoryLocation(unsigned int nMemoryNumber, LSMemoryLocation myMemoryLocation);
 	LSGeneralSettings GetGeneralSettings();
 	void SetGeneralSettings(LSGeneralSettings myGeneralSettings);
-				void ProcessMessage(std::vector <unsigned char> vBytes);
+	void ProcessMessage(std::vector <unsigned char> vBytes);
+// Option to use speech to output note names
+	bool GetSpeakNotes();
+	void SetSpeakNotes(bool blnSpeakNotes);
+
 
 private:
-		void SendCC(unsigned char CCNumber, unsigned char CCValue);
-		void SendNRPN(unsigned int NRPNNumber, unsigned int NRPNValue);
-
 		// MIDI devices
 		RtMidiIn * m_MIDIIn;
 		RtMidiOut * m_MIDIOut;
 		// MIDI port ID values;
 		int m_InputID, m_OutputID;
+		
+		unsigned int m_ActiveMemoryLocation;
 		std::vector <LSMemoryLocation> m_Memories;
-		LSGeneralSettings m_GeneralSettings;
+				LSGeneralSettings m_GeneralSettings;
 		unsigned int m_SPLIT_MODE_NRPN, m_MIDI_MAIN_CHANNEL_NRPN;
-			};
+		bool m_SpeakNotes;
+					};
+
+std::string MIDINoteName(unsigned char nNoteNumber);
+void SendCC(unsigned char CCNumber, unsigned char CCValue);
+void SendNRPN(unsigned int NRPNNumber, unsigned int NRPNValue);
 
 void LSCallback(double deltatime, std::vector< unsigned char > *message, void *pLinnStrument);

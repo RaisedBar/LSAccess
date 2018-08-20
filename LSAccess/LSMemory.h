@@ -16,9 +16,8 @@
 class LSMemoryLocation
 {
 public:
-	LSMemoryLocation(unsigned int nMemoryNumber);
+	LSMemoryLocation();
 
-	unsigned int GetMemoryNumber();
 	LSPerSplitSettings GetPerSplitSettings();
 	LSOctaveTransposeSettings GetOctaveTransposeSettings();
 	LSGlobalSettings GetGlobalSettings();
