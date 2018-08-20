@@ -2,7 +2,6 @@
 // Main window for the application
 
 #include "LSAccessFrame.h"
-#include "LeftSplitDlg.h"
 
 
 LSAccessFrame::LSAccessFrame(const wxString& title)
@@ -13,18 +12,18 @@ LSAccessFrame::LSAccessFrame(const wxString& title)
 
 	// create a menu bar
 	wxMenu *fileMenu = new wxMenu;
-	fileMenu->Append(LSAccess_Quit, "E&xit\tAlt-X", "Quit this program");
+	fileMenu->Append(ID_Quit, "E&xit\tAlt-X", "Quit this program");
 
 	wxMenu *viewMenu = new wxMenu;
-	viewMenu->Append(LSAccess_LeftSplitSettings, "&Left Split...\tF2", "Show all settings for the left-hand split");
-	viewMenu->Append(LSAccess_RightSplitSettings, "&Right Split...\tF3", "Show all settings for the right-hand split");
-	viewMenu->Append(LSAccess_OctaveTransposeSettings, "&Octave and Transpose...\tF4", "Show all settings for octave and transposition");
-	viewMenu->Append(LSAccess_StepSequencerSettings, "&Step Sequencer...\tF5", "Show all settings for the Step Sequencer");
-	viewMenu->Append(LSAccess_GlobalSettings, "&Global...\tF6", "Show all global settings");
-	
+	viewMenu->Append(ID_LeftSplitSettings, "&Left Split...\tF2", "Show all settings for the left-hand split");
+	viewMenu->Append(ID_RightSplitSettings, "&Right Split...\tF3", "Show all settings for the right-hand split");
+	viewMenu->Append(ID_OctaveTransposeSettings, "&Octave and Transpose...\tF4", "Show all settings for octave and transposition");
+	viewMenu->Append(ID_StepSequencerSettings, "&Step Sequencer...\tF5", "Show all settings for the Step Sequencer");
+	viewMenu->Append(ID_GlobalSettings, "&Global...\tF6", "Show all global settings");
+
 	// the "About" item should be in the help menu
 	wxMenu *helpMenu = new wxMenu;
-	helpMenu->Append(LSAccess_About, "&About\tF1", "Show about dialog");
+	helpMenu->Append(ID_About, "&About\tF1", "Show about dialog");
 
 	// now append the freshly created menus to the menu bar...
 	wxMenuBar *menuBar = new wxMenuBar();
@@ -39,9 +38,9 @@ LSAccessFrame::LSAccessFrame(const wxString& title)
 	CreateStatusBar(2);
 	SetStatusText("Welcome to LSAccess!");
 
-// Initialize the LinnStrument itself
-pLinnStrument = new LinnStrument()	;
-}
+	// Initialize the LinnStrument itself
+	pLinnStrument = new LinnStrument();
+		}
 
 
 // event handlers
@@ -54,9 +53,9 @@ void LSAccessFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 
 void LSAccessFrame::OnLeftSplitSettings(wxCommandEvent& event)
 {
-	LeftSplitDlg * myLeftSplitDlg = new LeftSplitDlg(L"Left-Hand Split Settings", pLinnStrument);
-	myLeftSplitDlg->Show(true);
-}
+	LeftSplitFrame * pLeftSplit = new LeftSplitFrame( L"Left Split", pLinnStrument);
+	pLeftSplit->Show(true);
+	}
 
 void LSAccessFrame::OnRightSplitSettings(wxCommandEvent& event)
 {}
@@ -81,15 +80,15 @@ void LSAccessFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
 // event tables and other macros for wxWidgets
 wxBEGIN_EVENT_TABLE(LSAccessFrame, wxFrame)
 // File menu
-EVT_MENU(LSAccess_Quit, LSAccessFrame::OnQuit)
+EVT_MENU(ID_Quit, LSAccessFrame::OnQuit)
 
 // View menu
-EVT_MENU(LSAccess_LeftSplitSettings, LSAccessFrame::OnLeftSplitSettings)
-	EVT_MENU(LSAccess_RightSplitSettings, LSAccessFrame::OnRightSplitSettings)
-		EVT_MENU(LSAccess_OctaveTransposeSettings, LSAccessFrame::OnOctaveTransposeSettings)
-			EVT_MENU(LSAccess_StepSequencerSettings, LSAccessFrame::OnStepSequencerSettings)
-				EVT_MENU(LSAccess_GlobalSettings, LSAccessFrame::OnGlobalSettings)
+EVT_MENU(ID_LeftSplitSettings, LSAccessFrame::OnLeftSplitSettings)
+	EVT_MENU(ID_RightSplitSettings, LSAccessFrame::OnRightSplitSettings)
+		EVT_MENU(ID_OctaveTransposeSettings, LSAccessFrame::OnOctaveTransposeSettings)
+			EVT_MENU(ID_StepSequencerSettings, LSAccessFrame::OnStepSequencerSettings)
+				EVT_MENU(ID_GlobalSettings, LSAccessFrame::OnGlobalSettings)
 
 // Help menu
-EVT_MENU(LSAccess_About, LSAccessFrame::OnAbout)
+EVT_MENU(ID_About, LSAccessFrame::OnAbout)
 wxEND_EVENT_TABLE()

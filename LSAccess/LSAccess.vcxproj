@@ -152,18 +152,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ChannelsPage.h" />
+    <ClInclude Include="LSEnums.h" />
     <ClInclude Include="LSGeneral.h" />
     <ClInclude Include="LSGlobal.h" />
     <ClInclude Include="LSMemory.h" />
-    <ClInclude Include="LeftSplitDlg.h" />
+    <ClInclude Include="LeftSplitFrame.h" />
     <ClInclude Include="LSAccessFrame.h" />
     <ClInclude Include="LinnStrument.h" />
     <ClInclude Include="LSAccess.h" />
     <ClInclude Include="LSOctaveTranspose.h" />
     <ClInclude Include="LSPerSplit.h" />
+    <ClInclude Include="PitchBendPage.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LeftSplitDlg.cpp" />
+    <ClCompile Include="ChannelsPage.cpp" />
+    <ClCompile Include="LeftSplitFrame.cpp" />
     <ClCompile Include="LSAccess.cpp" />
     <ClCompile Include="LSAccessFrame.cpp" />
     <ClCompile Include="LinnStrument.cpp" />
@@ -172,6 +176,7 @@
     <ClCompile Include="LSMemory.cpp" />
     <ClCompile Include="LSOctaveTranspose.cpp" />
     <ClCompile Include="LSPerSplit.cpp" />
+    <ClCompile Include="PitchBendPage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LSAccess.rc" />
