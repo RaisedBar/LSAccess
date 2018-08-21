@@ -152,8 +152,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AxesPage.h" />
     <ClInclude Include="ChannelsPage.h" />
     <ClInclude Include="ColorsPage.h" />
+    <ClInclude Include="FadersPage.h" />
     <ClInclude Include="LSEnums.h" />
     <ClInclude Include="LSGeneral.h" />
     <ClInclude Include="LSGlobal.h" />
@@ -167,8 +169,10 @@
     <ClInclude Include="SequencerPage.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AxesPage.cpp" />
     <ClCompile Include="ChannelsPage.cpp" />
     <ClCompile Include="ColorsPage.cpp" />
+    <ClCompile Include="FadersPage.cpp" />
     <ClCompile Include="PerSplitFrame.cpp" />
     <ClCompile Include="LSAccess.cpp" />
     <ClCompile Include="LSAccessFrame.cpp" />

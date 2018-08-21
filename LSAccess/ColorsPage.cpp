@@ -37,6 +37,27 @@ ColorsPage::ColorsPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, con
 	wrbcCOLOR_PLAYED = new wxRadioBox(myPanel, Color_PLAYED_ID, L"Played color:", wxDefaultPosition, wxDefaultSize, WXSIZEOF( ColorNames), ColorNames, 0, wxRA_SPECIFY_ROWS);
 	wrbc_COLOR_LOWROW = new wxRadioBox(myPanel, Color_LOWROW_ID, L"&Low row color:", wxDefaultPosition, wxDefaultSize, WXSIZEOF( ColorNames), ColorNames, 0, wxRA_SPECIFY_ROWS);
 	
+	wxString Animations[] =
+	{
+		L"SAME",
+		L"CROSSES",
+		L"CIRCLES",
+		L"SQUARES",
+		L"DIAMONDS",
+		L"STARS",
+		L"SPARKLES",
+		L"CURTAINS",
+		L"BLINDS",
+		L"TARGETS",
+		L"UP",
+		L"DOWN",
+		L"LEFT",
+		L"RIGHT",
+		L"ORBITS"
+	};
+
+	wrbcAnimation = new wxRadioBox(myPanel, ANIMATION_ID, L"&Animation:", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Animations), Animations, 0, wxRA_SPECIFY_ROWS);
+
 		myPanel->SetSizer(hBoxSettings);
 	hBoxSettings->SetSizeHints(this);
 	myPanel->Fit();

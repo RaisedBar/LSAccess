@@ -1,4 +1,4 @@
-// ColorsPage.h
+// FadersPage.h
 
 #pragma once
 
@@ -21,10 +21,10 @@
 #include "LSPerSplit.h"
 #include "LSEnums.h"
 
-class ColorsPage : public wxPanel
+class FadersPage : public wxPanel
 {
 public:
-	ColorsPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split);
+	FadersPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split);
 
 private:
 	LinnStrument * pMyLinnStrument;
@@ -32,7 +32,14 @@ private:
 	LSPerSplitSettings m_Settings;
 
 	// controls
-				// Values are defined in LSColor
-	wxRadioBox * wrbcCOLOR_MAIN, *wrbcCOLOR_ACCENT, *wrbcCOLOR_PLAYED, * wrbc_COLOR_LOWROW;
-	wxRadioBox * wrbcAnimation;
+				// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+	wxSpinCtrl * wscCC_FOR_FADER1;
+	wxSpinCtrl * wscCC_FOR_FADER2;
+	wxSpinCtrl * wscCC_FOR_FADER3;
+	wxSpinCtrl * wscCC_FOR_FADER4;
+	wxSpinCtrl * wscCC_FOR_FADER5;
+	wxSpinCtrl * wscCC_FOR_FADER6;
+	wxSpinCtrl * wscCC_FOR_FADER7;
+	wxSpinCtrl * wscCC_FOR_FADER8;
 };
+

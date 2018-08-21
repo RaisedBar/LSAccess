@@ -56,8 +56,10 @@ SEQUENCER_TOGGLE_MUTE_ID,
 	Color_ACCENT_ID,
 	Color_PLAYED_ID,
 	Color_LOWROW_ID,
+	ANIMATION_ID,
 	
-	ID_GlobalSettings,
+// Globals
+ID_GlobalSettings,
 
 	// Status bar
 	ID_Switch1Status,

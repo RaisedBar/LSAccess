@@ -1,55 +1,13 @@
-// header entries:
-	// toggles
-	wxCheckBox * chkSPLIT_LEFT_SEND_Y;
-	// Values are constrained by MIN_CC and MAX_CC
-	// CC 1 or CC 74 are recommended, any CC is possible though
-	wxSpinCtrl * wscSPLIT_LEFT_CC_FOR_Y;
-	// Toggle:
-	wxCheckBox * chkSPLIT_LEFT_RELATIVE_Y;
-	wxCheckBox * chkSPLIT_LEFT_RELATIVE_Z;
-	// Value is an LSExpressionZ
-	wxSpinCtrl  * wscSPLIT_LEFT_MIDI_EXPRESSION_FOR_Z;
-	// Values are constrained by MIN_CC and MAX_CC
-	// CC 11 is recommended, any CC is possible though
-	wxSpinCtrl * wscSPLIT_LEFT_CC_FOR_Z;
-	// Value is an LSLowRowMode
-	wxRadioBox * rdoSPLIT_LEFT_LOWROW_MODE;
+// Value is an LSLowRowMode
+	wxRadioBox * rdoLOWROW_MODE;
 	// Value is an LSSpecial:
-	wxSpinCtrl  * wscSPLIT_LEFT_SPECIAL;
+	wxSpinCtrl  * wscSPECIAL;
 	// Value is an LSOctave
-	wxRadioBox * rdoSPLIT_LEFT_OCTAVE;
+	wxRadioBox * rdoOCTAVE;
 	// Values are from LSPitch
-	wxRadioBox * rdoSPLIT_LEFT_PITCH_TRANSPOSE;
-	wxRadioBox * rdoSPLIT_LEFT_TRANSPOSE_LIGHTS;
-	// Value is an LSExpressionY
-	wxSpinCtrl  * wscSPLIT_LEFT_EXPRESSION_FOR_Y;
+	wxRadioBox * rdoPITCH_TRANSPOSE;
+	wxRadioBox * rdoTRANSPOSE_LIGHTS;
 	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	wxSpinCtrl * wscSPLIT_LEFT_CC_FOR_FADER1;
-	wxSpinCtrl * wscSPLIT_LEFT_CC_FOR_FADER2;
-	wxSpinCtrl * wscSPLIT_LEFT_CC_FOR_FADER3;
-	wxSpinCtrl * wscSPLIT_LEFT_CC_FOR_FADER4;
-	wxSpinCtrl * wscSPLIT_LEFT_CC_FOR_FADER5;
-	wxSpinCtrl * wscSPLIT_LEFT_CC_FOR_FADER6;
-	wxSpinCtrl * wscSPLIT_LEFT_CC_FOR_FADER7;
-	wxSpinCtrl * wscSPLIT_LEFT_CC_FOR_FADER8;
-	// Value is an LSLowRowBehaviour
-	wxRadioBox * rdoSPLIT_LEFT_LOWROW_X_BEHAVIOUR;
-	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	wxSpinCtrl * wscSPLIT_LEFT_CC_FOR_LOWROW;
-	// Value is an LSLowRowBehaviour
-	wxRadioBox * rdiSPLIT_LEFT_LOWROW_XYZ_BEHAVIOUR;
-	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	wxSpinCtrl * wscSPLIT_LEFT_CC_FOR_LOWROW_XYZ;
-	wxSpinCtrl * wscSPLIT_LEFT_CC_FOR_LOWROW_XYZ_Y;
-	wxSpinCtrl * wscSPLIT_LEFT_CC_FOR_LOWROW_XYZ_Z;
-	// Values are constrained by MIN_CC and MAX_CC
-	wxSpinCtrl * wscSPLIT_LEFT_MIN_CC_FOR_Y;
-	wxSpinCtrl * wscSPLIT_LEFT_MAX_CC_FOR_Y;
-	wxSpinCtrl * wscSPLIT_LEFT_MIN_CC_FOR_Z;
-	wxSpinCtrl * wscSPLIT_LEFT_MAX_CC_FOR_Z;
-	wxSpinCtrl * wscSPLIT_LEFT_14BIT_CC_VALUE_FOR_Z;
-	wxSpinCtrl * wscSPLIT_LEFT_INITIAL_RELATIVE_VALUE_FOR_Y;
+	wxSpinCtrl * wscCC_FOR_LOWROW;
 	// Value is an LSChannelOrder
-	wxRadioBox * rdoSPLIT_LEFT_CHANNEL_PER_ROW_ORDER;
-	// Value is an LSAnimation
-	wxRadioBox * wscSPLIT_LEFT_TOUCH_ANIMATION;
+	wxRadioBox * rdoCHANNEL_PER_ROW_ORDER;

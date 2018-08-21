@@ -24,11 +24,15 @@ PerSplitFrame::PerSplitFrame(const wxString& title, LinnStrument * pLinnStrument
 	pBendPage = new BendPage(pNotebook, pLinnStrument, split);
 	pSequencerPage = new SequencerPage(pNotebook, pLinnStrument, split);
 	pColorsPage = new ColorsPage(pNotebook, pLinnStrument, split);
+	pFadersPage = new FadersPage(pNotebook, pLinnStrument, split);
+	pAxesPage = new AxesPage(pNotebook, pLinnStrument, split);
 
-		pNotebook->AddPage(pChannelsPage, L"Channels", true);
+			pNotebook->AddPage(pChannelsPage, L"Channels", true);
 	pNotebook->AddPage(pBendPage, L"Bend", false);
 	pNotebook->AddPage(pSequencerPage, L"Sequencer", false);
 	pNotebook->AddPage(pColorsPage, L"Colors and Animations", false);
+	pNotebook->AddPage(pFadersPage, L"Faders", false);
+	pNotebook->AddPage(pAxesPage, L"X, Y and Z Axes", false);
 	
 	vSizer->Insert( 0, pNotebook, wxSizerFlags(5).Expand().Border());
 	vSizer->Show(pNotebook);

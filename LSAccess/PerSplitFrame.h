@@ -24,6 +24,8 @@
 #include "BendPage.h"
 #include "SequencerPage.h"
 #include "ColorsPage.h"
+#include "FadersPage.h"
+#include "AxesPage.h"
 
 
 class PerSplitFrame : public wxFrame
@@ -40,6 +42,8 @@ private:
 	BendPage * pBendPage;
 	SequencerPage * pSequencerPage;
 	ColorsPage * pColorsPage;
+	FadersPage * pFadersPage;
+	AxesPage * pAxesPage;
 
 			DECLARE_EVENT_TABLE()
 };
