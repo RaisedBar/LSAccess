@@ -29,7 +29,7 @@
 class PerSplitFrame : public wxFrame
 {
 public:
-	PerSplitFrame(const wxString& title, LinnStrument * pLinnStrument);
+	PerSplitFrame(const wxString& title, LinnStrument * pLinnStrument, const LSSplitType split);
 
 private:
 	void OnTabChanged(wxNotebookEvent& event);

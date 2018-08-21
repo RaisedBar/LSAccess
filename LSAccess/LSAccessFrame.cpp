@@ -53,12 +53,15 @@ void LSAccessFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 
 void LSAccessFrame::OnLeftSplitSettings(wxCommandEvent& event)
 {
-	PerSplitFrame * pLeftSplit = new PerSplitFrame( L"Left Split", pLinnStrument);
+	PerSplitFrame * pLeftSplit = new PerSplitFrame( L"Left Split", pLinnStrument, LSSplitType::LEFT);
 	pLeftSplit->Show(true);
 	}
 
 void LSAccessFrame::OnRightSplitSettings(wxCommandEvent& event)
-{}
+{
+	PerSplitFrame * pRightSplit = new PerSplitFrame(L"Right Split", pLinnStrument, LSSplitType::RIGHT);
+	pRightSplit->Show(true);
+}
 
 
 void LSAccessFrame::OnOctaveTransposeSettings(wxCommandEvent& event)

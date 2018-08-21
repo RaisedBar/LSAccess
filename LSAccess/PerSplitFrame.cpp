@@ -7,7 +7,7 @@
 #include "PerSplitFrame.h"
 
 
-PerSplitFrame::PerSplitFrame(const wxString& title, LinnStrument * pLinnStrument)
+PerSplitFrame::PerSplitFrame(const wxString& title, LinnStrument * pLinnStrument, const LSSplitType split)
 	: wxFrame(NULL, wxID_ANY, title),
 		pMyLinnStrument(new LinnStrument)
 {
