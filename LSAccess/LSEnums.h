@@ -10,16 +10,15 @@ enum
 {
 	// File menu
 	ID_Quit = wxID_EXIT,
+	
 	// View menu
 	ID_LeftSplitSettings,
-	ID_NOTEBOOK,
 	ID_RightSplitSettings,
-	ID_OctaveTransposeSettings,
-	ID_StepSequencerSettings,
-	ID_GlobalSettings,
 
+	ID_NOTEBOOK,
+	
 	// Channels page
-		SPLIT_LEFT_CHANNEL_PER_NOTE_1_ID,
+	SPLIT_LEFT_CHANNEL_PER_NOTE_1_ID,
 	SPLIT_LEFT_CHANNEL_PER_NOTE_2_ID,
 	SPLIT_LEFT_CHANNEL_PER_NOTE_3_ID,
 	SPLIT_LEFT_CHANNEL_PER_NOTE_4_ID,
@@ -36,7 +35,7 @@ enum
 	SPLIT_LEFT_CHANNEL_PER_NOTE_15_ID,
 	SPLIT_LEFT_CHANNEL_PER_NOTE_16_ID,
 	SPLIT_LEFT_MIDI_PER_ROW_LOWEST_CHANNEL_ID,
-	
+
 	// Pitch bend page
 	SPLIT_LEFT_BEND_TOGGLE_ID,
 	SPLIT_LEFT_BEND_RANGE_ID,
@@ -44,11 +43,23 @@ enum
 	SPLIT_LEFT_BEND_TYPE_ID,
 	SPLIT_LEFT_RESET_PITCH_ON_RELEASE_ID,
 
+	// Sequencer page
+ID_StepSequencerSettings,
+SPLIT_LEFT_SEQUENCER_TOGGLE_PLAY_ID,
+SPLIT_LEFT_SEQUENCER_TOGGLE_MUTE_ID,
+	SPLIT_LEFT_SEQUENCER_PATTERN_ID,
+	SPLIT_LEFT_SEQUENCER_PREVIOUS_PATTERN_ID,
+	SPLIT_LEFT_SEQUENCER_NEXT_PATTERN_ID,
+	ID_GlobalSettings,
+
 	// Status bar
 	ID_Switch1Status,
 	ID_Switch2Status,
 	ID_SplitButton1Status,
 	ID_SplitButton2Status,
+
+	// Octave-Transpose settings
+	ID_OctaveTransposeSettings,
 
 	// Volume settings
 

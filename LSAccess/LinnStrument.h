@@ -215,13 +215,8 @@ enum class LSAnimation
 	ORBITS = 14
 };
 
-enum class LSPatternNumber
-{
-	ZERO = 0,
-	ONE = 1,
-	TWO = 2,
-	THREE = 3
-};
+const unsigned int MIN_SEQUENCER_PATTERN = 0;
+const unsigned int MAX_SEQUENCER_PATTERN = 3;
 
 enum class LSSplitType
 {

@@ -1,8 +1,8 @@
-// PitchBendPage.cpp
+// BendPage.cpp
 
-#include "PitchBendPage.h"
+#include "BendPage.h"
 
-PitchBendPage::PitchBendPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument)
+BendPage::BendPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument)
 	:wxPanel(parent),
 	pMyLinnStrument(new LinnStrument),
 	pMyParent(new wxBookCtrl())

@@ -21,7 +21,8 @@
 
 #include "LSEnums.h"
 #include "ChannelsPage.h"
-#include "PitchBendPage.h"
+#include "BendPage.h"
+#include "SequencerPage.h"
 
 
 class LeftSplitFrame : public wxFrame
@@ -35,7 +36,8 @@ private:
 	LinnStrument * pMyLinnStrument;
 		wxNotebook * pNotebook;
 	ChannelsPage * pChannelsPage;
-	PitchBendPage * pPitchBendPage;
+	BendPage * pBendPage;
+	SequencerPage * pSequencerPage;
 
 		DECLARE_EVENT_TABLE()
 };

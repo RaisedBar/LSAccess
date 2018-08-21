@@ -163,7 +163,8 @@
     <ClInclude Include="LSAccess.h" />
     <ClInclude Include="LSOctaveTranspose.h" />
     <ClInclude Include="LSPerSplit.h" />
-    <ClInclude Include="PitchBendPage.h" />
+    <ClInclude Include="BendPage.h" />
+    <ClInclude Include="SequencerPage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChannelsPage.cpp" />
@@ -176,7 +177,8 @@
     <ClCompile Include="LSMemory.cpp" />
     <ClCompile Include="LSOctaveTranspose.cpp" />
     <ClCompile Include="LSPerSplit.cpp" />
-    <ClCompile Include="PitchBendPage.cpp" />
+    <ClCompile Include="BendPage.cpp" />
+    <ClCompile Include="SequencerPage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LSAccess.rc" />

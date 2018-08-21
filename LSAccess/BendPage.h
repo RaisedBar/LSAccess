@@ -21,10 +21,10 @@
 #include "LSPerSplit.h"
 #include "LSEnums.h"
 
-class PitchBendPage : public wxPanel
+class BendPage : public wxPanel
 {
 public:
-	PitchBendPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
+	BendPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
 	
 private:
 	LinnStrument * pMyLinnStrument;

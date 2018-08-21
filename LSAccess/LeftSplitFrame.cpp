@@ -21,9 +21,12 @@ LeftSplitFrame::LeftSplitFrame(const wxString& title, LinnStrument * pLinnStrume
 
 	pNotebook = new wxNotebook(pPanel, ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, 0);
 	pChannelsPage = new ChannelsPage(pNotebook, pLinnStrument);
-	pPitchBendPage = new PitchBendPage(pNotebook, pLinnStrument);
+	pBendPage = new BendPage(pNotebook, pLinnStrument);
+	pSequencerPage = new SequencerPage(pNotebook, pLinnStrument);
+
 	pNotebook->AddPage(pChannelsPage, L"Channels", true);
-	pNotebook->AddPage(pPitchBendPage, L"Pitch Bend", false);
+	pNotebook->AddPage(pBendPage, L"Bend", false);
+	pNotebook->AddPage(pSequencerPage, L"Sequencer", false);
 		vSizer->Insert( 0, pNotebook, wxSizerFlags(5).Expand().Border());
 	vSizer->Show(pNotebook);
 }
