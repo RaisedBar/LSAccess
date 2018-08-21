@@ -19,26 +19,26 @@
 
 #include "LinnStrument.h"
 #include "LSPerSplit.h"
+#include "LSEnums.h"
 
 class PitchBendPage : public wxPanel
 {
 public:
 	PitchBendPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
-	// void SetPitchBendPage(CurrentPatchPage * pPage);
-
+	
 private:
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
 	LSPerSplitSettings m_Settings;
 
 	// controls
-	// Value is from LSBendRange
-	wxSpinCtrl * wscSPLIT_LEFT_BEND_RANGE_NRPN;
+	// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
+	wxSpinCtrl * wscSPLIT_LEFT_BEND_RANGE;
 	// Toggles:
-	wxCheckBox * chkSPLIT_LEFT_BEND_TOGGLE_NRPN;
-	wxCheckBox * chkSPLIT_LEFT_BEND_QUANTIZE_TOGGLE_NRPN;
-	// Value is from LSPitchQuantize
-	wxRadioButton * rdoSPLIT_LEFT_PITCH_QUANTIZE_NRPN;
+	wxCheckBox * chkSPLIT_LEFT_BEND_TOGGLE;
+	wxCheckBox * chkSPLIT_LEFT_BEND_QUANTIZE_TOGGLE;
+	// Values are from LSPitchQuantize
+	wxRadioBox * rdobPitchBendType;
 	// Toggles:
-	wxCheckBox * chkSPLIT_LEFT_RESET_PITCH_ON_RELEASE_NRPN;
+	wxCheckBox * chkSPLIT_LEFT_RESET_PITCH_ON_RELEASE;
 	};

@@ -14,28 +14,30 @@ wxPanel * myPanel = new wxPanel(this, -1);
 wxBoxSizer * hBoxSettings = new wxBoxSizer(wxHORIZONTAL);
 
 // Controls
-// Value is from LSBendRange
-wxStaticText * lblSPLIT_LEFT_BEND_RANGE_NRPN = new wxStaticText(myPanel, wxID_ANY, L"&Bend Range:");
-wscSPLIT_LEFT_BEND_RANGE_NRPN = new wxSpinCtrl(myPanel, SPLIT_LEFT_BEND_RANGE_NRPN, L"MIDI per row lowest channel");
-chkSPLIT_LEFT_BEND_TOGGLE_NRPN = new wxCheckBox(myPanel, SPLIT_LEFT_BEND_TOGGLE_NRPN, L"Enable &pitch bend");
-chkSPLIT_LEFT_BEND_QUANTIZE_TOGGLE_NRPN = new wxCheckBox(myPanel, SPLIT_LEFT_BEND_QUANTIZE_TOGGLE_NRPN, L"&Quantize pitch bend");
-// Value is from LSPitchQuantize
-rdoSPLIT_LEFT_PITCH_QUANTIZE_NRPN = new wxRadioButton(myPanel, SPLIT_LEFT_PITCH_QUANTIZE_NRPN, L"&Quantize pitch bend type");
+// toggle
+chkSPLIT_LEFT_BEND_TOGGLE = new wxCheckBox(myPanel, SPLIT_LEFT_BEND_TOGGLE_ID, L"Enable &Bend");
+// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
+wscSPLIT_LEFT_BEND_RANGE = new wxSpinCtrl(myPanel, SPLIT_LEFT_BEND_RANGE_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_BEND_RANGE, MAX_BEND_RANGE, m_Settings.GetSPLIT_LEFT_BEND_RANGE(), "Bend &range");
+// toggle
+chkSPLIT_LEFT_BEND_QUANTIZE_TOGGLE = new wxCheckBox(myPanel, SPLIT_LEFT_BEND_QUANTIZE_TOGGLE_ID, L"&Quantize pitch bend");
+
+// Values are from LSPitchQuantize
+wxString BendTypes[] =
+{
+	L"Off",
+	L"Medium",
+	L"Fast",
+	L"Slow"
+};
+
+			rdobPitchBendType = new wxRadioBox(myPanel, SPLIT_LEFT_BEND_TYPE_ID, L"Pitch bend &type:", wxDefaultPosition, wxDefaultSize, 4, BendTypes, 0, wxRA_SPECIFY_ROWS);
 // Toggles:
-chkSPLIT_LEFT_RESET_PITCH_ON_RELEASE_NRPN = new wxCheckBox(myPanel, SPLIT_LEFT_RESET_PITCH_ON_RELEASE_NRPN, L"&&Reset pitch on release");
+chkSPLIT_LEFT_RESET_PITCH_ON_RELEASE = new wxCheckBox(myPanel, SPLIT_LEFT_RESET_PITCH_ON_RELEASE_ID, L"&&Reset pitch &on release");
 
 myPanel->SetSizer(hBoxSettings);
 hBoxSettings->SetSizeHints(this);
 myPanel->Fit();
 hBoxSettings->Fit(myPanel);
 }
-
-
-/*
-void PitchBendPage::SetPitchBendPage(CurrentPatchPage * pPage)
-{
-	pPatchPage = pPage;
-}
-*/
 
 

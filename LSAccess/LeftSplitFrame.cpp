@@ -38,11 +38,7 @@ void LeftSplitFrame::OnTabChanged(wxNotebookEvent& event)
 	{
 	case 0:
 	{
-		/*
-				FileMenu->Enable( ID_IMPORT, true);
-				FileMenu->Enable( ID_SAVE_AS, false);
-				FileMenu->Enable( ID_PRINT, true);
-		*/
+// Do something
 	}
 	break;
 

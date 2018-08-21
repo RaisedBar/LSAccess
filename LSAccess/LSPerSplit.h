@@ -23,7 +23,7 @@ const unsigned int SPLIT_LEFT_CHANNEL_PER_NOTE_15_NRPN = 16;
 const unsigned int SPLIT_LEFT_CHANNEL_PER_NOTE_16_NRPN = 17;
 // Value is a MIDI channel number:
 const unsigned int SPLIT_LEFT_MIDI_PER_ROW_LOWEST_CHANNEL_NRPN = 18;
-// Value is from LSBendRange
+// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
 const unsigned int SPLIT_LEFT_BEND_RANGE_NRPN = 19;
 // Toggles:
 const unsigned int SPLIT_LEFT_BEND_TOGGLE_NRPN = 20;
@@ -209,395 +209,395 @@ public:
 
 	// Left-hand split
 // Toggles:
-	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_1_NRPN();
-	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_2_NRPN();
-	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_3_NRPN();
-	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_4_NRPN();
-	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_5_NRPN();
-	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_6_NRPN();
-	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_7_NRPN();
-	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_8_NRPN();
-	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_9_NRPN();
-	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_10_NRPN();
-	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_11_NRPN();
-	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_12_NRPN();
-	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_13_NRPN();
-	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_14_NRPN();
-	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_15_NRPN();
-	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_16_NRPN();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_1();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_2();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_3();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_4();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_5();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_6();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_7();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_8();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_9();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_10();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_11();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_12();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_13();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_14();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_15();
+	unsigned int GetSPLIT_LEFT_CHANNEL_PER_NOTE_16();
 	// Value is a MIDI channel number:
-	unsigned int GetSPLIT_LEFT_MIDI_PER_ROW_LOWEST_CHANNEL_NRPN();
-	// Value is from LSBendRange
-	unsigned int GetSPLIT_LEFT_BEND_RANGE_NRPN();
+	unsigned int GetSPLIT_LEFT_MIDI_PER_ROW_LOWEST_CHANNEL();
+	// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
+	unsigned int GetSPLIT_LEFT_BEND_RANGE();
 	// Toggles:
-	unsigned int GetSPLIT_LEFT_BEND_TOGGLE_NRPN();
-	unsigned int GetSPLIT_LEFT_BEND_QUANTIZE_TOGGLE_NRPN();
+	unsigned int GetSPLIT_LEFT_BEND_TOGGLE();
+	unsigned int GetSPLIT_LEFT_BEND_QUANTIZE_TOGGLE();
 	// Value is from LSPitchQuantize
-	unsigned int GetSPLIT_LEFT_PITCH_QUANTIZE_NRPN();
+	unsigned int GetSPLIT_LEFT_PITCH_QUANTIZE();
 	// Toggles:
-	unsigned int GetSPLIT_LEFT_RESET_PITCH_ON_RELEASE_NRPN();
-	unsigned int GetSPLIT_LEFT_SEND_Y_NRPN();
+	unsigned int GetSPLIT_LEFT_RESET_PITCH_ON_RELEASE();
+	unsigned int GetSPLIT_LEFT_SEND_Y();
 	// Values are constrained by MIN_CC and MAX_CC
 	// CC 1 or CC 74 are recommended, any CC is possible though
-	unsigned int GetSPLIT_LEFT_CC_FOR_Y_NRPN();
+	unsigned int GetSPLIT_LEFT_CC_FOR_Y();
 	// Toggle:
-	unsigned int GetSPLIT_LEFT_RELATIVE_Y_NRPN();
-	unsigned int GetSPLIT_LEFT_RELATIVE_Z_NRPN();
+	unsigned int GetSPLIT_LEFT_RELATIVE_Y();
+	unsigned int GetSPLIT_LEFT_RELATIVE_Z();
 	// Value is an LSExpressionZ
-	unsigned int GetSPLIT_LEFT_MIDI_EXPRESSION_FOR_Z_NRPN();
+	unsigned int GetSPLIT_LEFT_MIDI_EXPRESSION_FOR_Z();
 	// Values are constrained by MIN_CC and MAX_CC
 	// CC 11 is recommended, any CC is possible though
-	unsigned int GetSPLIT_LEFT_CC_FOR_Z_NRPN();
+	unsigned int GetSPLIT_LEFT_CC_FOR_Z();
 	// Values are defined in LSColor
-	unsigned int GetSPLIT_LEFT_COLOR_MAIN_NRPN();
-	unsigned int GetSPLIT_LEFT_COLOR_ACCENT_NRPN();
-	unsigned int GetSPLIT_LEFT_COLOR_PLAYED_NRPN();
-	unsigned int GetSPLIT_LEFT_COLOR_LOWROW_NRPN();
+	unsigned int GetSPLIT_LEFT_COLOR_MAIN();
+	unsigned int GetSPLIT_LEFT_COLOR_ACCENT();
+	unsigned int GetSPLIT_LEFT_COLOR_PLAYED();
+	unsigned int GetSPLIT_LEFT_COLOR_LOWROW();
 	// Value is an LSLowRowMode
-	unsigned int GetSPLIT_LEFT_LOWROW_MODE_NRPN();
+	unsigned int GetSPLIT_LEFT_LOWROW_MODE();
 	// Value is an LSSpecial:
-	unsigned int GetSPLIT_LEFT_SPECIAL_NRPN();
+	unsigned int GetSPLIT_LEFT_SPECIAL();
 	// Value is an LSOctave
-	unsigned int GetSPLIT_LEFT_OCTAVE_NRPN();
+	unsigned int GetSPLIT_LEFT_OCTAVE();
 	// Values are from LSPitch
-	unsigned int GetSPLIT_LEFT_PITCH_TRANSPOSE_NRPN();
-	unsigned int GetSPLIT_LEFT_TRANSPOSE_LIGHTS_NRPN();
+	unsigned int GetSPLIT_LEFT_PITCH_TRANSPOSE();
+	unsigned int GetSPLIT_LEFT_TRANSPOSE_LIGHTS();
 	// Value is an LSExpressionY
-	unsigned int GetSPLIT_LEFT_EXPRESSION_FOR_Y_NRPN();
+	unsigned int GetSPLIT_LEFT_EXPRESSION_FOR_Y();
 	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	unsigned int GetSPLIT_LEFT_CC_FOR_FADER1_NRPN();
-	unsigned int GetSPLIT_LEFT_CC_FOR_FADER2_NRPN();
-	unsigned int GetSPLIT_LEFT_CC_FOR_FADER3_NRPN();
-	unsigned int GetSPLIT_LEFT_CC_FOR_FADER4_NRPN();
-	unsigned int GetSPLIT_LEFT_CC_FOR_FADER5_NRPN();
-	unsigned int GetSPLIT_LEFT_CC_FOR_FADER6_NRPN();
-	unsigned int GetSPLIT_LEFT_CC_FOR_FADER7_NRPN();
-	unsigned int GetSPLIT_LEFT_CC_FOR_FADER8_NRPN();
+	unsigned int GetSPLIT_LEFT_CC_FOR_FADER1();
+	unsigned int GetSPLIT_LEFT_CC_FOR_FADER2();
+	unsigned int GetSPLIT_LEFT_CC_FOR_FADER3();
+	unsigned int GetSPLIT_LEFT_CC_FOR_FADER4();
+	unsigned int GetSPLIT_LEFT_CC_FOR_FADER5();
+	unsigned int GetSPLIT_LEFT_CC_FOR_FADER6();
+	unsigned int GetSPLIT_LEFT_CC_FOR_FADER7();
+	unsigned int GetSPLIT_LEFT_CC_FOR_FADER8();
 	// Value is an LSLowRowBehaviour
-	unsigned int GetSPLIT_LEFT_LOWROW_X_BEHAVIOUR_NRPN();
+	unsigned int GetSPLIT_LEFT_LOWROW_X_BEHAVIOUR();
 	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	unsigned int GetSPLIT_LEFT_CC_FOR_LOWROW_NRPN();
+	unsigned int GetSPLIT_LEFT_CC_FOR_LOWROW();
 	// Value is an LSLowRowBehaviour
-	unsigned int GetSPLIT_LEFT_LOWROW_XYZ_BEHAVIOUR_NRPN();
+	unsigned int GetSPLIT_LEFT_LOWROW_XYZ_BEHAVIOUR();
 	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	unsigned int GetSPLIT_LEFT_CC_FOR_LOWROW_XYZ_NRPN();
-	unsigned int GetSPLIT_LEFT_CC_FOR_LOWROW_XYZ_Y_NRPN();
-	unsigned int GetSPLIT_LEFT_CC_FOR_LOWROW_XYZ_Z_NRPN();
+	unsigned int GetSPLIT_LEFT_CC_FOR_LOWROW_XYZ();
+	unsigned int GetSPLIT_LEFT_CC_FOR_LOWROW_XYZ_Y();
+	unsigned int GetSPLIT_LEFT_CC_FOR_LOWROW_XYZ_Z();
 	// Values are constrained by MIN_CC and MAX_CC
-	unsigned int GetSPLIT_LEFT_MIN_CC_FOR_Y_NRPN();
-	unsigned int GetSPLIT_LEFT_MAX_CC_FOR_Y_NRPN();
-	unsigned int GetSPLIT_LEFT_MIN_CC_FOR_Z_NRPN();
-	unsigned int GetSPLIT_LEFT_MAX_CC_FOR_Z_NRPN();
-	unsigned int GetSPLIT_LEFT_14BIT_CC_VALUE_FOR_Z_NRPN();
-	unsigned int GetSPLIT_LEFT_INITIAL_RELATIVE_VALUE_FOR_Y_NRPN();
+	unsigned int GetSPLIT_LEFT_MIN_CC_FOR_Y();
+	unsigned int GetSPLIT_LEFT_MAX_CC_FOR_Y();
+	unsigned int GetSPLIT_LEFT_MIN_CC_FOR_Z();
+	unsigned int GetSPLIT_LEFT_MAX_CC_FOR_Z();
+	unsigned int GetSPLIT_LEFT_14BIT_CC_VALUE_FOR_Z();
+	unsigned int GetSPLIT_LEFT_INITIAL_RELATIVE_VALUE_FOR_Y();
 	// Value is an LSChannelOrder
 	unsigned int GetSPLIT_LEFT_CHANNEL_PER_ROW_ORDER();
 	// Value is an LSAnimation
 	unsigned int GetSPLIT_LEFT_TOUCH_ANIMATION();
 	// Toggle:
-	unsigned int GetSPLIT_LEFT_SEQUENCER_TOGGLE_PLAY_NRPN();
-	unsigned int GetSPLIT_LEFT_SEQUENCER_PREVIOUS_PATTERN_NRPN();
-	unsigned int GetSPLIT_LEFT_SEQUENCER_NEXT_PATTERN_NRPN();
+	unsigned int GetSPLIT_LEFT_SEQUENCER_TOGGLE_PLAY();
+	unsigned int GetSPLIT_LEFT_SEQUENCER_PREVIOUS_PATTERN();
+	unsigned int GetSPLIT_LEFT_SEQUENCER_NEXT_PATTERN();
 	// Value is an LSPatternNumber
-	unsigned int GetSPLIT_LEFT_SEQUENCER_PATTERN_NRPN();
-	unsigned int GetSPLIT_LEFT_SEQUENCER_TOGGLE_MUTE_NRPN();
+	unsigned int GetSPLIT_LEFT_SEQUENCER_PATTERN();
+	unsigned int GetSPLIT_LEFT_SEQUENCER_TOGGLE_MUTE();
 
 	// Setters:
 	// Value is an LSSplitMode
-	void SetSPLIT_MODE_NRPN(unsigned int nValue);
+	void SetSPLIT_MODE(unsigned int nValue);
 	// Value constrained by MIN_MIDI_CHANNEL and MAX_MIDI_CHANNEL
-	void SetMIDI_MAIN_CHANNEL_NRPN(unsigned int nValue);
+	void SetMIDI_MAIN_CHANNEL(unsigned int nValue);
 
 	// Left-hand split
 	// Toggles:
-	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_1_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_2_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_3_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_4_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_5_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_6_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_7_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_8_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_9_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_10_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_11_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_12_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_13_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_14_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_15_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_16_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_1(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_2(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_3(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_4(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_5(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_6(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_7(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_8(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_9(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_10(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_11(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_12(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_13(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_14(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_15(unsigned int nValue);
+	void SetSPLIT_LEFT_CHANNEL_PER_NOTE_16(unsigned int nValue);
 	// Value is a MIDI channel number:
-	void SetSPLIT_LEFT_MIDI_PER_ROW_LOWEST_CHANNEL_NRPN(unsigned int nValue);
-	// Value is from LSBendRange
-	void SetSPLIT_LEFT_BEND_RANGE_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_MIDI_PER_ROW_LOWEST_CHANNEL(unsigned int nValue);
+	// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
+	void SetSPLIT_LEFT_BEND_RANGE(unsigned int nValue);
 	// Toggles:
-	void SetSPLIT_LEFT_BEND_TOGGLE_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_BEND_QUANTIZE_TOGGLE_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_BEND_TOGGLE(unsigned int nValue);
+	void SetSPLIT_LEFT_BEND_QUANTIZE_TOGGLE(unsigned int nValue);
 	// Value is from LSPitchQuantize
-	void SetSPLIT_LEFT_PITCH_QUANTIZE_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_PITCH_QUANTIZE(unsigned int nValue);
 	// Toggles:
-	void SetSPLIT_LEFT_RESET_PITCH_ON_RELEASE_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_SEND_Y_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_RESET_PITCH_ON_RELEASE(unsigned int nValue);
+	void SetSPLIT_LEFT_SEND_Y(unsigned int nValue);
 	// Values are constrained by MIN_CC and MAX_CC
 	// CC 1 or CC 74 are recommended, any CC is possible though
-	void SetSPLIT_LEFT_CC_FOR_Y_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_Y(unsigned int nValue);
 	// Toggle:
-	void SetSPLIT_LEFT_RELATIVE_Y_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_RELATIVE_Z_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_RELATIVE_Y(unsigned int nValue);
+	void SetSPLIT_LEFT_RELATIVE_Z(unsigned int nValue);
 	// Value is an LSExpressionZ
-	void SetSPLIT_LEFT_MIDI_EXPRESSION_FOR_Z_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_MIDI_EXPRESSION_FOR_Z(unsigned int nValue);
 	// Values are constrained by MIN_CC and MAX_CC
 	// CC 11 is recommended, any CC is possible though
-	void SetSPLIT_LEFT_CC_FOR_Z_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_Z(unsigned int nValue);
 	// Values are defined in LSColor
-	void SetSPLIT_LEFT_COLOR_MAIN_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_COLOR_ACCENT_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_COLOR_PLAYED_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_COLOR_LOWROW_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_COLOR_MAIN(unsigned int nValue);
+	void SetSPLIT_LEFT_COLOR_ACCENT(unsigned int nValue);
+	void SetSPLIT_LEFT_COLOR_PLAYED(unsigned int nValue);
+	void SetSPLIT_LEFT_COLOR_LOWROW(unsigned int nValue);
 	// Value is an LSLowRowMode
-	void SetSPLIT_LEFT_LOWROW_MODE_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_LOWROW_MODE(unsigned int nValue);
 	// Value is an LSSpecial:
-	void SetSPLIT_LEFT_SPECIAL_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_SPECIAL(unsigned int nValue);
 	// Value is an LSOctave
-	void SetSPLIT_LEFT_OCTAVE_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_OCTAVE(unsigned int nValue);
 	// Values are from LSPitch
-	void SetSPLIT_LEFT_PITCH_TRANSPOSE_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_TRANSPOSE_LIGHTS_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_PITCH_TRANSPOSE(unsigned int nValue);
+	void SetSPLIT_LEFT_TRANSPOSE_LIGHTS(unsigned int nValue);
 	// Value is an LSExpressionY
-	void SetSPLIT_LEFT_EXPRESSION_FOR_Y_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_EXPRESSION_FOR_Y(unsigned int nValue);
 	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	void SetSPLIT_LEFT_CC_FOR_FADER1_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CC_FOR_FADER2_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CC_FOR_FADER3_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CC_FOR_FADER4_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CC_FOR_FADER5_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CC_FOR_FADER6_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CC_FOR_FADER7_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CC_FOR_FADER8_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_FADER1(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_FADER2(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_FADER3(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_FADER4(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_FADER5(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_FADER6(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_FADER7(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_FADER8(unsigned int nValue);
 	// Value is an LSLowRowBehaviour
-	void SetSPLIT_LEFT_LOWROW_X_BEHAVIOUR_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_LOWROW_X_BEHAVIOUR(unsigned int nValue);
 	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	void SetSPLIT_LEFT_CC_FOR_LOWROW_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_LOWROW(unsigned int nValue);
 	// Value is an LSLowRowBehaviour
-	void SetSPLIT_LEFT_LOWROW_XYZ_BEHAVIOUR_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_LOWROW_XYZ_BEHAVIOUR(unsigned int nValue);
 	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	void SetSPLIT_LEFT_CC_FOR_LOWROW_XYZ_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CC_FOR_LOWROW_XYZ_Y_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_CC_FOR_LOWROW_XYZ_Z_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_LOWROW_XYZ(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_LOWROW_XYZ_Y(unsigned int nValue);
+	void SetSPLIT_LEFT_CC_FOR_LOWROW_XYZ_Z(unsigned int nValue);
 	// Values are constrained by MIN_CC and MAX_CC
-	void SetSPLIT_LEFT_MIN_CC_FOR_Y_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_MAX_CC_FOR_Y_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_MIN_CC_FOR_Z_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_MAX_CC_FOR_Z_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_14BIT_CC_VALUE_FOR_Z_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_INITIAL_RELATIVE_VALUE_FOR_Y_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_MIN_CC_FOR_Y(unsigned int nValue);
+	void SetSPLIT_LEFT_MAX_CC_FOR_Y(unsigned int nValue);
+	void SetSPLIT_LEFT_MIN_CC_FOR_Z(unsigned int nValue);
+	void SetSPLIT_LEFT_MAX_CC_FOR_Z(unsigned int nValue);
+	void SetSPLIT_LEFT_14BIT_CC_VALUE_FOR_Z(unsigned int nValue);
+	void SetSPLIT_LEFT_INITIAL_RELATIVE_VALUE_FOR_Y(unsigned int nValue);
 	// Value is an LSChannelOrder
 	void SetSPLIT_LEFT_CHANNEL_PER_ROW_ORDER(unsigned int nValue);
 	// Value is an LSAnimation
 	void SetSPLIT_LEFT_TOUCH_ANIMATION(unsigned int nValue);
 	// Toggle:
-	void SetSPLIT_LEFT_SEQUENCER_TOGGLE_PLAY_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_SEQUENCER_PREVIOUS_PATTERN_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_SEQUENCER_NEXT_PATTERN_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_SEQUENCER_TOGGLE_PLAY(unsigned int nValue);
+	void SetSPLIT_LEFT_SEQUENCER_PREVIOUS_PATTERN(unsigned int nValue);
+	void SetSPLIT_LEFT_SEQUENCER_NEXT_PATTERN(unsigned int nValue);
 	// Value is an LSPatternNumber
-	void SetSPLIT_LEFT_SEQUENCER_PATTERN_NRPN(unsigned int nValue);
-	void SetSPLIT_LEFT_SEQUENCER_TOGGLE_MUTE_NRPN(unsigned int nValue);
+	void SetSPLIT_LEFT_SEQUENCER_PATTERN(unsigned int nValue);
+	void SetSPLIT_LEFT_SEQUENCER_TOGGLE_MUTE(unsigned int nValue);
 
 	// Getters:
 		// Right-hand split
-	unsigned int GetSPLIT_RIGHT_MAIN_MODE_NRPN();
+	unsigned int GetSPLIT_RIGHT_MAIN_MODE();
 	unsigned int GetSPLIT_RIGHT_MAIN_CHANNEL();
 	// Toggles:
-	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_1_NRPN();
-	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_2_NRPN();
-	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_3_NRPN();
-	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_4_NRPN();
-	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_5_NRPN();
-	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_6_NRPN();
-	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_7_NRPN();
-	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_8_NRPN();
-	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_9_NRPN();
-	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_10_NRPN();
-	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_11_NRPN();
-	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_12_NRPN();
-	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_13_NRPN();
-	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_14_NRPN();
-	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_15_NRPN();
-	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_16_NRPN();
+	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_1();
+	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_2();
+	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_3();
+	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_4();
+	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_5();
+	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_6();
+	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_7();
+	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_8();
+	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_9();
+	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_10();
+	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_11();
+	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_12();
+	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_13();
+	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_14();
+	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_15();
+	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_NOTE_16();
 	// Value is a MIDI channel number:
-	unsigned int GetSPLIT_RIGHT_MIDI_PER_ROW_LOWEST_CHANNEL_NRPN();
-	// Value is from LSBendRange
-	unsigned int GetSPLIT_RIGHT_BEND_RANGE_NRPN();
+	unsigned int GetSPLIT_RIGHT_MIDI_PER_ROW_LOWEST_CHANNEL();
+	// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
+	unsigned int GetSPLIT_RIGHT_BEND_RANGE();
 	// Toggles:
-	unsigned int GetSPLIT_RIGHT_BEND_TOGGLE_NRPN();
-	unsigned int GetSPLIT_RIGHT_BEND_QUANTIZE_TOGGLE_NRPN();
+	unsigned int GetSPLIT_RIGHT_BEND_TOGGLE();
+	unsigned int GetSPLIT_RIGHT_BEND_QUANTIZE_TOGGLE();
 	// Value is from LSPitchQuantize
-	unsigned int GetSPLIT_RIGHT_PITCH_QUANTIZE_NRPN();
+	unsigned int GetSPLIT_RIGHT_PITCH_QUANTIZE();
 	// Toggles:
-	unsigned int GetSPLIT_RIGHT_RESET_PITCH_ON_RELEASE_NRPN();
-	unsigned int GetSPLIT_RIGHT_SEND_Y_NRPN();
+	unsigned int GetSPLIT_RIGHT_RESET_PITCH_ON_RELEASE();
+	unsigned int GetSPLIT_RIGHT_SEND_Y();
 	// Values are constrained by MIN_CC and MAX_CC
 	// CC 1 or CC 74 are recommended, any CC is possible though
-	unsigned int GetSPLIT_RIGHT_CC_FOR_Y_NRPN();
+	unsigned int GetSPLIT_RIGHT_CC_FOR_Y();
 	// Toggle:
-	unsigned int GetSPLIT_RIGHT_RELATIVE_Y_NRPN();
-	unsigned int GetSPLIT_RIGHT_RELATIVE_Z_NRPN();
+	unsigned int GetSPLIT_RIGHT_RELATIVE_Y();
+	unsigned int GetSPLIT_RIGHT_RELATIVE_Z();
 	// Value is an LSExpressionZ
-	unsigned int GetSPLIT_RIGHT_MIDI_EXPRESSION_FOR_Z_NRPN();
+	unsigned int GetSPLIT_RIGHT_MIDI_EXPRESSION_FOR_Z();
 	// Values are constrained by MIN_CC and MAX_CC
 	// CC 11 is recommended, any CC is possible though
-	unsigned int GetSPLIT_RIGHT_CC_FOR_Z_NRPN();
+	unsigned int GetSPLIT_RIGHT_CC_FOR_Z();
 	// Values are defined in LSColor
-	unsigned int GetSPLIT_RIGHT_COLOR_MAIN_NRPN();
-	unsigned int GetSPLIT_RIGHT_COLOR_ACCENT_NRPN();
-	unsigned int GetSPLIT_RIGHT_COLOR_PLAYED_NRPN();
-	unsigned int GetSPLIT_RIGHT_COLOR_LOWROW_NRPN();
+	unsigned int GetSPLIT_RIGHT_COLOR_MAIN();
+	unsigned int GetSPLIT_RIGHT_COLOR_ACCENT();
+	unsigned int GetSPLIT_RIGHT_COLOR_PLAYED();
+	unsigned int GetSPLIT_RIGHT_COLOR_LOWROW();
 	// Value is an LSLowRowMode
-	unsigned int GetSPLIT_RIGHT_LOWROW_MODE_NRPN();
+	unsigned int GetSPLIT_RIGHT_LOWROW_MODE();
 	// Value is an LSSpecial:
-	unsigned int GetSPLIT_RIGHT_SPECIAL_NRPN();
+	unsigned int GetSPLIT_RIGHT_SPECIAL();
 	// Value is an LSOctave
-	unsigned int GetSPLIT_RIGHT_OCTAVE_NRPN();
+	unsigned int GetSPLIT_RIGHT_OCTAVE();
 	// Values are from LSPitch
-	unsigned int GetSPLIT_RIGHT_PITCH_TRANSPOSE_NRPN();
-	unsigned int GetSPLIT_RIGHT_TRANSPOSE_LIGHTS_NRPN();
+	unsigned int GetSPLIT_RIGHT_PITCH_TRANSPOSE();
+	unsigned int GetSPLIT_RIGHT_TRANSPOSE_LIGHTS();
 	// Value is an LSExpressionY
-	unsigned int GetSPLIT_RIGHT_EXPRESSION_FOR_Y_NRPN();
+	unsigned int GetSPLIT_RIGHT_EXPRESSION_FOR_Y();
 	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	unsigned int GetSPLIT_RIGHT_CC_FOR_FADER1_NRPN();
-	unsigned int GetSPLIT_RIGHT_CC_FOR_FADER2_NRPN();
-	unsigned int GetSPLIT_RIGHT_CC_FOR_FADER3_NRPN();
-	unsigned int GetSPLIT_RIGHT_CC_FOR_FADER4_NRPN();
-	unsigned int GetSPLIT_RIGHT_CC_FOR_FADER5_NRPN();
-	unsigned int GetSPLIT_RIGHT_CC_FOR_FADER6_NRPN();
-	unsigned int GetSPLIT_RIGHT_CC_FOR_FADER7_NRPN();
-	unsigned int GetSPLIT_RIGHT_CC_FOR_FADER8_NRPN();
+	unsigned int GetSPLIT_RIGHT_CC_FOR_FADER1();
+	unsigned int GetSPLIT_RIGHT_CC_FOR_FADER2();
+	unsigned int GetSPLIT_RIGHT_CC_FOR_FADER3();
+	unsigned int GetSPLIT_RIGHT_CC_FOR_FADER4();
+	unsigned int GetSPLIT_RIGHT_CC_FOR_FADER5();
+	unsigned int GetSPLIT_RIGHT_CC_FOR_FADER6();
+	unsigned int GetSPLIT_RIGHT_CC_FOR_FADER7();
+	unsigned int GetSPLIT_RIGHT_CC_FOR_FADER8();
 	// Value is an LSLowRowBehaviour
-	unsigned int GetSPLIT_RIGHT_LOWROW_X_BEHAVIOUR_NRPN();
+	unsigned int GetSPLIT_RIGHT_LOWROW_X_BEHAVIOUR();
 	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	unsigned int GetSPLIT_RIGHT_CC_FOR_LOWROW_NRPN();
+	unsigned int GetSPLIT_RIGHT_CC_FOR_LOWROW();
 	// Value is an LSLowRowBehaviour
-	unsigned int GetSPLIT_RIGHT_LOWROW_XYZ_BEHAVIOUR_NRPN();
+	unsigned int GetSPLIT_RIGHT_LOWROW_XYZ_BEHAVIOUR();
 	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	unsigned int GetSPLIT_RIGHT_CC_FOR_LOWROW_XYZ_NRPN();
-	unsigned int GetSPLIT_RIGHT_CC_FOR_LOWROW_XYZ_Y_NRPN();
-	unsigned int GetSPLIT_RIGHT_CC_FOR_LOWROW_XYZ_Z_NRPN();
+	unsigned int GetSPLIT_RIGHT_CC_FOR_LOWROW_XYZ();
+	unsigned int GetSPLIT_RIGHT_CC_FOR_LOWROW_XYZ_Y();
+	unsigned int GetSPLIT_RIGHT_CC_FOR_LOWROW_XYZ_Z();
 	// Values are constrained by MIN_CC and MAX_CC
-	unsigned int GetSPLIT_RIGHT_MIN_CC_FOR_Y_NRPN();
-	unsigned int GetSPLIT_RIGHT_MAX_CC_FOR_Y_NRPN();
-	unsigned int GetSPLIT_RIGHT_MIN_CC_FOR_Z_NRPN();
-	unsigned int GetSPLIT_RIGHT_MAX_CC_FOR_Z_NRPN();
-	unsigned int GetSPLIT_RIGHT_14BIT_CC_VALUE_FOR_Z_NRPN();
-	unsigned int GetSPLIT_RIGHT_INITIAL_RELATIVE_VALUE_FOR_Y_NRPN();
+	unsigned int GetSPLIT_RIGHT_MIN_CC_FOR_Y();
+	unsigned int GetSPLIT_RIGHT_MAX_CC_FOR_Y();
+	unsigned int GetSPLIT_RIGHT_MIN_CC_FOR_Z();
+	unsigned int GetSPLIT_RIGHT_MAX_CC_FOR_Z();
+	unsigned int GetSPLIT_RIGHT_14BIT_CC_VALUE_FOR_Z();
+	unsigned int GetSPLIT_RIGHT_INITIAL_RELATIVE_VALUE_FOR_Y();
 	// Value is an LSChannelOrder
 	unsigned int GetSPLIT_RIGHT_CHANNEL_PER_ROW_ORDER();
 	// Value is an LSAnimation
 	unsigned int GetSPLIT_RIGHT_TOUCH_ANIMATION();
 	// Toggle:
-	unsigned int GetSPLIT_RIGHT_SEQUENCER_TOGGLE_PLAY_NRPN();
-	unsigned int GetSPLIT_RIGHT_SEQUENCER_PREVIOUS_PATTERN_NRPN();
-	unsigned int GetSPLIT_RIGHT_SEQUENCER_NEXT_PATTERN_NRPN();
+	unsigned int GetSPLIT_RIGHT_SEQUENCER_TOGGLE_PLAY();
+	unsigned int GetSPLIT_RIGHT_SEQUENCER_PREVIOUS_PATTERN();
+	unsigned int GetSPLIT_RIGHT_SEQUENCER_NEXT_PATTERN();
 	// Value is an LSPatternNumber
-	unsigned int GetSPLIT_RIGHT_SEQUENCER_PATTERN_NRPN();
-	unsigned int GetSPLIT_RIGHT_SEQUENCER_TOGGLE_MUTE_NRPN();
+	unsigned int GetSPLIT_RIGHT_SEQUENCER_PATTERN();
+	unsigned int GetSPLIT_RIGHT_SEQUENCER_TOGGLE_MUTE();
 
 	// Setters:
 	// Right-hand split
 	// Toggles:
-	void SetSPLIT_RIGHT_MAIN_MODE_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_MAIN_MODE(unsigned int nValue);
 	void SetSPLIT_RIGHT_MAIN_CHANNEL(unsigned int nValue);
-	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_1_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_2_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_3_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_4_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_5_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_6_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_7_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_8_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_9_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_10_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_11_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_12_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_13_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_14_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_15_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_16_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_1(unsigned int nValue);
+	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_2(unsigned int nValue);
+	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_3(unsigned int nValue);
+	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_4(unsigned int nValue);
+	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_5(unsigned int nValue);
+	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_6(unsigned int nValue);
+	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_7(unsigned int nValue);
+	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_8(unsigned int nValue);
+	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_9(unsigned int nValue);
+	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_10(unsigned int nValue);
+	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_11(unsigned int nValue);
+	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_12(unsigned int nValue);
+	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_13(unsigned int nValue);
+	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_14(unsigned int nValue);
+	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_15(unsigned int nValue);
+	void SetSPLIT_RIGHT_CHANNEL_PER_NOTE_16(unsigned int nValue);
 	// Value is a MIDI channel number:
-	void SetSPLIT_RIGHT_MIDI_PER_ROW_LOWEST_CHANNEL_NRPN(unsigned int nValue);
-	// Value is from LSBendRange
-	void SetSPLIT_RIGHT_BEND_RANGE_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_MIDI_PER_ROW_LOWEST_CHANNEL(unsigned int nValue);
+	// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
+	void SetSPLIT_RIGHT_BEND_RANGE(unsigned int nValue);
 	// Toggles:
-	void SetSPLIT_RIGHT_BEND_TOGGLE_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_BEND_QUANTIZE_TOGGLE_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_BEND_TOGGLE(unsigned int nValue);
+	void SetSPLIT_RIGHT_BEND_QUANTIZE_TOGGLE(unsigned int nValue);
 	// Value is from LSPitchQuantize
-	void SetSPLIT_RIGHT_PITCH_QUANTIZE_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_PITCH_QUANTIZE(unsigned int nValue);
 	// Toggles:
-	void SetSPLIT_RIGHT_RESET_PITCH_ON_RELEASE_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_SEND_Y_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_RESET_PITCH_ON_RELEASE(unsigned int nValue);
+	void SetSPLIT_RIGHT_SEND_Y(unsigned int nValue);
 	// Values are constrained by MIN_CC and MAX_CC
 	// CC 1 or CC 74 are recommended, any CC is possible though
-	void SetSPLIT_RIGHT_CC_FOR_Y_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_CC_FOR_Y(unsigned int nValue);
 	// Toggle:
-	void SetSPLIT_RIGHT_RELATIVE_Y_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_RELATIVE_Z_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_RELATIVE_Y(unsigned int nValue);
+	void SetSPLIT_RIGHT_RELATIVE_Z(unsigned int nValue);
 	// Value is an LSExpressionZ
-	void SetSPLIT_RIGHT_MIDI_EXPRESSION_FOR_Z_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_MIDI_EXPRESSION_FOR_Z(unsigned int nValue);
 	// Values are constrained by MIN_CC and MAX_CC
 	// CC 11 is recommended, any CC is possible though
-	void SetSPLIT_RIGHT_CC_FOR_Z_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_CC_FOR_Z(unsigned int nValue);
 	// Values are defined in LSColor
-	void SetSPLIT_RIGHT_COLOR_MAIN_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_COLOR_ACCENT_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_COLOR_PLAYED_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_COLOR_LOWROW_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_COLOR_MAIN(unsigned int nValue);
+	void SetSPLIT_RIGHT_COLOR_ACCENT(unsigned int nValue);
+	void SetSPLIT_RIGHT_COLOR_PLAYED(unsigned int nValue);
+	void SetSPLIT_RIGHT_COLOR_LOWROW(unsigned int nValue);
 	// Value is an LSLowRowMode
-	void SetSPLIT_RIGHT_LOWROW_MODE_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_LOWROW_MODE(unsigned int nValue);
 	// Value is an LSSpecial:
-	void SetSPLIT_RIGHT_SPECIAL_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_SPECIAL(unsigned int nValue);
 	// Value is an LSOctave
-	void SetSPLIT_RIGHT_OCTAVE_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_OCTAVE(unsigned int nValue);
 	// Values are from LSPitch
-	void SetSPLIT_RIGHT_PITCH_TRANSPOSE_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_TRANSPOSE_LIGHTS_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_PITCH_TRANSPOSE(unsigned int nValue);
+	void SetSPLIT_RIGHT_TRANSPOSE_LIGHTS(unsigned int nValue);
 	// Value is an LSExpressionY
-	void SetSPLIT_RIGHT_EXPRESSION_FOR_Y_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_EXPRESSION_FOR_Y(unsigned int nValue);
 	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	void SetSPLIT_RIGHT_CC_FOR_FADER1_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CC_FOR_FADER2_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CC_FOR_FADER3_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CC_FOR_FADER4_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CC_FOR_FADER5_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CC_FOR_FADER6_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CC_FOR_FADER7_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CC_FOR_FADER8_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_CC_FOR_FADER1(unsigned int nValue);
+	void SetSPLIT_RIGHT_CC_FOR_FADER2(unsigned int nValue);
+	void SetSPLIT_RIGHT_CC_FOR_FADER3(unsigned int nValue);
+	void SetSPLIT_RIGHT_CC_FOR_FADER4(unsigned int nValue);
+	void SetSPLIT_RIGHT_CC_FOR_FADER5(unsigned int nValue);
+	void SetSPLIT_RIGHT_CC_FOR_FADER6(unsigned int nValue);
+	void SetSPLIT_RIGHT_CC_FOR_FADER7(unsigned int nValue);
+	void SetSPLIT_RIGHT_CC_FOR_FADER8(unsigned int nValue);
 	// Value is an LSLowRowBehaviour
-	void SetSPLIT_RIGHT_LOWROW_X_BEHAVIOUR_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_LOWROW_X_BEHAVIOUR(unsigned int nValue);
 	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	void SetSPLIT_RIGHT_CC_FOR_LOWROW_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_CC_FOR_LOWROW(unsigned int nValue);
 	// Value is an LSLowRowBehaviour
-	void SetSPLIT_RIGHT_LOWROW_XYZ_BEHAVIOUR_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_LOWROW_XYZ_BEHAVIOUR(unsigned int nValue);
 	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	void SetSPLIT_RIGHT_CC_FOR_LOWROW_XYZ_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CC_FOR_LOWROW_XYZ_Y_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_CC_FOR_LOWROW_XYZ_Z_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_CC_FOR_LOWROW_XYZ(unsigned int nValue);
+	void SetSPLIT_RIGHT_CC_FOR_LOWROW_XYZ_Y(unsigned int nValue);
+	void SetSPLIT_RIGHT_CC_FOR_LOWROW_XYZ_Z(unsigned int nValue);
 	// Values are constrained by MIN_CC and MAX_CC
-	void SetSPLIT_RIGHT_MIN_CC_FOR_Y_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_MAX_CC_FOR_Y_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_MIN_CC_FOR_Z_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_MAX_CC_FOR_Z_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_14BIT_CC_VALUE_FOR_Z_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_INITIAL_RELATIVE_VALUE_FOR_Y_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_MIN_CC_FOR_Y(unsigned int nValue);
+	void SetSPLIT_RIGHT_MAX_CC_FOR_Y(unsigned int nValue);
+	void SetSPLIT_RIGHT_MIN_CC_FOR_Z(unsigned int nValue);
+	void SetSPLIT_RIGHT_MAX_CC_FOR_Z(unsigned int nValue);
+	void SetSPLIT_RIGHT_14BIT_CC_VALUE_FOR_Z(unsigned int nValue);
+	void SetSPLIT_RIGHT_INITIAL_RELATIVE_VALUE_FOR_Y(unsigned int nValue);
 	// Value is an LSChannelOrder
 	void SetSPLIT_RIGHT_CHANNEL_PER_ROW_ORDER(unsigned int nValue);
 	// Value is an LSAnimation
 	void SetSPLIT_RIGHT_TOUCH_ANIMATION(unsigned int nValue);
 	// Toggle:
-	void SetSPLIT_RIGHT_SEQUENCER_TOGGLE_PLAY_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_SEQUENCER_PREVIOUS_PATTERN_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_SEQUENCER_NEXT_PATTERN_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_SEQUENCER_TOGGLE_PLAY(unsigned int nValue);
+	void SetSPLIT_RIGHT_SEQUENCER_PREVIOUS_PATTERN(unsigned int nValue);
+	void SetSPLIT_RIGHT_SEQUENCER_NEXT_PATTERN(unsigned int nValue);
 	// Value is an LSPatternNumber
-	void SetSPLIT_RIGHT_SEQUENCER_PATTERN_NRPN(unsigned int nValue);
-	void SetSPLIT_RIGHT_SEQUENCER_TOGGLE_MUTE_NRPN(unsigned int nValue);
+	void SetSPLIT_RIGHT_SEQUENCER_PATTERN(unsigned int nValue);
+	void SetSPLIT_RIGHT_SEQUENCER_TOGGLE_MUTE(unsigned int nValue);
 
 private:
 	// Left-hand split
@@ -619,7 +619,7 @@ private:
 	unsigned int m_SPLIT_LEFT_CHANNEL_PER_NOTE_16_NRPN;
 	// Value is a MIDI channel number:
 	unsigned int m_SPLIT_LEFT_MIDI_PER_ROW_LOWEST_CHANNEL_NRPN;
-	// Value is from LSBendRange
+	// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
 	unsigned int m_SPLIT_LEFT_BEND_RANGE_NRPN;
 	// Toggles:
 	unsigned int m_SPLIT_LEFT_BEND_TOGGLE_NRPN;
@@ -716,7 +716,7 @@ private:
 	unsigned int m_SPLIT_RIGHT_CHANNEL_PER_NOTE_16_NRPN;
 	// Value is a MIDI channel number:
 	unsigned int m_SPLIT_RIGHT_MIDI_PER_ROW_LOWEST_CHANNEL_NRPN;
-	// Value is from LSBendRange
+	// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
 	unsigned int m_SPLIT_RIGHT_BEND_RANGE_NRPN;
 	// Toggles:
 	unsigned int m_SPLIT_RIGHT_BEND_TOGGLE_NRPN;
