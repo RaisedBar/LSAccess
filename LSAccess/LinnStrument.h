@@ -147,7 +147,7 @@ enum class LSColor
 	LIME = 10,
 	PINK = 11,
 	// Values higher than 11 set the color to default
-	DEFAULT = 11
+	DEFAULT = 12
 };
 
 enum class LSOctave

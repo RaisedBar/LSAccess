@@ -39,9 +39,6 @@
     <ClInclude Include="LSGeneral.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LeftSplitFrame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="LSEnums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -52,6 +49,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BendPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorsPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PerSplitFrame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -80,9 +83,6 @@
     <ClCompile Include="LSGeneral.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LeftSplitFrame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ChannelsPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -90,6 +90,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BendPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorsPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PerSplitFrame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

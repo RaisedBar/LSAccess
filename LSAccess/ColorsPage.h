@@ -1,4 +1,4 @@
-// PitchBendPage.h
+// ColorsPage.h
 
 #pragma once
 
@@ -21,24 +21,17 @@
 #include "LSPerSplit.h"
 #include "LSEnums.h"
 
-class BendPage : public wxPanel
+class ColorsPage : public wxPanel
 {
 public:
-	BendPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
-	
+	ColorsPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
+
 private:
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
 	LSPerSplitSettings m_Settings;
 
 	// controls
-	// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
-	wxSpinCtrl * wscBEND_RANGE;
-	// Toggles:
-	wxCheckBox * chkBEND_TOGGLE;
-	wxCheckBox * chkBEND_QUANTIZE_TOGGLE;
-	// Values are from LSPitchQuantize
-	wxRadioBox * wrbcPitchBendType;
-	// Toggles:
-	wxCheckBox * chkRESET_PITCH_ON_RELEASE;
-	};
+				// Values are defined in LSColor
+	wxRadioBox * wrbcCOLOR_MAIN, *wrbcCOLOR_ACCENT, *wrbcCOLOR_PLAYED, * wrbc_COLOR_LOWROW;
+};

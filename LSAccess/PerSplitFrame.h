@@ -1,4 +1,4 @@
-// LeftSplitFrame.h
+// PerSplitFrame.h
 // Author:  T A Burgess
 // Raised Bar Ltd.
 // http://www.raisedbar.net
@@ -23,12 +23,13 @@
 #include "ChannelsPage.h"
 #include "BendPage.h"
 #include "SequencerPage.h"
+#include "ColorsPage.h"
 
 
-class LeftSplitFrame : public wxFrame
+class PerSplitFrame : public wxFrame
 {
 public:
-	LeftSplitFrame(const wxString& title, LinnStrument * pLinnStrument);
+	PerSplitFrame(const wxString& title, LinnStrument * pLinnStrument);
 
 private:
 	void OnTabChanged(wxNotebookEvent& event);
@@ -38,6 +39,7 @@ private:
 	ChannelsPage * pChannelsPage;
 	BendPage * pBendPage;
 	SequencerPage * pSequencerPage;
+	ColorsPage * pColorsPage;
 
-		DECLARE_EVENT_TABLE()
+			DECLARE_EVENT_TABLE()
 };

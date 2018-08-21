@@ -1,13 +1,13 @@
-// LeftSplitFrame.cpp
+// PerSplitFrame.cpp
 // Author:  T A Burgess
 // Raised Bar Ltd.
 // http://www.raisedbar.net
 
 
-#include "LeftSplitFrame.h"
+#include "PerSplitFrame.h"
 
 
-LeftSplitFrame::LeftSplitFrame(const wxString& title, LinnStrument * pLinnStrument)
+PerSplitFrame::PerSplitFrame(const wxString& title, LinnStrument * pLinnStrument)
 	: wxFrame(NULL, wxID_ANY, title),
 		pMyLinnStrument(new LinnStrument)
 {
@@ -23,18 +23,21 @@ LeftSplitFrame::LeftSplitFrame(const wxString& title, LinnStrument * pLinnStrume
 	pChannelsPage = new ChannelsPage(pNotebook, pLinnStrument);
 	pBendPage = new BendPage(pNotebook, pLinnStrument);
 	pSequencerPage = new SequencerPage(pNotebook, pLinnStrument);
+	pColorsPage = new ColorsPage(pNotebook, pLinnStrument);
 
-	pNotebook->AddPage(pChannelsPage, L"Channels", true);
+		pNotebook->AddPage(pChannelsPage, L"Channels", true);
 	pNotebook->AddPage(pBendPage, L"Bend", false);
 	pNotebook->AddPage(pSequencerPage, L"Sequencer", false);
-		vSizer->Insert( 0, pNotebook, wxSizerFlags(5).Expand().Border());
+	pNotebook->AddPage(pColorsPage, L"Colors and Animations", false);
+	
+	vSizer->Insert( 0, pNotebook, wxSizerFlags(5).Expand().Border());
 	vSizer->Show(pNotebook);
 }
 
 
 // tabSet handlers...
 
-void LeftSplitFrame::OnTabChanged(wxNotebookEvent& event)
+void PerSplitFrame::OnTabChanged(wxNotebookEvent& event)
 {
 	// contextualise the menus etc.
 	switch (pNotebook->GetSelection())
@@ -53,7 +56,7 @@ void LeftSplitFrame::OnTabChanged(wxNotebookEvent& event)
 }
 
 
-BEGIN_EVENT_TABLE(LeftSplitFrame, wxFrame)
+BEGIN_EVENT_TABLE(PerSplitFrame, wxFrame)
 // Notebook tabs
-EVT_NOTEBOOK_PAGE_CHANGED(ID_NOTEBOOK, LeftSplitFrame::OnTabChanged)
+EVT_NOTEBOOK_PAGE_CHANGED(ID_NOTEBOOK, PerSplitFrame::OnTabChanged)
 END_EVENT_TABLE()

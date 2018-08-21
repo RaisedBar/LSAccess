@@ -13,19 +13,19 @@
 	// CC 11 is recommended, any CC is possible though
 	wxSpinCtrl * wscSPLIT_LEFT_CC_FOR_Z;
 	// Values are defined in LSColor
-	wxRadioButton * rdoSPLIT_LEFT_COLOR_MAIN;
-	wxRadioButton * rdoSPLIT_LEFT_COLOR_ACCENT;
-	wxRadioButton * rdoSPLIT_LEFT_COLOR_PLAYED;
-	wxRadioButton * rdoSPLIT_LEFT_COLOR_LOWROW;
+	wxRadioBox * rdoSPLIT_LEFT_COLOR_MAIN;
+	wxRadioBox * rdoSPLIT_LEFT_COLOR_ACCENT;
+	wxRadioBox * rdoSPLIT_LEFT_COLOR_PLAYED;
+	wxRadioBox * rdoSPLIT_LEFT_COLOR_LOWROW;
 	// Value is an LSLowRowMode
-	wxRadioButton * rdoSPLIT_LEFT_LOWROW_MODE;
+	wxRadioBox * rdoSPLIT_LEFT_LOWROW_MODE;
 	// Value is an LSSpecial:
 	wxSpinCtrl  * wscSPLIT_LEFT_SPECIAL;
 	// Value is an LSOctave
-	wxRadioButton * rdoSPLIT_LEFT_OCTAVE;
+	wxRadioBox * rdoSPLIT_LEFT_OCTAVE;
 	// Values are from LSPitch
-	wxRadioButton * rdoSPLIT_LEFT_PITCH_TRANSPOSE;
-	wxRadioButton * rdoSPLIT_LEFT_TRANSPOSE_LIGHTS;
+	wxRadioBox * rdoSPLIT_LEFT_PITCH_TRANSPOSE;
+	wxRadioBox * rdoSPLIT_LEFT_TRANSPOSE_LIGHTS;
 	// Value is an LSExpressionY
 	wxSpinCtrl  * wscSPLIT_LEFT_EXPRESSION_FOR_Y;
 	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
@@ -38,11 +38,11 @@
 	wxSpinCtrl * wscSPLIT_LEFT_CC_FOR_FADER7;
 	wxSpinCtrl * wscSPLIT_LEFT_CC_FOR_FADER8;
 	// Value is an LSLowRowBehaviour
-	wxRadioButton * rdoSPLIT_LEFT_LOWROW_X_BEHAVIOUR;
+	wxRadioBox * rdoSPLIT_LEFT_LOWROW_X_BEHAVIOUR;
 	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
 	wxSpinCtrl * wscSPLIT_LEFT_CC_FOR_LOWROW;
 	// Value is an LSLowRowBehaviour
-	wxRadioButton * rdiSPLIT_LEFT_LOWROW_XYZ_BEHAVIOUR;
+	wxRadioBox * rdiSPLIT_LEFT_LOWROW_XYZ_BEHAVIOUR;
 	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
 	wxSpinCtrl * wscSPLIT_LEFT_CC_FOR_LOWROW_XYZ;
 	wxSpinCtrl * wscSPLIT_LEFT_CC_FOR_LOWROW_XYZ_Y;
@@ -55,6 +55,6 @@
 	wxSpinCtrl * wscSPLIT_LEFT_14BIT_CC_VALUE_FOR_Z;
 	wxSpinCtrl * wscSPLIT_LEFT_INITIAL_RELATIVE_VALUE_FOR_Y;
 	// Value is an LSChannelOrder
-	wxRadioButton * rdoSPLIT_LEFT_CHANNEL_PER_ROW_ORDER;
+	wxRadioBox * rdoSPLIT_LEFT_CHANNEL_PER_ROW_ORDER;
 	// Value is an LSAnimation
-	wxRadioButton * wscSPLIT_LEFT_TOUCH_ANIMATION;
+	wxRadioBox * wscSPLIT_LEFT_TOUCH_ANIMATION;

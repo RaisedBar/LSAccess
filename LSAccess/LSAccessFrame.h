@@ -5,7 +5,7 @@
 
 #include "LSEnums.h"
 #include "LinnStrument.h"
-#include "LeftSplitFrame.h"
+#include "PerSplitFrame.h"
 
 // For compilers that support precompilation, includes "wx/wx.h".
 #include "wx/wxprec.h"
@@ -46,7 +46,7 @@ private:
 	// Internal storage
 	LinnStrument * pLinnStrument;
 	wxNotebook * pNotebook;
-	LeftSplitFrame * pLeftSplitFrame;
+	PerSplitFrame * pPerSplitFrame;
 
 	wxDECLARE_EVENT_TABLE();
 };

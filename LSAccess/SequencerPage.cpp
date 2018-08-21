@@ -15,12 +15,12 @@ SequencerPage::SequencerPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrumen
 
 	// Controls
 // Value is an LSPatternNumber
-	wscSPLIT_LEFT_SEQUENCER_PATTERN = new wxSpinCtrl(myPanel, SPLIT_LEFT_SEQUENCER_PATTERN_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_SEQUENCER_PATTERN, MAX_SEQUENCER_PATTERN, m_Settings.GetSPLIT_LEFT_MIDI_PER_ROW_LOWEST_CHANNEL(), "MIDI per row lowest channel");
+	wscSEQUENCER_PATTERN = new wxSpinCtrl(myPanel, SEQUENCER_PATTERN_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_SEQUENCER_PATTERN, MAX_SEQUENCER_PATTERN, m_Settings.GetMIDI_PER_ROW_LOWEST_CHANNEL(), "MIDI per row lowest channel");
 	// Toggles:
-	chkSPLIT_LEFT_SEQUENCER_TOGGLE_PLAY = new wxCheckBox(myPanel, SPLIT_LEFT_SEQUENCER_TOGGLE_PLAY_ID, L"&Play");
-		chkSPLIT_LEFT_SEQUENCER_TOGGLE_MUTE = new wxCheckBox(myPanel, SPLIT_LEFT_SEQUENCER_TOGGLE_MUTE_ID, L"&Mute");
-		btnSPLIT_LEFT_SEQUENCER_PREVIOUS_PATTERN = new wxButton(myPanel, SPLIT_LEFT_SEQUENCER_PREVIOUS_PATTERN_ID, L"&Back");
-		btnSPLIT_LEFT_SEQUENCER_NEXT_PATTERN = new wxButton(myPanel, SPLIT_LEFT_SEQUENCER_NEXT_PATTERN_ID, L"&Next");
+	chkSEQUENCER_TOGGLE_PLAY = new wxCheckBox(myPanel, SEQUENCER_TOGGLE_PLAY_ID, L"&Play");
+		chkSEQUENCER_TOGGLE_MUTE = new wxCheckBox(myPanel, SEQUENCER_TOGGLE_MUTE_ID, L"&Mute");
+		btnSEQUENCER_PREVIOUS_PATTERN = new wxButton(myPanel, SEQUENCER_PREVIOUS_PATTERN_ID, L"&Back");
+		btnSEQUENCER_NEXT_PATTERN = new wxButton(myPanel, SEQUENCER_NEXT_PATTERN_ID, L"&Next");
 				
 	myPanel->SetSizer(hBoxSettings);
 	hBoxSettings->SetSizeHints(this);

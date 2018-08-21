@@ -53,7 +53,7 @@ void LSAccessFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 
 void LSAccessFrame::OnLeftSplitSettings(wxCommandEvent& event)
 {
-	LeftSplitFrame * pLeftSplit = new LeftSplitFrame( L"Left Split", pLinnStrument);
+	PerSplitFrame * pLeftSplit = new PerSplitFrame( L"Left Split", pLinnStrument);
 	pLeftSplit->Show(true);
 	}
 
