@@ -66,9 +66,7 @@ void LSCallback(double deltatime, std::vector< unsigned char > *message, void *p
 
 LinnStrument::LinnStrument()
 {
-		m_Memories.resize(MAX_MEMORY_LOCATION);
-		
-		try
+				try
 	{
 		m_MIDIIn = new RtMidiIn();
 
@@ -172,7 +170,7 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 	if (m_SpeakNotes)
 	{
 		unsigned char nNoteNumber = 0;
-		MessageBox(NULL, (LPCWSTR) MIDINoteName(nNoteNumber).c_str(), (LPCWSTR) "Test", MB_ICONWARNING | MB_OK);
+		// MessageBox(NULL, (LPCWSTR) MIDINoteName(nNoteNumber).c_str(), (LPCWSTR) "Test", MB_ICONWARNING | MB_OK);
 	}
 }
 
@@ -186,13 +184,22 @@ void LinnStrument::SetSpeakNotes(bool blnSpeakNotes)
 	m_SpeakNotes = blnSpeakNotes;
 }
 
-unsigned int LinnStrument::GetActiveMemoryNumber()
+LSPerSplitSettings LinnStrument::GetPerSplitSettings()
 {
-	return m_ActiveMemoryLocation;
+	return m_PerSplitSettings;
 }
 
 
-LSMemoryLocation LinnStrument::GetMemoryLocation(unsigned int nMemoryNumber)
+LSOctaveTransposeSettings LinnStrument::GetOctaveTransposeSettings()
 {
-	return m_Memories[nMemoryNumber];
+	return m_OctaveTransposeSettings;
 }
+
+
+LSGlobalSettings LinnStrument::GetGlobalSettings()
+{
+	return m_GlobalSettings;
+
+}
+
+

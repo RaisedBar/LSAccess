@@ -12,11 +12,6 @@
 	// Values are constrained by MIN_CC and MAX_CC
 	// CC 11 is recommended, any CC is possible though
 	wxSpinCtrl * wscSPLIT_LEFT_CC_FOR_Z;
-	// Values are defined in LSColor
-	wxRadioBox * rdoSPLIT_LEFT_COLOR_MAIN;
-	wxRadioBox * rdoSPLIT_LEFT_COLOR_ACCENT;
-	wxRadioBox * rdoSPLIT_LEFT_COLOR_PLAYED;
-	wxRadioBox * rdoSPLIT_LEFT_COLOR_LOWROW;
 	// Value is an LSLowRowMode
 	wxRadioBox * rdoSPLIT_LEFT_LOWROW_MODE;
 	// Value is an LSSpecial:

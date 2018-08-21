@@ -3,9 +3,9 @@
 #pragma once
 
 #include <RtMidi.h>
-#include <sapi53.h>
-#include <vector>
-#include "LSMemory.h"
+#include "LSPerSplit.h"
+#include "LSGlobal.h"
+#include "LSOctaveTranspose.h"
 #include "LSGeneral.h"
 
 /*
@@ -381,9 +381,14 @@ public:
 
 	int GetUSBInPortID();
 	int GetUSBOutPortID();
-	unsigned int GetActiveMemoryNumber();
-		LSMemoryLocation GetMemoryLocation(unsigned int nMemoryNumber);
-	void SetMemoryLocation(unsigned int nMemoryNumber, LSMemoryLocation myMemoryLocation);
+	LSPerSplitSettings GetPerSplitSettings();
+	void SetPerSplitSettings(LSPerSplitSettings splitSettings);
+	LSOctaveTransposeSettings GetOctaveTransposeSettings();
+	void SetOctaveTransposeSettings(LSOctaveTransposeSettings octaveTransposeSettings);
+	LSGlobalSettings GetGlobalSettings();
+	void SetGlobalSettings(LSGlobalSettings globalSettings);
+
+
 	LSGeneralSettings GetGeneralSettings();
 	void SetGeneralSettings(LSGeneralSettings myGeneralSettings);
 	void ProcessMessage(std::vector <unsigned char> vBytes);
@@ -398,10 +403,11 @@ private:
 		RtMidiOut * m_MIDIOut;
 		// MIDI port ID values;
 		int m_InputID, m_OutputID;
+		LSPerSplitSettings m_PerSplitSettings;
+		LSOctaveTransposeSettings m_OctaveTransposeSettings;
+		LSGlobalSettings m_GlobalSettings;
+		LSGeneralSettings m_GeneralSettings;
 		
-		unsigned int m_ActiveMemoryLocation;
-		std::vector <LSMemoryLocation> m_Memories;
-				LSGeneralSettings m_GeneralSettings;
 		unsigned int m_SPLIT_MODE_NRPN, m_MIDI_MAIN_CHANNEL_NRPN;
 		bool m_SpeakNotes;
 					};

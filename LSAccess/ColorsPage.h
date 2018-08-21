@@ -24,7 +24,7 @@
 class ColorsPage : public wxPanel
 {
 public:
-	ColorsPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
+	ColorsPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split);
 
 private:
 	LinnStrument * pMyLinnStrument;

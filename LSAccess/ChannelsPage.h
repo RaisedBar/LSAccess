@@ -24,7 +24,7 @@
 class ChannelsPage: public wxPanel
 {
 public:
-	ChannelsPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
+	ChannelsPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split);
 	
 private:
 	LinnStrument * pMyLinnStrument;

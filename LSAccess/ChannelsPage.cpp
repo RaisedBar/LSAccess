@@ -2,13 +2,13 @@
 
 #include "ChannelsPage.h"
 
-ChannelsPage::ChannelsPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument)
+ChannelsPage::ChannelsPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)
 	:wxPanel(parent),
 	pMyLinnStrument(new LinnStrument),
 		pMyParent(new wxBookCtrl())
 	{
 	pMyLinnStrument = pLinnStrument;
-m_Settings = pMyLinnStrument->GetMemoryLocation(pMyLinnStrument->GetActiveMemoryNumber()).GetPerSplitSettings();
+m_Settings = pMyLinnStrument->GetPerSplitSettings();
 pMyParent = parent;
 wxPanel * myPanel = new wxPanel(this, -1);
 wxBoxSizer * hBoxSettings = new wxBoxSizer(wxHORIZONTAL);

@@ -24,7 +24,7 @@
 class BendPage : public wxPanel
 {
 public:
-	BendPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
+	BendPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split);
 	
 private:
 	LinnStrument * pMyLinnStrument;

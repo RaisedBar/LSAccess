@@ -20,10 +20,10 @@ PerSplitFrame::PerSplitFrame(const wxString& title, LinnStrument * pLinnStrument
 	pPanel->Layout();
 
 	pNotebook = new wxNotebook(pPanel, ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, 0);
-	pChannelsPage = new ChannelsPage(pNotebook, pLinnStrument);
-	pBendPage = new BendPage(pNotebook, pLinnStrument);
-	pSequencerPage = new SequencerPage(pNotebook, pLinnStrument);
-	pColorsPage = new ColorsPage(pNotebook, pLinnStrument);
+	pChannelsPage = new ChannelsPage(pNotebook, pLinnStrument, split);
+	pBendPage = new BendPage(pNotebook, pLinnStrument, split);
+	pSequencerPage = new SequencerPage(pNotebook, pLinnStrument, split);
+	pColorsPage = new ColorsPage(pNotebook, pLinnStrument, split);
 
 		pNotebook->AddPage(pChannelsPage, L"Channels", true);
 	pNotebook->AddPage(pBendPage, L"Bend", false);

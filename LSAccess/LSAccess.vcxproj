@@ -157,7 +157,6 @@
     <ClInclude Include="LSEnums.h" />
     <ClInclude Include="LSGeneral.h" />
     <ClInclude Include="LSGlobal.h" />
-    <ClInclude Include="LSMemory.h" />
     <ClInclude Include="PerSplitFrame.h" />
     <ClInclude Include="LSAccessFrame.h" />
     <ClInclude Include="LinnStrument.h" />
@@ -176,7 +175,6 @@
     <ClCompile Include="LinnStrument.cpp" />
     <ClCompile Include="LSGeneral.cpp" />
     <ClCompile Include="LSGlobal.cpp" />
-    <ClCompile Include="LSMemory.cpp" />
     <ClCompile Include="LSOctaveTranspose.cpp" />
     <ClCompile Include="LSPerSplit.cpp" />
     <ClCompile Include="BendPage.cpp" />

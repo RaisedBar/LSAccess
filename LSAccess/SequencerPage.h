@@ -24,7 +24,7 @@
 class SequencerPage : public wxPanel
 {
 public:
-	SequencerPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
+	SequencerPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split);
 
 private:
 	LinnStrument * pMyLinnStrument;
