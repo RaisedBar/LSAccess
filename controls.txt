@@ -1,13 +1,6 @@
-// Value is an LSLowRowMode
-	wxRadioBox * rdoLOWROW_MODE;
-	// Value is an LSSpecial:
-	wxSpinCtrl  * wscSPECIAL;
 	// Value is an LSOctave
-	wxRadioBox * rdoOCTAVE;
+	wxRadioBox * wrbOCTAVE;
 	// Values are from LSPitch
-	wxRadioBox * rdoPITCH_TRANSPOSE;
-	wxRadioBox * rdoTRANSPOSE_LIGHTS;
-	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	wxSpinCtrl * wscCC_FOR_LOWROW;
-	// Value is an LSChannelOrder
-	wxRadioBox * rdoCHANNEL_PER_ROW_ORDER;
+	wxRadioBox * wrbPITCH_TRANSPOSE;
+	wxRadioBox * wrbTRANSPOSE_LIGHTS;
+	

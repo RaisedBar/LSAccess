@@ -20,20 +20,21 @@ PerSplitFrame::PerSplitFrame(const wxString& title, LinnStrument * pLinnStrument
 	pPanel->Layout();
 
 	pNotebook = new wxNotebook(pPanel, ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, 0);
-	pChannelsPage = new ChannelsPage(pNotebook, pLinnStrument, split);
+	pMIDISplitPage = new MIDISplitPage(pNotebook, pLinnStrument, split);
 	pBendPage = new BendPage(pNotebook, pLinnStrument, split);
-	pSequencerPage = new SequencerPage(pNotebook, pLinnStrument, split);
-	pColorsPage = new ColorsPage(pNotebook, pLinnStrument, split);
-	pFadersPage = new FadersPage(pNotebook, pLinnStrument, split);
 	pAxesPage = new AxesPage(pNotebook, pLinnStrument, split);
-
-			pNotebook->AddPage(pChannelsPage, L"Channels", true);
-	pNotebook->AddPage(pBendPage, L"Bend", false);
-	pNotebook->AddPage(pSequencerPage, L"Sequencer", false);
-	pNotebook->AddPage(pColorsPage, L"Colors and Animations", false);
-	pNotebook->AddPage(pFadersPage, L"Faders", false);
-	pNotebook->AddPage(pAxesPage, L"X, Y and Z Axes", false);
+	pColorsPage = new ColorsPage(pNotebook, pLinnStrument, split);
+	pLowRowPage = new LowRowPage(pNotebook, pLinnStrument, split);
+	pSpecialPage = new SpecialPage(pNotebook, pLinnStrument, split);
+	pFadersPage = new FadersPage(pNotebook, pLinnStrument, split);
 	
+			pNotebook->AddPage(pMIDISplitPage, L"MIDI", true);
+				pNotebook->AddPage(pBendPage, L"Bend (X-axis)", false);
+				pNotebook->AddPage(pAxesPage, L"Y-Z Axes", false);
+				pNotebook->AddPage(pColorsPage, L"Colors and Animations", false);
+				pNotebook->AddPage(pLowRowPage, L"Low Row", false);
+				pNotebook->AddPage(pSpecialPage, L"Special", false);
+		
 	vSizer->Insert( 0, pNotebook, wxSizerFlags(5).Expand().Border());
 	vSizer->Show(pNotebook);
 }

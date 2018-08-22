@@ -34,6 +34,7 @@ private:
 	// controls
 				// toggles
 	wxCheckBox * chkSEND_Y;
+	wxCheckBox * chkSEND_Z;
 	// Values are constrained by MIN_CC and MAX_CC
 	// CC 1 or CC 74 are recommended, any CC is possible though
 	wxSpinCtrl * wscCC_FOR_Y;
@@ -47,14 +48,6 @@ private:
 	wxSpinCtrl * wscCC_FOR_Z;
 	// Value is an LSExpressionY
 	wxRadioBox * wrbEXPRESSION_FOR_Y;
-	// Value is an LSLowRowBehaviour
-	wxRadioBox * wrbLOWROW_X_BEHAVIOUR;
-	// Value is an LSLowRowBehaviour
-	wxRadioBox * wrbLOWROW_XYZ_BEHAVIOUR;
-	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	wxSpinCtrl * wscCC_FOR_LOWROW_XYZ;
-	wxSpinCtrl * wscCC_FOR_LOWROW_XYZ_Y;
-	wxSpinCtrl * wscCC_FOR_LOWROW_XYZ_Z;
 	// Values are constrained by MIN_CC and MAX_CC
 	wxSpinCtrl * wscMIN_CC_FOR_Y;
 	wxSpinCtrl * wscMAX_CC_FOR_Y;

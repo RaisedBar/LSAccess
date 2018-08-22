@@ -72,10 +72,10 @@ enum class LSToggleValue
 const unsigned int MIN_MIDI_CHANNEL = 1;
 const unsigned int MAX_MIDI_CHANNEL = 16;
 
-enum class LSSplitMode
+enum class LS_MIDIMode
 {
-	SINGLE_CHANNEL = 0,
-	CHANNEL_PER_NOTE = 1,
+	ONE_CHAN = 0,
+	CHANNEL_PER_NOTE_MPE = 1,
 	CHANNEL_PER_ROW = 2
 };
 
@@ -408,7 +408,6 @@ private:
 		LSGlobalSettings m_GlobalSettings;
 		LSGeneralSettings m_GeneralSettings;
 		
-		unsigned int m_SPLIT_MODE_NRPN, m_MIDI_MAIN_CHANNEL_NRPN;
 		bool m_SpeakNotes;
 					};
 

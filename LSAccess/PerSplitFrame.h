@@ -20,13 +20,13 @@
 #include <wx/notebook.h>
 
 #include "LSEnums.h"
-#include "ChannelsPage.h"
+#include "MIDISplitPage.h"
 #include "BendPage.h"
-#include "SequencerPage.h"
 #include "ColorsPage.h"
+#include "LowRowPage.h"
 #include "FadersPage.h"
 #include "AxesPage.h"
-
+#include "SpecialPage.h"
 
 class PerSplitFrame : public wxFrame
 {
@@ -38,12 +38,13 @@ private:
 	
 	LinnStrument * pMyLinnStrument;
 		wxNotebook * pNotebook;
-	ChannelsPage * pChannelsPage;
+		MIDISplitPage * pMIDISplitPage;
 	BendPage * pBendPage;
-	SequencerPage * pSequencerPage;
 	ColorsPage * pColorsPage;
-	FadersPage * pFadersPage;
+	LowRowPage * pLowRowPage;
+		FadersPage * pFadersPage;
 	AxesPage * pAxesPage;
+	SpecialPage * pSpecialPage;
 
 			DECLARE_EVENT_TABLE()
 };

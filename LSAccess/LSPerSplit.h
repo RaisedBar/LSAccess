@@ -406,7 +406,9 @@ public:
 	void SetRightSplitMAIN_CHANNEL(unsigned int nValue);
 
 		private:
-	unsigned int m_CHANNEL_PER_NOTE_1_NRPN;
+			unsigned int m_SPLIT_MODE_NRPN;
+				unsigned int m_MIDI_MAIN_CHANNEL_NRPN;
+			unsigned int m_CHANNEL_PER_NOTE_1_NRPN;
 	unsigned int m_CHANNEL_PER_NOTE_2_NRPN;
 	unsigned int m_CHANNEL_PER_NOTE_3_NRPN;
 	unsigned int m_CHANNEL_PER_NOTE_4_NRPN;

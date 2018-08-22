@@ -39,9 +39,6 @@
     <ClInclude Include="LSEnums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ChannelsPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SequencerPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -58,6 +55,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AxesPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LowRowPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MIDISplitPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -83,9 +89,6 @@
     <ClCompile Include="LSGeneral.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ChannelsPage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SequencerPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -102,6 +105,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AxesPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LowRowPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MIDISplitPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

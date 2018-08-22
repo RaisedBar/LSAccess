@@ -1,8 +1,8 @@
-// ChannelsPage.cpp
+// MIDISplitPage.cpp
 
-#include "ChannelsPage.h"
+#include "MIDISplitPage.h"
 
-ChannelsPage::ChannelsPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)
+MIDISplitPage::MIDISplitPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)
 	:wxPanel(parent),
 	pMyLinnStrument(new LinnStrument),
 		pMyParent(new wxBookCtrl())
@@ -14,6 +14,23 @@ wxPanel * myPanel = new wxPanel(this, -1);
 wxBoxSizer * hBoxSettings = new wxBoxSizer(wxHORIZONTAL);
 
 // Controls
+// Value is an LS_MIDIMode
+wxString SplitModes[] = 
+{
+	L"One channel",
+	L"Channel per note (MPE)",
+	L"Channel per row"
+};
+wrbSPLIT_MODE = new wxRadioBox(myPanel, SPLIT_MODE_ID, L"&Split mode", wxDefaultPosition, wxDefaultSize, WXSIZEOF(SplitModes), SplitModes, 0, wxRA_SPECIFY_ROWS);
+// Value is an LSChannelOrder
+wxString ChannelOrders[] =
+{
+	L"Normal",
+	L"Reversed"
+};
+wrbCHANNEL_PER_ROW_ORDER = new wxRadioBox(myPanel, CHANNEL_PER_ROW_ORDER_ID, L"Channel &Order", wxDefaultPosition, wxDefaultSize, WXSIZEOF(ChannelOrders), ChannelOrders, 0, wxRA_SPECIFY_ROWS);
+	// Value is a MIDI channel number:
+wscMIDI_MAIN_CHANNEL = new wxSpinCtrl(myPanel, MIDI_MAIN_CHANNEL_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_MIDI_CHANNEL, MAX_MIDI_CHANNEL, m_Settings.GetMIDI_PER_ROW_LOWEST_CHANNEL(), "Main MIDI channel");
 chkCHANNEL_PER_NOTE_1 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_1_ID, L"Channel per note &1");
 chkCHANNEL_PER_NOTE_2 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_2_ID, L"Channel per note &2");
 chkCHANNEL_PER_NOTE_3 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_3_ID, L"Channel per note &3");
