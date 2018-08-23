@@ -161,6 +161,7 @@
     <ClInclude Include="LSEnums.h" />
     <ClInclude Include="LSGeneral.h" />
     <ClInclude Include="LSGlobal.h" />
+    <ClInclude Include="NRPNQueue.h" />
     <ClInclude Include="OctaveTransposeFrame.h" />
     <ClInclude Include="OctaveTransposePage.h" />
     <ClInclude Include="PerSplitFrame.h" />

@@ -7,6 +7,7 @@
 #include "LSGlobal.h"
 #include "LSOctaveTranspose.h"
 #include "LSGeneral.h"
+#include "NRPNQueue.h"
 
 /*
 The following definitions are derived from:
@@ -38,6 +39,7 @@ c is the channel, p is the preset number
 11111110              Active Sensing          During manufacturing test, show green led at col 25 row 2
 
 */
+
 // CC messages
 const unsigned char FADER1 = 1; // Change the position of the CC faders, the split is determined by its active MIDI mode channels
 const unsigned char FADER2 = 2;
@@ -395,8 +397,7 @@ public:
 // Option to use speech to output note names
 	bool GetSpeakNotes();
 	void SetSpeakNotes(bool blnSpeakNotes);
-
-
+	
 private:
 		// MIDI devices
 		RtMidiIn * m_MIDIIn;
@@ -407,7 +408,8 @@ private:
 		LSOctaveTransposeSettings m_OctaveTransposeSettings;
 		LSGlobalSettings m_GlobalSettings;
 		LSGeneralSettings m_GeneralSettings;
-		
+
+		NRPNQueue m_NRPNQueue;
 		bool m_SpeakNotes;
 					};
 
