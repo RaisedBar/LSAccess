@@ -6,6 +6,9 @@
 #include "LSEnums.h"
 #include "LinnStrument.h"
 #include "PerSplitFrame.h"
+#include "OctaveTransposeFrame.h"
+#include "GlobalsFrame.h"
+#include "SequencerFrame.h"
 
 // For compilers that support precompilation, includes "wx/wx.h".
 #include "wx/wxprec.h"
@@ -32,7 +35,7 @@ public:
 	// File menu
 	void OnQuit(wxCommandEvent& event);
 
-// View menu
+// Settings menu
 	void OnLeftSplitSettings(wxCommandEvent& event);
 		void OnRightSplitSettings(wxCommandEvent& event);
 		void OnOctaveTransposeSettings(wxCommandEvent& event);
@@ -46,8 +49,7 @@ private:
 	// Internal storage
 	LinnStrument * pLinnStrument;
 	wxNotebook * pNotebook;
-	PerSplitFrame * pPerSplitFrame;
-
+	
 	wxDECLARE_EVENT_TABLE();
 };
 

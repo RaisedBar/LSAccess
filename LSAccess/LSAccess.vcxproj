@@ -153,6 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AxesPage.h" />
+    <ClInclude Include="GlobalsFrame.h" />
     <ClInclude Include="MIDISplitPage.h" />
     <ClInclude Include="ColorsPage.h" />
     <ClInclude Include="FadersPage.h" />
@@ -160,6 +161,8 @@
     <ClInclude Include="LSEnums.h" />
     <ClInclude Include="LSGeneral.h" />
     <ClInclude Include="LSGlobal.h" />
+    <ClInclude Include="OctaveTransposeFrame.h" />
+    <ClInclude Include="OctaveTransposePage.h" />
     <ClInclude Include="PerSplitFrame.h" />
     <ClInclude Include="LSAccessFrame.h" />
     <ClInclude Include="LinnStrument.h" />
@@ -167,15 +170,19 @@
     <ClInclude Include="LSOctaveTranspose.h" />
     <ClInclude Include="LSPerSplit.h" />
     <ClInclude Include="BendPage.h" />
+    <ClInclude Include="SequencerFrame.h" />
     <ClInclude Include="SequencerPage.h" />
     <ClInclude Include="SpecialPage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AxesPage.cpp" />
+    <ClCompile Include="GlobalsFrame.cpp" />
     <ClCompile Include="MIDISplitPage.cpp" />
     <ClCompile Include="ColorsPage.cpp" />
     <ClCompile Include="FadersPage.cpp" />
     <ClCompile Include="LowRowPage.cpp" />
+    <ClCompile Include="OctaveTransposeFrame.cpp" />
+    <ClCompile Include="OctaveTransposePage.cpp" />
     <ClCompile Include="PerSplitFrame.cpp" />
     <ClCompile Include="LSAccess.cpp" />
     <ClCompile Include="LSAccessFrame.cpp" />
@@ -185,6 +192,7 @@
     <ClCompile Include="LSOctaveTranspose.cpp" />
     <ClCompile Include="LSPerSplit.cpp" />
     <ClCompile Include="BendPage.cpp" />
+    <ClCompile Include="SequencerFrame.cpp" />
     <ClCompile Include="SequencerPage.cpp" />
     <ClCompile Include="SpecialPage.cpp" />
   </ItemGroup>
