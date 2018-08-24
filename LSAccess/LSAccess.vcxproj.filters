@@ -84,6 +84,12 @@
     <ClInclude Include="LSGlobals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GlobalsNoteLightsPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalsAccentNoteLightsPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LSAccess.cpp">
@@ -144,6 +150,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GlobalsGuitarPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalsNoteLightsPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalsAccentNoteLightsPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

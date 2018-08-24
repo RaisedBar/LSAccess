@@ -1,7 +1,4 @@
-// GlobalsFrame.h
-// Author:  T A Burgess
-// Raised Bar Ltd.
-// http://www.raisedbar.net
+// GlobalsNoteLightsPage.h
 
 #pragma once
 
@@ -18,22 +15,20 @@
 #endif
 
 #include <wx/notebook.h>
+#include <wx/spinctrl.h>
 
+#include "LinnStrument.h"
+#include "LSPerSplit.h"
 #include "LSEnums.h"
-#include "GlobalsNoteLightsPage.h"
-#include "GlobalsAccentNoteLightsPage.h"
-#include "GlobalsGuitarPage.h"
 
-class GlobalsFrame : public wxFrame
+class GlobalsNoteLightsPage : public wxPanel
 {
 public:
-	GlobalsFrame(const wxString& title, LinnStrument * pLinnStrument);
+	GlobalsNoteLightsPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
 
 private:
-	void OnTabChanged(wxNotebookEvent& event);
-
 	LinnStrument * pMyLinnStrument;
-	wxNotebook * pNotebook;
-
-	DECLARE_EVENT_TABLE()
+	wxBookCtrlBase *pMyParent;
+	LSGlobalSettings m_Settings;
 };
+

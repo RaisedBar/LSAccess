@@ -20,9 +20,13 @@ GlobalsFrame::GlobalsFrame(const wxString& title, LinnStrument * pLinnStrument)
 	pPanel->Layout();
 
 	pNotebook = new wxNotebook(pPanel, ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, 0);
+	GlobalsNoteLightsPage * pGlobalsNoteLightsPage = new GlobalsNoteLightsPage(pNotebook, pLinnStrument);
+	GlobalsAccentNoteLightsPage * pGlobalsAccentNoteLightsPage = new GlobalsAccentNoteLightsPage(pNotebook, pLinnStrument);
 	GlobalsGuitarPage * pGlobalsGuitarPage = new GlobalsGuitarPage(pNotebook, pLinnStrument);
 	
-	pNotebook->AddPage(pGlobalsGuitarPage, L"Guitar Row Tuning", true);
+	pNotebook->AddPage(pGlobalsNoteLightsPage, L"Note Lights", true);
+	pNotebook->AddPage(pGlobalsAccentNoteLightsPage, L"Accent Note Lights", false);
+		pNotebook->AddPage(pGlobalsGuitarPage, L"Guitar Row Tuning", false);
 	
 	vSizer->Insert(0, pNotebook, wxSizerFlags(5).Expand().Border());
 	vSizer->Show(pNotebook);
