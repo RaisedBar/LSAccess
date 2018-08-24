@@ -24,8 +24,8 @@
 class GlobalsGuitarPage : public wxPanel
 {
 public:
-	GlobalsGuitarPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split);
-
+	GlobalsGuitarPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
+	
 private:
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;

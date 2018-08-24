@@ -4,7 +4,7 @@
 
 #include <RtMidi.h>
 #include "LSPerSplit.h"
-#include "LSGlobal.h"
+#include "LSGlobals.h"
 #include "LSOctaveTranspose.h"
 #include "LSGeneral.h"
 #include "NRPNQueue.h"

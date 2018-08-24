@@ -17,17 +17,21 @@
 #include "wx/wx.h"
 #endif
 
+#include <wx/notebook.h>
+
 #include "LSEnums.h"
-#include "LinnStrument.h"
-#include "LSGlobal.h"
+#include "GlobalsGuitarPage.h"
 
 class GlobalsFrame : public wxFrame
 {
 public:
-GlobalsFrame(const wxString& title, LinnStrument * pLinnStrument);
+	GlobalsFrame(const wxString& title, LinnStrument * pLinnStrument);
 
 private:
-		LinnStrument * pMyLinnStrument;
-	
+	void OnTabChanged(wxNotebookEvent& event);
+
+	LinnStrument * pMyLinnStrument;
+	wxNotebook * pNotebook;
+
 	DECLARE_EVENT_TABLE()
 };

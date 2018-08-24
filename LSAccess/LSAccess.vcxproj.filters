@@ -27,9 +27,6 @@
     <ClInclude Include="LSPerSplit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LSGlobal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="LSOctaveTranspose.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -84,6 +81,9 @@
     <ClInclude Include="GlobalsGuitarPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LSGlobals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LSAccess.cpp">
@@ -96,9 +96,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LSPerSplit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LSGlobal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LSOctaveTranspose.cpp">

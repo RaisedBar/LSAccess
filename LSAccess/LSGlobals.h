@@ -1,4 +1,4 @@
-// LSGlobal.h
+// LSGlobals.h
 // LinnStrument global settings
 
 #pragma once
@@ -101,9 +101,387 @@ const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW8 = 270;
 class LSGlobalSettings
 {
 public:
-	LSGlobalSettings();
+	LSGlobalSettings()
+	{};
 
-			private:
+	unsigned int GetGLOBAL_SPLIT_ACTIVE_NRPN()
+	{
+		return m_GLOBAL_SPLIT_ACTIVE_NRPN;
+	}
+
+	// Value is LSSplitType
+	unsigned int GetGLOBAL_SELECTED_SPLIT_NRPN()
+	{
+		return m_GLOBAL_SELECTED_SPLIT_NRPN;
+	}
+
+	// Value is constrained by MIN_SPLIT_COLUMN and MAX_SPLIT_COLUMN  
+	unsigned int GetGLOBAL_SPLIT_COLUMN_NRPN()
+	{
+		return GLOBAL_SPLIT_COLUMN_NRPN;
+	}
+
+	// Toggles:
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_C_NRPN()
+	{
+		return GLOBAL_MAIN_NOTE_LIGHT_C_NRPN;
+	}
+
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_C_SHARP_NRPN()
+	{
+		return GLOBAL_MAIN_NOTE_LIGHT_C_SHARP_NRPN;
+	}
+
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_D_NRPN()
+	{
+		return GLOBAL_MAIN_NOTE_LIGHT_D_NRPN;
+	}
+
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_D_SHARP_NRPN()
+	{
+		return GLOBAL_MAIN_NOTE_LIGHT_D_SHARP_NRPN;
+	}
+
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_E_NRPN()
+	{
+		return GLOBAL_MAIN_NOTE_LIGHT_E_NRPN;
+	}
+
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_F_NRPN()
+	{
+		return m_GLOBAL_MAIN_NOTE_LIGHT_F_NRPN;
+	}
+
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_F_SHARP_NRPN()
+	{
+		return m_GLOBAL_MAIN_NOTE_LIGHT_F_SHARP_NRPN;
+	}
+
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_G_NRPN()
+	{
+		return m_GLOBAL_MAIN_NOTE_LIGHT_G_NRPN;
+	}
+
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_G_SHARP_NRPN()
+	{
+		return m_GLOBAL_MAIN_NOTE_LIGHT_G_SHARP_NRPN;
+	}
+
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_A_NRPN()
+	{
+		return m_GLOBAL_MAIN_NOTE_LIGHT_A_NRPN;
+	}
+
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_A_SHARP_NRPN()
+	{
+		return m_GLOBAL_MAIN_NOTE_LIGHT_A_SHARP_NRPN;
+	}
+
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_B_NRPN()
+	{
+		return m_GLOBAL_MAIN_NOTE_LIGHT_B_NRPN;
+	}
+
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_C_NRPN()
+	{
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_C_NRPN;
+	}
+
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_C_SHARP_NRPN()
+	{
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_C_SHARP_NRPN;
+	}
+
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_D_NRPN()
+	{
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_D_NRPN;
+	}
+
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_D_SHARP_NRPN()
+	{
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_D_SHARP_NRPN;
+	}
+
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_E_NRPN()
+	{
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_E_NRPN;
+	}
+
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_F_NRPN()
+	{
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_F_NRPN;
+	}
+
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_F_SHARP_NRPN()
+	{
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_F_SHARP_NRPN;
+	}
+
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_G_NRPN()
+	{
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_G_NRPN;
+	}
+
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_G_SHARP_NRPN()
+	{
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_G_SHARP_NRPN;
+	}
+
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_A_NRPN()
+	{
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_A_NRPN;
+	}
+
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_A_SHARP_NRPN()
+	{
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_A_SHARP_NRPN;
+	}
+
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_B_NRPN()
+	{
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_B_NRPN;
+	}
+
+	// Value is LSRowOffsetType
+	unsigned int GetGLOBAL_ROW_OFFSET_NRPN()
+	{
+		return m_GLOBAL_ROW_OFFSET_NRPN;
+	}
+
+	// Value is LSSwitchAssignment
+	unsigned int GetGLOBAL_SWITCH1_ASSIGN_NRPN()
+	{
+		return m_GLOBAL_SWITCH1_ASSIGN_NRPN;
+	}
+
+	unsigned int GetGLOBAL_SWITCH2_ASSIGN_NRPN()
+	{
+		return m_GLOBAL_SWITCH2_ASSIGN_NRPN;
+	}
+
+	unsigned int GetGLOBAL_FOOT_LEFT_ASSIGN_NRPN()
+	{
+		return m_GLOBAL_FOOT_LEFT_ASSIGN_NRPN;
+	}
+
+	unsigned int GetGLOBAL_FOOT_RIGHT_ASSIGN_NRPN()
+	{
+		return m_GLOBAL_FOOT_RIGHT_ASSIGN_NRPN;
+	}
+
+	// Value is LSVelocityRange
+	unsigned int GetGLOBAL_VELOCITY_SENSITIVITY_NRPN()
+	{
+		return m_GLOBAL_VELOCITY_SENSITIVITY_NRPN;
+	}
+
+	// Value is LSPressureRange
+	unsigned int GetGLOBAL_PRESSURE_SENSITIVITY_NRPN()
+	{
+		return m_GLOBAL_PRESSURE_SENSITIVITY_NRPN;
+	}
+
+	// Value is LSMIDIDevice
+	unsigned int GetGLOBAL_MIDI_DEVICE_IO_NRPN()
+	{
+		return m_GLOBAL_MIDI_DEVICE_IO_NRPN;
+	}
+
+	// Value is LSArpDirection
+	unsigned int GetGLOBAL_ARP_DIRECTION_NRPN()
+	{
+		return m_GLOBAL_ARP_DIRECTION_NRPN;
+	}
+
+	// Value is LSArpTempoNoteType
+	unsigned int GetGLOBAL_ARP_TEMPO_NOTE_VALUE_NRPN()
+	{
+		return m_GLOBAL_ARP_TEMPO_NOTE_VALUE_NRPN;
+	}
+
+	// Value is LSGlobalArpOctaveExtension
+	unsigned int GetGLOBAL_ARP_OCTAVE_EXTENSION_NRPN()
+	{
+		return m_GLOBAL_ARP_OCTAVE_EXTENSION_NRPN;
+	}
+
+	// Value = 1 - 360  (applies when receiving no MIDI clock)
+	unsigned int GetGLOBAL_CLOCK_BP_NRPN()
+	{
+		return m_GLOBAL_CLOCK_BPM_NRPN;
+	}
+
+	// Toggle:
+	unsigned int GetGLOBAL_SWITCH1_BOTH_SPLITS_NRPN()
+	{
+		return m_GLOBAL_SWITCH1_BOTH_SPLITS_NRPN;
+	}
+
+	unsigned int GetGLOBAL_SWITCH2_BOTH_SPLITS_NRPN()
+	{
+		return m_GLOBAL_SWITCH2_BOTH_SPLITS_NRPN;
+	}
+
+	unsigned int GetGLOBAL_FOOT_LEFT_BOTH_SPLITS_NRPN()
+	{
+		return m_GLOBAL_FOOT_LEFT_BOTH_SPLITS_NRPN;
+	}
+
+	unsigned int GetGLOBAL_FOOT_RIGHT_BOTH_SPLITS_NRPN()
+	{
+		return m_GLOBAL_FOOT_RIGHT_BOTH_SPLITS_NRPN;
+	}
+
+	// Value is LSPresetNumber
+	unsigned int GetGLOBAL_SETTINGS_PRESET_LOAD_NRPN()
+	{
+		return m_GLOBAL_SETTINGS_PRESET_LOAD_NRPN;
+	}
+
+	// Toggles:
+	unsigned int GetGLOBAL_PRESSURE_AFTERTOUCH_NRPN()
+	{
+		return m_GLOBAL_PRESSURE_AFTERTOUCH_NRPN;
+	}
+
+	unsigned int GetDEVICE_USER_FIRMWARE_MODE_NRPN()
+	{
+		return m_DEVICE_USER_FIRMWARE_MODE_NRPN;
+	}
+
+	unsigned int GetDEVICE_LEFT_HANDED_NRPN()
+	{
+		return m_DEVICE_LEFT_HANDED_NRPN;
+	}
+
+	// Value is constrained by MIN_LIGHTS_PRESET and MAX_LIGHTS_PRESET 
+	unsigned int GetGLOBAL_ACTIVE_LIGHTS_PRESET_NRPN()
+	{
+		return m_GLOBAL_ACTIVE_LIGHTS_PRESET_NRPN;
+	}
+
+	// Values are constrained by MIN_CC and MAX_CC
+	unsigned int GetGLOABAL_CC_FOR_CC65()  // Changes the CC for all switches - Legacy option, see NRPN 255 - 258
+	{
+		return m_GLOABAL_CC_FOR_CC65;
+	}
+
+										  // Values are constrained by MIN_CC and MAX_CC
+	unsigned int GetGLOBAL_MIN_VELOCITY_VALUE_NRPN()
+	{
+		return m_GLOBAL_MIN_VELOCITY_VALUE_NRPN;
+	}
+
+	unsigned int GetGLOBAL_MAX_VELOCITY_VALUE_NRPN()
+	{
+		return m_GLOBAL_MAX_VELOCITY_VALUE_NRPN;
+	}
+
+	unsigned int GetGLOBAL_FIXED_VELOCITY_VALUE_NRPN()
+	{
+		return m_GLOBAL_FIXED_VELOCITY_VALUE_NRPN;
+	}
+
+	// Value range =     0 - 512  
+	unsigned int GetDEVICE_MIN_BYTE_INTERVAL_VALUE_NRPN()
+	{
+		return m_DEVICE_MIN_BYTE_INTERVAL_VALUE_NRPN;
+	}
+
+	// Value is LSCustomRowOffset
+	unsigned int GetGLOBAL_CUSTOM_ROW_OFFSET()
+	{
+		return m_GLOBAL_CUSTOM_ROW_OFFSET;
+	}
+
+	// Toggle:
+	unsigned int GetDEVICE_MIDI_THRU_NRPN()
+	{
+		return m_DEVICE_MIDI_THRU_NRPN;
+	}
+
+	// Values are constrained by MIN_CC and MAX_CC
+	unsigned int GetGLOBAL_CC_FOR_LEFT_FOOT_CC65()
+	{
+		return m_GLOBAL_CC_FOR_LEFT_FOOT_CC65;
+	}
+
+	unsigned int GetGLOBAL_CC_FOR_RIGHT_FOOT_CC65()
+	{
+		return GLOBAL_CC_FOR_RIGHT_FOOT_CC65;
+	}
+
+	unsigned int GetGLOBAL_CC_FOR_SWITCH1_CC65()
+	{
+		return m_GLOBAL_CC_FOR_SWITCH1_CC65;
+	}
+
+	unsigned int GetGLOBAL_CC_FOR_SWITCH2_CC65()
+	{
+		return m_GLOBAL_CC_FOR_SWITCH2_CC65;
+	}
+
+	unsigned int GetGLOBAL_CC_FOR_LEFT_FOOT_SUSTAIN()
+	{
+		return m_GLOBAL_CC_FOR_LEFT_FOOT_SUSTAIN;
+	}
+
+	unsigned int GetGLOBAL_CC_FOR_RIGHT_FOOT_SUSTAIN()
+	{
+		return m_GLOBAL_CC_FOR_RIGHT_FOOT_SUSTAIN;
+	}
+
+	unsigned int GetGLOBAL_CC_FOR_SWITCH1_SUSTAIN()
+	{
+		return m_GLOBAL_CC_FOR_SWITCH1_SUSTAIN;
+	}
+
+	unsigned int GetGLOBAL_CC_FOR_SWITCH2_SUSTAIN()
+	{
+		return m_GLOBAL_CC_FOR_SWITCH2_SUSTAIN;
+	}
+
+	unsigned int GetGLOBAL_GUITAR_NOTE_TUNING_ROW1()
+	{
+		return m_GLOBAL_GUITAR_NOTE_TUNING_ROW1;
+	}
+
+	unsigned int GetGLOBAL_GUITAR_NOTE_TUNING_ROW2()
+	{
+		return m_GLOBAL_GUITAR_NOTE_TUNING_ROW2;
+	}
+
+	unsigned int GetGLOBAL_GUITAR_NOTE_TUNING_ROW3()
+	{
+		return m_GLOBAL_GUITAR_NOTE_TUNING_ROW3;
+	}
+
+	unsigned int GetGLOBAL_GUITAR_NOTE_TUNING_ROW4()
+	{
+		return m_GLOBAL_GUITAR_NOTE_TUNING_ROW4;
+	}
+
+	unsigned int GetGLOBAL_GUITAR_NOTE_TUNING_ROW5()
+	{
+		return m_GLOBAL_GUITAR_NOTE_TUNING_ROW5;
+	}
+
+	unsigned int GetGLOBAL_GUITAR_NOTE_TUNING_ROW6()
+	{
+		return m_GLOBAL_GUITAR_NOTE_TUNING_ROW6;
+	}
+
+	unsigned int GetGLOBAL_GUITAR_NOTE_TUNING_ROW7()
+	{
+		return m_GLOBAL_GUITAR_NOTE_TUNING_ROW7;
+	}
+
+	unsigned int GetGLOBAL_GUITAR_NOTE_TUNING_ROW8()
+	{
+		return m_GLOBAL_GUITAR_NOTE_TUNING_ROW8;
+	}
+
+	private:
 				unsigned int m_GLOBAL_SPLIT_ACTIVE_NRPN;
 				// Value is LSSplitType
 				unsigned int m_GLOBAL_SELECTED_SPLIT_NRPN;
@@ -164,22 +542,22 @@ public:
 				unsigned int m_GLOBAL_SETTINGS_PRESET_LOAD_NRPN;
 				// Toggles:
 				unsigned int m_GLOBAL_PRESSURE_AFTERTOUCH_NRPN;
-				unsigned int DEVICE_USER_FIRMWARE_MODE_NRPN;
-				unsigned int DEVICE_LEFT_HANDED_NRPN;
+				unsigned int m_DEVICE_USER_FIRMWARE_MODE_NRPN;
+				unsigned int m_DEVICE_LEFT_HANDED_NRPN;
 				// Value is constrained by MIN_LIGHTS_PRESET and MAX_LIGHTS_PRESET 
 				unsigned int m_GLOBAL_ACTIVE_LIGHTS_PRESET_NRPN;
 				// Values are constrained by MIN_CC and MAX_CC
-				unsigned int GLOABAL_CC_FOR_CC65;  // Changes the CC for all switches - Legacy option, see NRPN 255 - 258
+				unsigned int m_GLOABAL_CC_FOR_CC65;  // Changes the CC for all switches - Legacy option, see NRPN 255 - 258
 													  // Values are constrained by MIN_CC and MAX_CC
 				unsigned int m_GLOBAL_MIN_VELOCITY_VALUE_NRPN;
 				unsigned int m_GLOBAL_MAX_VELOCITY_VALUE_NRPN;
 				unsigned int m_GLOBAL_FIXED_VELOCITY_VALUE_NRPN;
 				// Value range =     0 - 512  
-				unsigned int DEVICE_MIN_BYTE_INTERVAL_VALUE_NRPN;
+				unsigned int m_DEVICE_MIN_BYTE_INTERVAL_VALUE_NRPN;
 				// Value is LSCustomRowOffset
 				unsigned int m_GLOBAL_CUSTOM_ROW_OFFSET;
 				// Toggle:
-				unsigned int DEVICE_MIDI_THRU_NRPN;
+				unsigned int m_DEVICE_MIDI_THRU_NRPN;
 				// Values are constrained by MIN_CC and MAX_CC
 				unsigned int m_GLOBAL_CC_FOR_LEFT_FOOT_CC65;
 				unsigned int m_GLOBAL_CC_FOR_RIGHT_FOOT_CC65;
