@@ -81,6 +81,9 @@
     <ClInclude Include="NRPNQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GlobalsGuitarPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LSAccess.cpp">
@@ -141,6 +144,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="OctaveTransposePage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalsGuitarPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -154,6 +154,7 @@
   <ItemGroup>
     <ClInclude Include="AxesPage.h" />
     <ClInclude Include="GlobalsFrame.h" />
+    <ClInclude Include="GlobalsGuitarPage.h" />
     <ClInclude Include="MIDISplitPage.h" />
     <ClInclude Include="ColorsPage.h" />
     <ClInclude Include="FadersPage.h" />
@@ -178,6 +179,7 @@
   <ItemGroup>
     <ClCompile Include="AxesPage.cpp" />
     <ClCompile Include="GlobalsFrame.cpp" />
+    <ClCompile Include="GlobalsGuitarPage.cpp" />
     <ClCompile Include="MIDISplitPage.cpp" />
     <ClCompile Include="ColorsPage.cpp" />
     <ClCompile Include="FadersPage.cpp" />

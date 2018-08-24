@@ -410,6 +410,8 @@ private:
 		LSGeneralSettings m_GeneralSettings;
 
 		NRPNQueue m_NRPNQueue;
+		std::pair <unsigned char, unsigned char> m_NRPN;
+
 		bool m_SpeakNotes;
 					};
 
