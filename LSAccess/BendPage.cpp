@@ -21,15 +21,7 @@ wscBEND_RANGE = new wxSpinCtrl(myPanel, BEND_RANGE_ID, "", wxDefaultPosition, wx
 // toggle
 chkBEND_QUANTIZE_TOGGLE = new wxCheckBox(myPanel, BEND_QUANTIZE_TOGGLE_ID, L"&Quantize");
 // Values are from LSPitchQuantize
-wxString BendTypes[] =
-{
-	L"Off",
-	L"Medium",
-	L"Fast",
-	L"Slow"
-};
-
-			wrbcPitchBendType = new wxRadioBox(myPanel, BEND_TYPE_ID, L"Quantization &type:", wxDefaultPosition, wxDefaultSize, WXSIZEOF( BendTypes), BendTypes, 0, wxRA_SPECIFY_ROWS);
+			wrbcPitchBendType = new wxRadioBox(myPanel, BEND_TYPE_ID, L"Quantization &type:", wxDefaultPosition, wxDefaultSize, WXSIZEOF( BendTypes), BendTypes, m_Settings.GetPitchBendType(), wxRA_SPECIFY_ROWS);
 // Toggles:
 chkRESET_PITCH_ON_RELEASE = new wxCheckBox(myPanel, RESET_PITCH_ON_RELEASE_ID, L"&&Reset pitch &on release");
 

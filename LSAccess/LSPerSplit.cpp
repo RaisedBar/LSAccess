@@ -6,6 +6,12 @@ LSPerSplitSettings::LSPerSplitSettings()
 {}
 
 
+unsigned int GetSplit_Mode()
+{
+	return false;
+}
+
+
 // Left-hand split
 
 unsigned int LSPerSplitSettings::GetCHANNEL_PER_NOTE_1()

@@ -33,6 +33,6 @@ private:
 
 	// controls
 				// Values are defined in LSColor
-	wxRadioBox * wrbcCOLOR_MAIN, *wrbcCOLOR_ACCENT, *wrbcCOLOR_PLAYED, * wrbc_COLOR_LOWROW;
-	wxRadioBox * wrbcAnimation;
+	wxRadioBox * wrbCOLOR_MAIN, *wrbCOLOR_ACCENT, *wrbCOLOR_PLAYED, * wrbCOLOR_LOWROW;
+	wxRadioBox * wrbAnimation;
 };

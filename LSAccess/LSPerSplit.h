@@ -206,6 +206,7 @@ class LSPerSplitSettings
 public:
 	LSPerSplitSettings();
 
+	unsigned int GetSPLIT_MODE();
 	// Toggles:
 	unsigned int GetCHANNEL_PER_NOTE_1();
 	unsigned int GetCHANNEL_PER_NOTE_2();

@@ -83,6 +83,13 @@ enum class LS_MIDIMode
 	CHANNEL_PER_ROW = 2
 };
 
+const wxString SplitModes[] =
+{
+	L"One channel",
+	L"Channel per note (MPE)",
+	L"Channel per row"
+};
+
 const unsigned int MIN_BEND_RANGE = 0;
 const unsigned int MAX_BEND_RANGE = 96;
 
@@ -92,6 +99,14 @@ enum class LSPitchQuantize
 	MEDIUM = 1,
 	FAST = 2,
 	SLOW = 3
+};
+
+const wxString BendTypes[] =
+{
+	L"Off",
+	L"Medium",
+	L"Fast",
+	L"Slow"
 };
 
 const unsigned int MIN_CC = 0;
@@ -107,11 +122,25 @@ enum class LSExpressionY
 	CC_DEFINED_IN_25 = 2
 };
 
+const wxString ExpressionY[] =
+{
+L"Poly Aftertouch",
+	L"Channel Aftertouch",
+	L"CC defined in 25"
+};
+
 enum class LSExpressionZ
 {
 	POLY_AFTERTOUCH = 0,
 	CHANNEL_AFTERTOUCH = 1,
 	CC_DEFINED_IN_29 = 2
+};
+
+const wxString ExpressionZ[] =
+{
+L"Poly Aftertouch",
+	L"Channel Aftertouch",
+	L"CC defined in 29"
 };
 
 enum class LSLowRowMode
@@ -154,6 +183,24 @@ enum class LSColor
 	DEFAULT = 12
 };
 
+const wxString ColorNames[] =
+{
+	L"Off",
+		L"RED",
+L"YELLOW",
+L"GREEN",
+"CYAN",
+L"BLUE",
+L"MAGENTA",
+L"BLACK",
+L"WHITE",
+L"ORANGE",
+L"LIME",
+L"PINK",
+// Values higher than pink (11) set the color to default
+L"DEFAULT"
+};
+
 enum class LSOctave
 {
 	MINUS5 = 0,
@@ -194,10 +241,34 @@ enum class LSLowRowBehaviour
 	FADER = 1
 };
 
+const wxString LowRowModes[] =
+{
+	L"Normal",
+		L"Sustain",
+		L"Restrike",
+		L"Strum",
+		L"Arp",
+		L"Bend"
+		L"CC1",
+	L"X,Y,Z=16-18"
+};
+
+const wxString LowRowBehaviour[] =
+{
+L"Hold",
+L"Fader"
+};
+
 enum class LSChannelOrder
 {
 	NORMAL = 0,
 	REVERSED = 1
+};
+
+const wxString ChannelOrders[] =
+{
+	L"Normal",
+	L"Reversed"
 };
 
 enum class LSAnimation
@@ -217,6 +288,25 @@ enum class LSAnimation
 	LEFT = 12,
 	RIGHT = 13,
 	ORBITS = 14
+};
+
+const 	wxString Animations[] =
+{
+	L"SAME",
+	L"CROSSES",
+	L"CIRCLES",
+	L"SQUARES",
+	L"DIAMONDS",
+	L"STARS",
+	L"SPARKLES",
+	L"CURTAINS",
+	L"BLINDS",
+	L"TARGETS",
+	L"UP",
+	L"DOWN",
+	L"LEFT",
+	L"RIGHT",
+	L"ORBITS"
 };
 
 const unsigned int MIN_SEQUENCER_PATTERN = 0;
