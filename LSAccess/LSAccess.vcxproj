@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -154,9 +154,10 @@
   <ItemGroup>
     <ClInclude Include="AxesPage.h" />
     <ClInclude Include="GlobalsAccentNoteLightsPage.h" />
+    <ClInclude Include="GlobalsFootSwitchesPage.h" />
     <ClInclude Include="GlobalsNoteLightsPage.h" />
     <ClInclude Include="GlobalsFrame.h" />
-    <ClInclude Include="GlobalsGuitarPage.h" />
+    <ClInclude Include="GlobalsTuningsPage.h" />
     <ClInclude Include="MIDISplitPage.h" />
     <ClInclude Include="ColorsPage.h" />
     <ClInclude Include="FadersPage.h" />
@@ -177,12 +178,15 @@
     <ClInclude Include="SequencerFrame.h" />
     <ClInclude Include="SequencerPage.h" />
     <ClInclude Include="SpecialPage.h" />
+    <ClInclude Include="GlobalsSwitchesFrame.h" />
+    <ClInclude Include="GlobalsPanelSwitchesPage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AxesPage.cpp" />
     <ClCompile Include="GlobalsAccentNoteLightsPage.cpp" />
+    <ClCompile Include="GlobalsFootSwitchesPage.cpp" />
     <ClCompile Include="GlobalsFrame.cpp" />
-    <ClCompile Include="GlobalsGuitarPage.cpp" />
+    <ClCompile Include="GlobalsTuningsPage.cpp" />
     <ClCompile Include="GlobalsNoteLightsPage.cpp" />
     <ClCompile Include="MIDISplitPage.cpp" />
     <ClCompile Include="ColorsPage.cpp" />
@@ -201,6 +205,8 @@
     <ClCompile Include="SequencerFrame.cpp" />
     <ClCompile Include="SequencerPage.cpp" />
     <ClCompile Include="SpecialPage.cpp" />
+    <ClCompile Include="GlobalsSwitchesFrame.cpp" />
+    <ClCompile Include="GlobalsPanelSwitchesPage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LSAccess.rc" />

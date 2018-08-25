@@ -63,22 +63,13 @@
     <ClInclude Include="MIDISplitPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OctaveTransposeFrame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SequencerFrame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GlobalsFrame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OctaveTransposePage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="NRPNQueue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalsGuitarPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LSGlobals.h">
@@ -88,6 +79,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GlobalsAccentNoteLightsPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalsTuningsPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalsSwitchesFrame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OctaveTransposeFrame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OctaveTransposePage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalsPanelSwitchesPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalsFootSwitchesPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -140,22 +149,31 @@
     <ClCompile Include="GlobalsFrame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OctaveTransposeFrame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SequencerFrame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OctaveTransposePage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GlobalsGuitarPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GlobalsNoteLightsPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GlobalsAccentNoteLightsPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalsTuningsPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OctaveTransposePage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OctaveTransposeFrame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalsPanelSwitchesPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalsSwitchesFrame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalsFootSwitchesPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

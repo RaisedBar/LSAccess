@@ -1,4 +1,4 @@
-// PitchBendPage.h
+// BendPage.h
 
 #pragma once
 

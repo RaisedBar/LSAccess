@@ -1,6 +1,13 @@
+// OctaveTransposePage (needs left and right)
 	// Value is an LSOctave
 	wxRadioBox * wrbOCTAVE;
 	// Values are from LSPitch
 	wxRadioBox * wrbPITCH_TRANSPOSE;
 	wxRadioBox * wrbTRANSPOSE_LIGHTS;
 	
+// PresetVolumePage (needs left and right)
+	// Value is LSPresetNumber
+	wxRadioBox * wrbGLOBAL_SETTINGS_PRESET_LOAD_NRPN;
+// Values constrained by MIN_CC and MAX_CC
+wxSpinCtrl * wscProgramNumber;
+wxSpinCtrl * wscVolume

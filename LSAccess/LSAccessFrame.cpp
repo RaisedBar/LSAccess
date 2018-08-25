@@ -17,9 +17,10 @@ LSAccessFrame::LSAccessFrame(const wxString& title)
 	wxMenu *SettingsMenu = new wxMenu;
 	SettingsMenu->Append(ID_LeftSplitSettings, "&Left Split...\tF2", "Show all settings for the left-hand split");
 	SettingsMenu->Append(ID_RightSplitSettings, "&Right Split...\tF3", "Show all settings for the right-hand split");
-	SettingsMenu->Append(ID_OctaveTransposeSettings, "&Octave and Transpose...\tF4", "Show all settings for octave and transposition");
-	SettingsMenu->Append(ID_StepSequencerSettings, "&Step Sequencer...\tF5", "Show all settings for the Step Sequencer");
-	SettingsMenu->Append(ID_GlobalSettings, "&Global...\tF6", "Show all global settings");
+	SettingsMenu->Append(ID_OctaveTransposeSettings, "&Octave/Transpose...\tF4", "Show all settings for octave and transposition");
+	SettingsMenu->Append(ID_SwitchSettings, "&Switches...\tf5", "Show all settings for panel and foot switches");
+	SettingsMenu->Append(ID_GlobalSettings, "&Globals...\tF6", "Show all global settings");
+	SettingsMenu->Append(ID_StepSequencerSettings, "&Step Sequencer...\tF7", "Show all settings for the Step Sequencer");
 
 	// the "About" item should be in the help menu
 	wxMenu *helpMenu = new wxMenu;
@@ -71,10 +72,10 @@ void LSAccessFrame::OnOctaveTransposeSettings(wxCommandEvent& event)
 	}
 
 
-void LSAccessFrame::OnStepSequencerSettings(wxCommandEvent& event)
+void LSAccessFrame::OnSwitchSettings(wxCommandEvent& event)
 {
-	SequencerFrame * pSequencerFrame = new SequencerFrame(L"Step Sequencer", pLinnStrument);
-	pSequencerFrame->Show(true);
+	GlobalsSwitchesFrame * pGlobalsSwitchesFrame = new GlobalsSwitchesFrame(L"Switches", pLinnStrument);
+	pGlobalsSwitchesFrame->Show(true);
 }
 
 
@@ -82,6 +83,13 @@ void LSAccessFrame::OnGlobalSettings(wxCommandEvent& event)
 {
 	GlobalsFrame * pGlobalsFrame = new GlobalsFrame(L"Global", pLinnStrument);
 	pGlobalsFrame->Show(true);
+}
+
+
+void LSAccessFrame::OnStepSequencerSettings(wxCommandEvent& event)
+{
+	SequencerFrame * pSequencerFrame = new SequencerFrame(L"Step Sequencer", pLinnStrument);
+	pSequencerFrame->Show(true);
 }
 
 
@@ -98,8 +106,9 @@ EVT_MENU(ID_Quit, LSAccessFrame::OnQuit)
 EVT_MENU(ID_LeftSplitSettings, LSAccessFrame::OnLeftSplitSettings)
 	EVT_MENU(ID_RightSplitSettings, LSAccessFrame::OnRightSplitSettings)
 		EVT_MENU(ID_OctaveTransposeSettings, LSAccessFrame::OnOctaveTransposeSettings)
-			EVT_MENU(ID_StepSequencerSettings, LSAccessFrame::OnStepSequencerSettings)
-				EVT_MENU(ID_GlobalSettings, LSAccessFrame::OnGlobalSettings)
+	EVT_MENU(ID_SwitchSettings, LSAccessFrame::OnSwitchSettings)
+	EVT_MENU(ID_GlobalSettings, LSAccessFrame::OnGlobalSettings)
+	EVT_MENU(ID_StepSequencerSettings, LSAccessFrame::OnStepSequencerSettings)
 
 // Help menu
 EVT_MENU(ID_About, LSAccessFrame::OnAbout)

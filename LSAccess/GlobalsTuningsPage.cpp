@@ -1,8 +1,8 @@
-// GlobalsGuitarPage.cpp
+// GlobalsTuningsPage.cpp
 
-#include "GlobalsGuitarPage.h"
+#include "GlobalsTuningsPage.h"
 
-GlobalsGuitarPage::GlobalsGuitarPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument)
+GlobalsTuningsPage::GlobalsTuningsPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument)
 	:wxPanel(parent),
 	pMyLinnStrument(new LinnStrument),
 	pMyParent(new wxBookCtrl())

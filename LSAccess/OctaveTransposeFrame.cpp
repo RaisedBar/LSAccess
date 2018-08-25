@@ -19,7 +19,7 @@ OctaveTransposeFrame::OctaveTransposeFrame(const wxString& title, LinnStrument *
 	pPanel->SetSizer(vSizer);
 	pPanel->Layout();
 
-	pNotebook = new wxNotebook(pPanel, ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, 0);
+	wxNotebook * pNotebook = new wxNotebook(pPanel, ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, 0);
 	OctaveTransposePage * pLeftOctaveTransposePage = new OctaveTransposePage(pNotebook, pLinnStrument, LSSplitType::LEFT);
 	OctaveTransposePage * pRightOctaveTransposePage = new OctaveTransposePage(pNotebook, pLinnStrument, LSSplitType::RIGHT);
 
@@ -31,28 +31,7 @@ OctaveTransposeFrame::OctaveTransposeFrame(const wxString& title, LinnStrument *
 }
 
 
-// tabSet handlers...
-
-void OctaveTransposeFrame::OnTabChanged(wxNotebookEvent& event)
-{
-	// contextualise the menus etc.
-	switch (pNotebook->GetSelection())
-	{
-	case 0:
-	{
-		// Do something
-	}
-	break;
-
-	default:
-	{
-		std::cerr << "Oops - unexpected tab change signal";
-	}
-	}
-}
-
-
 BEGIN_EVENT_TABLE(OctaveTransposeFrame, wxFrame)
 // Notebook tabs
-EVT_NOTEBOOK_PAGE_CHANGED(ID_NOTEBOOK, OctaveTransposeFrame::OnTabChanged)
+// EVT_NOTEBOOK_PAGE_CHANGED(ID_NOTEBOOK, OctaveTransposeFrame::OnTabChanged)
 END_EVENT_TABLE()

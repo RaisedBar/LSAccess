@@ -22,7 +22,7 @@
 #include "LSEnums.h"
 #include "GlobalsNoteLightsPage.h"
 #include "GlobalsAccentNoteLightsPage.h"
-#include "GlobalsGuitarPage.h"
+#include "GlobalsTuningsPage.h"
 
 class GlobalsFrame : public wxFrame
 {
@@ -33,7 +33,6 @@ private:
 	void OnTabChanged(wxNotebookEvent& event);
 
 	LinnStrument * pMyLinnStrument;
-	wxNotebook * pNotebook;
 
 	DECLARE_EVENT_TABLE()
 };

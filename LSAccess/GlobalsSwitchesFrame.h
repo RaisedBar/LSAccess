@@ -1,4 +1,7 @@
-// GlobalsGuitarPage.h
+// GlobalsSwitchesFrame.h
+// Author:  T A Burgess
+// Raised Bar Ltd.
+// http://www.raisedbar.net
 
 #pragma once
 
@@ -15,20 +18,18 @@
 #endif
 
 #include <wx/notebook.h>
-#include <wx/spinctrl.h>
 
-#include "LinnStrument.h"
-#include "LSPerSplit.h"
 #include "LSEnums.h"
+#include "GlobalsPanelSwitchesPage.h"
+#include "GlobalsFootSwitchesPage.h"
 
-class GlobalsGuitarPage : public wxPanel
+class GlobalsSwitchesFrame : public wxFrame
 {
 public:
-	GlobalsGuitarPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
-	
-private:
-	LinnStrument * pMyLinnStrument;
-	wxBookCtrlBase *pMyParent;
-	LSGlobalSettings m_Settings;
-};
+	GlobalsSwitchesFrame(const wxString& title, LinnStrument * pLinnStrument);
 
+private:
+		LinnStrument * pMyLinnStrument;
+		
+	DECLARE_EVENT_TABLE()
+};

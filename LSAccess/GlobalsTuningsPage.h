@@ -1,4 +1,4 @@
-// OctaveTransposePage.h
+// GlobalsTuningsPage.h
 
 #pragma once
 
@@ -21,20 +21,14 @@
 #include "LSPerSplit.h"
 #include "LSEnums.h"
 
-class OctaveTransposePage : public wxPanel
+class GlobalsTuningsPage : public wxPanel
 {
 public:
-	OctaveTransposePage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split);
-
+	GlobalsTuningsPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
+	
 private:
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
 	LSGlobalSettings m_Settings;
-
-	// controls
-			// Toggles:
-	wxCheckBox * chkSEQUENCER_TOGGLE_PLAY, *chkSEQUENCER_TOGGLE_MUTE;
-	wxButton *btnSEQUENCER_PREVIOUS_PATTERN, *btnSEQUENCER_NEXT_PATTERN;
-	// Value is an LSPatternNumber
-	wxSpinCtrl * wscSEQUENCER_PATTERN;
 };
+

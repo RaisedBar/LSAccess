@@ -1,4 +1,4 @@
-// OctaveTransposePage.h
+// GlobalsFootSwitchesPage.h
 
 #pragma once
 
@@ -18,13 +18,13 @@
 #include <wx/spinctrl.h>
 
 #include "LinnStrument.h"
-#include "LSPerSplit.h"
+#include "LSGlobals.h"
 #include "LSEnums.h"
 
-class OctaveTransposePage : public wxPanel
+class GlobalsFootSwitchesPage : public wxPanel
 {
 public:
-	OctaveTransposePage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split);
+	GlobalsFootSwitchesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
 
 private:
 	LinnStrument * pMyLinnStrument;
@@ -32,9 +32,13 @@ private:
 	LSGlobalSettings m_Settings;
 
 	// controls
-			// Toggles:
-	wxCheckBox * chkSEQUENCER_TOGGLE_PLAY, *chkSEQUENCER_TOGGLE_MUTE;
-	wxButton *btnSEQUENCER_PREVIOUS_PATTERN, *btnSEQUENCER_NEXT_PATTERN;
-	// Value is an LSPatternNumber
-	wxSpinCtrl * wscSEQUENCER_PATTERN;
+	// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
+	wxSpinCtrl * wscBEND_RANGE;
+	// Toggles:
+	wxCheckBox * chkBEND_TOGGLE;
+	wxCheckBox * chkBEND_QUANTIZE_TOGGLE;
+	// Values are from LSPitchQuantize
+	wxRadioBox * wrbcPitchBendType;
+	// Toggles:
+	wxCheckBox * chkRESET_PITCH_ON_RELEASE;
 };

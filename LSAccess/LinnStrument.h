@@ -242,6 +242,12 @@ enum class LSRowOffsetType
 	NO_OFFSET = 127
 };
 
+enum class LSSwitchType
+{
+	PANEL = 0,
+	FOOT = 1
+};
+
 enum class LSSwitchAssignment
 {
 	OCTAVE_DOWN = 0,

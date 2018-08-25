@@ -148,7 +148,8 @@ GLOBAL_ACCENT_NOTE_LIGHT_B_NRPN_ID,
 	// Octave-Transpose settings
 	ID_OctaveTransposeSettings,
 
-	// Volume settings
+	// Switches settings
+	ID_SwitchSettings,
 
 	// Presets
 
