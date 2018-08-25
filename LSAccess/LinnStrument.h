@@ -3,6 +3,8 @@
 #pragma once
 
 #include <RtMidi.h>
+#include <wx/string.h>
+
 #include "LSPerSplit.h"
 #include "LSGlobals.h"
 #include "LSOctaveTranspose.h"
@@ -268,6 +270,28 @@ enum class LSSwitchAssignment
 	SEQUENCER_NEXT = 15,
 	SEND_MIDI_CLOCK = 16,
 	SEQUENCER_MUTE = 17
+};
+
+const wxString wstrSwitchAssignments[] = 
+	{
+		L"Octave Down",
+	L"Octave Up",
+L"Sustain",
+	L"CC65",
+	L"Arp",
+	L"Alt Split",
+	L"Auto Octave",
+	L"Tap Tempo",
+	L"Legato",
+	L"Latch",
+	L"Preset Up",
+	L"Preset Down",
+	L"Reverse Pitch-X",
+	L"Sequencer Play",
+	L"Sequencer Previous",
+	L"Sequencer Next",
+	L"Send MIDI Clock",
+	L"Sequencer Mute"
 };
 
 enum class LSVelocityRange

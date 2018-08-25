@@ -148,10 +148,18 @@ GLOBAL_ACCENT_NOTE_LIGHT_B_NRPN_ID,
 	// Octave-Transpose settings
 	ID_OctaveTransposeSettings,
 
-	// Switches settings
+	// Switch settings
 	ID_SwitchSettings,
+		GLOBAL_FOOT_LEFT_ASSIGN_NRPN_ID,
+		GLOBAL_FOOT_LEFT_BOTH_SPLITS_NRPN_ID,
+		GLOBAL_CC_FOR_LEFT_FOOT_SUSTAIN_ID,
+		GLOBAL_CC_FOR_LEFT_FOOT_CC65_ID,
+		GLOBAL_FOOT_RIGHT_ASSIGN_NRPN_ID,
+		GLOBAL_FOOT_RIGHT_BOTH_SPLITS_NRPN_ID,
+		GLOBAL_CC_FOR_RIGHT_FOOT_SUSTAIN_ID,
+		GLOBAL_CC_FOR_RIGHT_FOOT_CC65_ID,
 
-	// Presets
+		// Presets
 
 	// Help menu
 	// it is important for the id corresponding to the "About" command to have
