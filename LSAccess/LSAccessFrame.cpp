@@ -81,7 +81,7 @@ void LSAccessFrame::OnSwitchSettings(wxCommandEvent& event)
 
 void LSAccessFrame::OnGlobalSettings(wxCommandEvent& event)
 {
-	GlobalsFrame * pGlobalsFrame = new GlobalsFrame(L"Global", pLinnStrument);
+	GlobalsFrame * pGlobalsFrame = new GlobalsFrame(L"Globals", pLinnStrument);
 	pGlobalsFrame->Show(true);
 }
 

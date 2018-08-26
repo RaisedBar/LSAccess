@@ -2,18 +2,21 @@
 
 #pragma once
 
+#include "LSPerSplit.h"
+
 class LSOctaveTransposeSettings
 {
 public:
 	LSOctaveTransposeSettings();
 
-	unsigned int GetOctave();
-	unsigned int GetTransposePitch();
-	unsigned int GetTransposeLights();
-	void SetOctave( unsigned int nValue);
-	void SetTransposePitch(unsigned int nValue);
-	void SetTransposeLights(unsigned int nValue);
+	unsigned int GetOctave( LSSplitType split);
+	unsigned int GetTransposePitch(LSSplitType split);
+	unsigned int GetTransposeLights(LSSplitType split);
+	void SetOctave( unsigned int nValue, LSSplitType split);
+	void SetTransposePitch(unsigned int nValue, LSSplitType split);
+	void SetTransposeLights(unsigned int nValue, LSSplitType split);
 
 private:
-	unsigned int m_Octave, m_TransposePitch, m_TransposeLights;
+	unsigned int m_LeftOctave, m_LeftTransposePitch, m_LeftTransposeLights;
+		unsigned int m_RightOctave, m_RightTransposePitch, m_RightTransposeLights; 
 		};

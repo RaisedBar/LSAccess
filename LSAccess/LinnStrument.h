@@ -216,6 +216,21 @@ enum class LSOctave
 	PLUS5 = 10
 };
 
+const wxString Octaves[] = 
+{
+L"-5",
+	L"-4",
+	L"-3",
+L"-2",
+	L"-1",
+	L"0",
+	L"+1",
+L"+2",
+	L"+3",
+	L"+4",
+	L"+5"
+};
+
 enum class LSPitch
 {
 	MINUS7 = 0,
@@ -233,6 +248,25 @@ enum class LSPitch
 	PLUS5 = 12,
 	PLUS6 = 13,
 	PLUS7 = 14
+};
+
+const wxString Pitches[] = 
+{
+	L"-7",
+L"-6",
+L"-5",
+L"-4",
+L"-3",
+	L"-2",
+	L"-1",
+	L"0",
+	L"+1",
+	L"+2",
+	L"+3",
+	L"+4",
+	L"+5",
+	L"+6",
+	L"+7"
 };
 
 enum class LSLowRowBehaviour

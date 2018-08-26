@@ -147,6 +147,9 @@ GLOBAL_ACCENT_NOTE_LIGHT_B_NRPN_ID,
 
 	// Octave-Transpose settings
 	ID_OctaveTransposeSettings,
+	OCTAVE_ID,
+	TRANSPOSE_PITCH_ID,
+	TRANSPOSE_LIGHTS_ID,
 
 	// Switch settings
 	ID_SwitchSettings,
