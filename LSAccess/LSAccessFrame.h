@@ -7,6 +7,7 @@
 #include "LinnStrument.h"
 #include "PerSplitFrame.h"
 #include "OctaveTransposeFrame.h"
+#include "PresetsVolumesFrame.h"
 #include "GlobalsSwitchesFrame.h"
 #include "GlobalsFrame.h"
 #include "SequencerFrame.h"
@@ -41,6 +42,7 @@ public:
 		void OnRightSplitSettings(wxCommandEvent& event);
 		void OnOctaveTransposeSettings(wxCommandEvent& event);
 		void OnSwitchSettings(wxCommandEvent& event);
+		void OnPresetsVolumesSettings(wxCommandEvent& event);
 		void OnGlobalSettings(wxCommandEvent& event);
 		void OnStepSequencerSettings(wxCommandEvent& event);
 

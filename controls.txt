@@ -1,14 +1,8 @@
-// SplitsPage
+// GlobalsSplitsPage
 	wxCheckBox * chkGLOBAL_SPLIT_ACTIVE = new wxCheckBox(myPanel, GLOBAL_SPLIT_ACTIVE_ID, L"Split &Active");
 	// Value is constrained by MIN_SPLIT_COLUMN and MAX_SPLIT_COLUMN  
 	WXSpinCtrl * wscGLOBAL_SPLIT_COLUMN = new wxSpinCtrl(myPanel, GLOBAL_SPLIT_COLUMN_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_SPLIT_COLUMN, Min_SPLIT_COLUMN, m_Settings.GetMIDI_PER_ROW_LOWEST_CHANNEL(), "Split &column");
 	wxCheckBox * chkDEVICE_LEFT_HANDED = new wxCheckBox(myPanel, GLOBAL_SPLIT_ACTIVE_ID, L"Split &Active");
-
-	// TuningPage
-	// Value is LSRowOffsetType
-	wxRadioBox * wrbGLOBAL_ROW_OFFSET;
-	// Value is LSCustomRowOffset
-	wxRadioBox * wrbGLOBAL_CUSTOM_ROW_OFFSET;
 
 	// VelocityPressurePage
 		// Value is LSVelocityRange
@@ -22,7 +16,7 @@
 	// Value is LSPressureRange
 	wxRadioBox * wrbGLOBAL_PRESSURE_SENSITIVITY_NRPN;
 
-// ArpPage
+// GlobalsArpPage
 	// Value = 1 - 360  (applies when receiving no MIDI clock)
 wxRadioBox * wrbGLOBAL_CLOCK_BPM_NRPN;
 	// Value is LSArpDirection
@@ -32,7 +26,7 @@ wxRadioBox * wrbGLOBAL_ARP_TEMPO_NOTE_VALUE_NRPN;
 	// Value is LSGlobalArpOctaveExtension
 wxRadioBox * wrbGLOBAL_ARP_OCTAVE_EXTENSION_NRPN;
 
-// PowerMIDIPage
+// GlobalsPowerMIDIPage
 	// Value is LSMIDIDevice
 wxRadioBox * wrbGLOBAL_MIDI_DEVICE_IO_NRPN;
 	// Toggle:
@@ -40,10 +34,3 @@ wxRadioBox * wrbGLOBAL_MIDI_DEVICE_IO_NRPN;
 	// Value range =     0 - 512  
 	WXSpinCtrl * wscDEVICE_MIN_BYTE_INTERVAL_VALUE_NRPN;
 	wxCheckBox * chkDEVICE_USER_FIRMWARE_MODE_NRPN = new wxCheckBox(myPanel, GLOBAL_SPLIT_ACTIVE_NRPN_ID, L"Split &Active");
-
-// PresetVolumePage (needs left and right)
-	// Value is LSPresetNumber
-	wxRadioBox * wrbGLOBAL_SETTINGS_PRESET_LOAD_NRPN;
-// Values constrained by MIN_CC and MAX_CC
-wxSpinCtrl * wscProgramNumber;
-wxSpinCtrl * wscVolume

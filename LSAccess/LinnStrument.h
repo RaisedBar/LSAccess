@@ -362,6 +362,19 @@ enum class LSRowOffsetType
 	NO_OFFSET = 127
 };
 
+const wxString RowOffsetTypes[] =
+{
+	L"No overlap",
+	L"3rd",
+	L"4th",
+	L"5th",
+	L"6th",
+	L"7th",
+	L"Octave",
+	L"Guitar",
+	L"No offset"
+};
+
 enum class LSSwitchType
 {
 	PANEL = 0,
@@ -468,6 +481,14 @@ enum class LSPresetNumber
 	THREE = 3
 };
 
+const wxString PresetNumbers[] =
+{
+	L"0",
+	L"1",
+	L"2",
+	L"3"
+};
+
 const unsigned int MIN_LIGHTS_PRESET = 0;
 const unsigned int MAX_LIGHTS_PRESET = 11;
 
@@ -508,6 +529,45 @@ enum class LSCustomRowOffset
 	PLUS15 = 31,
 	PLUS16 = 32,
 	INVERTED_GUITAR = 33
+};
+
+const wxString CustomRowOffsets[] =
+{
+	// Semitone intervals:
+	L"-16",
+	L"-15",
+	L"-14",
+	L"-13",
+	L"-12",
+	L"-11",
+	L"-10",
+	L"-9",
+	L"-8",
+	L"-7",
+	L"-6",
+	L"-5",
+	L"-4",
+	L"-3",
+	L"-2",
+	L"-1",
+L"0",
+	L"+1",
+L"+2",
+	L"+3",
+	L"+4",
+L"+5",
+	L"+6",
+L"+7",
+L"+8",
+	L"+9",
+	L"+10",
+L"+11",
+	L"+12",
+	L"+13",
+	L"+14",
+	L"+15",
+	L"+16",
+	L"Inverted guitar"
 };
 
 const unsigned int MIN_MEMORY_LOCATION = 1;

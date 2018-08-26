@@ -17,7 +17,7 @@ enum
 
 	ID_NOTEBOOK,
 	
-	// MIDISplitPage.h
+	// MIDISplitPage
 	SPLIT_MODE_ID,
 	CHANNEL_PER_ROW_ORDER_ID,
 	MIDI_MAIN_CHANNEL_ID,
@@ -116,7 +116,9 @@ GLOBAL_MAIN_NOTE_LIGHT_A_SHARP_ID,
 GLOBAL_MAIN_NOTE_LIGHT_B_ID,
 GLOBAL_ACTIVE_LIGHTS_PRESET_ID,
 
-// GlobalsGuitarPage
+// GlobalsTuningsPage
+GLOBAL_ROW_OFFSET_ID,
+GLOBAL_CUSTOM_ROW_OFFSET_ID,
 GLOBAL_GUITAR_NOTE_TUNING_ROW1_ID,
 GLOBAL_GUITAR_NOTE_TUNING_ROW2_ID,
 GLOBAL_GUITAR_NOTE_TUNING_ROW3_ID,
@@ -174,8 +176,13 @@ GLOBAL_ACCENT_NOTE_LIGHT_B_ID,
 		GLOBAL_CC_FOR_RIGHT_FOOT_SUSTAIN_ID,
 		GLOBAL_CC_FOR_RIGHT_FOOT_CC65_ID,
 
-		// Presets
-
+		// PresetsVolumes
+	ID_PresetsVolumesSettings,
+			// PresetsVolumesPage
+	GLOBAL_SETTINGS_PRESET_LOAD_ID,
+	ProgramNumber_ID,
+	Volume_ID,
+		
 	// Help menu
 	// it is important for the id corresponding to the "About" command to have
 		// this standard value as otherwise it won't be handled properly under Mac

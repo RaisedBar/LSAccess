@@ -115,7 +115,37 @@ public:
 		return m_GLOBAL_SELECTED_SPLIT;
 	}
 
-	// Value is constrained by MIN_SPLIT_COLUMN and MAX_SPLIT_COLUMN  
+	unsigned int GetLSPresetNumber()
+	{
+		return m_LSPresetNumber;
+	}
+	
+// Values are constrained by MIN_CC and MAX_CC
+	unsigned int GetVolume(LSSplitType split)
+	{
+		if (split == LSSplitType::LEFT)
+		{
+			return m_LEFT_VOLUME;
+		}
+		else
+		{
+			return m_RIGHT_VOLUME;
+		}
+	}
+
+unsigned int GetMIDIProgram( LSSplitType split)	
+{
+	if (split == LSSplitType::LEFT)
+	{
+		return m_LEFT_PROGRAM;
+	}
+	else
+	{
+		return m_RIGHT_PROGRAM;
+	}
+	}
+	
+// Value is constrained by MIN_SPLIT_COLUMN and MAX_SPLIT_COLUMN  
 	unsigned int GetGLOBAL_SPLIT_COLUMN()
 	{
 		return m_GLOBAL_SPLIT_COLUMN;
@@ -575,4 +605,7 @@ public:
 				unsigned int m_GLOBAL_GUITAR_NOTE_TUNING_ROW6;
 				unsigned int m_GLOBAL_GUITAR_NOTE_TUNING_ROW7;
 				unsigned int m_GLOBAL_GUITAR_NOTE_TUNING_ROW8;
+				unsigned int m_LSPresetNumber;
+				unsigned int m_LEFT_PROGRAM, m_RIGHT_PROGRAM;
+				unsigned int m_LEFT_VOLUME, m_RIGHT_VOLUME;
 				};

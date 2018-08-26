@@ -154,9 +154,12 @@
   <ItemGroup>
     <ClInclude Include="AxesPage.h" />
     <ClInclude Include="GlobalsAccentNoteLightsPage.h" />
+    <ClInclude Include="GlobalsArpPage.h" />
     <ClInclude Include="GlobalsFootSwitchesPage.h" />
     <ClInclude Include="GlobalsNoteLightsPage.h" />
     <ClInclude Include="GlobalsFrame.h" />
+    <ClInclude Include="GlobalsPowerMIDI.h" />
+    <ClInclude Include="GlobalsSplitsPage.h" />
     <ClInclude Include="GlobalsTuningsPage.h" />
     <ClInclude Include="MIDISplitPage.h" />
     <ClInclude Include="ColorsPage.h" />
@@ -175,11 +178,14 @@
     <ClInclude Include="LSOctaveTranspose.h" />
     <ClInclude Include="LSPerSplit.h" />
     <ClInclude Include="BendPage.h" />
+    <ClInclude Include="PresetsVolumesPage.h" />
+    <ClInclude Include="PresetsVolumesFrame.h" />
     <ClInclude Include="SequencerFrame.h" />
     <ClInclude Include="SequencerPage.h" />
     <ClInclude Include="SpecialPage.h" />
     <ClInclude Include="GlobalsSwitchesFrame.h" />
     <ClInclude Include="GlobalsPanelSwitchesPage.h" />
+    <ClInclude Include="VelocityPressurePage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AxesPage.cpp" />
@@ -202,6 +208,8 @@
     <ClCompile Include="LSOctaveTranspose.cpp" />
     <ClCompile Include="LSPerSplit.cpp" />
     <ClCompile Include="BendPage.cpp" />
+    <ClCompile Include="PresetsVolumesPage.cpp" />
+    <ClCompile Include="PresetsVolumesFrame.cpp" />
     <ClCompile Include="SequencerFrame.cpp" />
     <ClCompile Include="SequencerPage.cpp" />
     <ClCompile Include="SpecialPage.cpp" />
