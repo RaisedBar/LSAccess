@@ -101,7 +101,7 @@ enum class LSPitchQuantize
 	SLOW = 3
 };
 
-const wxString BendTypes[] =
+const wxString BendQuantizations[] =
 {
 	L"Off",
 	L"Medium",
@@ -311,12 +311,6 @@ const 	wxString Animations[] =
 
 const unsigned int MIN_SEQUENCER_PATTERN = 0;
 const unsigned int MAX_SEQUENCER_PATTERN = 3;
-
-enum class LSSplitType
-{
-	LEFT = 0,
-	RIGHT = 1
-};
 
 const unsigned int MIN_SPLIT_COLUMN = 2;
 const unsigned int MAX_SPLIT_COLUMN = 25;

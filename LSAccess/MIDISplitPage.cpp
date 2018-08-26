@@ -15,11 +15,11 @@ wxBoxSizer * hBoxSettings = new wxBoxSizer(wxHORIZONTAL);
 
 // Controls
 // Value is an LS_MIDIMode
-wrbSPLIT_MODE = new wxRadioBox(myPanel, SPLIT_MODE_ID, L"&Split mode", wxDefaultPosition, wxDefaultSize, WXSIZEOF(SplitModes), SplitModes, m_Settings.GetSPLIT_MODE(), wxRA_SPECIFY_ROWS);
-// Value is an LSChannelOrder
-wrbCHANNEL_PER_ROW_ORDER = new wxRadioBox(myPanel, CHANNEL_PER_ROW_ORDER_ID, L"Channel &Order", wxDefaultPosition, wxDefaultSize, WXSIZEOF(ChannelOrders), ChannelOrders, m_Settings.GetCHANNEL_PER_ROW_ORDER(), wxRA_SPECIFY_ROWS);
+wrbSPLIT_MODE = new wxRadioBox(myPanel, SPLIT_MODE_ID, L"&Split mode", wxDefaultPosition, wxDefaultSize, WXSIZEOF(SplitModes), SplitModes, m_Settings.GetSPLIT_MODE(split), wxRA_SPECIFY_ROWS);
 	// Value is a MIDI channel number:
-wscMIDI_MAIN_CHANNEL = new wxSpinCtrl(myPanel, MIDI_MAIN_CHANNEL_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_MIDI_CHANNEL, MAX_MIDI_CHANNEL, m_Settings.GetMIDI_MAIN_CHANNEL(), "Main MIDI channel");
+wscMIDI_MAIN_CHANNEL = new wxSpinCtrl(myPanel, MIDI_MAIN_CHANNEL_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_MIDI_CHANNEL, MAX_MIDI_CHANNEL, m_Settings.GetMIDI_MAIN_CHANNEL(split), "Main MIDI channel");
+// Value is an LSChannelOrder
+wrbCHANNEL_PER_ROW_ORDER = new wxRadioBox(myPanel, CHANNEL_PER_ROW_ORDER_ID, L"Channel &Order", wxDefaultPosition, wxDefaultSize, WXSIZEOF(ChannelOrders), ChannelOrders, m_Settings.GetCHANNEL_PER_ROW_ORDER(split), wxRA_SPECIFY_ROWS);
 chkCHANNEL_PER_NOTE_1 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_1_ID, L"Channel per note &1");
 chkCHANNEL_PER_NOTE_2 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_2_ID, L"Channel per note &2");
 chkCHANNEL_PER_NOTE_3 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_3_ID, L"Channel per note &3");
@@ -37,7 +37,7 @@ chkCHANNEL_PER_NOTE_14 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_14_ID, L"Chann
 chkCHANNEL_PER_NOTE_15 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_15_ID, L"Channel per note 15");
 chkCHANNEL_PER_NOTE_16 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_16_ID, L"Channel per note 16");
 // Value is a MIDI channel number:
-wscMIDI_PER_ROW_LOWEST_CHANNEL = new wxSpinCtrl(myPanel, MIDI_PER_ROW_LOWEST_CHANNEL_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_MIDI_CHANNEL, MAX_MIDI_CHANNEL, m_Settings.GetMIDI_PER_ROW_LOWEST_CHANNEL(), "MIDI per row lowest channel");
+wscMIDI_PER_ROW_LOWEST_CHANNEL = new wxSpinCtrl(myPanel, MIDI_PER_ROW_LOWEST_CHANNEL_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_MIDI_CHANNEL, MAX_MIDI_CHANNEL, m_Settings.GetMIDI_PER_ROW_LOWEST_CHANNEL(split), "MIDI per row lowest channel");
 
 myPanel->SetSizer(hBoxSettings);
 hBoxSettings->SetSizeHints(this);

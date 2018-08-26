@@ -38,7 +38,7 @@ private:
 	wxCheckBox * chkBEND_TOGGLE;
 	wxCheckBox * chkBEND_QUANTIZE_TOGGLE;
 	// Values are from LSPitchQuantize
-	wxRadioBox * wrbcPitchBendType;
+	wxRadioBox * wrbcPitchBendQuantize;
 	// Toggles:
 	wxCheckBox * chkRESET_PITCH_ON_RELEASE;
 	};
