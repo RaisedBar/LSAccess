@@ -84,22 +84,10 @@
     <ClInclude Include="GlobalsTuningsPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalsSwitchesFrame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="OctaveTransposeFrame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OctaveTransposePage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalsPanelSwitchesPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalsFootSwitchesPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalsSplitsPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VelocityPressurePage.h">
@@ -108,13 +96,28 @@
     <ClInclude Include="GlobalsArpPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalsPowerMIDI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PresetsVolumesFrame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PresetsVolumesPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalsPowerMIDIPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PanelSwitchesPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FootSwitchesPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SwitchesFrame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalsVelocityPressurePage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalsSplitPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -185,19 +188,31 @@
     <ClCompile Include="OctaveTransposeFrame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GlobalsPanelSwitchesPage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GlobalsSwitchesFrame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GlobalsFootSwitchesPage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PresetsVolumesFrame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PresetsVolumesPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalsPowerMIDIPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FootSwitchesPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PanelSwitchesPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SwitchesFrame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalsArpPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalsVelocityPressurePage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalsSplitPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

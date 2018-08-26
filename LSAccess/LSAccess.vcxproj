@@ -155,12 +155,13 @@
     <ClInclude Include="AxesPage.h" />
     <ClInclude Include="GlobalsAccentNoteLightsPage.h" />
     <ClInclude Include="GlobalsArpPage.h" />
-    <ClInclude Include="GlobalsFootSwitchesPage.h" />
+    <ClInclude Include="FootSwitchesPage.h" />
     <ClInclude Include="GlobalsNoteLightsPage.h" />
     <ClInclude Include="GlobalsFrame.h" />
-    <ClInclude Include="GlobalsPowerMIDI.h" />
-    <ClInclude Include="GlobalsSplitsPage.h" />
+    <ClInclude Include="GlobalsPowerMIDIPage.h" />
+    <ClInclude Include="GlobalsSplitPage.h" />
     <ClInclude Include="GlobalsTuningsPage.h" />
+    <ClInclude Include="GlobalsVelocityPressurePage.h" />
     <ClInclude Include="MIDISplitPage.h" />
     <ClInclude Include="ColorsPage.h" />
     <ClInclude Include="FadersPage.h" />
@@ -183,17 +184,21 @@
     <ClInclude Include="SequencerFrame.h" />
     <ClInclude Include="SequencerPage.h" />
     <ClInclude Include="SpecialPage.h" />
-    <ClInclude Include="GlobalsSwitchesFrame.h" />
-    <ClInclude Include="GlobalsPanelSwitchesPage.h" />
+    <ClInclude Include="SwitchesFrame.h" />
+    <ClInclude Include="PanelSwitchesPage.h" />
     <ClInclude Include="VelocityPressurePage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AxesPage.cpp" />
     <ClCompile Include="GlobalsAccentNoteLightsPage.cpp" />
-    <ClCompile Include="GlobalsFootSwitchesPage.cpp" />
+    <ClCompile Include="FootSwitchesPage.cpp" />
+    <ClCompile Include="GlobalsArpPage.cpp" />
     <ClCompile Include="GlobalsFrame.cpp" />
+    <ClCompile Include="GlobalsPowerMIDIPage.cpp" />
+    <ClCompile Include="GlobalsSplitPage.cpp" />
     <ClCompile Include="GlobalsTuningsPage.cpp" />
     <ClCompile Include="GlobalsNoteLightsPage.cpp" />
+    <ClCompile Include="GlobalsVelocityPressurePage.cpp" />
     <ClCompile Include="MIDISplitPage.cpp" />
     <ClCompile Include="ColorsPage.cpp" />
     <ClCompile Include="FadersPage.cpp" />
@@ -213,8 +218,8 @@
     <ClCompile Include="SequencerFrame.cpp" />
     <ClCompile Include="SequencerPage.cpp" />
     <ClCompile Include="SpecialPage.cpp" />
-    <ClCompile Include="GlobalsSwitchesFrame.cpp" />
-    <ClCompile Include="GlobalsPanelSwitchesPage.cpp" />
+    <ClCompile Include="SwitchesFrame.cpp" />
+    <ClCompile Include="PanelSwitchesPage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LSAccess.rc" />

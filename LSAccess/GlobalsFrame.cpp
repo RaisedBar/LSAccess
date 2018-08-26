@@ -20,15 +20,25 @@ GlobalsFrame::GlobalsFrame(const wxString& title, LinnStrument * pLinnStrument)
 	pPanel->Layout();
 
 	wxNotebook * pNotebook = new wxNotebook(pPanel, ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, 0);
+
+	GlobalsSplitPage * pGlobalsSplitPage = new GlobalsSplitPage(pNotebook, pLinnStrument);
+	GlobalsArpPage * pGlobalsArpPage = new GlobalsArpPage(pNotebook, pLinnStrument);
+	GlobalsVelocityPressurePage * pGlobalsVelocityPressurePage = new GlobalsVelocityPressurePage(pNotebook, pLinnStrument);
 	GlobalsNoteLightsPage * pGlobalsNoteLightsPage = new GlobalsNoteLightsPage(pNotebook, pLinnStrument);
 	GlobalsAccentNoteLightsPage * pGlobalsAccentNoteLightsPage = new GlobalsAccentNoteLightsPage(pNotebook, pLinnStrument);
 	GlobalsTuningsPage * pGlobalsTuningsPage = new GlobalsTuningsPage(pNotebook, pLinnStrument);
-	
-	pNotebook->AddPage(pGlobalsNoteLightsPage, L"Note Lights", true);
+	GlobalsPowerMIDIPage * pGlobalsPowerMIDIPage = new 
+		GlobalsPowerMIDIPage(pNotebook, pLinnStrument);
+
+	pNotebook->AddPage(pGlobalsSplitPage, L"Split", true);
+		pNotebook->AddPage(pGlobalsArpPage, L"Arp", false);
+	pNotebook->AddPage( pGlobalsVelocityPressurePage, L"Velocity/Pressure", false);
+	pNotebook->AddPage(pGlobalsNoteLightsPage, L"Note Lights", FALSE);
 	pNotebook->AddPage(pGlobalsAccentNoteLightsPage, L"Accent Note Lights", false);
 		pNotebook->AddPage(pGlobalsTuningsPage, L"Row Tuning", false);
+		pNotebook->AddPage(pGlobalsPowerMIDIPage, L"Power/MIDI", FALSE);
 	
-	vSizer->Insert(0, pNotebook, wxSizerFlags(5).Expand().Border());
+		vSizer->Insert(0, pNotebook, wxSizerFlags(5).Expand().Border());
 	vSizer->Show(pNotebook);
 }
 

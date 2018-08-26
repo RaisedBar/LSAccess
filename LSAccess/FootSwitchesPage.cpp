@@ -1,8 +1,8 @@
-// GlobalsFootSwitchesPage.cpp
+// FootSwitchesPage.cpp
 
-#include "GlobalsFootSwitchesPage.h"
+#include "FootSwitchesPage.h"
 
-GlobalsFootSwitchesPage::GlobalsFootSwitchesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument)
+FootSwitchesPage::FootSwitchesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument)
 	:wxPanel(parent),
 	pMyLinnStrument(new LinnStrument),
 	pMyParent(new wxBookCtrl())

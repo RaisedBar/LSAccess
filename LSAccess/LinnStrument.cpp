@@ -69,37 +69,30 @@ LinnStrument::LinnStrument()
 				try
 	{
 		m_MIDIIn = new RtMidiIn();
+		m_MIDIOut = new RtMidiOut();
+				m_OutputID = GetUSBOutPortID();
+				m_InputID = GetUSBInPortID();
 
-		m_InputID = GetUSBInPortID();
-		
-		if (m_InputID != -1)
+		if ((m_OutputID != -1) && (m_InputID != -1))
 		{
+			m_GlobalSettings.SetGLOBAL_MIDI_DEVICE_IO( LS_MIDIDevice::USB);
+			m_MIDIOut->openPort(m_OutputID);
 				m_MIDIIn->openPort(m_InputID);
 			m_MIDIIn->setCallback(&LSCallback, (void*)this);
 		}
-	}
+		else
+		{
+			m_GlobalSettings.SetGLOBAL_MIDI_DEVICE_IO(LS_MIDIDevice::MIDI_DIN_JACKS);
+		}
+						}
 	catch (RtMidiError &error)
 	{
 		std::string wstrError( error.getMessage());
 		m_InputID = -1;
-	}
-		
-	try
-	{
-		m_MIDIOut = new RtMidiOut();
-		m_OutputID = GetUSBOutPortID();
-
-		if (m_OutputID != -1)
-		{
-			m_MIDIOut->openPort(m_OutputID);
-		}
-	}
-	catch (RtMidiError &error)
-	{
-		std::string wstrError(error.getMessage());
 		m_OutputID = -1;
+		m_GlobalSettings.SetGLOBAL_MIDI_DEVICE_IO(LS_MIDIDevice::MIDI_DIN_JACKS);
 	}
-}
+				}
 
 
 LinnStrument::~LinnStrument()
@@ -199,7 +192,6 @@ LSOctaveTransposeSettings LinnStrument::GetOctaveTransposeSettings()
 LSGlobalSettings LinnStrument::GetGlobalSettings()
 {
 	return m_GlobalSettings;
-
-}
+	}
 
 

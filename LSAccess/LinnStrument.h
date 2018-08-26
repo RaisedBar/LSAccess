@@ -143,6 +143,9 @@ L"Poly Aftertouch",
 	L"CC defined in 29"
 };
 
+const unsigned int MIN_TEMPO = 1;
+const unsigned int MAX_TEMPO = 360;
+
 enum class LSLowRowMode
 {
 	OFF = 0,
@@ -440,11 +443,23 @@ enum class LSPressureRange
 	HIGH = 2
 };
 
-enum class LSMIDIDevice
+const wxString PressureRanges[] =
 {
-	MIDI_DIN_JACKS = 0,
-	USB = 1
+	L"Low",
+	L"Medium",
+	L"High"
 };
+
+const wxString VelocityRanges[] =
+{
+	L"Low",
+	L"Medium",
+	L"High",
+	L"Fixed"
+};
+
+const unsigned int MIN_MIDI_BYTE_DELAY = 0;
+const unsigned int MAX_MIDI_BYTE_DELAY = 512;
 
 enum class LSArpDirection
 {
@@ -453,6 +468,15 @@ enum class LSArpDirection
 	UP_DOWN = 2,
 	RANDOM = 3,
 	REPLAY_ALL = 4
+};
+
+const wxString ArpDirections[] = 
+{
+	L"Up",
+	L"Down",
+	L"Up/Down",
+	L"Random",
+	L"Replay all"
 };
 
 enum class LSArpTempoNoteType
@@ -466,11 +490,29 @@ enum class LSArpTempoNoteType
 	THIRTY_SECOND_TRIPLET = 7
 };
 
+const wxString ArpTempoNoteTypes[] =
+{
+	L"8th",
+	L"8th triplet",
+	L"16th",
+	L"16th swing",
+	L"16th triplet",
+	L"32nd",
+	L"32nd triplet"
+};
+
 enum class LSGlobalArpOctaveExtension
 {
 	NONE = 0,
 	PLUS1 = 1,
 	PLUS2 = 2
+};
+
+const wxString ArpOctaveExtensions[] =
+{
+	L"None",
+	L"+1",
+	L"+2"
 };
 
 enum class LSPresetNumber
@@ -591,7 +633,7 @@ public:
 
 	int GetUSBInPortID();
 	int GetUSBOutPortID();
-	LSPerSplitSettings GetPerSplitSettings();
+		LSPerSplitSettings GetPerSplitSettings();
 	void SetPerSplitSettings(LSPerSplitSettings splitSettings);
 	LSOctaveTransposeSettings GetOctaveTransposeSettings();
 	void SetOctaveTransposeSettings(LSOctaveTransposeSettings octaveTransposeSettings);

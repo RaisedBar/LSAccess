@@ -1,7 +1,4 @@
-// GlobalsSwitchesFrame.h
-// Author:  T A Burgess
-// Raised Bar Ltd.
-// http://www.raisedbar.net
+// GlobalsSplitPage.h
 
 #pragma once
 
@@ -18,18 +15,20 @@
 #endif
 
 #include <wx/notebook.h>
+#include <wx/spinctrl.h>
 
+#include "LinnStrument.h"
+#include "LSGlobals.h"
 #include "LSEnums.h"
-#include "GlobalsPanelSwitchesPage.h"
-#include "GlobalsFootSwitchesPage.h"
 
-class GlobalsSwitchesFrame : public wxFrame
+class GlobalsSplitPage : public wxPanel
 {
 public:
-	GlobalsSwitchesFrame(const wxString& title, LinnStrument * pLinnStrument);
+	GlobalsSplitPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
 
 private:
-		LinnStrument * pMyLinnStrument;
-		
-	DECLARE_EVENT_TABLE()
+	LinnStrument * pMyLinnStrument;
+	wxBookCtrlBase *pMyParent;
+	LSGlobalSettings m_Settings;
 };
+

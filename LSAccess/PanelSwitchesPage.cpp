@@ -1,8 +1,8 @@
-// GlobalsPanelSwitchesPage.cpp
+// PanelSwitchesPage.cpp
 
-#include "GlobalsPanelSwitchesPage.h"
+#include "PanelSwitchesPage.h"
 
-GlobalsPanelSwitchesPage::GlobalsPanelSwitchesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument)
+PanelSwitchesPage::PanelSwitchesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument)
 	:wxPanel(parent),
 	pMyLinnStrument(new LinnStrument),
 	pMyParent(new wxBookCtrl())

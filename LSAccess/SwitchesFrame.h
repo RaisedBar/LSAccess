@@ -1,4 +1,7 @@
-// GlobalsArpPage.h
+// SwitchesFrame.h
+// Author:  T A Burgess
+// Raised Bar Ltd.
+// http://www.raisedbar.net
 
 #pragma once
 
@@ -15,19 +18,18 @@
 #endif
 
 #include <wx/notebook.h>
-#include <wx/spinctrl.h>
 
-#include "LinnStrument.h"
-#include "LSGlobals.h"
 #include "LSEnums.h"
+#include "PanelSwitchesPage.h"
+#include "FootSwitchesPage.h"
 
-class GlobalsArpPage : public wxPanel
+class SwitchesFrame : public wxFrame
 {
 public:
-	GlobalsArpPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
+	SwitchesFrame(const wxString& title, LinnStrument * pLinnStrument);
 
 private:
-	LinnStrument * pMyLinnStrument;
-	wxBookCtrlBase *pMyParent;
-	LSGlobalSettings m_Settings;
+		LinnStrument * pMyLinnStrument;
+		
+	DECLARE_EVENT_TABLE()
 };

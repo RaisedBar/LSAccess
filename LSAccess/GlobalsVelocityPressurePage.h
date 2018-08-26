@@ -1,4 +1,4 @@
-// GlobalsPanelSwitchesPage.h
+// GlobalsVelocityPressurePage.h
 
 #pragma once
 
@@ -21,24 +21,14 @@
 #include "LSGlobals.h"
 #include "LSEnums.h"
 
-class GlobalsPanelSwitchesPage : public wxPanel
+class GlobalsVelocityPressurePage : public wxPanel
 {
 public:
-	GlobalsPanelSwitchesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
+	GlobalsVelocityPressurePage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
 
 private:
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
 	LSGlobalSettings m_Settings;
-
-	// controls
-	// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
-	wxSpinCtrl * wscBEND_RANGE;
-	// Toggles:
-	wxCheckBox * chkBEND_TOGGLE;
-	wxCheckBox * chkBEND_QUANTIZE_TOGGLE;
-	// Values are from LSPitchQuantize
-	wxRadioBox * wrbcPitchBendType;
-	// Toggles:
-	wxCheckBox * chkRESET_PITCH_ON_RELEASE;
 };
+

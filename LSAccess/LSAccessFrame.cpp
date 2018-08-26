@@ -82,8 +82,8 @@ void LSAccessFrame::OnPresetsVolumesSettings(wxCommandEvent& event)
 
 void LSAccessFrame::OnSwitchSettings(wxCommandEvent& event)
 {
-	GlobalsSwitchesFrame * pGlobalsSwitchesFrame = new GlobalsSwitchesFrame(L"Switches", pLinnStrument);
-	pGlobalsSwitchesFrame->Show(true);
+	SwitchesFrame * pSwitchesFrame = new SwitchesFrame(L"Switches", pLinnStrument);
+	pSwitchesFrame->Show(true);
 }
 
 

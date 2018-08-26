@@ -1,4 +1,4 @@
-// GlobalsFootSwitchesPage.h
+// GlobalsPowerMIDIPage.h
 
 #pragma once
 
@@ -21,24 +21,13 @@
 #include "LSGlobals.h"
 #include "LSEnums.h"
 
-class GlobalsFootSwitchesPage : public wxPanel
+class GlobalsPowerMIDIPage : public wxPanel
 {
 public:
-	GlobalsFootSwitchesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
+	GlobalsPowerMIDIPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
 
 private:
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
 	LSGlobalSettings m_Settings;
-
-	// controls
-	// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
-	wxSpinCtrl * wscBEND_RANGE;
-	// Toggles:
-	wxCheckBox * chkBEND_TOGGLE;
-	wxCheckBox * chkBEND_QUANTIZE_TOGGLE;
-	// Values are from LSPitchQuantize
-	wxRadioBox * wrbcPitchBendType;
-	// Toggles:
-	wxCheckBox * chkRESET_PITCH_ON_RELEASE;
 };

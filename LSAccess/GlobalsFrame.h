@@ -20,8 +20,12 @@
 #include <wx/notebook.h>
 
 #include "LSEnums.h"
+#include "GlobalsSplitPage.h"
+#include "GlobalsArpPage.h"
+#include "GlobalsVelocityPressurePage.h"
 #include "GlobalsNoteLightsPage.h"
 #include "GlobalsAccentNoteLightsPage.h"
+#include "GlobalsPowerMIDIPage.h"
 #include "GlobalsTuningsPage.h"
 
 class GlobalsFrame : public wxFrame

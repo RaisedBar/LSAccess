@@ -3,6 +3,18 @@
 
 #pragma once
 
+enum class LS_MIDIDevice
+{
+	MIDI_DIN_JACKS = 0,
+	USB = 1
+};
+
+const wxString MIDIDeviceConnections[] =
+{
+	L"DIN jacks",
+	L"USB"
+};
+
 // Toggle:
 const unsigned int GLOBAL_SPLIT_ACTIVE_NRPN = 200;
 // Value is LSSplitType
@@ -336,7 +348,7 @@ unsigned int GetMIDIProgram( LSSplitType split)
 	}
 
 	// Value = 1 - 360  (applies when receiving no MIDI clock)
-	unsigned int GetGLOBAL_CLOCK_BP()
+	unsigned int GetGLOBAL_CLOCK_BPM()
 	{
 		return m_GLOBAL_CLOCK_BPM;
 	}
@@ -511,7 +523,35 @@ unsigned int GetMIDIProgram( LSSplitType split)
 		return m_GLOBAL_GUITAR_NOTE_TUNING_ROW8;
 	}
 
-	private:
+	unsigned int GetLS_MIDIDeviceIndex(LS_MIDIDevice device)
+	{
+		switch (device)
+		{
+		case LS_MIDIDevice::MIDI_DIN_JACKS:
+		{
+			return 0;
+			break;
+		}
+		case LS_MIDIDevice::USB:
+		{
+			return 1;
+			break;
+		}
+
+		default:
+		{
+			return 1;
+			break;
+		}
+		}
+	};
+
+	void SetGLOBAL_MIDI_DEVICE_IO(LS_MIDIDevice deviceIO)
+	{
+		m_GLOBAL_MIDI_DEVICE_IO = GetLS_MIDIDeviceIndex(deviceIO);
+	};
+	
+private:
 				unsigned int m_GLOBAL_SPLIT_ACTIVE;
 				// Value is LSSplitType
 				unsigned int m_GLOBAL_SELECTED_SPLIT;

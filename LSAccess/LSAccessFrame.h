@@ -8,7 +8,7 @@
 #include "PerSplitFrame.h"
 #include "OctaveTransposeFrame.h"
 #include "PresetsVolumesFrame.h"
-#include "GlobalsSwitchesFrame.h"
+#include "SwitchesFrame.h"
 #include "GlobalsFrame.h"
 #include "SequencerFrame.h"
 
