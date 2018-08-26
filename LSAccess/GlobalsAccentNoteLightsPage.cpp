@@ -16,18 +16,18 @@ GlobalsAccentNoteLightsPage::GlobalsAccentNoteLightsPage(wxBookCtrlBase *parent,
 
 	// controls
 // Toggles:
-	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_C_NRPN = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_C_NRPN_ID, L"&C");
-	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_C_SHARP_NRPN = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_C_SHARP_NRPN_ID, L"C#");
-	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_D_NRPN = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_D_NRPN_ID, L"&D");
-	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_D_SHARP_NRPN = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_D_SHARP_NRPN_ID, L"D#");
-	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_E_NRPN = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_E_NRPN_ID, L"&E");
-	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_F_NRPN = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_F_NRPN_ID, L"&F");
-	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_F_SHARP_NRPN = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_F_SHARP_NRPN_ID, L"F#");
-	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_G_NRPN = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_G_NRPN_ID, L"&G");
-	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_G_SHARP_NRPN = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_G_SHARP_NRPN_ID, L"G#");
-	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_A_NRPN = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_A_NRPN_ID, L"&A");
-	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_A_SHARP_NRPN = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_A_SHARP_NRPN_ID, L"A#");
-	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_B_NRPN = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_B_NRPN_ID, L"&B");
+	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_C = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_C_ID, L"&C");
+	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_C_SHARP = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_C_SHARP_ID, L"C#");
+	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_D = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_D_ID, L"&D");
+	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_D_SHARP = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_D_SHARP_ID, L"D#");
+	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_E = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_E_ID, L"&E");
+	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_F = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_F_ID, L"&F");
+	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_F_SHARP = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_F_SHARP_ID, L"F#");
+	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_G = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_G_ID, L"&G");
+	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_G_SHARP = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_G_SHARP_ID, L"G#");
+	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_A = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_A_ID, L"&A");
+	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_A_SHARP = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_A_SHARP_ID, L"A#");
+	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_B = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_B_ID, L"&B");
 
 	myPanel->SetSizer(hBoxSettings);
 	hBoxSettings->SetSizeHints(this);

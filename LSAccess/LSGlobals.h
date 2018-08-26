@@ -104,260 +104,260 @@ public:
 	LSGlobalSettings()
 	{};
 
-	unsigned int GetGLOBAL_SPLIT_ACTIVE_NRPN()
+	unsigned int GetGLOBAL_SPLIT_ACTIVE()
 	{
-		return m_GLOBAL_SPLIT_ACTIVE_NRPN;
+		return m_GLOBAL_SPLIT_ACTIVE;
 	}
 
 	// Value is LSSplitType
-	unsigned int GetGLOBAL_SELECTED_SPLIT_NRPN()
+	unsigned int GetGLOBAL_SELECTED_SPLIT()
 	{
-		return m_GLOBAL_SELECTED_SPLIT_NRPN;
+		return m_GLOBAL_SELECTED_SPLIT;
 	}
 
 	// Value is constrained by MIN_SPLIT_COLUMN and MAX_SPLIT_COLUMN  
-	unsigned int GetGLOBAL_SPLIT_COLUMN_NRPN()
+	unsigned int GetGLOBAL_SPLIT_COLUMN()
 	{
-		return GLOBAL_SPLIT_COLUMN_NRPN;
+		return m_GLOBAL_SPLIT_COLUMN;
 	}
 
 	// Toggles:
-	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_C_NRPN()
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_C()
 	{
-		return GLOBAL_MAIN_NOTE_LIGHT_C_NRPN;
+		return m_GLOBAL_MAIN_NOTE_LIGHT_C;
 	}
 
-	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_C_SHARP_NRPN()
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_C_SHARP()
 	{
-		return GLOBAL_MAIN_NOTE_LIGHT_C_SHARP_NRPN;
+		return m_GLOBAL_MAIN_NOTE_LIGHT_C_SHARP;
 	}
 
-	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_D_NRPN()
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_D()
 	{
-		return GLOBAL_MAIN_NOTE_LIGHT_D_NRPN;
+		return m_GLOBAL_MAIN_NOTE_LIGHT_D;
 	}
 
-	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_D_SHARP_NRPN()
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_D_SHARP()
 	{
-		return GLOBAL_MAIN_NOTE_LIGHT_D_SHARP_NRPN;
+		return m_GLOBAL_MAIN_NOTE_LIGHT_D_SHARP;
 	}
 
-	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_E_NRPN()
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_E()
 	{
-		return GLOBAL_MAIN_NOTE_LIGHT_E_NRPN;
+		return m_GLOBAL_MAIN_NOTE_LIGHT_E;
 	}
 
-	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_F_NRPN()
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_F()
 	{
-		return m_GLOBAL_MAIN_NOTE_LIGHT_F_NRPN;
+		return m_GLOBAL_MAIN_NOTE_LIGHT_F;
 	}
 
-	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_F_SHARP_NRPN()
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_F_SHARP()
 	{
-		return m_GLOBAL_MAIN_NOTE_LIGHT_F_SHARP_NRPN;
+		return m_GLOBAL_MAIN_NOTE_LIGHT_F_SHARP;
 	}
 
-	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_G_NRPN()
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_G()
 	{
-		return m_GLOBAL_MAIN_NOTE_LIGHT_G_NRPN;
+		return m_GLOBAL_MAIN_NOTE_LIGHT_G;
 	}
 
-	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_G_SHARP_NRPN()
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_G_SHARP()
 	{
-		return m_GLOBAL_MAIN_NOTE_LIGHT_G_SHARP_NRPN;
+		return m_GLOBAL_MAIN_NOTE_LIGHT_G_SHARP;
 	}
 
-	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_A_NRPN()
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_A()
 	{
-		return m_GLOBAL_MAIN_NOTE_LIGHT_A_NRPN;
+		return m_GLOBAL_MAIN_NOTE_LIGHT_A;
 	}
 
-	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_A_SHARP_NRPN()
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_A_SHARP()
 	{
-		return m_GLOBAL_MAIN_NOTE_LIGHT_A_SHARP_NRPN;
+		return m_GLOBAL_MAIN_NOTE_LIGHT_A_SHARP;
 	}
 
-	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_B_NRPN()
+	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_B()
 	{
-		return m_GLOBAL_MAIN_NOTE_LIGHT_B_NRPN;
+		return m_GLOBAL_MAIN_NOTE_LIGHT_B;
 	}
 
-	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_C_NRPN()
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_C()
 	{
-		return m_GLOBAL_ACCENT_NOTE_LIGHT_C_NRPN;
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_C;
 	}
 
-	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_C_SHARP_NRPN()
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_C_SHARP()
 	{
-		return m_GLOBAL_ACCENT_NOTE_LIGHT_C_SHARP_NRPN;
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_C_SHARP;
 	}
 
-	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_D_NRPN()
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_D()
 	{
-		return m_GLOBAL_ACCENT_NOTE_LIGHT_D_NRPN;
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_D;
 	}
 
-	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_D_SHARP_NRPN()
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_D_SHARP()
 	{
-		return m_GLOBAL_ACCENT_NOTE_LIGHT_D_SHARP_NRPN;
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_D_SHARP;
 	}
 
-	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_E_NRPN()
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_E()
 	{
-		return m_GLOBAL_ACCENT_NOTE_LIGHT_E_NRPN;
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_E;
 	}
 
-	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_F_NRPN()
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_F()
 	{
-		return m_GLOBAL_ACCENT_NOTE_LIGHT_F_NRPN;
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_F;
 	}
 
-	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_F_SHARP_NRPN()
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_F_SHARP()
 	{
-		return m_GLOBAL_ACCENT_NOTE_LIGHT_F_SHARP_NRPN;
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_F_SHARP;
 	}
 
-	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_G_NRPN()
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_G()
 	{
-		return m_GLOBAL_ACCENT_NOTE_LIGHT_G_NRPN;
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_G;
 	}
 
-	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_G_SHARP_NRPN()
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_G_SHARP()
 	{
-		return m_GLOBAL_ACCENT_NOTE_LIGHT_G_SHARP_NRPN;
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_G_SHARP;
 	}
 
-	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_A_NRPN()
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_A()
 	{
-		return m_GLOBAL_ACCENT_NOTE_LIGHT_A_NRPN;
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_A;
 	}
 
-	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_A_SHARP_NRPN()
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_A_SHARP()
 	{
-		return m_GLOBAL_ACCENT_NOTE_LIGHT_A_SHARP_NRPN;
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_A_SHARP;
 	}
 
-	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_B_NRPN()
+	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_B()
 	{
-		return m_GLOBAL_ACCENT_NOTE_LIGHT_B_NRPN;
+		return m_GLOBAL_ACCENT_NOTE_LIGHT_B;
 	}
 
 	// Value is LSRowOffsetType
-	unsigned int GetGLOBAL_ROW_OFFSET_NRPN()
+	unsigned int GetGLOBAL_ROW_OFFSET()
 	{
-		return m_GLOBAL_ROW_OFFSET_NRPN;
+		return m_GLOBAL_ROW_OFFSET;
 	}
 
 	// Value is LSSwitchAssignment
-	unsigned int GetGLOBAL_SWITCH1_ASSIGN_NRPN()
+	unsigned int GetGLOBAL_SWITCH1_ASSIGN()
 	{
-		return m_GLOBAL_SWITCH1_ASSIGN_NRPN;
+		return m_GLOBAL_SWITCH1_ASSIGN;
 	}
 
-	unsigned int GetGLOBAL_SWITCH2_ASSIGN_NRPN()
+	unsigned int GetGLOBAL_SWITCH2_ASSIGN()
 	{
-		return m_GLOBAL_SWITCH2_ASSIGN_NRPN;
+		return m_GLOBAL_SWITCH2_ASSIGN;
 	}
 
-	unsigned int GetGLOBAL_FOOT_LEFT_ASSIGN_NRPN()
+	unsigned int GetGLOBAL_FOOT_LEFT_ASSIGN()
 	{
-		return m_GLOBAL_FOOT_LEFT_ASSIGN_NRPN;
+		return m_GLOBAL_FOOT_LEFT_ASSIGN;
 	}
 
-	unsigned int GetGLOBAL_FOOT_RIGHT_ASSIGN_NRPN()
+	unsigned int GetGLOBAL_FOOT_RIGHT_ASSIGN()
 	{
-		return m_GLOBAL_FOOT_RIGHT_ASSIGN_NRPN;
+		return m_GLOBAL_FOOT_RIGHT_ASSIGN;
 	}
 
 	// Value is LSVelocityRange
-	unsigned int GetGLOBAL_VELOCITY_SENSITIVITY_NRPN()
+	unsigned int GetGLOBAL_VELOCITY_SENSITIVITY()
 	{
-		return m_GLOBAL_VELOCITY_SENSITIVITY_NRPN;
+		return m_GLOBAL_VELOCITY_SENSITIVITY;
 	}
 
 	// Value is LSPressureRange
-	unsigned int GetGLOBAL_PRESSURE_SENSITIVITY_NRPN()
+	unsigned int GetGLOBAL_PRESSURE_SENSITIVITY()
 	{
-		return m_GLOBAL_PRESSURE_SENSITIVITY_NRPN;
+		return m_GLOBAL_PRESSURE_SENSITIVITY;
 	}
 
 	// Value is LSMIDIDevice
-	unsigned int GetGLOBAL_MIDI_DEVICE_IO_NRPN()
+	unsigned int GetGLOBAL_MIDI_DEVICE_IO()
 	{
-		return m_GLOBAL_MIDI_DEVICE_IO_NRPN;
+		return m_GLOBAL_MIDI_DEVICE_IO;
 	}
 
 	// Value is LSArpDirection
-	unsigned int GetGLOBAL_ARP_DIRECTION_NRPN()
+	unsigned int GetGLOBAL_ARP_DIRECTION()
 	{
-		return m_GLOBAL_ARP_DIRECTION_NRPN;
+		return m_GLOBAL_ARP_DIRECTION;
 	}
 
 	// Value is LSArpTempoNoteType
-	unsigned int GetGLOBAL_ARP_TEMPO_NOTE_VALUE_NRPN()
+	unsigned int GetGLOBAL_ARP_TEMPO_NOTE_VALUE()
 	{
-		return m_GLOBAL_ARP_TEMPO_NOTE_VALUE_NRPN;
+		return m_GLOBAL_ARP_TEMPO_NOTE_VALUE;
 	}
 
 	// Value is LSGlobalArpOctaveExtension
-	unsigned int GetGLOBAL_ARP_OCTAVE_EXTENSION_NRPN()
+	unsigned int GetGLOBAL_ARP_OCTAVE_EXTENSION()
 	{
-		return m_GLOBAL_ARP_OCTAVE_EXTENSION_NRPN;
+		return m_GLOBAL_ARP_OCTAVE_EXTENSION;
 	}
 
 	// Value = 1 - 360  (applies when receiving no MIDI clock)
-	unsigned int GetGLOBAL_CLOCK_BP_NRPN()
+	unsigned int GetGLOBAL_CLOCK_BP()
 	{
-		return m_GLOBAL_CLOCK_BPM_NRPN;
+		return m_GLOBAL_CLOCK_BPM;
 	}
 
 	// Toggle:
-	unsigned int GetGLOBAL_SWITCH1_BOTH_SPLITS_NRPN()
+	unsigned int GetGLOBAL_SWITCH1_BOTH_SPLITS()
 	{
-		return m_GLOBAL_SWITCH1_BOTH_SPLITS_NRPN;
+		return m_GLOBAL_SWITCH1_BOTH_SPLITS;
 	}
 
-	unsigned int GetGLOBAL_SWITCH2_BOTH_SPLITS_NRPN()
+	unsigned int GetGLOBAL_SWITCH2_BOTH_SPLITS()
 	{
-		return m_GLOBAL_SWITCH2_BOTH_SPLITS_NRPN;
+		return m_GLOBAL_SWITCH2_BOTH_SPLITS;
 	}
 
-	unsigned int GetGLOBAL_FOOT_LEFT_BOTH_SPLITS_NRPN()
+	unsigned int GetGLOBAL_FOOT_LEFT_BOTH_SPLITS()
 	{
-		return m_GLOBAL_FOOT_LEFT_BOTH_SPLITS_NRPN;
+		return m_GLOBAL_FOOT_LEFT_BOTH_SPLITS;
 	}
 
-	unsigned int GetGLOBAL_FOOT_RIGHT_BOTH_SPLITS_NRPN()
+	unsigned int GetGLOBAL_FOOT_RIGHT_BOTH_SPLITS()
 	{
-		return m_GLOBAL_FOOT_RIGHT_BOTH_SPLITS_NRPN;
+		return m_GLOBAL_FOOT_RIGHT_BOTH_SPLITS;
 	}
 
 	// Value is LSPresetNumber
-	unsigned int GetGLOBAL_SETTINGS_PRESET_LOAD_NRPN()
+	unsigned int GetGLOBAL_SETTINGS_PRESET_LOAD()
 	{
-		return m_GLOBAL_SETTINGS_PRESET_LOAD_NRPN;
+		return m_GLOBAL_SETTINGS_PRESET_LOAD;
 	}
 
 	// Toggles:
-	unsigned int GetGLOBAL_PRESSURE_AFTERTOUCH_NRPN()
+	unsigned int GetGLOBAL_PRESSURE_AFTERTOUCH()
 	{
-		return m_GLOBAL_PRESSURE_AFTERTOUCH_NRPN;
+		return m_GLOBAL_PRESSURE_AFTERTOUCH;
 	}
 
-	unsigned int GetDEVICE_USER_FIRMWARE_MODE_NRPN()
+	unsigned int GetDEVICE_USER_FIRMWARE_MODE()
 	{
-		return m_DEVICE_USER_FIRMWARE_MODE_NRPN;
+		return m_DEVICE_USER_FIRMWARE_MODE;
 	}
 
-	unsigned int GetDEVICE_LEFT_HANDED_NRPN()
+	unsigned int GetDEVICE_LEFT_HANDED()
 	{
-		return m_DEVICE_LEFT_HANDED_NRPN;
+		return m_DEVICE_LEFT_HANDED;
 	}
 
 	// Value is constrained by MIN_LIGHTS_PRESET and MAX_LIGHTS_PRESET 
-	unsigned int GetGLOBAL_ACTIVE_LIGHTS_PRESET_NRPN()
+	unsigned int GetGLOBAL_ACTIVE_LIGHTS_PRESET()
 	{
-		return m_GLOBAL_ACTIVE_LIGHTS_PRESET_NRPN;
+		return m_GLOBAL_ACTIVE_LIGHTS_PRESET;
 	}
 
 	// Values are constrained by MIN_CC and MAX_CC
@@ -367,25 +367,25 @@ public:
 	}
 
 										  // Values are constrained by MIN_CC and MAX_CC
-	unsigned int GetGLOBAL_MIN_VELOCITY_VALUE_NRPN()
+	unsigned int GetGLOBAL_MIN_VELOCITY_VALUE()
 	{
-		return m_GLOBAL_MIN_VELOCITY_VALUE_NRPN;
+		return m_GLOBAL_MIN_VELOCITY_VALUE;
 	}
 
-	unsigned int GetGLOBAL_MAX_VELOCITY_VALUE_NRPN()
+	unsigned int GetGLOBAL_MAX_VELOCITY_VALUE()
 	{
-		return m_GLOBAL_MAX_VELOCITY_VALUE_NRPN;
+		return m_GLOBAL_MAX_VELOCITY_VALUE;
 	}
 
-	unsigned int GetGLOBAL_FIXED_VELOCITY_VALUE_NRPN()
+	unsigned int GetGLOBAL_FIXED_VELOCITY_VALUE()
 	{
-		return m_GLOBAL_FIXED_VELOCITY_VALUE_NRPN;
+		return m_GLOBAL_FIXED_VELOCITY_VALUE;
 	}
 
 	// Value range =     0 - 512  
-	unsigned int GetDEVICE_MIN_BYTE_INTERVAL_VALUE_NRPN()
+	unsigned int GetDEVICE_MIN_BYTE_INTERVAL_VALUE()
 	{
-		return m_DEVICE_MIN_BYTE_INTERVAL_VALUE_NRPN;
+		return m_DEVICE_MIN_BYTE_INTERVAL_VALUE;
 	}
 
 	// Value is LSCustomRowOffset
@@ -395,9 +395,9 @@ public:
 	}
 
 	// Toggle:
-	unsigned int GetDEVICE_MIDI_THRU_NRPN()
+	unsigned int GetDEVICE_MIDI_THRU()
 	{
-		return m_DEVICE_MIDI_THRU_NRPN;
+		return m_DEVICE_MIDI_THRU;
 	}
 
 	// Values are constrained by MIN_CC and MAX_CC
@@ -408,7 +408,7 @@ public:
 
 	unsigned int GetGLOBAL_CC_FOR_RIGHT_FOOT_CC65()
 	{
-		return GLOBAL_CC_FOR_RIGHT_FOOT_CC65;
+		return m_GLOBAL_CC_FOR_RIGHT_FOOT_CC65;
 	}
 
 	unsigned int GetGLOBAL_CC_FOR_SWITCH1_CC65()
@@ -482,82 +482,82 @@ public:
 	}
 
 	private:
-				unsigned int m_GLOBAL_SPLIT_ACTIVE_NRPN;
+				unsigned int m_GLOBAL_SPLIT_ACTIVE;
 				// Value is LSSplitType
-				unsigned int m_GLOBAL_SELECTED_SPLIT_NRPN;
+				unsigned int m_GLOBAL_SELECTED_SPLIT;
 				// Value is constrained by MIN_SPLIT_COLUMN and MAX_SPLIT_COLUMN  
-				unsigned int m_GLOBAL_SPLIT_COLUMN_NRPN;
+				unsigned int m_GLOBAL_SPLIT_COLUMN;
 				// Toggles:
-				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_C_NRPN;
-				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_C_SHARP_NRPN;
-				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_D_NRPN;
-				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_D_SHARP_NRPN;
-				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_E_NRPN;
-				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_F_NRPN;
-				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_F_SHARP_NRPN;
-				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_G_NRPN;
-				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_G_SHARP_NRPN;
-				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_A_NRPN;
-				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_A_SHARP_NRPN;
-				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_B_NRPN;
-				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_C_NRPN;
-				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_C_SHARP_NRPN;
-				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_D_NRPN;
-				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_D_SHARP_NRPN;
-				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_E_NRPN;
-				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_F_NRPN;
-				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_F_SHARP_NRPN;
-				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_G_NRPN;
-				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_G_SHARP_NRPN;
-				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_A_NRPN;
-				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_A_SHARP_NRPN;
-				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_B_NRPN;
+				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_C;
+				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_C_SHARP;
+				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_D;
+				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_D_SHARP;
+				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_E;
+				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_F;
+				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_F_SHARP;
+				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_G;
+				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_G_SHARP;
+				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_A;
+				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_A_SHARP;
+				unsigned int m_GLOBAL_MAIN_NOTE_LIGHT_B;
+				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_C;
+				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_C_SHARP;
+				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_D;
+				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_D_SHARP;
+				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_E;
+				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_F;
+				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_F_SHARP;
+				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_G;
+				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_G_SHARP;
+				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_A;
+				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_A_SHARP;
+				unsigned int m_GLOBAL_ACCENT_NOTE_LIGHT_B;
 				// Value is LSRowOffsetType
-				unsigned int m_GLOBAL_ROW_OFFSET_NRPN;
+				unsigned int m_GLOBAL_ROW_OFFSET;
 				// Value is LSSwitchAssignment
-				unsigned int m_GLOBAL_SWITCH1_ASSIGN_NRPN;
-				unsigned int m_GLOBAL_SWITCH2_ASSIGN_NRPN;
-				unsigned int m_GLOBAL_FOOT_LEFT_ASSIGN_NRPN;
-				unsigned int m_GLOBAL_FOOT_RIGHT_ASSIGN_NRPN;
+				unsigned int m_GLOBAL_SWITCH1_ASSIGN;
+				unsigned int m_GLOBAL_SWITCH2_ASSIGN;
+				unsigned int m_GLOBAL_FOOT_LEFT_ASSIGN;
+				unsigned int m_GLOBAL_FOOT_RIGHT_ASSIGN;
 				// Value is LSVelocityRange
-				unsigned int m_GLOBAL_VELOCITY_SENSITIVITY_NRPN;
+				unsigned int m_GLOBAL_VELOCITY_SENSITIVITY;
 				// Value is LSPressureRange
-				unsigned int m_GLOBAL_PRESSURE_SENSITIVITY_NRPN;
+				unsigned int m_GLOBAL_PRESSURE_SENSITIVITY;
 				// Value is LSMIDIDevice
-				unsigned int m_GLOBAL_MIDI_DEVICE_IO_NRPN;
+				unsigned int m_GLOBAL_MIDI_DEVICE_IO;
 				// Value is LSArpDirection
-				unsigned int m_GLOBAL_ARP_DIRECTION_NRPN;
+				unsigned int m_GLOBAL_ARP_DIRECTION;
 				// Value is LSArpTempoNoteType
-				unsigned int m_GLOBAL_ARP_TEMPO_NOTE_VALUE_NRPN;
+				unsigned int m_GLOBAL_ARP_TEMPO_NOTE_VALUE;
 				// Value is LSGlobalArpOctaveExtension
-				unsigned int m_GLOBAL_ARP_OCTAVE_EXTENSION_NRPN;
+				unsigned int m_GLOBAL_ARP_OCTAVE_EXTENSION;
 				// Value = 1 - 360  (applies when receiving no MIDI clock)
-				unsigned int m_GLOBAL_CLOCK_BPM_NRPN;
+				unsigned int m_GLOBAL_CLOCK_BPM;
 				// Toggle:
-				unsigned int m_GLOBAL_SWITCH1_BOTH_SPLITS_NRPN;
-				unsigned int m_GLOBAL_SWITCH2_BOTH_SPLITS_NRPN;
-				unsigned int m_GLOBAL_FOOT_LEFT_BOTH_SPLITS_NRPN;
-				unsigned int m_GLOBAL_FOOT_RIGHT_BOTH_SPLITS_NRPN;
+				unsigned int m_GLOBAL_SWITCH1_BOTH_SPLITS;
+				unsigned int m_GLOBAL_SWITCH2_BOTH_SPLITS;
+				unsigned int m_GLOBAL_FOOT_LEFT_BOTH_SPLITS;
+				unsigned int m_GLOBAL_FOOT_RIGHT_BOTH_SPLITS;
 				// Value is LSPresetNumber
-				unsigned int m_GLOBAL_SETTINGS_PRESET_LOAD_NRPN;
+				unsigned int m_GLOBAL_SETTINGS_PRESET_LOAD;
 				// Toggles:
-				unsigned int m_GLOBAL_PRESSURE_AFTERTOUCH_NRPN;
-				unsigned int m_DEVICE_USER_FIRMWARE_MODE_NRPN;
-				unsigned int m_DEVICE_LEFT_HANDED_NRPN;
+				unsigned int m_GLOBAL_PRESSURE_AFTERTOUCH;
+				unsigned int m_DEVICE_USER_FIRMWARE_MODE;
+				unsigned int m_DEVICE_LEFT_HANDED;
 				// Value is constrained by MIN_LIGHTS_PRESET and MAX_LIGHTS_PRESET 
-				unsigned int m_GLOBAL_ACTIVE_LIGHTS_PRESET_NRPN;
+				unsigned int m_GLOBAL_ACTIVE_LIGHTS_PRESET;
 				// Values are constrained by MIN_CC and MAX_CC
 				unsigned int m_GLOABAL_CC_FOR_CC65;  // Changes the CC for all switches - Legacy option, see NRPN 255 - 258
 													  // Values are constrained by MIN_CC and MAX_CC
-				unsigned int m_GLOBAL_MIN_VELOCITY_VALUE_NRPN;
-				unsigned int m_GLOBAL_MAX_VELOCITY_VALUE_NRPN;
-				unsigned int m_GLOBAL_FIXED_VELOCITY_VALUE_NRPN;
+				unsigned int m_GLOBAL_MIN_VELOCITY_VALUE;
+				unsigned int m_GLOBAL_MAX_VELOCITY_VALUE;
+				unsigned int m_GLOBAL_FIXED_VELOCITY_VALUE;
 				// Value range =     0 - 512  
-				unsigned int m_DEVICE_MIN_BYTE_INTERVAL_VALUE_NRPN;
+				unsigned int m_DEVICE_MIN_BYTE_INTERVAL_VALUE;
 				// Value is LSCustomRowOffset
 				unsigned int m_GLOBAL_CUSTOM_ROW_OFFSET;
 				// Toggle:
-				unsigned int m_DEVICE_MIDI_THRU_NRPN;
+				unsigned int m_DEVICE_MIDI_THRU;
 				// Values are constrained by MIN_CC and MAX_CC
 				unsigned int m_GLOBAL_CC_FOR_LEFT_FOOT_CC65;
 				unsigned int m_GLOBAL_CC_FOR_RIGHT_FOOT_CC65;

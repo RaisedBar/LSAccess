@@ -1,32 +1,26 @@
-// GlobalsScaleSelectPage
-	// Value is constrained by MIN_LIGHTS_PRESET and MAX_LIGHTS_PRESET 
-	wxRadioBox * wrbGLOBAL_ACTIVE_LIGHTS_PRESET_NRPN;
-
 // SplitsPage
-	wxCheckBox * chkGLOBAL_SPLIT_ACTIVE_NRPN = new wxCheckBox(myPanel, GLOBAL_SPLIT_ACTIVE_NRPN_ID, L"Split &Active");
+	wxCheckBox * chkGLOBAL_SPLIT_ACTIVE = new wxCheckBox(myPanel, GLOBAL_SPLIT_ACTIVE_ID, L"Split &Active");
 	// Value is constrained by MIN_SPLIT_COLUMN and MAX_SPLIT_COLUMN  
-	WXSpinCtrl * wscGLOBAL_SPLIT_COLUMN_NRPN = new wxSpinCtrl(myPanel, GLOBAL_SPLIT_COLUMN_NRPN_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_SPLIT_COLUMN, Min_SPLIT_COLUMN, m_Settings.GetMIDI_PER_ROW_LOWEST_CHANNEL(), "Split &column");
-	wxCheckBox * chkDEVICE_LEFT_HANDED_NRPN = new wxCheckBox(myPanel, GLOBAL_SPLIT_ACTIVE_NRPN_ID, L"Split &Active");
+	WXSpinCtrl * wscGLOBAL_SPLIT_COLUMN = new wxSpinCtrl(myPanel, GLOBAL_SPLIT_COLUMN_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_SPLIT_COLUMN, Min_SPLIT_COLUMN, m_Settings.GetMIDI_PER_ROW_LOWEST_CHANNEL(), "Split &column");
+	wxCheckBox * chkDEVICE_LEFT_HANDED = new wxCheckBox(myPanel, GLOBAL_SPLIT_ACTIVE_ID, L"Split &Active");
 
-// TuningPage
-// Value is LSRowOffsetType
-wxRadioBox * wrbGLOBAL_ROW_OFFSET_NRPN;
+	// TuningPage
+	// Value is LSRowOffsetType
+	wxRadioBox * wrbGLOBAL_ROW_OFFSET;
 	// Value is LSCustomRowOffset
 	wxRadioBox * wrbGLOBAL_CUSTOM_ROW_OFFSET;
 
-// SwitchesPage
-
-// VelocityPressurePage
-	// Value is LSVelocityRange
-wxRadioBox * wrbGLOBAL_VELOCITY_SENSITIVITY_NRPN;
-										  // Values are constrained by MIN_CC and MAX_CC
+	// VelocityPressurePage
+		// Value is LSVelocityRange
+	wxRadioBox * wrbGLOBAL_VELOCITY_SENSITIVITY_NRPN;
+	// Values are constrained by MIN_CC and MAX_CC
 	WXSpinCtrl * wscGLOBAL_MIN_VELOCITY_VALUE_NRPN;
 	WXSpinCtrl * wscGLOBAL_MAX_VELOCITY_VALUE_NRPN;
 	WXSpinCtrl * wscGLOBAL_FIXED_VELOCITY_VALUE_NRPN;
 	// Toggles:
 	wxCheckBox * chkGLOBAL_PRESSURE_AFTERTOUCH_NRPN = new wxCheckBox(myPanel, GLOBAL_SPLIT_ACTIVE_NRPN_ID, L"Split &Active");
 	// Value is LSPressureRange
-wxRadioBox * wrbGLOBAL_PRESSURE_SENSITIVITY_NRPN;
+	wxRadioBox * wrbGLOBAL_PRESSURE_SENSITIVITY_NRPN;
 
 // ArpPage
 	// Value = 1 - 360  (applies when receiving no MIDI clock)
