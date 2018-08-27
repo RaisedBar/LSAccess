@@ -43,7 +43,7 @@ const unsigned int SPLIT_LEFT_SEND_Y_NRPN = 24;
 const unsigned int SPLIT_LEFT_CC_FOR_Y_NRPN = 25;
 // Toggle:
 const unsigned int SPLIT_LEFT_RELATIVE_Y_NRPN = 26;
-const unsigned int SPLIT_LEFT_RELATIVE_Z_NRPN = 27;
+const unsigned int SPLIT_LEFT_SEND_Z_NRPN = 27;
 // Value is an LSExpressionZ
 const unsigned int SPLIT_LEFT_MIDI_EXPRESSION_FOR_Z_NRPN = 28;
 // Values are constrained by MIN_CC and MAX_CC
@@ -249,9 +249,10 @@ unsigned int GetMIDI_MAIN_CHANNEL(LSSplitType split);
 	unsigned int GetCC_FOR_Y(LSSplitType split);
 	// Toggle:
 	unsigned int GetRELATIVE_Y(LSSplitType split);
+	// Toggle
+	unsigned int GetSEND_Z(LSSplitType split);
 	unsigned int GetRELATIVE_Z(LSSplitType split);
-	// Value is an LSExpressionZ
-	unsigned int GetMIDI_EXPRESSION_FOR_Z(LSSplitType split);
+	unsigned int GetEXPRESSION_FOR_Z(LSSplitType split);
 	// Values are constrained by MIN_CC and MAX_CC
 	// CC 11 is recommended, any CC is possible though
 	unsigned int GetCC_FOR_Z(LSSplitType split);
@@ -440,7 +441,6 @@ unsigned int GetMIDI_MAIN_CHANNEL(LSSplitType split);
 	unsigned int m_LEFT_PITCH_QUANTIZE;
 	// Toggles:
 	unsigned int m_LEFT_RESET_PITCH_ON_RELEASE;
-	unsigned int m_LEFT_SEND_Y;
 	// Values are constrained by MIN_CC and MAX_CC
 	// CC 1 or CC 74 are recommended, any CC is possible though
 	unsigned int m_LEFT_CC_FOR_Y;
@@ -538,7 +538,7 @@ unsigned int GetMIDI_MAIN_CHANNEL(LSSplitType split);
 	unsigned int m_RIGHT_PITCH_QUANTIZE;
 	// Toggles:
 	unsigned int m_RIGHT_RESET_PITCH_ON_RELEASE;
-	unsigned int m_RIGHT_SEND_Y;
+	unsigned int m_LEFT_SEND_Y, m_RIGHT_SEND_Y;
 	// Values are constrained by MIN_CC and MAX_CC
 	// CC 1 or CC 74 are recommended, any CC is possible though
 	unsigned int m_RIGHT_CC_FOR_Y;
@@ -603,4 +603,5 @@ unsigned int GetMIDI_MAIN_CHANNEL(LSSplitType split);
 	// Value is an LSPatternNumber
 	unsigned int m_RIGHT_SEQUENCER_PATTERN;
 	unsigned int m_RIGHT_SEQUENCER_TOGGLE_MUTE;
+	unsigned int m_LEFT_SEND_Z, m_RIGHT_SEND_Z;
 };

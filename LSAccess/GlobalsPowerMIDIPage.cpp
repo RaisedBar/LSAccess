@@ -18,10 +18,12 @@ GlobalsPowerMIDIPage::GlobalsPowerMIDIPage(wxBookCtrlBase *parent, LinnStrument 
 		wxRadioBox * wrbGLOBAL_MIDI_DEVICE_IO = new wxRadioBox(myPanel, GLOBAL_MIDI_DEVICE_IO_ID, L"MIDI connection", wxDefaultPosition, wxDefaultSize, WXSIZEOF(MIDIDeviceConnections), MIDIDeviceConnections, m_Settings.GetGLOBAL_MIDI_DEVICE_IO(), wxRA_SPECIFY_ROWS);
 	// Toggle:
 	wxCheckBox * chkDEVICE_MIDI_THRU = new wxCheckBox(myPanel, DEVICE_MIDI_THRU_ID, L"MIDI &Thru");
+	chkDEVICE_MIDI_THRU->SetValue(m_Settings.GetDEVICE_MIDI_THRU());
 	// Value is constrained by MIN_MIDI_BYTE_DELAY and MAX_MIDI_BYTE_DELAY
 	wxSpinCtrl * wscDEVICE_MIN_BYTE_INTERVAL_VALUE = new wxSpinCtrl(myPanel, DEVICE_MIN_BYTE_INTERVAL_VALUE_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_MIDI_BYTE_DELAY, MIN_MIDI_BYTE_DELAY, m_Settings.GetDEVICE_MIN_BYTE_INTERVAL_VALUE(), "Max. value for Y-axis");
 // toggle
 	wxCheckBox * chkDEVICE_USER_FIRMWARE_MODE = new wxCheckBox(myPanel, DEVICE_USER_FIRMWARE_MODE_ID, L"User firmware mode");
+	chkDEVICE_USER_FIRMWARE_MODE->SetValue(m_Settings.GetDEVICE_USER_FIRMWARE_MODE());
 
 		myPanel->SetSizer(hBoxSettings);
 	hBoxSettings->SetSizeHints(this);

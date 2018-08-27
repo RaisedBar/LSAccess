@@ -171,7 +171,27 @@ unsigned int LSPerSplitSettings::GetRESET_PITCH_ON_RELEASE(LSSplitType split)
 
 unsigned int LSPerSplitSettings::GetSEND_Y(LSSplitType split)
 {
-	return m_LEFT_SEND_Y;
+	if (split == LSSplitType::LEFT)
+	{
+		return m_LEFT_SEND_Y;
+	}
+	else
+	{
+		return m_RIGHT_SEND_Y;
+	}
+	}
+
+
+unsigned int LSPerSplitSettings::GetSEND_Z(LSSplitType split)
+{
+	if (split == LSSplitType::LEFT)
+	{
+		return m_LEFT_SEND_Z;
+	}
+	else
+	{
+		return m_RIGHT_SEND_Z;
+	}
 }
 
 
@@ -197,7 +217,7 @@ unsigned int LSPerSplitSettings::GetRELATIVE_Z(LSSplitType split)
 
 
 // Value is an LSExpressionZ
-unsigned int LSPerSplitSettings::GetMIDI_EXPRESSION_FOR_Z(LSSplitType split)
+unsigned int LSPerSplitSettings::GetEXPRESSION_FOR_Z(LSSplitType split)
 {
 	return m_LEFT_MIDI_EXPRESSION_FOR_Z;
 }

@@ -24,6 +24,7 @@ GlobalsVelocityPressurePage::GlobalsVelocityPressurePage(wxBookCtrlBase *parent,
 	wxRadioBox * wrbGLOBAL_PRESSURE_SENSITIVITY = new wxRadioBox(myPanel, GLOBAL_PRESSURE_SENSITIVITY_ID, L"&Pressure sensitivity", wxDefaultPosition, wxDefaultSize, WXSIZEOF(PressureRanges), PressureRanges, m_Settings.GetGLOBAL_PRESSURE_SENSITIVITY(), wxRA_SPECIFY_ROWS);
 	// Toggle
 	wxCheckBox * chkGLOBAL_PRESSURE_AFTERTOUCH = new wxCheckBox(myPanel, GLOBAL_PRESSURE_AFTERTOUCH_ID, L"Pressure &aftertouch");
+	chkGLOBAL_PRESSURE_AFTERTOUCH->SetValue(m_Settings.GetGLOBAL_PRESSURE_AFTERTOUCH());
 
 	myPanel->SetSizer(hBoxSettings);
 	hBoxSettings->SetSizeHints(this);
