@@ -2,6 +2,7 @@ Add event handlers for UI controls
 done = axesPage
 done = BendPage
 done = ColorsPage
+done=FadersPage
 
 
 

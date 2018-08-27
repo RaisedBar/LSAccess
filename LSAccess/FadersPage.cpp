@@ -5,7 +5,8 @@
 FadersPage::FadersPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)
 	:wxPanel(parent),
 	pMyLinnStrument(new LinnStrument),
-	pMyParent(new wxBookCtrl())
+	pMyParent(new wxBookCtrl()),
+	m_Split(split)
 {
 	pMyLinnStrument = pLinnStrument;
 	m_Settings = pMyLinnStrument->GetPerSplitSettings();
@@ -31,3 +32,64 @@ FadersPage::FadersPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, con
 }
 
 
+// Event handlers
+
+void FadersPage::OnCC_FOR_FADER1(wxSpinEvent& event)
+{
+	m_Settings.SetCC_FOR_FADER1(wscCC_FOR_FADER1->GetValue(), m_Split);
+}
+
+
+void FadersPage::OnCC_FOR_FADER2(wxSpinEvent& event)
+{
+	m_Settings.SetCC_FOR_FADER2(wscCC_FOR_FADER2->GetValue(), m_Split);
+}
+
+
+void FadersPage::OnCC_FOR_FADER3(wxSpinEvent& event)
+{
+	m_Settings.SetCC_FOR_FADER3(wscCC_FOR_FADER3->GetValue(), m_Split);
+}
+
+
+void FadersPage::OnCC_FOR_FADER4(wxSpinEvent& event)
+{
+	m_Settings.SetCC_FOR_FADER4(wscCC_FOR_FADER4->GetValue(), m_Split);
+}
+
+
+void FadersPage::OnCC_FOR_FADER5(wxSpinEvent& event)
+{
+	m_Settings.SetCC_FOR_FADER5(wscCC_FOR_FADER5->GetValue(), m_Split);
+}
+
+
+void FadersPage::OnCC_FOR_FADER6(wxSpinEvent& event)
+{
+	m_Settings.SetCC_FOR_FADER6(wscCC_FOR_FADER6->GetValue(), m_Split);
+}
+
+
+void FadersPage::OnCC_FOR_FADER7(wxSpinEvent& event)
+{
+	m_Settings.SetCC_FOR_FADER7(wscCC_FOR_FADER7->GetValue(), m_Split);
+}
+
+
+void FadersPage::OnCC_FOR_FADER8(wxSpinEvent& event)
+{
+	m_Settings.SetCC_FOR_FADER8(wscCC_FOR_FADER8->GetValue(), m_Split);
+}
+
+
+// Event table
+BEGIN_EVENT_TABLE(FadersPage, wxPanel)
+EVT_SPINCTRL(CC_FOR_FADER1_ID, FadersPage::OnCC_FOR_FADER1)
+EVT_SPINCTRL(CC_FOR_FADER2_ID, FadersPage::OnCC_FOR_FADER2)
+EVT_SPINCTRL(CC_FOR_FADER3_ID, FadersPage::OnCC_FOR_FADER3)
+EVT_SPINCTRL(CC_FOR_FADER4_ID, FadersPage::OnCC_FOR_FADER4)
+EVT_SPINCTRL(CC_FOR_FADER5_ID, FadersPage::OnCC_FOR_FADER5)
+EVT_SPINCTRL(CC_FOR_FADER6_ID, FadersPage::OnCC_FOR_FADER6)
+EVT_SPINCTRL(CC_FOR_FADER7_ID, FadersPage::OnCC_FOR_FADER7)
+EVT_SPINCTRL(CC_FOR_FADER8_ID, FadersPage::OnCC_FOR_FADER8)
+END_EVENT_TABLE()

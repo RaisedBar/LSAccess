@@ -27,9 +27,23 @@ public:
 	FadersPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split);
 
 private:
+	// event handlers
+	DECLARE_EVENT_TABLE()
+
+		void OnCC_FOR_FADER1(wxSpinEvent& event);
+	void OnCC_FOR_FADER2(wxSpinEvent& event);
+	void OnCC_FOR_FADER3(wxSpinEvent& event);
+	void OnCC_FOR_FADER4(wxSpinEvent& event);
+	void OnCC_FOR_FADER5(wxSpinEvent& event);
+	void OnCC_FOR_FADER6(wxSpinEvent& event);
+	void OnCC_FOR_FADER7(wxSpinEvent& event);
+void OnCC_FOR_FADER8(wxSpinEvent& event);
+
+	// data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
 	LSPerSplitSettings m_Settings;
+	LSSplitType m_Split;
 
 	// controls
 				// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
