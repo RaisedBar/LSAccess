@@ -312,103 +312,103 @@ unsigned int GetMIDI_MAIN_CHANNEL(LSSplitType split);
 
 	// Setters:
 	// Value is an LSSplitMode
-	void SetSPLIT_MODE(unsigned int nValue);
+	void SetSPLIT_MODE(unsigned int nValue, LSSplitType split);
 	// Value constrained by MIN_MIDI_CHANNEL and MAX_MIDI_CHANNEL
-	void SetMIDI_MAIN_CHANNEL(unsigned int nValue);
+	void SetMIDI_MAIN_CHANNEL(unsigned int nValue, LSSplitType split);
 
 	// Toggles:
-	void SetCHANNEL_PER_NOTE_1(unsigned int nValue);
-	void SetCHANNEL_PER_NOTE_2(unsigned int nValue);
-	void SetCHANNEL_PER_NOTE_3(unsigned int nValue);
-	void SetCHANNEL_PER_NOTE_4(unsigned int nValue);
-	void SetCHANNEL_PER_NOTE_5(unsigned int nValue);
-	void SetCHANNEL_PER_NOTE_6(unsigned int nValue);
-	void SetCHANNEL_PER_NOTE_7(unsigned int nValue);
-	void SetCHANNEL_PER_NOTE_8(unsigned int nValue);
-	void SetCHANNEL_PER_NOTE_9(unsigned int nValue);
-	void SetCHANNEL_PER_NOTE_10(unsigned int nValue);
-	void SetCHANNEL_PER_NOTE_11(unsigned int nValue);
-	void SetCHANNEL_PER_NOTE_12(unsigned int nValue);
-	void SetCHANNEL_PER_NOTE_13(unsigned int nValue);
-	void SetCHANNEL_PER_NOTE_14(unsigned int nValue);
-	void SetCHANNEL_PER_NOTE_15(unsigned int nValue);
-	void SetCHANNEL_PER_NOTE_16(unsigned int nValue);
+	void SetCHANNEL_PER_NOTE_1(unsigned int nValue, LSSplitType split);
+	void SetCHANNEL_PER_NOTE_2(unsigned int nValue, LSSplitType split);
+	void SetCHANNEL_PER_NOTE_3(unsigned int nValue, LSSplitType split);
+	void SetCHANNEL_PER_NOTE_4(unsigned int nValue, LSSplitType split);
+	void SetCHANNEL_PER_NOTE_5(unsigned int nValue, LSSplitType split);
+	void SetCHANNEL_PER_NOTE_6(unsigned int nValue, LSSplitType split);
+	void SetCHANNEL_PER_NOTE_7(unsigned int nValue, LSSplitType split);
+	void SetCHANNEL_PER_NOTE_8(unsigned int nValue, LSSplitType split);
+	void SetCHANNEL_PER_NOTE_9(unsigned int nValue, LSSplitType split);
+	void SetCHANNEL_PER_NOTE_10(unsigned int nValue, LSSplitType split);
+	void SetCHANNEL_PER_NOTE_11(unsigned int nValue, LSSplitType split);
+	void SetCHANNEL_PER_NOTE_12(unsigned int nValue, LSSplitType split);
+	void SetCHANNEL_PER_NOTE_13(unsigned int nValue, LSSplitType split);
+	void SetCHANNEL_PER_NOTE_14(unsigned int nValue, LSSplitType split);
+	void SetCHANNEL_PER_NOTE_15(unsigned int nValue, LSSplitType split);
+	void SetCHANNEL_PER_NOTE_16(unsigned int nValue, LSSplitType split);
 	// Value is a MIDI channel number:
-	void SetMIDI_PER_ROW_LOWEST_CHANNEL(unsigned int nValue);
+	void SetMIDI_PER_ROW_LOWEST_CHANNEL(unsigned int nValue, LSSplitType split);
 	// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
-	void SetBEND_RANGE(unsigned int nValue);
+	void SetBEND_RANGE(unsigned int nValue, LSSplitType split);
 	// Toggles:
-	void SetBEND_TOGGLE(unsigned int nValue);
-	void SetBEND_QUANTIZE_TOGGLE(unsigned int nValue);
+	void SetBEND_TOGGLE(unsigned int nValue, LSSplitType split);
+	void SetBEND_QUANTIZE_TOGGLE(unsigned int nValue, LSSplitType split);
 	// Value is from LSPitchQuantize
-	void SetPITCH_QUANTIZE(unsigned int nValue);
+	void SetPITCH_QUANTIZE(unsigned int nValue, LSSplitType split);
 	// Toggles:
-	void SetRESET_PITCH_ON_RELEASE(unsigned int nValue);
-	void SetSEND_Y(unsigned int nValue);
+	void SetRESET_PITCH_ON_RELEASE(unsigned int nValue, LSSplitType split);
+	void SetSEND_Y(unsigned int nValue, LSSplitType split);
 	// Values are constrained by MIN_CC and MAX_CC
 	// CC 1 or CC 74 are recommended, any CC is possible though
-	void SetCC_FOR_Y(unsigned int nValue);
+	void SetCC_FOR_Y(unsigned int nValue, LSSplitType split);
 	// Toggle:
-	void SetRELATIVE_Y(unsigned int nValue);
-	void SetRELATIVE_Z(unsigned int nValue);
+	void SetRELATIVE_Y(unsigned int nValue, LSSplitType split);
+	void SetRELATIVE_Z(unsigned int nValue, LSSplitType split);
 	// Value is an LSExpressionZ
-	void SetMIDI_EXPRESSION_FOR_Z(unsigned int nValue);
+	void SetMIDI_EXPRESSION_FOR_Z(unsigned int nValue, LSSplitType split);
 	// Values are constrained by MIN_CC and MAX_CC
 	// CC 11 is recommended, any CC is possible though
-	void SetCC_FOR_Z(unsigned int nValue);
+	void SetCC_FOR_Z(unsigned int nValue, LSSplitType split);
 	// Values are defined in LSColor
-	void SetCOLOR_MAIN(unsigned int nValue);
-	void SetCOLOR_ACCENT(unsigned int nValue);
-	void SetCOLOR_PLAYED(unsigned int nValue);
-	void SetCOLOR_LOWROW(unsigned int nValue);
+	void SetCOLOR_MAIN(unsigned int nValue, LSSplitType split);
+	void SetCOLOR_ACCENT(unsigned int nValue, LSSplitType split);
+	void SetCOLOR_PLAYED(unsigned int nValue, LSSplitType split);
+	void SetCOLOR_LOWROW(unsigned int nValue, LSSplitType split);
 	// Value is an LSLowRowMode
-	void SetLOWROW_MODE(unsigned int nValue);
+	void SetLOWROW_MODE(unsigned int nValue, LSSplitType split);
 	// Value is an LSSpecial:
-	void SetSPECIAL(unsigned int nValue);
+	void SetSPECIAL(unsigned int nValue, LSSplitType split);
 	// Value is an LSOctave
-	void SetOCTAVE(unsigned int nValue);
+	void SetOCTAVE(unsigned int nValue, LSSplitType split);
 	// Values are from LSPitch
-	void SetPITCH_TRANSPOSE(unsigned int nValue);
-	void SetTRANSPOSE_LIGHTS(unsigned int nValue);
+	void SetPITCH_TRANSPOSE(unsigned int nValue, LSSplitType split);
+	void SetTRANSPOSE_LIGHTS(unsigned int nValue, LSSplitType split);
 	// Value is an LSExpressionY
-	void SetEXPRESSION_FOR_Y(unsigned int nValue);
+	void SetEXPRESSION_FOR_Y(unsigned int nValue, LSSplitType split);
 	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	void SetCC_FOR_FADER1(unsigned int nValue);
-	void SetCC_FOR_FADER2(unsigned int nValue);
-	void SetCC_FOR_FADER3(unsigned int nValue);
-	void SetCC_FOR_FADER4(unsigned int nValue);
-	void SetCC_FOR_FADER5(unsigned int nValue);
-	void SetCC_FOR_FADER6(unsigned int nValue);
-	void SetCC_FOR_FADER7(unsigned int nValue);
-	void SetCC_FOR_FADER8(unsigned int nValue);
+	void SetCC_FOR_FADER1(unsigned int nValue, LSSplitType split);
+	void SetCC_FOR_FADER2(unsigned int nValue, LSSplitType split);
+	void SetCC_FOR_FADER3(unsigned int nValue, LSSplitType split);
+	void SetCC_FOR_FADER4(unsigned int nValue, LSSplitType split);
+	void SetCC_FOR_FADER5(unsigned int nValue, LSSplitType split);
+	void SetCC_FOR_FADER6(unsigned int nValue, LSSplitType split);
+	void SetCC_FOR_FADER7(unsigned int nValue, LSSplitType split);
+	void SetCC_FOR_FADER8(unsigned int nValue, LSSplitType split);
 	// Value is an LSLowRowBehaviour
-	void SetLOWROW_X_BEHAVIOUR(unsigned int nValue);
+	void SetLOWROW_X_BEHAVIOUR(unsigned int nValue, LSSplitType split);
 	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	void SetCC_FOR_LOWROW(unsigned int nValue);
+	void SetCC_FOR_LOWROW(unsigned int nValue, LSSplitType split);
 	// Value is an LSLowRowBehaviour
-	void SetLOWROW_XYZ_BEHAVIOUR(unsigned int nValue);
+	void SetLOWROW_XYZ_BEHAVIOUR(unsigned int nValue, LSSplitType split);
 	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	void SetCC_FOR_LOWROW_XYZ(unsigned int nValue);
-	void SetCC_FOR_LOWROW_XYZ_Y(unsigned int nValue);
-	void SetCC_FOR_LOWROW_XYZ_Z(unsigned int nValue);
+	void SetCC_FOR_LOWROW_XYZ(unsigned int nValue, LSSplitType split);
+	void SetCC_FOR_LOWROW_XYZ_Y(unsigned int nValue, LSSplitType split);
+	void SetCC_FOR_LOWROW_XYZ_Z(unsigned int nValue, LSSplitType split);
 	// Values are constrained by MIN_CC and MAX_CC
-	void SetMIN_CC_FOR_Y(unsigned int nValue);
-	void SetMAX_CC_FOR_Y(unsigned int nValue);
-	void SetMIN_CC_FOR_Z(unsigned int nValue);
-	void SetMAX_CC_FOR_Z(unsigned int nValue);
-	void Set14BIT_CC_VALUE_FOR_Z(unsigned int nValue);
-	void SetINITIAL_RELATIVE_VALUE_FOR_Y(unsigned int nValue);
+	void SetMIN_CC_FOR_Y(unsigned int nValue, LSSplitType split);
+	void SetMAX_CC_FOR_Y(unsigned int nValue, LSSplitType split);
+	void SetMIN_CC_FOR_Z(unsigned int nValue, LSSplitType split);
+	void SetMAX_CC_FOR_Z(unsigned int nValue, LSSplitType split);
+	void Set14BIT_CC_VALUE_FOR_Z(unsigned int nValue, LSSplitType split);
+	void SetINITIAL_RELATIVE_VALUE_FOR_Y(unsigned int nValue, LSSplitType split);
 	// Value is an LSChannelOrder
-	void SetCHANNEL_PER_ROW_ORDER(unsigned int nValue);
+	void SetCHANNEL_PER_ROW_ORDER(unsigned int nValue, LSSplitType split);
 	// Value is an LSAnimation
-	void SetTOUCH_ANIMATION(unsigned int nValue);
+	void SetTOUCH_ANIMATION(unsigned int nValue, LSSplitType split);
 	// Toggle:
-	void SetSEQUENCER_TOGGLE_PLAY(unsigned int nValue);
-	void SetSEQUENCER_PREVIOUS_PATTERN(unsigned int nValue);
-	void SetSEQUENCER_NEXT_PATTERN(unsigned int nValue);
+	void SetSEQUENCER_TOGGLE_PLAY(unsigned int nValue, LSSplitType split);
+	void SetSEQUENCER_PREVIOUS_PATTERN(unsigned int nValue, LSSplitType split);
+	void SetSEQUENCER_NEXT_PATTERN(unsigned int nValue, LSSplitType split);
 	// Value is an LSPatternNumber
-	void SetSEQUENCER_PATTERN(unsigned int nValue);
-	void SetSEQUENCER_TOGGLE_MUTE(unsigned int nValue);
+	void SetSEQUENCER_PATTERN(unsigned int nValue, LSSplitType split);
+	void SetSEQUENCER_TOGGLE_MUTE(unsigned int nValue, LSSplitType split);
 
 	private:
 	// Left split
