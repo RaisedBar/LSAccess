@@ -75,7 +75,7 @@ LinnStrument::LinnStrument()
 
 		if ((m_OutputID != -1) && (m_InputID != -1))
 		{
-			m_GlobalSettings.SetGLOBAL_MIDI_DEVICE_IO( LS_MIDIDevice::USB);
+			m_GlobalSettings.SetGLOBAL_MIDI_DEVICE_IO(LS_MIDIDevice::USB);
 			m_MIDIOut->openPort(m_OutputID);
 				m_MIDIIn->openPort(m_InputID);
 			m_MIDIIn->setCallback(&LSCallback, (void*)this);

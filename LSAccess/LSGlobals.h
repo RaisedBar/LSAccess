@@ -127,10 +127,20 @@ public:
 		return m_GLOBAL_SPLIT_ACTIVE;
 	}
 
+	void SetGLOBAL_SPLIT_ACTIVE(unsigned int nValue)
+	{
+		m_GLOBAL_SPLIT_ACTIVE = nValue;
+	}
+
 	// Value is LSSplitType
 	unsigned int GetGLOBAL_SELECTED_SPLIT()
 	{
 		return m_GLOBAL_SELECTED_SPLIT;
+	}
+
+	void SetGLOBAL_SELECTED_SPLIT(unsigned int nValue)
+	{
+		m_GLOBAL_SELECTED_SPLIT = nValue;
 	}
 
 	unsigned int GetLSPresetNumber()
@@ -138,6 +148,11 @@ public:
 		return m_LSPresetNumber;
 	}
 	
+	void SetLSPresetNumber(unsigned int nValue)
+	{
+		m_LSPresetNumber = nValue;
+	};
+
 // Values are constrained by MIN_CC and MAX_CC
 	unsigned int GetVolume(LSSplitType split)
 	{
@@ -151,7 +166,19 @@ public:
 		}
 	}
 
-unsigned int GetMIDIProgram( LSSplitType split)	
+void SetVolume( unsigned int nValue, LSSplitType split)
+	{
+		if (split == LSSplitType::LEFT)
+		{
+			m_LEFT_VOLUME = nValue;
+		}
+		else
+		{
+			m_RIGHT_VOLUME = nValue;
+		}
+	}
+
+	unsigned int GetMIDIProgram( LSSplitType split)
 {
 	if (split == LSSplitType::LEFT)
 	{
@@ -163,14 +190,32 @@ unsigned int GetMIDIProgram( LSSplitType split)
 	}
 	}
 	
-// Value is constrained by MIN_SPLIT_COLUMN and MAX_SPLIT_COLUMN  
+	void SetMIDIProgram(unsigned int nValue, LSSplitType split)
+	{
+		if (split == LSSplitType::LEFT)
+		{
+			m_LEFT_PROGRAM = nValue;
+		}
+		else
+		{
+			m_RIGHT_PROGRAM = nValue;
+		}
+	}
+
+	// Value is constrained by MIN_SPLIT_COLUMN and MAX_SPLIT_COLUMN  
 	unsigned int GetGLOBAL_SPLIT_COLUMN()
 	{
 		return m_GLOBAL_SPLIT_COLUMN;
 	}
 
+void SetGLOBAL_SPLIT_COLUMN(unsigned int nValue)
+	{
+	m_GLOBAL_SPLIT_COLUMN = nValue;
+	}
+
 	// Toggles:
-	unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_C()
+	
+unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_C()
 	{
 		return m_GLOBAL_MAIN_NOTE_LIGHT_C;
 	}
@@ -229,6 +274,67 @@ unsigned int GetMIDIProgram( LSSplitType split)
 	{
 		return m_GLOBAL_MAIN_NOTE_LIGHT_B;
 	}
+
+	void SetGLOBAL_MAIN_NOTE_LIGHT_C(unsigned int nValue)
+	{
+		m_GLOBAL_MAIN_NOTE_LIGHT_C = nValue;
+	}
+
+	void SetGLOBAL_MAIN_NOTE_LIGHT_C_SHARP(unsigned int nValue)
+	{
+		m_GLOBAL_MAIN_NOTE_LIGHT_C_SHARP = nValue;
+	}
+
+	void SetGLOBAL_MAIN_NOTE_LIGHT_D(unsigned int nValue)
+	{
+		m_GLOBAL_MAIN_NOTE_LIGHT_D = nValue;
+	}
+
+	void SetGLOBAL_MAIN_NOTE_LIGHT_D_SHARP(unsigned int nValue)
+	{
+		m_GLOBAL_MAIN_NOTE_LIGHT_D_SHARP = nValue;
+	}
+
+	void SetGLOBAL_MAIN_NOTE_LIGHT_E(unsigned int nValue)
+	{
+		m_GLOBAL_MAIN_NOTE_LIGHT_E = nValue;
+	}
+
+	void SetGLOBAL_MAIN_NOTE_LIGHT_F(unsigned int nValue)
+	{
+		m_GLOBAL_MAIN_NOTE_LIGHT_F = nValue;
+	}
+
+	void SetGLOBAL_MAIN_NOTE_LIGHT_F_SHARP(unsigned int nValue)
+	{
+		m_GLOBAL_MAIN_NOTE_LIGHT_F_SHARP = nValue;
+	}
+
+	void SetGLOBAL_MAIN_NOTE_LIGHT_G(unsigned int nValue)
+	{
+		m_GLOBAL_MAIN_NOTE_LIGHT_G = nValue;
+	}
+
+	void SetGLOBAL_MAIN_NOTE_LIGHT_G_SHARP(unsigned int nValue)
+	{
+		m_GLOBAL_MAIN_NOTE_LIGHT_G_SHARP = nValue;
+	}
+
+	void SetGLOBAL_MAIN_NOTE_LIGHT_A(unsigned int nValue)
+	{
+		m_GLOBAL_MAIN_NOTE_LIGHT_A = nValue;
+	}
+
+	void SetGLOBAL_MAIN_NOTE_LIGHT_A_SHARP(unsigned int nValue)
+	{
+		m_GLOBAL_MAIN_NOTE_LIGHT_A_SHARP = nValue;
+	}
+
+	void SetGLOBAL_MAIN_NOTE_LIGHT_B(unsigned int nValue)
+	{
+		m_GLOBAL_MAIN_NOTE_LIGHT_B = nValue;
+	}
+
 
 	unsigned int GetGLOBAL_ACCENT_NOTE_LIGHT_C()
 	{
@@ -290,16 +396,86 @@ unsigned int GetMIDIProgram( LSSplitType split)
 		return m_GLOBAL_ACCENT_NOTE_LIGHT_B;
 	}
 
+	void SetGLOBAL_ACCENT_NOTE_LIGHT_C(unsigned int nValue)
+	{
+		m_GLOBAL_ACCENT_NOTE_LIGHT_C = nValue;
+	}
+
+	void SetGLOBAL_ACCENT_NOTE_LIGHT_C_SHARP(unsigned int nValue)
+	{
+		m_GLOBAL_ACCENT_NOTE_LIGHT_C_SHARP = nValue;
+	}
+
+	void SetGLOBAL_ACCENT_NOTE_LIGHT_D(unsigned int nValue)
+	{
+		m_GLOBAL_ACCENT_NOTE_LIGHT_D = nValue;
+	}
+
+	void SetGLOBAL_ACCENT_NOTE_LIGHT_D_SHARP(unsigned int nValue)
+	{
+		m_GLOBAL_ACCENT_NOTE_LIGHT_D_SHARP = nValue;
+	}
+
+	void SetGLOBAL_ACCENT_NOTE_LIGHT_E(unsigned int nValue)
+	{
+		m_GLOBAL_ACCENT_NOTE_LIGHT_E = nValue;
+	}
+
+	void SetGLOBAL_ACCENT_NOTE_LIGHT_F(unsigned int nValue)
+	{
+		m_GLOBAL_ACCENT_NOTE_LIGHT_F = nValue;
+	}
+
+	void SetGLOBAL_ACCENT_NOTE_LIGHT_F_SHARP(unsigned int nValue)
+	{
+		m_GLOBAL_ACCENT_NOTE_LIGHT_F_SHARP = nValue;
+	}
+
+	void SetGLOBAL_ACCENT_NOTE_LIGHT_G(unsigned int nValue)
+	{
+		m_GLOBAL_ACCENT_NOTE_LIGHT_G = nValue;
+	}
+
+	void SetGLOBAL_ACCENT_NOTE_LIGHT_G_SHARP(unsigned int nValue)
+	{
+		m_GLOBAL_ACCENT_NOTE_LIGHT_G_SHARP = nValue;
+	}
+
+	void SetGLOBAL_ACCENT_NOTE_LIGHT_A(unsigned int nValue)
+	{
+		m_GLOBAL_ACCENT_NOTE_LIGHT_A = nValue;
+	}
+
+	void SetGLOBAL_ACCENT_NOTE_LIGHT_A_SHARP(unsigned int nValue)
+	{
+		m_GLOBAL_ACCENT_NOTE_LIGHT_A_SHARP = nValue;
+	}
+
+	void SetGLOBAL_ACCENT_NOTE_LIGHT_B(unsigned int nValue)
+	{
+		m_GLOBAL_ACCENT_NOTE_LIGHT_B = nValue;
+	}
+
 	// Value is LSRowOffsetType
 	unsigned int GetGLOBAL_ROW_OFFSET()
 	{
 		return m_GLOBAL_ROW_OFFSET;
 	}
 
-	// Value is LSSwitchAssignment
+	void SetGLOBAL_ROW_OFFSET(unsigned int nValue)
+	{
+		m_GLOBAL_ROW_OFFSET = nValue;
+	}
+
+		// Value is LSSwitchAssignment
 	unsigned int GetGLOBAL_SWITCH1_ASSIGN()
 	{
 		return m_GLOBAL_SWITCH1_ASSIGN;
+	}
+
+	void SetGLOBAL_SWITCH1_ASSIGN(unsigned int nValue)
+	{
+		m_GLOBAL_SWITCH1_ASSIGN = nValue;
 	}
 
 	unsigned int GetGLOBAL_SWITCH2_ASSIGN()
@@ -307,14 +483,29 @@ unsigned int GetMIDIProgram( LSSplitType split)
 		return m_GLOBAL_SWITCH2_ASSIGN;
 	}
 
+	void SetGLOBAL_SWITCH2_ASSIGN(unsigned int nValue)
+	{
+		m_GLOBAL_SWITCH2_ASSIGN = nValue;
+	}
+	
 	unsigned int GetGLOBAL_FOOT_LEFT_ASSIGN()
 	{
 		return m_GLOBAL_FOOT_LEFT_ASSIGN;
 	}
 
+	void SetGLOBAL_FOOT_LEFT_ASSIGN(unsigned int nValue)
+	{
+		m_GLOBAL_FOOT_LEFT_ASSIGN = nValue;
+	}
+
 	unsigned int GetGLOBAL_FOOT_RIGHT_ASSIGN()
 	{
 		return m_GLOBAL_FOOT_RIGHT_ASSIGN;
+	}
+
+	void SetGLOBAL_FOOT_RIGHT_ASSIGN(unsigned int nValue)
+	{
+		m_GLOBAL_FOOT_RIGHT_ASSIGN = nValue;
 	}
 
 	// Value is LSVelocityRange
@@ -323,10 +514,20 @@ unsigned int GetMIDIProgram( LSSplitType split)
 		return m_GLOBAL_VELOCITY_SENSITIVITY;
 	}
 
+	void SetGLOBAL_VELOCITY_SENSITIVITY(unsigned int nValue)
+	{
+		m_GLOBAL_VELOCITY_SENSITIVITY = nValue;
+	}
+
 	// Value is LSPressureRange
 	unsigned int GetGLOBAL_PRESSURE_SENSITIVITY()
 	{
 		return m_GLOBAL_PRESSURE_SENSITIVITY;
+	}
+
+	void SetGLOBAL_PRESSURE_SENSITIVITY(unsigned int nValue)
+	{
+		m_GLOBAL_PRESSURE_SENSITIVITY = nValue;
 	}
 
 	// Value is LSMIDIDevice
@@ -335,10 +536,20 @@ unsigned int GetMIDIProgram( LSSplitType split)
 		return m_GLOBAL_MIDI_DEVICE_IO;
 	}
 
+	void SetGLOBAL_MIDI_DEVICE_IO(unsigned int nValue)
+	{
+		m_GLOBAL_MIDI_DEVICE_IO = nValue;
+	}
+
 	// Value is LSArpDirection
 	unsigned int GetGLOBAL_ARP_DIRECTION()
 	{
 		return m_GLOBAL_ARP_DIRECTION;
+	}
+
+	void SetGLOBAL_ARP_DIRECTION(unsigned int nValue)
+	{
+		m_GLOBAL_ARP_DIRECTION = nValue;
 	}
 
 	// Value is LSArpTempoNoteType
@@ -347,10 +558,20 @@ unsigned int GetMIDIProgram( LSSplitType split)
 		return m_GLOBAL_ARP_TEMPO_NOTE_VALUE;
 	}
 
+	void SetGLOBAL_ARP_TEMPO_NOTE_VALUE(unsigned int nValue)
+	{
+		m_GLOBAL_ARP_TEMPO_NOTE_VALUE = nValue;
+	}
+
 	// Value is LSGlobalArpOctaveExtension
 	unsigned int GetGLOBAL_ARP_OCTAVE_EXTENSION()
 	{
 		return m_GLOBAL_ARP_OCTAVE_EXTENSION;
+	}
+
+	void SetGLOBAL_ARP_OCTAVE_EXTENSION(unsigned int nValue)
+	{
+		m_GLOBAL_ARP_OCTAVE_EXTENSION = nValue;
 	}
 
 	// Value = 1 - 360  (applies when receiving no MIDI clock)
@@ -359,10 +580,20 @@ unsigned int GetMIDIProgram( LSSplitType split)
 		return m_GLOBAL_CLOCK_BPM;
 	}
 
+	void SetGLOBAL_CLOCK_BPM(unsigned int nValue)
+	{
+		m_GLOBAL_CLOCK_BPM = nValue;
+	}
+
 	// Toggle:
 	unsigned int GetGLOBAL_SWITCH1_BOTH_SPLITS()
 	{
 		return m_GLOBAL_SWITCH1_BOTH_SPLITS;
+	}
+
+	void SetGLOBAL_SWITCH1_BOTH_SPLITS(unsigned int nValue)
+	{
+		m_GLOBAL_SWITCH1_BOTH_SPLITS = nValue;
 	}
 
 	unsigned int GetGLOBAL_SWITCH2_BOTH_SPLITS()
@@ -370,14 +601,29 @@ unsigned int GetMIDIProgram( LSSplitType split)
 		return m_GLOBAL_SWITCH2_BOTH_SPLITS;
 	}
 
+	void SetGLOBAL_SWITCH2_BOTH_SPLITS(unsigned int nValue)
+	{
+		m_GLOBAL_SWITCH2_BOTH_SPLITS = nValue;
+	}
+
 	unsigned int GetGLOBAL_FOOT_LEFT_BOTH_SPLITS()
 	{
 		return m_GLOBAL_FOOT_LEFT_BOTH_SPLITS;
 	}
 
+	void SetGLOBAL_FOOT_LEFT_BOTH_SPLITS(unsigned int nValue)
+	{
+		m_GLOBAL_FOOT_LEFT_BOTH_SPLITS = nValue;
+	}
+
 	unsigned int GetGLOBAL_FOOT_RIGHT_BOTH_SPLITS()
 	{
 		return m_GLOBAL_FOOT_RIGHT_BOTH_SPLITS;
+	}
+
+	void SetGLOBAL_FOOT_RIGHT_BOTH_SPLITS(unsigned int nValue)
+	{
+		m_GLOBAL_FOOT_RIGHT_BOTH_SPLITS = nValue;
 	}
 
 	// Value is LSPresetNumber
@@ -386,10 +632,20 @@ unsigned int GetMIDIProgram( LSSplitType split)
 		return m_GLOBAL_SETTINGS_PRESET_LOAD;
 	}
 
+	void SetGLOBAL_SETTINGS_PRESET_LOAD(unsigned int nValue)
+	{
+		m_GLOBAL_SETTINGS_PRESET_LOAD = nValue;
+	}
+
 	// Toggles:
 	unsigned int GetGLOBAL_PRESSURE_AFTERTOUCH()
 	{
 		return m_GLOBAL_PRESSURE_AFTERTOUCH;
+	}
+
+	void SetGLOBAL_PRESSURE_AFTERTOUCH(unsigned int nValue)
+	{
+		m_GLOBAL_PRESSURE_AFTERTOUCH = nValue;
 	}
 
 	unsigned int GetDEVICE_USER_FIRMWARE_MODE()
@@ -397,9 +653,19 @@ unsigned int GetMIDIProgram( LSSplitType split)
 		return m_DEVICE_USER_FIRMWARE_MODE;
 	}
 
+	void SetDEVICE_USER_FIRMWARE_MODE(unsigned int nValue)
+	{
+		m_DEVICE_USER_FIRMWARE_MODE = nValue;
+	}
+
 	unsigned int GetDEVICE_LEFT_HANDED()
 	{
 		return m_DEVICE_LEFT_HANDED;
+	}
+
+	void SetDEVICE_LEFT_HANDED(unsigned int nValue)
+	{
+		m_DEVICE_LEFT_HANDED = nValue;
 	}
 
 	// Value is constrained by MIN_LIGHTS_PRESET and MAX_LIGHTS_PRESET 
@@ -408,10 +674,20 @@ unsigned int GetMIDIProgram( LSSplitType split)
 		return m_GLOBAL_ACTIVE_LIGHTS_PRESET;
 	}
 
+	void SetGLOBAL_ACTIVE_LIGHTS_PRESET(unsigned int nValue)
+	{
+		m_GLOBAL_ACTIVE_LIGHTS_PRESET = nValue;
+	}
+
 	// Values are constrained by MIN_CC and MAX_CC
 	unsigned int GetGLOABAL_CC_FOR_CC65()  // Changes the CC for all switches - Legacy option, see NRPN 255 - 258
 	{
 		return m_GLOABAL_CC_FOR_CC65;
+	}
+
+	void SetGLOABAL_CC_FOR_CC65(unsigned int nValue)
+	{
+		m_GLOABAL_CC_FOR_CC65 = nValue;
 	}
 
 										  // Values are constrained by MIN_CC and MAX_CC
@@ -420,14 +696,29 @@ unsigned int GetMIDIProgram( LSSplitType split)
 		return m_GLOBAL_MIN_VELOCITY_VALUE;
 	}
 
+	void SetGLOBAL_MIN_VELOCITY_VALUE(unsigned int nValue)
+	{
+		m_GLOBAL_MIN_VELOCITY_VALUE = nValue;
+	}
+
 	unsigned int GetGLOBAL_MAX_VELOCITY_VALUE()
 	{
 		return m_GLOBAL_MAX_VELOCITY_VALUE;
 	}
 
+	void SetGLOBAL_MAX_VELOCITY_VALUE(unsigned int nValue)
+	{
+		m_GLOBAL_MAX_VELOCITY_VALUE = nValue;
+	}
+
 	unsigned int GetGLOBAL_FIXED_VELOCITY_VALUE()
 	{
 		return m_GLOBAL_FIXED_VELOCITY_VALUE;
+	}
+
+	void SetGLOBAL_FIXED_VELOCITY_VALUE(unsigned int nValue)
+	{
+		m_GLOBAL_FIXED_VELOCITY_VALUE = nValue;
 	}
 
 	// Value range =     0 - 512  
@@ -436,10 +727,20 @@ unsigned int GetMIDIProgram( LSSplitType split)
 		return m_DEVICE_MIN_BYTE_INTERVAL_VALUE;
 	}
 
+	void SetDEVICE_MIN_BYTE_INTERVAL_VALUE(unsigned int nValue)
+	{
+		m_DEVICE_MIN_BYTE_INTERVAL_VALUE = nValue;
+	}
+
 	// Value is LSCustomRowOffset
 	unsigned int GetGLOBAL_CUSTOM_ROW_OFFSET()
 	{
 		return m_GLOBAL_CUSTOM_ROW_OFFSET;
+	}
+
+	void SetGLOBAL_CUSTOM_ROW_OFFSET(unsigned int nValue)
+	{
+		m_GLOBAL_CUSTOM_ROW_OFFSET = nValue;
 	}
 
 	// Toggle:
@@ -448,10 +749,20 @@ unsigned int GetMIDIProgram( LSSplitType split)
 		return m_DEVICE_MIDI_THRU;
 	}
 
+	void SetDEVICE_MIDI_THRU(unsigned int nValue)
+	{
+		m_DEVICE_MIDI_THRU = nValue;
+	}
+
 	// Values are constrained by MIN_CC and MAX_CC
 	unsigned int GetGLOBAL_CC_FOR_LEFT_FOOT_CC65()
 	{
 		return m_GLOBAL_CC_FOR_LEFT_FOOT_CC65;
+	}
+
+	void SetGLOBAL_CC_FOR_LEFT_FOOT_CC65(unsigned int nValue)
+	{
+		m_GLOBAL_CC_FOR_LEFT_FOOT_CC65 = nValue;
 	}
 
 	unsigned int GetGLOBAL_CC_FOR_RIGHT_FOOT_CC65()
@@ -459,9 +770,18 @@ unsigned int GetMIDIProgram( LSSplitType split)
 		return m_GLOBAL_CC_FOR_RIGHT_FOOT_CC65;
 	}
 
+	void SetGLOBAL_CC_FOR_RIGHT_FOOT_CC65(unsigned int nValue)
+	{
+		m_GLOBAL_CC_FOR_RIGHT_FOOT_CC65 = nValue;
+	}
+
 	unsigned int GetGLOBAL_CC_FOR_SWITCH1_CC65()
 	{
 		return m_GLOBAL_CC_FOR_SWITCH1_CC65;
+	}
+	void SetGLOBAL_CC_FOR_SWITCH1_CC65(unsigned int nValue)
+	{
+		m_GLOBAL_CC_FOR_SWITCH1_CC65 = nValue;
 	}
 
 	unsigned int GetGLOBAL_CC_FOR_SWITCH2_CC65()
@@ -469,9 +789,19 @@ unsigned int GetMIDIProgram( LSSplitType split)
 		return m_GLOBAL_CC_FOR_SWITCH2_CC65;
 	}
 
+	void SetGLOBAL_CC_FOR_SWITCH2_CC65(unsigned int nValue)
+	{
+		m_GLOBAL_CC_FOR_SWITCH2_CC65 = nValue;
+	}
+
 	unsigned int GetGLOBAL_CC_FOR_LEFT_FOOT_SUSTAIN()
 	{
 		return m_GLOBAL_CC_FOR_LEFT_FOOT_SUSTAIN;
+	}
+
+	void SetGLOBAL_CC_FOR_LEFT_FOOT_SUSTAIN(unsigned int nValue)
+	{
+		m_GLOBAL_CC_FOR_LEFT_FOOT_SUSTAIN = nValue;
 	}
 
 	unsigned int GetGLOBAL_CC_FOR_RIGHT_FOOT_SUSTAIN()
@@ -479,9 +809,19 @@ unsigned int GetMIDIProgram( LSSplitType split)
 		return m_GLOBAL_CC_FOR_RIGHT_FOOT_SUSTAIN;
 	}
 
+	void SetGLOBAL_CC_FOR_RIGHT_FOOT_SUSTAIN(unsigned int nValue)
+	{
+		m_GLOBAL_CC_FOR_RIGHT_FOOT_SUSTAIN = nValue;
+	}
+
 	unsigned int GetGLOBAL_CC_FOR_SWITCH1_SUSTAIN()
 	{
 		return m_GLOBAL_CC_FOR_SWITCH1_SUSTAIN;
+	}
+
+	void SetGLOBAL_CC_FOR_SWITCH1_SUSTAIN(unsigned int nValue)
+	{
+		m_GLOBAL_CC_FOR_SWITCH1_SUSTAIN = nValue;
 	}
 
 	unsigned int GetGLOBAL_CC_FOR_SWITCH2_SUSTAIN()
@@ -489,9 +829,19 @@ unsigned int GetMIDIProgram( LSSplitType split)
 		return m_GLOBAL_CC_FOR_SWITCH2_SUSTAIN;
 	}
 
+	void SetGLOBAL_CC_FOR_SWITCH2_SUSTAIN(unsigned int nValue)
+	{
+		m_GLOBAL_CC_FOR_SWITCH2_SUSTAIN = nValue;
+	}
+
 	unsigned int GetGLOBAL_GUITAR_NOTE_TUNING_ROW1()
 	{
 		return m_GLOBAL_GUITAR_NOTE_TUNING_ROW1;
+	}
+
+	void SetGLOBAL_GUITAR_NOTE_TUNING_ROW1(unsigned int nValue)
+	{
+		m_GLOBAL_GUITAR_NOTE_TUNING_ROW1 = nValue;
 	}
 
 	unsigned int GetGLOBAL_GUITAR_NOTE_TUNING_ROW2()
@@ -499,9 +849,19 @@ unsigned int GetMIDIProgram( LSSplitType split)
 		return m_GLOBAL_GUITAR_NOTE_TUNING_ROW2;
 	}
 
+	void SetGLOBAL_GUITAR_NOTE_TUNING_ROW2(unsigned int nValue)
+	{
+		m_GLOBAL_GUITAR_NOTE_TUNING_ROW2 = nValue;
+	}
+
 	unsigned int GetGLOBAL_GUITAR_NOTE_TUNING_ROW3()
 	{
 		return m_GLOBAL_GUITAR_NOTE_TUNING_ROW3;
+	}
+
+	void SetGLOBAL_GUITAR_NOTE_TUNING_ROW3(unsigned int nValue)
+	{
+		m_GLOBAL_GUITAR_NOTE_TUNING_ROW3 = nValue;
 	}
 
 	unsigned int GetGLOBAL_GUITAR_NOTE_TUNING_ROW4()
@@ -509,9 +869,19 @@ unsigned int GetMIDIProgram( LSSplitType split)
 		return m_GLOBAL_GUITAR_NOTE_TUNING_ROW4;
 	}
 
+	void SetGLOBAL_GUITAR_NOTE_TUNING_ROW4(unsigned int nValue)
+	{
+		m_GLOBAL_GUITAR_NOTE_TUNING_ROW4 = nValue;
+	}
+
 	unsigned int GetGLOBAL_GUITAR_NOTE_TUNING_ROW5()
 	{
 		return m_GLOBAL_GUITAR_NOTE_TUNING_ROW5;
+	}
+
+	void SetGLOBAL_GUITAR_NOTE_TUNING_ROW5(unsigned int nValue)
+	{
+		m_GLOBAL_GUITAR_NOTE_TUNING_ROW5 = nValue;
 	}
 
 	unsigned int GetGLOBAL_GUITAR_NOTE_TUNING_ROW6()
@@ -519,14 +889,29 @@ unsigned int GetMIDIProgram( LSSplitType split)
 		return m_GLOBAL_GUITAR_NOTE_TUNING_ROW6;
 	}
 
+	void SetGLOBAL_GUITAR_NOTE_TUNING_ROW6(unsigned int nValue)
+	{
+		m_GLOBAL_GUITAR_NOTE_TUNING_ROW6 = nValue;
+	}
+
 	unsigned int GetGLOBAL_GUITAR_NOTE_TUNING_ROW7()
 	{
 		return m_GLOBAL_GUITAR_NOTE_TUNING_ROW7;
 	}
 
+	void SetGLOBAL_GUITAR_NOTE_TUNING_ROW7(unsigned int nValue)
+	{
+		m_GLOBAL_GUITAR_NOTE_TUNING_ROW7 = nValue;
+	}
+
 	unsigned int GetGLOBAL_GUITAR_NOTE_TUNING_ROW8()
 	{
 		return m_GLOBAL_GUITAR_NOTE_TUNING_ROW8;
+	}
+
+	void SetGLOBAL_GUITAR_NOTE_TUNING_ROW8(unsigned int nValue)
+	{
+		m_GLOBAL_GUITAR_NOTE_TUNING_ROW8 = nValue;
 	}
 
 	unsigned int GetLS_MIDIDeviceIndex(LS_MIDIDevice device)
@@ -552,12 +937,7 @@ unsigned int GetMIDIProgram( LSSplitType split)
 		}
 	};
 
-	void SetGLOBAL_MIDI_DEVICE_IO(LS_MIDIDevice deviceIO)
-	{
-		m_GLOBAL_MIDI_DEVICE_IO = GetLS_MIDIDeviceIndex(deviceIO);
-	};
-	
-private:
+	private:
 				unsigned int m_GLOBAL_SPLIT_ACTIVE;
 				// Value is LSSplitType
 				unsigned int m_GLOBAL_SELECTED_SPLIT;

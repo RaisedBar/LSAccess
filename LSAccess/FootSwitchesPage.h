@@ -27,18 +27,34 @@ public:
 	FootSwitchesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
 
 private:
+	// Event handlers
+	DECLARE_EVENT_TABLE()
+
+	void OnGLOBAL_FOOT_LEFT_ASSIGN(wxCommandEvent& event);
+void OnGLOBAL_FOOT_LEFT_BOTH_SPLITS(wxCommandEvent& event);
+	void OnGLOBAL_CC_FOR_LEFT_FOOT_SUSTAIN(wxSpinEvent& event);
+void OnGLOBAL_CC_FOR_LEFT_FOOT_CC65(wxSpinEvent& event);
+		void OnGLOBAL_FOOT_RIGHT_ASSIGN(wxCommandEvent& event);
+	void OnGLOBAL_FOOT_RIGHT_BOTH_SPLITS(wxCommandEvent& event);
+		void OnGLOBAL_CC_FOR_RIGHT_FOOT_SUSTAIN(wxSpinEvent& event);
+		void OnGLOBAL_CC_FOR_RIGHT_FOOT_CC65(wxSpinEvent& event);
+
+	// data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
 	LSGlobalSettings m_Settings;
-
+	
 	// controls
-	// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
-	wxSpinCtrl * wscBEND_RANGE;
-	// Toggles:
-	wxCheckBox * chkBEND_TOGGLE;
-	wxCheckBox * chkBEND_QUANTIZE_TOGGLE;
-	// Values are from LSPitchQuantize
-	wxRadioBox * wrbcPitchBendType;
-	// Toggles:
-	wxCheckBox * chkRESET_PITCH_ON_RELEASE;
+// Value is an LSSwitchAssignment
+	wxRadioBox * wrbGLOBAL_FOOT_LEFT_ASSIGN;
+	// Toggle:
+	wxCheckBox * chkGLOBAL_FOOT_LEFT_BOTH_SPLITS;
+		// Values are constrained by MIN_CC and MAX_CC
+	wxSpinCtrl * wscGLOBAL_CC_FOR_LEFT_FOOT_SUSTAIN, *wscGLOBAL_CC_FOR_LEFT_FOOT_CC65;
+	// Value is an LSSwitchAssignment
+	wxRadioBox * wrbGLOBAL_FOOT_RIGHT_ASSIGN;
+	// Toggle:
+	wxCheckBox * chkGLOBAL_FOOT_RIGHT_BOTH_SPLITS;
+		// Values are constrained by MIN_CC and MAX_CC
+	wxSpinCtrl * wscGLOBAL_CC_FOR_RIGHT_FOOT_SUSTAIN, *wscGLOBAL_CC_FOR_RIGHT_FOOT_CC65;
 };
