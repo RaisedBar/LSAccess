@@ -302,7 +302,7 @@ unsigned int LSPerSplitSettings::GetBEND_QUANTIZE_TOGGLE(LSSplitType split)
 
 
 // Value is from LSPitchQuantize
-unsigned int LSPerSplitSettings::GetPITCH_QUANTIZE(LSSplitType split)
+unsigned int LSPerSplitSettings::GetBEND_QUANTIZE(LSSplitType split)
 {
 	if (split == LSSplitType::LEFT)
 	{
@@ -1191,7 +1191,7 @@ void LSPerSplitSettings::SetBEND_QUANTIZE_TOGGLE(unsigned int nValue, LSSplitTyp
 
 
 // Value is from LSPitchQuantize
-void LSPerSplitSettings::SetPITCH_QUANTIZE(unsigned int nValue, LSSplitType split)
+void LSPerSplitSettings::SetBEND_QUANTIZE(unsigned int nValue, LSSplitType split)
 {
 	if (split == LSSplitType::LEFT)
 	{

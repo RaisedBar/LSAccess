@@ -241,7 +241,7 @@ unsigned int GetMIDI_MAIN_CHANNEL(LSSplitType split);
 	unsigned int GetBEND_TOGGLE(LSSplitType split);
 	unsigned int GetBEND_QUANTIZE_TOGGLE(LSSplitType split);
 	// Value is from LSPitchQuantize
-	unsigned int GetPITCH_QUANTIZE(LSSplitType split);
+	unsigned int GetBEND_QUANTIZE(LSSplitType split);
 	// Toggles:
 	unsigned int GetRESET_PITCH_ON_RELEASE(LSSplitType split);
 	unsigned int GetSEND_Y(LSSplitType split);
@@ -342,7 +342,7 @@ unsigned int GetMIDI_MAIN_CHANNEL(LSSplitType split);
 	void SetBEND_TOGGLE(unsigned int nValue, LSSplitType split);
 	void SetBEND_QUANTIZE_TOGGLE(unsigned int nValue, LSSplitType split);
 	// Value is from LSPitchQuantize
-	void SetPITCH_QUANTIZE(unsigned int nValue, LSSplitType split);
+	void SetBEND_QUANTIZE(unsigned int nValue, LSSplitType split);
 	// Toggles:
 	void SetRESET_PITCH_ON_RELEASE(unsigned int nValue, LSSplitType split);
 	void SetSEND_Y(unsigned int nValue, LSSplitType split);

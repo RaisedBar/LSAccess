@@ -27,6 +27,16 @@ public:
 	BendPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split);
 	
 private:
+	// Event handlers
+	DECLARE_EVENT_TABLE()
+
+void OnBEND_RANGE(wxSpinEvent& event);
+	void OnBEND_TOGGLE(wxCommandEvent& event);
+	void OnBEND_QUANTIZE_TOGGLE(wxCommandEvent& event);
+	void OnBendQuantize(wxCommandEvent& event);
+	void OnRESET_PITCH_ON_RELEASE(wxCommandEvent& event);
+
+	// data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
 	LSPerSplitSettings m_Settings;
@@ -38,7 +48,7 @@ private:
 	wxCheckBox * chkBEND_TOGGLE;
 	wxCheckBox * chkBEND_QUANTIZE_TOGGLE;
 	// Values are from LSPitchQuantize
-	wxRadioBox * wrbcPitchBendQuantize;
+	wxRadioBox * wrbBendQuantize;
 	// Toggles:
 	wxCheckBox * chkRESET_PITCH_ON_RELEASE;
 	};
