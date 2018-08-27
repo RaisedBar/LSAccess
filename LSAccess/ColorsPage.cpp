@@ -5,7 +5,8 @@
 ColorsPage::ColorsPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)
 	:wxPanel(parent),
 	pMyLinnStrument(new LinnStrument),
-	pMyParent(new wxBookCtrl())
+	pMyParent(new wxBookCtrl()),
+	m_Split(split)
 {
 	pMyLinnStrument = pLinnStrument;
 	m_Settings = pMyLinnStrument->GetPerSplitSettings();
@@ -27,3 +28,40 @@ ColorsPage::ColorsPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, con
 }
 
 
+void ColorsPage::OnCOLOR_MAIN(wxCommandEvent& event)
+{
+	m_Settings.SetCOLOR_MAIN( wrbCOLOR_MAIN->GetSelection(), m_Split);
+}
+
+
+void ColorsPage::OnCOLOR_ACCENT(wxCommandEvent& event)
+{
+	m_Settings.SetCOLOR_ACCENT( wrbCOLOR_ACCENT->GetSelection(), m_Split);
+}
+
+
+void ColorsPage::OnCOLOR_PLAYED(wxCommandEvent& event)
+{
+	m_Settings.SetCOLOR_PLAYED( wrbCOLOR_PLAYED->GetSelection(), m_Split);
+}
+
+void ColorsPage::OnCOLOR_LOWROW(wxCommandEvent& event)
+{
+	m_Settings.SetCOLOR_MAIN( wrbCOLOR_MAIN->GetSelection(), m_Split);
+}
+
+
+void ColorsPage::OnAnimation(wxCommandEvent& event)
+{
+	m_Settings.SetTOUCH_ANIMATION(wrbAnimation->GetSelection(), m_Split);
+}
+
+
+// Event table
+BEGIN_EVENT_TABLE(ColorsPage, wxPanel)
+EVT_RADIOBOX(Color_MAIN_ID, ColorsPage::OnCOLOR_MAIN)
+EVT_RADIOBOX(Color_ACCENT_ID, ColorsPage::OnCOLOR_ACCENT)
+EVT_RADIOBOX(Color_PLAYED_ID, ColorsPage::OnCOLOR_PLAYED)
+EVT_RADIOBOX(Color_LOWROW_ID, ColorsPage::OnCOLOR_LOWROW)
+EVT_RADIOBOX(ANIMATION_ID, ColorsPage::OnAnimation)
+END_EVENT_TABLE()

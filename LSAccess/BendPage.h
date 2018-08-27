@@ -36,11 +36,6 @@ void OnBEND_RANGE(wxSpinEvent& event);
 	void OnBendQuantize(wxCommandEvent& event);
 	void OnRESET_PITCH_ON_RELEASE(wxCommandEvent& event);
 
-	// data
-	LinnStrument * pMyLinnStrument;
-	wxBookCtrlBase *pMyParent;
-	LSPerSplitSettings m_Settings;
-
 	// controls
 	// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
 	wxSpinCtrl * wscBEND_RANGE;
@@ -51,4 +46,10 @@ void OnBEND_RANGE(wxSpinEvent& event);
 	wxRadioBox * wrbBendQuantize;
 	// Toggles:
 	wxCheckBox * chkRESET_PITCH_ON_RELEASE;
-	};
+	
+	// data
+	LinnStrument * pMyLinnStrument;
+	wxBookCtrlBase *pMyParent;
+	LSPerSplitSettings m_Settings;
+	LSSplitType m_Split;
+};

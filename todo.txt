@@ -1,6 +1,8 @@
 Add event handlers for UI controls
 done = axesPage
 done = BendPage
+done = ColorsPage
+
 
 
 Add routine to get all initial values from MIDI

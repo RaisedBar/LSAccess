@@ -5,7 +5,8 @@
 BendPage::BendPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)
 	:wxPanel(parent),
 	pMyLinnStrument(new LinnStrument),
-	pMyParent(new wxBookCtrl())
+	pMyParent(new wxBookCtrl()),
+	m_Split(split)
 {
 pMyLinnStrument = pLinnStrument;
 m_Settings = pMyLinnStrument->GetPerSplitSettings();
@@ -39,19 +40,27 @@ void BendPage::OnBEND_RANGE(wxSpinEvent& event)
 
 
 void BendPage::OnBEND_TOGGLE(wxCommandEvent& event)
-{}
+{
+	m_Settings.SetBEND_TOGGLE(chkBEND_TOGGLE->GetValue(), m_Split);
+}
 
 
 void BendPage::OnBEND_QUANTIZE_TOGGLE(wxCommandEvent& event)
-{}
+{
+	m_Settings.SetBEND_QUANTIZE_TOGGLE(chkBEND_QUANTIZE_TOGGLE->GetValue(), m_Split);
+}
 
 
 void BendPage::OnBendQuantize(wxCommandEvent& event)
-{}
+{
+	m_Settings.SetBEND_QUANTIZE(wrbBendQuantize->GetSelection(), m_Split);
+}
 
 
 void BendPage::OnRESET_PITCH_ON_RELEASE(wxCommandEvent& event)
-{}
+{
+	m_Settings.SetRESET_PITCH_ON_RELEASE(chkRESET_PITCH_ON_RELEASE->GetValue(), m_Split);
+}
 
 
 // Event table

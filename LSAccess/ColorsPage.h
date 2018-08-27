@@ -27,11 +27,22 @@ public:
 	ColorsPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split);
 
 private:
+	// event handlers
+	DECLARE_EVENT_TABLE()
+
+void OnCOLOR_MAIN(wxCommandEvent& event);
+void OnCOLOR_ACCENT(wxCommandEvent& event);
+void OnCOLOR_PLAYED(wxCommandEvent& event);
+void OnCOLOR_LOWROW(wxCommandEvent& event);
+	void OnAnimation(wxCommandEvent& event);
+
+	// data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
 	LSPerSplitSettings m_Settings;
+		LSSplitType m_Split;
 
-	// controls
+// controls
 				// Values are defined in LSColor
 	wxRadioBox * wrbCOLOR_MAIN, *wrbCOLOR_ACCENT, *wrbCOLOR_PLAYED, * wrbCOLOR_LOWROW;
 	wxRadioBox * wrbAnimation;
