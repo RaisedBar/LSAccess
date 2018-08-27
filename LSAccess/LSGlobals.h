@@ -114,8 +114,14 @@ class LSGlobalSettings
 {
 public:
 	LSGlobalSettings()
-	{};
+	{
+		this->InitFromMIDI();
+	};
 
+	void InitFromMIDI()
+	{
+	};
+	
 	unsigned int GetGLOBAL_SPLIT_ACTIVE()
 	{
 		return m_GLOBAL_SPLIT_ACTIVE;

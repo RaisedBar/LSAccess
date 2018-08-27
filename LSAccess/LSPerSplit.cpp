@@ -3,6 +3,12 @@
 #include "LSPerSplit.h"
 
 LSPerSplitSettings::LSPerSplitSettings()
+{
+	this->InitFromMIDI();
+}
+
+
+void LSPerSplitSettings::InitFromMIDI()
 {}
 
 
@@ -396,11 +402,11 @@ unsigned int LSPerSplitSettings::GetEXPRESSION_FOR_Z(LSSplitType split)
 {
 	if (split == LSSplitType::LEFT)
 	{
-		return m_LEFT_MIDI_EXPRESSION_FOR_Z;
+		return m_LEFT_EXPRESSION_FOR_Z;
 	}
 	else
 	{
-		return m_RIGHT_MIDI_EXPRESSION_FOR_Z;
+		return m_RIGHT_EXPRESSION_FOR_Z;
 	}
 }
 
@@ -1240,6 +1246,19 @@ void LSPerSplitSettings::SetCC_FOR_Y(unsigned int nValue, LSSplitType split)
 }
 
 
+void LSPerSplitSettings::SetSEND_Z(unsigned int nValue, LSSplitType split)
+{
+	if (split == LSSplitType::LEFT)
+	{
+		m_LEFT_SEND_Z = nValue;
+	}
+	else
+	{
+		m_RIGHT_SEND_Z = nValue;
+	}
+}
+
+
 // Toggle:
 void LSPerSplitSettings::SetRELATIVE_Y(unsigned int nValue, LSSplitType split)
 {
@@ -1272,11 +1291,11 @@ void LSPerSplitSettings::SetMIDI_EXPRESSION_FOR_Z(unsigned int nValue, LSSplitTy
 {
 	if (split == LSSplitType::LEFT)
 	{
-		m_LEFT_MIDI_EXPRESSION_FOR_Z = nValue;
+		m_LEFT_EXPRESSION_FOR_Z = nValue;
 	}
 	else
 	{
-		m_RIGHT_MIDI_EXPRESSION_FOR_Z = nValue;
+		m_RIGHT_EXPRESSION_FOR_Z = nValue;
 	}
 }
 
@@ -1427,7 +1446,20 @@ void LSPerSplitSettings::SetEXPRESSION_FOR_Y(unsigned int nValue, LSSplitType sp
 	}
 	else
 	{
-		m_RIGHT_EXPRESSION_FOR_Y;
+		m_RIGHT_EXPRESSION_FOR_Y = nValue;
+	}
+}
+
+
+void LSPerSplitSettings::SetEXPRESSION_FOR_Z(unsigned int nValue, LSSplitType split)
+{
+	if (split == LSSplitType::LEFT)
+	{
+		m_LEFT_EXPRESSION_FOR_Z = nValue;
+	}
+	else
+	{
+		m_RIGHT_EXPRESSION_FOR_Z = nValue;;
 	}
 }
 

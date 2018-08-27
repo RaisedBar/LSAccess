@@ -5,7 +5,8 @@
 AxesPage::AxesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)
 	:wxPanel(parent),
 	pMyLinnStrument(new LinnStrument),
-	pMyParent(new wxBookCtrl())
+	pMyParent(new wxBookCtrl()),
+	m_Split(split)
 {
 	pMyLinnStrument = pLinnStrument;
 	m_Settings = pMyLinnStrument->GetPerSplitSettings();
@@ -27,7 +28,7 @@ AxesPage::AxesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const L
 	chkRELATIVE_Y = new wxCheckBox(myPanel, RELATIVE_Y_ID, L"Relative &Y");
 	chkRELATIVE_Y->SetValue(m_Settings.GetRELATIVE_Y(split));
 			// Value is an LSExpressionY
-		wrbEXPRESSION_FOR_Y = new wxRadioBox(myPanel, MIDI_EXPRESSION_FOR_Y_ID, L"MIDI Expression for Y", wxDefaultPosition, wxDefaultSize, WXSIZEOF(ExpressionY), ExpressionY, m_Settings.GetEXPRESSION_FOR_Y(split), wxRA_SPECIFY_ROWS);
+		wrbEXPRESSION_FOR_Y = new wxRadioBox(myPanel, EXPRESSION_FOR_Y_ID, L"MIDI Expression for Y", wxDefaultPosition, wxDefaultSize, WXSIZEOF(ExpressionY), ExpressionY, m_Settings.GetEXPRESSION_FOR_Y(split), wxRA_SPECIFY_ROWS);
 		wscINITIAL_RELATIVE_VALUE_FOR_Y = new wxSpinCtrl(myPanel, INITIAL_RELATIVE_VALUE_FOR_Y_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, m_Settings.GetINITIAL_RELATIVE_VALUE_FOR_Y(split), "&Initial relative value for Y-axis");
 				// toggle
 		chkSEND_Z = new wxCheckBox(myPanel, SEND_Z_ID, L"&Send Z-axis loudness messages");
@@ -41,8 +42,8 @@ AxesPage::AxesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const L
 		chkRELATIVE_Z = new wxCheckBox(myPanel, RELATIVE_Z_ID, L"&Relative &Z");
 		chkRELATIVE_Z->SetValue(m_Settings.GetRELATIVE_Z(split));
 		// Value is an LSExpressionZ
-		wrbMIDI_EXPRESSION_FOR_Z = new wxRadioBox(myPanel, MIDI_EXPRESSION_FOR_Z_ID, L"MIDI Expression for Z", wxDefaultPosition, wxDefaultSize, WXSIZEOF(ExpressionZ), ExpressionZ, m_Settings.GetEXPRESSION_FOR_Z(split), wxRA_SPECIFY_ROWS);
-				wsc14BIT_CC_VALUE_FOR_Z = new wxSpinCtrl(myPanel, CC_VALUE_FOR_Z_14BIT_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, m_Settings.Get14BIT_CC_VALUE_FOR_Z(split), "14-&bit CC value for Z");
+		wrbEXPRESSION_FOR_Z = new wxRadioBox(myPanel, EXPRESSION_FOR_Z_ID, L"MIDI Expression for Z", wxDefaultPosition, wxDefaultSize, WXSIZEOF(ExpressionZ), ExpressionZ, m_Settings.GetEXPRESSION_FOR_Z(split), wxRA_SPECIFY_ROWS);
+		wsc14BIT_CC_VALUE_FOR_Z = new wxSpinCtrl(myPanel, CC_VALUE_FOR_Z_14BIT_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, m_Settings.Get14BIT_CC_VALUE_FOR_Z(split), "14-&bit CC value for Z");
 
 	myPanel->SetSizer(hBoxSettings);
 	hBoxSettings->SetSizeHints(this);
@@ -51,3 +52,108 @@ AxesPage::AxesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const L
 }
 
 
+// Event handlers
+
+void AxesPage::OnSEND_Y(wxCommandEvent& event)
+{
+	m_Settings.SetSEND_Y(chkSEND_Y->GetValue(), m_Split);
+		}
+
+
+void AxesPage::OnMIN_CC_FOR_Y(wxSpinEvent& event)
+{
+	m_Settings.SetMIN_CC_FOR_Y(wscMIN_CC_FOR_Y->GetValue(), m_Split);
+}
+
+
+void AxesPage::OnMAX_CC_FOR_Y(wxSpinEvent& event)
+{
+	m_Settings.SetMAX_CC_FOR_Y(wscMAX_CC_FOR_Y->GetValue(), m_Split);
+}
+
+
+void AxesPage::OnCC_FOR_Y(wxSpinEvent& event)
+{
+	m_Settings.SetCC_FOR_Y(wscCC_FOR_Y->GetValue(), m_Split);
+}
+
+
+void AxesPage::OnRELATIVE_Y(wxCommandEvent& event)
+{
+	m_Settings.SetRELATIVE_Y(chkRELATIVE_Y->GetValue(),  m_Split);
+}
+
+
+void AxesPage::OnEXPRESSION_FOR_Y(wxCommandEvent& event)
+{
+	m_Settings.SetEXPRESSION_FOR_Y(wrbEXPRESSION_FOR_Y->GetSelection(), m_Split);
+}
+
+
+void AxesPage::OnINITIAL_RELATIVE_VALUE_FOR_Y(wxSpinEvent& event)
+{
+	m_Settings.SetINITIAL_RELATIVE_VALUE_FOR_Y(wscINITIAL_RELATIVE_VALUE_FOR_Y->GetValue(), m_Split);
+}
+
+
+void AxesPage::OnSEND_Z(wxCommandEvent& event)
+{
+	m_Settings.SetSEND_Z(chkSEND_Z->GetValue(), m_Split);
+}
+
+
+void AxesPage::OnMIN_CC_FOR_Z(wxSpinEvent& event)
+{
+	m_Settings.SetMIN_CC_FOR_Z(wscMIN_CC_FOR_Z->GetValue(), m_Split);
+}
+
+
+void AxesPage::OnMAX_CC_FOR_Z(wxSpinEvent& event)
+{
+	m_Settings.SetMAX_CC_FOR_Y(wscMAX_CC_FOR_Y->GetValue(), m_Split);
+}
+
+
+void AxesPage::OnCC_FOR_Z(wxSpinEvent& event)
+{
+	m_Settings.SetCC_FOR_Z(wscCC_FOR_Z->GetValue(), m_Split);
+}
+
+
+void AxesPage::OnRELATIVE_Z(wxCommandEvent& event)
+{
+	m_Settings.SetRELATIVE_Z(chkRELATIVE_Z->GetValue(), m_Split);
+}
+
+
+void AxesPage::OnEXPRESSION_FOR_Z(wxCommandEvent& event)
+{
+	m_Settings.SetEXPRESSION_FOR_Z(wrbEXPRESSION_FOR_Z->GetSelection(), m_Split);
+}
+
+
+void AxesPage::On14BIT_CC_VALUE_FOR_Z(wxSpinEvent& event)
+{
+	m_Settings.Set14BIT_CC_VALUE_FOR_Z(wsc14BIT_CC_VALUE_FOR_Z->GetValue(), m_Split);
+}
+
+
+// Event table
+BEGIN_EVENT_TABLE(AxesPage, wxPanel)
+EVT_CHECKBOX(SEND_Y_ID, AxesPage::OnSEND_Y)
+EVT_CHECKBOX(RELATIVE_Y_ID, AxesPage::OnRELATIVE_Y)
+EVT_CHECKBOX(SEND_Z_ID, AxesPage::OnSEND_Z)
+EVT_CHECKBOX(RELATIVE_Z_ID, AxesPage::OnRELATIVE_Z)
+
+EVT_SPINCTRL(MIN_CC_FOR_Y_ID, AxesPage::OnMIN_CC_FOR_Y)
+EVT_SPINCTRL(MAX_CC_FOR_Y_ID, AxesPage::OnMAX_CC_FOR_Y)
+EVT_SPINCTRL(CC_FOR_Y_ID, AxesPage::OnCC_FOR_Y)
+EVT_SPINCTRL(INITIAL_RELATIVE_VALUE_FOR_Y_ID, AxesPage::OnINITIAL_RELATIVE_VALUE_FOR_Y)
+EVT_SPINCTRL(MIN_CC_FOR_Z_ID, AxesPage::OnMIN_CC_FOR_Z)
+EVT_SPINCTRL(MAX_CC_FOR_Z_ID, AxesPage::OnMAX_CC_FOR_Z)
+EVT_SPINCTRL(CC_FOR_Z_ID, AxesPage::OnCC_FOR_Z)
+EVT_SPINCTRL(CC_VALUE_FOR_Z_14BIT_ID, AxesPage::On14BIT_CC_VALUE_FOR_Z)
+
+EVT_RADIOBOX(EXPRESSION_FOR_Y_ID, AxesPage::OnEXPRESSION_FOR_Y)
+EVT_RADIOBOX(EXPRESSION_FOR_Z_ID, AxesPage::OnEXPRESSION_FOR_Z)
+END_EVENT_TABLE()

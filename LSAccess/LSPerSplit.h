@@ -212,6 +212,7 @@ class LSPerSplitSettings
 public:
 	LSPerSplitSettings();
 
+	void InitFromMIDI();
 	unsigned int GetSPLIT_MODE(LSSplitType split);
 unsigned int GetMIDI_MAIN_CHANNEL(LSSplitType split);
 
@@ -345,6 +346,7 @@ unsigned int GetMIDI_MAIN_CHANNEL(LSSplitType split);
 	// Toggles:
 	void SetRESET_PITCH_ON_RELEASE(unsigned int nValue, LSSplitType split);
 	void SetSEND_Y(unsigned int nValue, LSSplitType split);
+	void SetSEND_Z(unsigned int nValue, LSSplitType split);
 	// Values are constrained by MIN_CC and MAX_CC
 	// CC 1 or CC 74 are recommended, any CC is possible though
 	void SetCC_FOR_Y(unsigned int nValue, LSSplitType split);
@@ -372,6 +374,7 @@ unsigned int GetMIDI_MAIN_CHANNEL(LSSplitType split);
 	void SetTRANSPOSE_LIGHTS(unsigned int nValue, LSSplitType split);
 	// Value is an LSExpressionY
 	void SetEXPRESSION_FOR_Y(unsigned int nValue, LSSplitType split);
+	void SetEXPRESSION_FOR_Z(unsigned int nValue, LSSplitType split);
 	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
 	void SetCC_FOR_FADER1(unsigned int nValue, LSSplitType split);
 	void SetCC_FOR_FADER2(unsigned int nValue, LSSplitType split);
@@ -448,7 +451,7 @@ unsigned int GetMIDI_MAIN_CHANNEL(LSSplitType split);
 	unsigned int m_LEFT_RELATIVE_Y;
 	unsigned int m_LEFT_RELATIVE_Z;
 	// Value is an LSExpressionZ
-	unsigned int m_LEFT_MIDI_EXPRESSION_FOR_Z;
+	unsigned int m_LEFT_EXPRESSION_FOR_Z;
 	// Values are constrained by MIN_CC and MAX_CC
 	// CC 11 is recommended, any CC is possible though
 	unsigned int m_LEFT_CC_FOR_Z;
@@ -546,7 +549,7 @@ unsigned int GetMIDI_MAIN_CHANNEL(LSSplitType split);
 	unsigned int m_RIGHT_RELATIVE_Y;
 	unsigned int m_RIGHT_RELATIVE_Z;
 	// Value is an LSExpressionZ
-	unsigned int m_RIGHT_MIDI_EXPRESSION_FOR_Z;
+	unsigned int m_RIGHT_EXPRESSION_FOR_Z;
 	// Values are constrained by MIN_CC and MAX_CC
 	// CC 11 is recommended, any CC is possible though
 	unsigned int m_RIGHT_CC_FOR_Z;
