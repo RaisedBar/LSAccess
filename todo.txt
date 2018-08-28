@@ -5,6 +5,7 @@ done = ColorsPage
 done=FadersPage
 done = FootSwitchesPage
 done = GlobalsAccentNoteLightsPage
+done = GlobalsNoteLightsPage
 
 Add routine to get all initial values from MIDI
 Add detection of O/S update state
