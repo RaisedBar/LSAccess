@@ -48,4 +48,91 @@ GlobalsAccentNoteLightsPage::GlobalsAccentNoteLightsPage(wxBookCtrlBase *parent,
 }
 
 
+void GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_C(wxCommandEvent& event)
+{
+	m_Settings.SetGLOBAL_ACCENT_NOTE_LIGHT_C(chkGLOBAL_ACCENT_NOTE_LIGHT_C->GetValue());
+}
 
+
+void GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_C_SHARP(wxCommandEvent& event)
+{
+	m_Settings.SetGLOBAL_ACCENT_NOTE_LIGHT_C_SHARP(chkGLOBAL_ACCENT_NOTE_LIGHT_C_SHARP->GetValue());
+}
+
+
+void GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_D(wxCommandEvent& event)
+{
+	m_Settings.SetGLOBAL_ACCENT_NOTE_LIGHT_D(chkGLOBAL_ACCENT_NOTE_LIGHT_D->GetValue());
+}
+
+
+void GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_D_SHARP(wxCommandEvent& event)
+{
+	m_Settings.SetGLOBAL_ACCENT_NOTE_LIGHT_D_SHARP(chkGLOBAL_ACCENT_NOTE_LIGHT_D_SHARP->GetValue());
+}
+
+
+void GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_E(wxCommandEvent& event)
+{
+	m_Settings.SetGLOBAL_ACCENT_NOTE_LIGHT_E(chkGLOBAL_ACCENT_NOTE_LIGHT_E->GetValue());
+}
+
+
+void GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_F(wxCommandEvent& event)
+{
+	m_Settings.SetGLOBAL_ACCENT_NOTE_LIGHT_F(chkGLOBAL_ACCENT_NOTE_LIGHT_F->GetValue());
+}
+
+
+void GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_F_SHARP(wxCommandEvent& event)
+{
+	m_Settings.SetGLOBAL_ACCENT_NOTE_LIGHT_F_SHARP(chkGLOBAL_ACCENT_NOTE_LIGHT_F_SHARP->GetValue());
+}
+
+
+void GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_G(wxCommandEvent& event)
+{
+	m_Settings.SetGLOBAL_ACCENT_NOTE_LIGHT_G(chkGLOBAL_ACCENT_NOTE_LIGHT_G->GetValue());
+}
+
+
+void GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_G_SHARP(wxCommandEvent& event)
+{
+	m_Settings.SetGLOBAL_ACCENT_NOTE_LIGHT_G_SHARP(chkGLOBAL_ACCENT_NOTE_LIGHT_G_SHARP->GetValue());
+}
+
+
+void GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_A(wxCommandEvent& event)
+{
+	m_Settings.SetGLOBAL_ACCENT_NOTE_LIGHT_A(chkGLOBAL_ACCENT_NOTE_LIGHT_A->GetValue());
+}
+
+
+void GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_A_SHARP(wxCommandEvent& event)
+{
+	m_Settings.SetGLOBAL_ACCENT_NOTE_LIGHT_A_SHARP(chkGLOBAL_ACCENT_NOTE_LIGHT_A_SHARP->GetValue());
+}
+
+
+void GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_B(wxCommandEvent& event)
+{
+	m_Settings.SetGLOBAL_ACCENT_NOTE_LIGHT_B(chkGLOBAL_ACCENT_NOTE_LIGHT_B->GetValue());
+}
+
+
+// Event table
+BEGIN_EVENT_TABLE(GlobalsAccentNoteLightsPage, wxPanel)
+EVT_CHECKBOX(GLOBAL_ACCENT_NOTE_LIGHT_C_ID, GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_C)
+EVT_CHECKBOX(GLOBAL_ACCENT_NOTE_LIGHT_C_SHARP_ID, GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_C_SHARP)
+EVT_CHECKBOX(GLOBAL_ACCENT_NOTE_LIGHT_D_ID, GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_D)
+EVT_CHECKBOX(GLOBAL_ACCENT_NOTE_LIGHT_D_SHARP_ID, GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_D_SHARP)
+EVT_CHECKBOX(GLOBAL_ACCENT_NOTE_LIGHT_E_ID, GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_E)
+EVT_CHECKBOX(GLOBAL_ACCENT_NOTE_LIGHT_F_ID, GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_F)
+EVT_CHECKBOX(GLOBAL_ACCENT_NOTE_LIGHT_F_SHARP_ID, GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_F_SHARP)
+EVT_CHECKBOX(GLOBAL_ACCENT_NOTE_LIGHT_G_ID, GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_G)
+EVT_CHECKBOX(GLOBAL_ACCENT_NOTE_LIGHT_G_SHARP_ID, GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_G_SHARP)
+
+EVT_CHECKBOX(GLOBAL_ACCENT_NOTE_LIGHT_A_ID, GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_A)
+EVT_CHECKBOX(GLOBAL_ACCENT_NOTE_LIGHT_A_SHARP_ID, GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_A_SHARP)
+EVT_CHECKBOX(GLOBAL_ACCENT_NOTE_LIGHT_B_ID, GlobalsAccentNoteLightsPage::OnGLOBAL_ACCENT_NOTE_LIGHT_B)
+END_EVENT_TABLE()
