@@ -75,14 +75,14 @@ LinnStrument::LinnStrument()
 
 		if ((m_OutputID != -1) && (m_InputID != -1))
 		{
-			m_GlobalSettings.SetGLOBAL_MIDI_DEVICE_IO(LS_MIDIDevice::USB);
+			m_GlobalSettings.SetGLOBAL_MIDI_DEVICE_IO(m_GlobalSettings.GetLS_MIDIDeviceIndex(LS_MIDIDevice::USB));
 			m_MIDIOut->openPort(m_OutputID);
 				m_MIDIIn->openPort(m_InputID);
 			m_MIDIIn->setCallback(&LSCallback, (void*)this);
 		}
 		else
 		{
-			m_GlobalSettings.SetGLOBAL_MIDI_DEVICE_IO(LS_MIDIDevice::MIDI_DIN_JACKS);
+			m_GlobalSettings.SetGLOBAL_MIDI_DEVICE_IO(m_GlobalSettings.GetLS_MIDIDeviceIndex(LS_MIDIDevice::MIDI_DIN_JACKS));
 		}
 						}
 	catch (RtMidiError &error)
@@ -90,7 +90,7 @@ LinnStrument::LinnStrument()
 		std::string wstrError( error.getMessage());
 		m_InputID = -1;
 		m_OutputID = -1;
-		m_GlobalSettings.SetGLOBAL_MIDI_DEVICE_IO(LS_MIDIDevice::MIDI_DIN_JACKS);
+		m_GlobalSettings.SetGLOBAL_MIDI_DEVICE_IO(m_GlobalSettings.GetLS_MIDIDeviceIndex(LS_MIDIDevice::MIDI_DIN_JACKS));
 	}
 				}
 

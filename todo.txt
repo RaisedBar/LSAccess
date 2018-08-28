@@ -3,6 +3,7 @@ done = axesPage
 done = BendPage
 done = ColorsPage
 done=FadersPage
+done = FootSwitchesPage
 
 
 

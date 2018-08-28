@@ -118,6 +118,29 @@ public:
 		this->InitFromMIDI();
 	};
 
+	unsigned int GetLS_MIDIDeviceIndex(LS_MIDIDevice device)
+	{
+		switch (device)
+		{
+		case LS_MIDIDevice::MIDI_DIN_JACKS:
+		{
+			return 0;
+			break;
+		}
+		case LS_MIDIDevice::USB:
+		{
+			return 1;
+			break;
+		}
+
+		default:
+		{
+			return 1;
+			break;
+		}
+		}
+	};
+
 	void InitFromMIDI()
 	{
 	};
@@ -913,29 +936,6 @@ unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_C()
 	{
 		m_GLOBAL_GUITAR_NOTE_TUNING_ROW8 = nValue;
 	}
-
-	unsigned int GetLS_MIDIDeviceIndex(LS_MIDIDevice device)
-	{
-		switch (device)
-		{
-		case LS_MIDIDevice::MIDI_DIN_JACKS:
-		{
-			return 0;
-			break;
-		}
-		case LS_MIDIDevice::USB:
-		{
-			return 1;
-			break;
-		}
-
-		default:
-		{
-			return 1;
-			break;
-		}
-		}
-	};
 
 	private:
 				unsigned int m_GLOBAL_SPLIT_ACTIVE;
