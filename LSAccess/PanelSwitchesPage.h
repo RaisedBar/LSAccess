@@ -27,18 +27,37 @@ public:
 	PanelSwitchesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
 
 private:
+	// event handlers
+	DECLARE_EVENT_TABLE()
+
+	void OnGLOBAL_SWITCH1_ASSIGN(wxCommandEvent& event);
+	void OnGLOBAL_SWITCH1_BOTH_SPLITS(wxCommandEvent& event);
+	void OnGLOBAL_SWITCH2_ASSIGN(wxCommandEvent& event);
+	void OnGLOBAL_SWITCH2_BOTH_SPLITS(wxCommandEvent& event);
+void OnGLOBAL_CC_FOR_SWITCH1_SUSTAIN(wxSpinEvent& event);
+	void OnGLOBAL_CC_FOR_SWITCH1_CC65(wxSpinEvent& event);
+	void OnGLOBAL_CC_FOR_SWITCH2_SUSTAIN(wxSpinEvent& event);
+	void OnGLOBAL_CC_FOR_SWITCH2_CC65(wxSpinEvent& event);
+	
+	// data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
 	LSGlobalSettings m_Settings;
 
 	// controls
-	// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
-	wxSpinCtrl * wscBEND_RANGE;
-	// Toggles:
-	wxCheckBox * chkBEND_TOGGLE;
-	wxCheckBox * chkBEND_QUANTIZE_TOGGLE;
-	// Values are from LSPitchQuantize
-	wxRadioBox * wrbcPitchBendType;
-	// Toggles:
-	wxCheckBox * chkRESET_PITCH_ON_RELEASE;
-};
+	// Value is an LSSwitchAssignment
+	wxRadioBox * wrbGLOBAL_SWITCH1_ASSIGN;
+	// Toggle:
+	wxCheckBox * chkGLOBAL_SWITCH1_BOTH_SPLITS;
+	// Values are constrained by MIN_CC and MAX_CC
+	// WXSpinCtrl * wscGLOABAL_CC_FOR_CC65;  // Changes the CC for all switches - Legacy option, see NRPN 255 - 258
+	wxSpinCtrl * wscGLOBAL_CC_FOR_SWITCH1_SUSTAIN;
+	wxSpinCtrl * wscGLOBAL_CC_FOR_SWITCH1_CC65;
+	// Value is an LSSwitchAssignment
+	wxRadioBox * wrbGLOBAL_SWITCH2_ASSIGN;
+	// Toggle:
+	wxCheckBox * chkGLOBAL_SWITCH2_BOTH_SPLITS;
+	// Values are constrained by MIN_CC and MAX_CC
+	wxSpinCtrl * wscGLOBAL_CC_FOR_SWITCH2_SUSTAIN;
+	wxSpinCtrl * wscGLOBAL_CC_FOR_SWITCH2_CC65;
+	};

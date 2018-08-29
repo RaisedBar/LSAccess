@@ -802,6 +802,7 @@ unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_C()
 	{
 		return m_GLOBAL_CC_FOR_SWITCH1_CC65;
 	}
+	
 	void SetGLOBAL_CC_FOR_SWITCH1_CC65(unsigned int nValue)
 	{
 		m_GLOBAL_CC_FOR_SWITCH1_CC65 = nValue;
