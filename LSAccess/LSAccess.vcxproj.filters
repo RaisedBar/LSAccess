@@ -30,9 +30,6 @@
     <ClInclude Include="LSOctaveTranspose.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LSGeneral.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="LSEnums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -135,9 +132,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LSOctaveTranspose.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LSGeneral.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SequencerPage.cpp">

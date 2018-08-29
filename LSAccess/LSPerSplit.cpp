@@ -38,6 +38,32 @@ unsigned int LSPerSplitSettings::GetMIDI_MAIN_CHANNEL(LSSplitType split)
 }
 
 
+void LSPerSplitSettings::SetSPLIT_MODE(unsigned int nValue, LSSplitType split)
+{
+	if (split == LSSplitType::LEFT)
+	{
+		m_LEFT_SPLIT_MODE = nValue;
+	}
+	else
+	{
+		m_RIGHT_SPLIT_MODE = nValue;
+	}
+}
+
+
+void LSPerSplitSettings::SetMIDI_MAIN_CHANNEL(unsigned int nValue, LSSplitType split)
+{
+	if (split == LSSplitType::LEFT)
+	{
+		m_LEFT_MIDI_MAIN_CHANNEL = nValue;
+	}
+	else
+	{
+		m_RIGHT_MIDI_MAIN_CHANNEL = nValue;
+	}
+}
+
+
 unsigned int LSPerSplitSettings::GetCHANNEL_PER_NOTE_1(LSSplitType split)
 {
 	if (split == LSSplitType::LEFT)

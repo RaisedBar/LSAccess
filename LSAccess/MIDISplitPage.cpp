@@ -5,7 +5,8 @@
 MIDISplitPage::MIDISplitPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)
 	:wxPanel(parent),
 	pMyLinnStrument(new LinnStrument),
-		pMyParent(new wxBookCtrl())
+		pMyParent(new wxBookCtrl()),
+	m_Split( split)
 	{
 	pMyLinnStrument = pLinnStrument;
 m_Settings = pMyLinnStrument->GetPerSplitSettings();
@@ -62,3 +63,148 @@ hBoxSettings->Fit(myPanel);
 }
 
 
+void MIDISplitPage::OnMIDI_MAIN_CHANNEL(wxSpinEvent& event)
+{
+	m_Settings.SetMIDI_MAIN_CHANNEL(wscMIDI_MAIN_CHANNEL->GetValue(), m_Split);
+}
+
+
+void MIDISplitPage::OnMIDI_PER_ROW_LOWEST_CHANNEL(wxSpinEvent& event)
+{
+	m_Settings.SetMIDI_PER_ROW_LOWEST_CHANNEL(wscMIDI_PER_ROW_LOWEST_CHANNEL->GetValue(), m_Split);
+}
+
+
+void MIDISplitPage::OnCHANNEL_PER_NOTE_1(wxCommandEvent& event)
+{
+	m_Settings.SetCHANNEL_PER_NOTE_1(chkCHANNEL_PER_NOTE_1->GetValue(), m_Split);
+}
+
+
+void MIDISplitPage::OnCHANNEL_PER_NOTE_2(wxCommandEvent& event)
+{
+	m_Settings.SetCHANNEL_PER_NOTE_2(chkCHANNEL_PER_NOTE_2->GetValue(), m_Split);
+}
+
+
+void MIDISplitPage::OnCHANNEL_PER_NOTE_3(wxCommandEvent& event)
+{
+	m_Settings.SetCHANNEL_PER_NOTE_3(chkCHANNEL_PER_NOTE_3->GetValue(), m_Split);
+}
+
+
+void MIDISplitPage::OnCHANNEL_PER_NOTE_4(wxCommandEvent& event)
+{
+	m_Settings.SetCHANNEL_PER_NOTE_4(chkCHANNEL_PER_NOTE_4->GetValue(), m_Split);
+}
+
+
+void MIDISplitPage::OnCHANNEL_PER_NOTE_5(wxCommandEvent& event)
+{
+	m_Settings.SetCHANNEL_PER_NOTE_5(chkCHANNEL_PER_NOTE_5->GetValue(), m_Split);
+}
+
+
+void MIDISplitPage::OnCHANNEL_PER_NOTE_6(wxCommandEvent& event)
+{
+	m_Settings.SetCHANNEL_PER_NOTE_6(chkCHANNEL_PER_NOTE_6->GetValue(), m_Split);
+}
+
+
+void MIDISplitPage::OnCHANNEL_PER_NOTE_7(wxCommandEvent& event)
+{
+	m_Settings.SetCHANNEL_PER_NOTE_7(chkCHANNEL_PER_NOTE_7->GetValue(), m_Split);
+}
+
+
+void MIDISplitPage::OnCHANNEL_PER_NOTE_8(wxCommandEvent& event)
+{
+	m_Settings.SetCHANNEL_PER_NOTE_8(chkCHANNEL_PER_NOTE_8->GetValue(), m_Split);
+}
+
+
+void MIDISplitPage::OnCHANNEL_PER_NOTE_9(wxCommandEvent& event)
+{
+	m_Settings.SetCHANNEL_PER_NOTE_9(chkCHANNEL_PER_NOTE_9->GetValue(), m_Split);
+}
+
+
+void MIDISplitPage::OnCHANNEL_PER_NOTE_10(wxCommandEvent& event)
+{
+	m_Settings.SetCHANNEL_PER_NOTE_10(chkCHANNEL_PER_NOTE_10->GetValue(), m_Split);
+}
+
+
+void MIDISplitPage::OnCHANNEL_PER_NOTE_11(wxCommandEvent& event)
+{
+	m_Settings.SetCHANNEL_PER_NOTE_11(chkCHANNEL_PER_NOTE_11->GetValue(), m_Split);
+}
+
+
+void MIDISplitPage::OnCHANNEL_PER_NOTE_12(wxCommandEvent& event)
+{
+	m_Settings.SetCHANNEL_PER_NOTE_12(chkCHANNEL_PER_NOTE_12->GetValue(), m_Split);
+}
+
+
+void MIDISplitPage::OnCHANNEL_PER_NOTE_13(wxCommandEvent& event)
+{
+	m_Settings.SetCHANNEL_PER_NOTE_13(chkCHANNEL_PER_NOTE_13->GetValue(), m_Split);
+}
+
+
+void MIDISplitPage::OnCHANNEL_PER_NOTE_14(wxCommandEvent& event)
+{
+	m_Settings.SetCHANNEL_PER_NOTE_14(chkCHANNEL_PER_NOTE_14->GetValue(), m_Split);
+}
+
+
+void MIDISplitPage::OnCHANNEL_PER_NOTE_15(wxCommandEvent& event)
+{
+	m_Settings.SetCHANNEL_PER_NOTE_15(chkCHANNEL_PER_NOTE_15->GetValue(), m_Split);
+}
+
+
+void MIDISplitPage::OnCHANNEL_PER_NOTE_16(wxCommandEvent& event)
+{
+	m_Settings.SetCHANNEL_PER_NOTE_16(chkCHANNEL_PER_NOTE_16->GetValue(), m_Split);
+}
+
+
+void MIDISplitPage::OnSPLIT_MODE(wxCommandEvent& event)
+{
+	m_Settings.SetSPLIT_MODE(wrbSPLIT_MODE->GetSelection(), m_Split);
+}
+
+
+void MIDISplitPage::OnCHANNEL_PER_ROW_ORDER(wxCommandEvent& event)
+{
+	m_Settings.SetCHANNEL_PER_ROW_ORDER(wrbCHANNEL_PER_ROW_ORDER->GetSelection(), m_Split);
+}
+
+
+// Event table
+BEGIN_EVENT_TABLE(MIDISplitPage, wxPanel)
+EVT_CHECKBOX(CHANNEL_PER_NOTE_1_ID, MIDISplitPage::OnCHANNEL_PER_NOTE_1)
+EVT_CHECKBOX(CHANNEL_PER_NOTE_2_ID, MIDISplitPage::OnCHANNEL_PER_NOTE_2)
+EVT_CHECKBOX(CHANNEL_PER_NOTE_3_ID, MIDISplitPage::OnCHANNEL_PER_NOTE_3)
+EVT_CHECKBOX(CHANNEL_PER_NOTE_4_ID, MIDISplitPage::OnCHANNEL_PER_NOTE_4)
+EVT_CHECKBOX(CHANNEL_PER_NOTE_5_ID, MIDISplitPage::OnCHANNEL_PER_NOTE_5)
+EVT_CHECKBOX(CHANNEL_PER_NOTE_6_ID, MIDISplitPage::OnCHANNEL_PER_NOTE_6)
+EVT_CHECKBOX(CHANNEL_PER_NOTE_7_ID, MIDISplitPage::OnCHANNEL_PER_NOTE_7)
+EVT_CHECKBOX(CHANNEL_PER_NOTE_8_ID, MIDISplitPage::OnCHANNEL_PER_NOTE_8)
+EVT_CHECKBOX(CHANNEL_PER_NOTE_9_ID, MIDISplitPage::OnCHANNEL_PER_NOTE_9)
+EVT_CHECKBOX(CHANNEL_PER_NOTE_10_ID, MIDISplitPage::OnCHANNEL_PER_NOTE_10)
+EVT_CHECKBOX(CHANNEL_PER_NOTE_11_ID, MIDISplitPage::OnCHANNEL_PER_NOTE_11)
+EVT_CHECKBOX(CHANNEL_PER_NOTE_12_ID, MIDISplitPage::OnCHANNEL_PER_NOTE_12)
+EVT_CHECKBOX(CHANNEL_PER_NOTE_13_ID, MIDISplitPage::OnCHANNEL_PER_NOTE_13)
+EVT_CHECKBOX(CHANNEL_PER_NOTE_14_ID, MIDISplitPage::OnCHANNEL_PER_NOTE_14)
+EVT_CHECKBOX(CHANNEL_PER_NOTE_15_ID, MIDISplitPage::OnCHANNEL_PER_NOTE_15)
+EVT_CHECKBOX(CHANNEL_PER_NOTE_16_ID, MIDISplitPage::OnCHANNEL_PER_NOTE_16)
+
+EVT_SPINCTRL(MIDI_MAIN_CHANNEL_ID, MIDISplitPage::OnMIDI_MAIN_CHANNEL)
+EVT_SPINCTRL(MIDI_PER_ROW_LOWEST_CHANNEL_ID, MIDISplitPage::OnMIDI_PER_ROW_LOWEST_CHANNEL)
+
+EVT_RADIOBOX(SPLIT_MODE_ID, MIDISplitPage::OnSPLIT_MODE)
+EVT_RADIOBOX(CHANNEL_PER_ROW_ORDER_ID, MIDISplitPage::OnCHANNEL_PER_ROW_ORDER)
+END_EVENT_TABLE()

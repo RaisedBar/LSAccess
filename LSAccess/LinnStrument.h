@@ -8,7 +8,6 @@
 #include "LSPerSplit.h"
 #include "LSGlobals.h"
 #include "LSOctaveTranspose.h"
-#include "LSGeneral.h"
 #include "NRPNQueue.h"
 
 /*
@@ -639,11 +638,7 @@ public:
 	void SetOctaveTransposeSettings(LSOctaveTransposeSettings octaveTransposeSettings);
 	LSGlobalSettings GetGlobalSettings();
 	void SetGlobalSettings(LSGlobalSettings globalSettings);
-
-
-	LSGeneralSettings GetGeneralSettings();
-	void SetGeneralSettings(LSGeneralSettings myGeneralSettings);
-	void ProcessMessage(std::vector <unsigned char> vBytes);
+		void ProcessMessage(std::vector <unsigned char> vBytes);
 // Option to use speech to output note names
 	bool GetSpeakNotes();
 	void SetSpeakNotes(bool blnSpeakNotes);
@@ -657,8 +652,7 @@ private:
 		LSPerSplitSettings m_PerSplitSettings;
 		LSOctaveTransposeSettings m_OctaveTransposeSettings;
 		LSGlobalSettings m_GlobalSettings;
-		LSGeneralSettings m_GeneralSettings;
-
+		
 		NRPNQueue m_NRPNQueue;
 		std::pair <unsigned char, unsigned char> m_NRPN;
 

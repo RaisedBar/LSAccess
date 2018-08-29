@@ -167,7 +167,6 @@
     <ClInclude Include="FadersPage.h" />
     <ClInclude Include="LowRowPage.h" />
     <ClInclude Include="LSEnums.h" />
-    <ClInclude Include="LSGeneral.h" />
     <ClInclude Include="LSGlobals.h" />
     <ClInclude Include="NRPNQueue.h" />
     <ClInclude Include="OctaveTransposeFrame.h" />
@@ -209,7 +208,6 @@
     <ClCompile Include="LSAccess.cpp" />
     <ClCompile Include="LSAccessFrame.cpp" />
     <ClCompile Include="LinnStrument.cpp" />
-    <ClCompile Include="LSGeneral.cpp" />
     <ClCompile Include="LSOctaveTranspose.cpp" />
     <ClCompile Include="LSPerSplit.cpp" />
     <ClCompile Include="BendPage.cpp" />

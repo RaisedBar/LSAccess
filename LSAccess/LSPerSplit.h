@@ -3,6 +3,12 @@
 
 #pragma once
 
+// Value is an LSSplitMode
+const unsigned int SPLIT_MODE_NRPN = 0;
+
+// Value constrained by MIN_MIDI_CHANNEL and MAX_MIDI_CHANNEL
+const unsigned int MIDI_MAIN_CHANNEL_NRPN = 1;
+
 enum class LSSplitType
 {
 	LEFT = 0,
@@ -213,6 +219,7 @@ public:
 	LSPerSplitSettings();
 
 	void InitFromMIDI();
+	
 	unsigned int GetSPLIT_MODE(LSSplitType split);
 unsigned int GetMIDI_MAIN_CHANNEL(LSSplitType split);
 
