@@ -7,6 +7,7 @@ done = FootSwitchesPage
 done = GlobalsAccentNoteLightsPage
 done = GlobalsNoteLightsPage
 done = GlobalsArpPage
+done = GlobalsPowerMIDIPage
 
 Add routine to get all initial values from MIDI
 Add detection of O/S update state

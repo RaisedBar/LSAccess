@@ -27,7 +27,26 @@ public:
 	GlobalsPowerMIDIPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
 
 private:
+	// event handlers
+	DECLARE_EVENT_TABLE()
+			
+	void OnGLOBAL_MIDI_DEVICE_IO(wxCommandEvent& event);
+	void OnDEVICE_MIDI_THRU(wxCommandEvent& event);
+	void OnDEVICE_USER_FIRMWARE_MODE(wxCommandEvent& event);
+	void OnDEVICE_MIN_BYTE_INTERVAL_VALUE(wxSpinEvent& event);
+
+// data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
 	LSGlobalSettings m_Settings;
-};
+
+	// Controls
+		// Value is an LS_MIDIDevice
+	wxRadioBox * wrbGLOBAL_MIDI_DEVICE_IO;
+	// Toggle:
+	wxCheckBox * chkDEVICE_MIDI_THRU;
+		// Value is constrained by MIN_MIDI_BYTE_DELAY and MAX_MIDI_BYTE_DELAY
+	wxSpinCtrl * wscDEVICE_MIN_BYTE_INTERVAL_VALUE;
+	// toggle
+	wxCheckBox * chkDEVICE_USER_FIRMWARE_MODE;
+	};

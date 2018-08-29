@@ -30,6 +30,8 @@ GlobalsArpPage::GlobalsArpPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrum
 }
 
 
+// Event handlers
+
 void GlobalsArpPage::OnGLOBAL_ARP_DIRECTION(wxCommandEvent& event)
 {
 	m_Settings.SetGLOBAL_ARP_DIRECTION(wrbGLOBAL_ARP_DIRECTION->GetSelection());

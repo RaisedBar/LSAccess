@@ -32,3 +32,36 @@ GlobalsPowerMIDIPage::GlobalsPowerMIDIPage(wxBookCtrlBase *parent, LinnStrument 
 }
 
 
+// Event handlers
+
+void GlobalsPowerMIDIPage::OnGLOBAL_MIDI_DEVICE_IO(wxCommandEvent& event)
+{
+	m_Settings.SetGLOBAL_MIDI_DEVICE_IO(wrbGLOBAL_MIDI_DEVICE_IO->GetSelection());
+}
+
+
+void GlobalsPowerMIDIPage::OnDEVICE_MIDI_THRU(wxCommandEvent& event)
+{
+	m_Settings.SetDEVICE_MIDI_THRU(chkDEVICE_MIDI_THRU->GetValue());
+}
+
+
+void GlobalsPowerMIDIPage::OnDEVICE_USER_FIRMWARE_MODE(wxCommandEvent& event)
+{
+	m_Settings.SetDEVICE_USER_FIRMWARE_MODE(chkDEVICE_USER_FIRMWARE_MODE->GetValue());
+}
+
+
+void GlobalsPowerMIDIPage::OnDEVICE_MIN_BYTE_INTERVAL_VALUE(wxSpinEvent& event)
+{
+	m_Settings.SetDEVICE_MIN_BYTE_INTERVAL_VALUE(wscDEVICE_MIN_BYTE_INTERVAL_VALUE->GetValue());
+}
+
+
+// Event table
+BEGIN_EVENT_TABLE(GlobalsPowerMIDIPage, wxPanel)
+EVT_CHECKBOX(DEVICE_MIDI_THRU_ID, GlobalsPowerMIDIPage::OnDEVICE_MIDI_THRU)
+EVT_CHECKBOX(DEVICE_USER_FIRMWARE_MODE_ID, GlobalsPowerMIDIPage::OnDEVICE_USER_FIRMWARE_MODE)
+EVT_SPINCTRL(DEVICE_MIN_BYTE_INTERVAL_VALUE_ID, GlobalsPowerMIDIPage::OnDEVICE_MIN_BYTE_INTERVAL_VALUE)
+EVT_RADIOBOX(GLOBAL_MIDI_DEVICE_IO_ID, GlobalsPowerMIDIPage::OnGLOBAL_MIDI_DEVICE_IO)
+END_EVENT_TABLE()
