@@ -10,6 +10,7 @@ done = GlobalsArpPage
 done = GlobalsPowerMIDIPage
 done = GlobalsSplitPage
 done = GlobalsTuningsPage
+done = GlobalsVelocityPressurePage
 
 Add routine to get all initial values from MIDI
 Add detection of O/S update state
