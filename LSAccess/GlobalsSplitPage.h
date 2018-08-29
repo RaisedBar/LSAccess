@@ -27,8 +27,24 @@ public:
 	GlobalsSplitPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument);
 
 private:
+	// event handlers
+	DECLARE_EVENT_TABLE()
+		
+	void OnGLOBAL_SPLIT_ACTIVE(wxCommandEvent& event);
+	void OnDEVICE_LEFT_HANDED(wxCommandEvent& event);
+	void OnGLOBAL_SPLIT_COLUMN(wxSpinEvent& event);
+
+// data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
 	LSGlobalSettings m_Settings;
+
+
+// controls
+// Controls
+	wxCheckBox * chkGLOBAL_SPLIT_ACTIVE;
+// Value is constrained by MIN_SPLIT_COLUMN and MAX_SPLIT_COLUMN  
+	wxSpinCtrl * wscGLOBAL_SPLIT_COLUMN;
+	wxCheckBox * chkDEVICE_LEFT_HANDED;
 };
 

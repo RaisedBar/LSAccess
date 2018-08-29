@@ -8,7 +8,7 @@ done = GlobalsAccentNoteLightsPage
 done = GlobalsNoteLightsPage
 done = GlobalsArpPage
 done = GlobalsPowerMIDIPage
-
+done = GlobalsSplitPage
 Add routine to get all initial values from MIDI
 Add detection of O/S update state
 Add dialogs for DIN I/O

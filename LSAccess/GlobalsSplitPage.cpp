@@ -28,3 +28,27 @@ GlobalsSplitPage::GlobalsSplitPage(wxBookCtrlBase *parent, LinnStrument * pLinnS
 }
 
 
+void GlobalsSplitPage::OnGLOBAL_SPLIT_ACTIVE(wxCommandEvent& event)
+{
+
+}
+
+
+void GlobalsSplitPage::OnDEVICE_LEFT_HANDED(wxCommandEvent& event)
+{
+
+}
+
+
+void GlobalsSplitPage::OnGLOBAL_SPLIT_COLUMN(wxSpinEvent& event)
+{
+
+}
+
+
+/// Event table
+BEGIN_EVENT_TABLE(GlobalsSplitPage, wxPanel)
+EVT_CHECKBOX(GLOBAL_SPLIT_ACTIVE_ID, GlobalsSplitPage::OnGLOBAL_SPLIT_ACTIVE)
+EVT_CHECKBOX(DEVICE_LEFT_HANDED_ID, GlobalsSplitPage::OnDEVICE_LEFT_HANDED)
+EVT_SPINCTRL(GLOBAL_SPLIT_COLUMN_ID, GlobalsSplitPage::OnGLOBAL_SPLIT_COLUMN)
+END_EVENT_TABLE()
