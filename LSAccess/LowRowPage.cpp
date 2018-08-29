@@ -5,7 +5,8 @@
 LowRowPage::LowRowPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)
 	:wxPanel(parent),
 	pMyLinnStrument(new LinnStrument),
-	pMyParent(new wxBookCtrl())
+	pMyParent(new wxBookCtrl()),
+	m_Split(split)
 {
 	pMyLinnStrument = pLinnStrument;
 	m_Settings = pMyLinnStrument->GetPerSplitSettings();
@@ -33,4 +34,82 @@ LowRowPage::LowRowPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, con
 }
 
 
+// event handlers
 
+void LowRowPage::OnCC_FOR_LOWROW(wxSpinEvent& event)
+{
+	m_Settings.SetCC_FOR_LOWROW(wscCC_FOR_LOWROW->GetValue(), m_Split);
+}
+
+
+void LowRowPage::OnCC_FOR_LOWROW_XYZ(wxSpinEvent& event)
+{
+	m_Settings.SetCC_FOR_LOWROW_XYZ(wscCC_FOR_LOWROW_XYZ->GetValue(), m_Split);
+}
+
+
+void LowRowPage::OnCC_FOR_LOWROW_XYZ_Y(wxSpinEvent& event)
+{
+	m_Settings.SetCC_FOR_LOWROW_XYZ_Y(wscCC_FOR_LOWROW_XYZ_Y->GetValue(), m_Split);
+}
+
+
+void LowRowPage::OnCC_FOR_LOWROW_XYZ_Z(wxSpinEvent& event)
+{
+	m_Settings.SetCC_FOR_LOWROW_XYZ_Z(wscCC_FOR_LOWROW_XYZ_Z->GetValue(), m_Split);
+}
+
+
+void LowRowPage::OnSPECIAL(wxSpinEvent& event)
+{
+	m_Settings.SetSPECIAL(wscSPECIAL->GetValue(), m_Split);
+}
+
+
+void LowRowPage::OnLOWROW_X_BEHAVIOUR(wxCommandEvent& event)
+{
+	m_Settings.SetLOWROW_X_BEHAVIOUR(wrbLOWROW_X_BEHAVIOUR->GetSelection(), m_Split);
+}
+
+
+void LowRowPage::OnLOWROW_XYZ_BEHAVIOUR(wxCommandEvent& event)
+{
+	m_Settings.SetLOWROW_XYZ_BEHAVIOUR(wrbLOWROW_XYZ_BEHAVIOUR->GetSelection(), m_Split);
+}
+
+
+void LowRowPage::OnLOWROW_MODE(wxCommandEvent& event)
+{
+	m_Settings.SetLOWROW_MODE(wrbLOWROW_MODE->GetSelection(), m_Split);
+}
+
+
+void LowRowPage::OnOCTAVE(wxCommandEvent& event)
+{
+	m_Settings.SetOCTAVE(wrbOCTAVE->GetSelection(), m_Split);
+}
+
+
+void LowRowPage::OnPITCH_TRANSPOSE(wxCommandEvent& event)
+{
+	m_Settings.SetPITCH_TRANSPOSE(wrbPITCH_TRANSPOSE->GetSelection(), m_Split);
+}
+
+
+void LowRowPage::OnTRANSPOSE_LIGHTS(wxCommandEvent& event)
+{
+	m_Settings.SetTRANSPOSE_LIGHTS(wrbTRANSPOSE_LIGHTS->GetSelection(), m_Split);
+}
+
+
+// Event table
+BEGIN_EVENT_TABLE(LowRowPage, wxPanel)
+EVT_SPINCTRL(CC_FOR_LOWROW_ID, LowRowPage::OnCC_FOR_LOWROW)
+EVT_SPINCTRL(CC_FOR_LOWROW_XYZ_ID, LowRowPage::OnCC_FOR_LOWROW_XYZ)
+EVT_SPINCTRL(CC_FOR_LOWROW_XYZ_Y_ID, LowRowPage::OnCC_FOR_LOWROW_XYZ_Y)
+EVT_SPIN(CC_FOR_LOWROW_XYZ_Z_ID, LowRowPage::OnCC_FOR_LOWROW_XYZ_Z)
+
+EVT_RADIOBOX(LOWROW_XYZ_BEHAVIOUR_ID, LowRowPage::OnLOWROW_XYZ_BEHAVIOUR)
+EVT_RADIOBOX(LOWROW_X_BEHAVIOUR_ID, LowRowPage::OnLOWROW_X_BEHAVIOUR)
+EVT_RADIOBOX(LOWROW_MODE_ID, LowRowPage::OnLOWROW_MODE)
+END_EVENT_TABLE()
