@@ -27,14 +27,23 @@ public:
 	OctaveTransposePage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split);
 
 private:
+	// event handlers
+	DECLARE_EVENT_TABLE()
+
+	void OnOctave(wxCommandEvent& event);
+	void OnPITCH_TRANSPOSE(wxCommandEvent& event);
+	void OnTRANSPOSE_LIGHTS(wxCommandEvent& event);
+	
+	// data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
 	LSOctaveTransposeSettings m_Settings;
+	LSSplitType m_Split;
 
-	// controls
-			// Toggles:
-	wxCheckBox * chkSEQUENCER_TOGGLE_PLAY, *chkSEQUENCER_TOGGLE_MUTE;
-	wxButton *btnSEQUENCER_PREVIOUS_PATTERN, *btnSEQUENCER_NEXT_PATTERN;
-	// Value is an LSPatternNumber
-	wxSpinCtrl * wscSEQUENCER_PATTERN;
+// controls
+			// Value is an LSOctave
+	wxRadioBox * wrbOctave;
+	// Values are from LSPitch
+	wxRadioBox * wrbPITCH_TRANSPOSE;
+	wxRadioBox * wrbTRANSPOSE_LIGHTS;
 };
