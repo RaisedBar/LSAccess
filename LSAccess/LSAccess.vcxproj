@@ -162,6 +162,7 @@
     <ClInclude Include="GlobalsSplitPage.h" />
     <ClInclude Include="GlobalsTuningsPage.h" />
     <ClInclude Include="GlobalsVelocityPressurePage.h" />
+    <ClInclude Include="MIDIDialog.h" />
     <ClInclude Include="MIDISplitPage.h" />
     <ClInclude Include="ColorsPage.h" />
     <ClInclude Include="FadersPage.h" />
@@ -198,6 +199,7 @@
     <ClCompile Include="GlobalsTuningsPage.cpp" />
     <ClCompile Include="GlobalsNoteLightsPage.cpp" />
     <ClCompile Include="GlobalsVelocityPressurePage.cpp" />
+    <ClCompile Include="MIDIDialog.cpp" />
     <ClCompile Include="MIDISplitPage.cpp" />
     <ClCompile Include="ColorsPage.cpp" />
     <ClCompile Include="FadersPage.cpp" />

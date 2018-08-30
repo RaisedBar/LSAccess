@@ -66,26 +66,45 @@ void LSCallback(double deltatime, std::vector< unsigned char > *message, void *p
 
 LinnStrument::LinnStrument()
 {
-				try
+	try
 	{
 		m_MIDIIn = new RtMidiIn();
 		m_MIDIOut = new RtMidiOut();
-				m_OutputID = GetUSBOutPortID();
-				m_InputID = GetUSBInPortID();
+		m_OutputID = GetUSBOutPortID();
+		m_InputID = GetUSBInPortID();
 
-		if ((m_OutputID != -1) && (m_InputID != -1))
+		if ((m_OutputID == -1) || (m_InputID == -1))
+		{
+			// Prompt for appropriate DIN sockets
+			MIDIDialog * pMIDIDialog = new MIDIDialog(L"LinnStrument MIDI I/O jacks");
+			if (pMIDIDialog->ShowModal() == wxID_OK)
+			{
+												m_GlobalSettings.SetGLOBAL_MIDI_DEVICE_IO(m_GlobalSettings.GetLS_MIDIDeviceIndex(LS_MIDIDevice::MIDI_DIN_JACKS));
+												m_OutputID = pMIDIDialog->GetSelectedOutput();
+													m_InputID = pMIDIDialog->GetSelectedInput();
+
+													if ((m_OutputID != -1) && (m_InputID != -1))
+													{
+														m_MIDIOut->openPort();
+														m_MIDIIn->openPort(pMIDIDialog->GetSelectedInput());
+														m_MIDIIn->setCallback(&LSCallback, (void*)this);
+													}  // if valid port selections
+																}   // if dialog OK
+			else
+			{
+				m_InputID = -1;
+				m_OutputID = -1;
+			}  // dialog cancelled
+		}   
+		else  // USB connection detected
 		{
 			m_GlobalSettings.SetGLOBAL_MIDI_DEVICE_IO(m_GlobalSettings.GetLS_MIDIDeviceIndex(LS_MIDIDevice::USB));
 			m_MIDIOut->openPort(m_OutputID);
-				m_MIDIIn->openPort(m_InputID);
+			m_MIDIIn->openPort(m_InputID);
 			m_MIDIIn->setCallback(&LSCallback, (void*)this);
 		}
-		else
-		{
-			m_GlobalSettings.SetGLOBAL_MIDI_DEVICE_IO(m_GlobalSettings.GetLS_MIDIDeviceIndex(LS_MIDIDevice::MIDI_DIN_JACKS));
-		}
-						}
-	catch (RtMidiError &error)
+	}  // end try
+		catch (RtMidiError &error)
 	{
 		std::string wstrError( error.getMessage());
 		m_InputID = -1;

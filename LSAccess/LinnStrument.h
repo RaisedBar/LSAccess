@@ -9,6 +9,7 @@
 #include "LSGlobals.h"
 #include "LSOctaveTranspose.h"
 #include "NRPNQueue.h"
+#include "MIDIDialog.h"
 
 /*
 The following definitions are derived from:
