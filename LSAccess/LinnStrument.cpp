@@ -2,29 +2,31 @@
 
 #include "LinnStrument.h"
 
+
+
 std::string MIDINoteName(unsigned char nNoteNumber)
 {
 	std::string strNoteName;
-	int nOctaveNumber = ((nNoteNumber +12) / 12) -1;
-	
+	int nOctaveNumber = ((nNoteNumber + 12) / 12) - 1;
+
 	switch (nNoteNumber % 12)
 	{
 	case 0: strNoteName = "C";
 	case 1: strNoteName = "C#";
-			case 2: strNoteName = "D";
-			case 3: strNoteName = "D#";
-			case 4: strNoteName = "E";
-			case 5: strNoteName = "F";
-			case 6: strNoteName = "F#";
-			case 7: strNoteName = "G";
-			case 8: strNoteName = "G#";
-			case 9: strNoteName = "A";
-			case 10: strNoteName = "A#";
+	case 2: strNoteName = "D";
+	case 3: strNoteName = "D#";
+	case 4: strNoteName = "E";
+	case 5: strNoteName = "F";
+	case 6: strNoteName = "F#";
+	case 7: strNoteName = "G";
+	case 8: strNoteName = "G#";
+	case 9: strNoteName = "A";
+	case 10: strNoteName = "A#";
 	case 11: strNoteName = "B";
-	default: strNoteName= "";
+	default: strNoteName = "";
 	}  // end switch
-	   return strNoteName.append(std::to_string(nOctaveNumber));
-	}
+	return strNoteName.append(std::to_string(nOctaveNumber));
+}
 
 
 void SendCC(unsigned char CCNumber, unsigned char CCValue)
@@ -179,12 +181,40 @@ int LinnStrument::GetUSBOutPortID()
 
 void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 {
-	if (m_SpeakNotes)
+	unsigned char nStatus = MIDI().ShortMsgStatus(myMessage);
+
+	switch (nStatus)
 	{
-		unsigned char nNoteNumber = 0;
-		// MessageBox(NULL, (LPCWSTR) MIDINoteName(nNoteNumber).c_str(), (LPCWSTR) "Test", MB_ICONWARNING | MB_OK);
-	}
+	case MIDI_CMD_NOTE_ON:
+	{
+		if (m_SpeakNotes)
+		{
+			unsigned char nNoteNumber = MIDI().ShortMsgData1(myMessage);
+			std::string strNoteName = MIDINoteName(nNoteNumber);
+			// Announce
+					}
 }
+	break;
+
+		case CC_NRPN_VALUE_MSB:
+		{
+			m_NRPNValue.first = MIDI().ShortMsgData2(myMessage);
+		}
+		break;
+
+		case CC_NRPN_VALUE_LSB:
+		{
+			m_NRPNValue.second = MIDI().ShortMsgData2(myMessage);
+		}
+		break;
+
+		default:
+			{
+			}
+			break;
+		}  // end switch
+}
+
 
 bool LinnStrument::GetSpeakNotes()
 {

@@ -10,6 +10,7 @@
 #include "LSOctaveTranspose.h"
 #include "NRPNQueue.h"
 #include "MIDIDialog.h"
+#include "MIDI.h"
 
 /*
 The following definitions are derived from:
@@ -73,8 +74,8 @@ enum class LSToggleValue
 };
 
 // Valid MIDI channel number range:
-const unsigned int MIN_MIDI_CHANNEL = 1;
-const unsigned int MAX_MIDI_CHANNEL = 16;
+// const unsigned int MIN_MIDI_CHANNEL = 1;
+// const unsigned int MAX_MIDI_CHANNEL = 16;
 
 enum class LS_MIDIMode
 {
@@ -655,7 +656,8 @@ private:
 		LSGlobalSettings m_GlobalSettings;
 		
 		NRPNQueue m_NRPNQueue;
-		std::pair <unsigned char, unsigned char> m_NRPN;
+		unsigned int m_NRPNNumber;
+		std::pair <unsigned char, unsigned char> m_NRPNValue;
 
 		bool m_SpeakNotes;
 					};

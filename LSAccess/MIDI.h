@@ -246,8 +246,11 @@ const unsigned char CC_FX4_DEPTH = 94;
 const unsigned char CC_FX5_DEPTH = 95;
 const unsigned char CC_DATA_INCREMENT = 96;
 const unsigned char CC_DATA_DECREMENT = 97;
-const unsigned char CC_NRPN_LSB = 98;
-const unsigned char CC_NRPN_MSB = 99;
+const unsigned char CC_NRPN_PARAM_LSB = 98;
+const unsigned char CC_NRPN_PARAM_MSB = 99;
+const unsigned char CC_NRPN_VALUE_LSB = 38;
+const unsigned char CC_NRPN_VALUE_MSB = 6;
+
 const unsigned char CC_RPN_LSB = 100;
 const unsigned char CC_RPN_MSB = 101;
 const unsigned char CC_ALL_SOUND_OFF = 120;
