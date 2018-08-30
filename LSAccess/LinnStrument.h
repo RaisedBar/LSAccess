@@ -656,10 +656,8 @@ private:
 		LSGlobalSettings m_GlobalSettings;
 		
 		NRPNQueue m_NRPNQueue;
-		unsigned int m_NRPNNumber;
-		std::pair <unsigned char, unsigned char> m_NRPNValue;
-
-		bool m_SpeakNotes;
+		unsigned int m_NRPNParameter, m_NRPNValue;
+				bool m_SpeakNotes;
 					};
 
 std::string MIDINoteName(unsigned char nNoteNumber);

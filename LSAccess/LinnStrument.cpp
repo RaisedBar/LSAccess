@@ -34,28 +34,33 @@ void SendCC(unsigned char CCNumber, unsigned char CCValue)
 }
 
 
-void SendNRPN(unsigned int NRPNNumber, unsigned int NRPNValue)
+void SendNRPN(RtMidiOut * pMIDIOut, unsigned int nChannel, unsigned int NRPNNumber, unsigned int NRPNValue)
 {
-	/*
-		NRPN input
-		==========
+	std::vector<unsigned char> myMessage;
+		unsigned char myNRPNParameterMSB, myNRPNParameterLSB;
+	unsigned char myNRPNValueMSB, myNRPNValueLSB;
 
-		NRPN messages are a series of MIDI CC messages that allow changing more parameters than are supported by
-		the standard MIDI CC message list. LinnStrument always expects an exact series of 6 MIDI CC messages to be
-		received for setting one NRPN to a different value. The first two select the NRPN parameter number, the
-		next two set the NRPN parameter value(both MSB and LSB are used), and the last two reset the active NRPN
-		parameter number. Failure to reset the NRPN parameter number can result in other MIDI input messages to
-		behave unpredictably.
+	// Calculate the MSB and LSB values here
 
-		This is an overview of the message chain :
+	myMessage.push_back((unsigned char)nChannel);
+	myMessage.push_back(myNRPNParameterMSB);
+	myMessage.push_back(myNRPNParameterLSB);
+	pMIDIOut->sendMessage(&myMessage);
 
-		1011nnnn   01100011 (99)  0vvvvvvv         NRPN parameter number MSB CC
-		1011nnnn   01100010 (98)  0vvvvvvv         NRPN parameter number LSB CC
-		1011nnnn   00000110 (6)  0vvvvvvv         NRPN parameter value MSB CC
-		1011nnnn   00100110 (38)  0vvvvvvv         NRPN parameter value LSB CC
-		1011nnnn   01100101 (101)  01111111 (127)   RPN parameter number Reset MSB CC
-		1011nnnn   01100100 (100)  01111111 (127)   RPN parameter number Reset LSB CC
-		*/
+	myMessage.push_back((unsigned char)nChannel);
+	myMessage.push_back(myNRPNValueMSB);
+	myMessage.push_back(myNRPNValueLSB);
+	pMIDIOut->sendMessage(&myMessage);
+
+	myMessage.push_back((unsigned char)nChannel);
+	myMessage.push_back(RESET_NRPN_CC_MSB);
+	myMessage.push_back(127);
+	pMIDIOut->sendMessage(&myMessage);
+
+	myMessage.push_back((unsigned char)nChannel);
+	myMessage.push_back(RESET_NRPN_CC_LSB);
+	myMessage.push_back(127);
+	pMIDIOut->sendMessage(&myMessage);
 }
 
 
@@ -196,15 +201,27 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 }
 	break;
 
+		case CC_NRPN_PARAM_MSB:
+		{
+			m_NRPNParameter = MIDI().ShortMsgData2(myMessage) * 127;
+		}
+		break;
+
+		case CC_NRPN_PARAM_LSB:
+		{
+			m_NRPNParameter = m_NRPNParameter + MIDI().ShortMsgData2(myMessage);
+		}
+		break;
+
 		case CC_NRPN_VALUE_MSB:
 		{
-			m_NRPNValue.first = MIDI().ShortMsgData2(myMessage);
+			m_NRPNValue = MIDI().ShortMsgData2(myMessage) * 127;
 		}
 		break;
 
 		case CC_NRPN_VALUE_LSB:
 		{
-			m_NRPNValue.second = MIDI().ShortMsgData2(myMessage);
+			m_NRPNValue = m_NRPNValue + MIDI().ShortMsgData2(myMessage);
 		}
 		break;
 
