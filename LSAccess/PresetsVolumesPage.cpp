@@ -12,19 +12,22 @@ PresetsVolumesPage::PresetsVolumesPage(wxBookCtrlBase *parent, LinnStrument * pL
 	m_Settings = pMyLinnStrument->GetGlobalSettings();
 	pMyParent = parent;
 	wxPanel * myPanel = new wxPanel(this, -1);
-	wxBoxSizer * hBoxSettings = new wxBoxSizer(wxHORIZONTAL);
+	wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
 
 	// Controls
 		// Value is an LSPresetNumber
-	wxRadioBox * wrbGLOBAL_SETTINGS_PRESET_LOAD = new wxRadioBox(myPanel, GLOBAL_SETTINGS_PRESET_LOAD_ID, L"&LinnStrument Preset", wxDefaultPosition, wxDefaultSize, WXSIZEOF(PresetNumbers), PresetNumbers, m_Settings.GetLSPresetNumber(), wxRA_SPECIFY_ROWS);
+	wrbGLOBAL_SETTINGS_PRESET_LOAD = new wxRadioBox(myPanel, GLOBAL_SETTINGS_PRESET_LOAD_ID, L"&LinnStrument Preset", wxDefaultPosition, wxDefaultSize, WXSIZEOF(PresetNumbers), PresetNumbers, m_Settings.GetLSPresetNumber(), wxRA_SPECIFY_ROWS);
+	hBox1->Add(wrbGLOBAL_SETTINGS_PRESET_LOAD, 0, wxEXPAND);
 	// Values constrained by MIN_CC and MAX_CC
-	wxSpinCtrl * wscProgramNumber = new wxSpinCtrl(myPanel, ProgramNumber_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, m_Settings.GetMIDIProgram(split), "&Program");
-	wxSpinCtrl * wscVolume = new wxSpinCtrl(myPanel, Volume_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, m_Settings.GetVolume(split), "&Volume");
+wscProgramNumber = new wxSpinCtrl(myPanel, ProgramNumber_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, m_Settings.GetMIDIProgram(split), "&Program");
+hBox1->Add(wscProgramNumber, 0, wxEXPAND);
+wscVolume = new wxSpinCtrl(myPanel, Volume_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, m_Settings.GetVolume(split), "&Volume");
+	hBox1->Add(wscVolume, 0, wxEXPAND);
 
-	myPanel->SetSizer(hBoxSettings);
-	hBoxSettings->SetSizeHints(this);
+	myPanel->SetSizer(hBox1);
+	hBox1->SetSizeHints(this);
 	myPanel->Fit();
-	hBoxSettings->Fit(myPanel);
+	hBox1->Fit(myPanel);
 }
 
 

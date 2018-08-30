@@ -12,19 +12,22 @@ OctaveTransposePage::OctaveTransposePage(wxBookCtrlBase *parent, LinnStrument * 
 	m_Settings = pMyLinnStrument->GetOctaveTransposeSettings();
 	pMyParent = parent;
 	wxPanel * myPanel = new wxPanel(this, -1);
-	wxBoxSizer * hBoxSettings = new wxBoxSizer(wxHORIZONTAL);
+	wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
 
 	// Controls
 	// Value is an LSOctave
 	wrbOctave = new wxRadioBox(myPanel, OCTAVE_ID, L"&Octave", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Octaves), Octaves, m_Settings.GetOctave(split), wxRA_SPECIFY_ROWS);
+	hBox1->Add(wrbOctave, 0, wxEXPAND);
 	// Values are from LSPitch
 	wrbPITCH_TRANSPOSE = new wxRadioBox(myPanel, TRANSPOSE_PITCH_ID, L"&Pitch transpose", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Pitches), Pitches, m_Settings.GetTransposePitch(split), wxRA_SPECIFY_ROWS);
+	hBox1->Add(wrbPITCH_TRANSPOSE, 0, wxEXPAND);
 	wrbTRANSPOSE_LIGHTS = new wxRadioBox(myPanel, TRANSPOSE_LIGHTS_ID, L"Transpose &lights", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Pitches), Pitches, m_Settings.GetTransposeLights(split), wxRA_SPECIFY_ROWS);
+	hBox1->Add(wrbTRANSPOSE_LIGHTS, 0, wxEXPAND);
 
-	myPanel->SetSizer(hBoxSettings);
-	hBoxSettings->SetSizeHints(this);
+	myPanel->SetSizer(hBox1);
+	hBox1->SetSizeHints(this);
 	myPanel->Fit();
-	hBoxSettings->Fit(myPanel);
+	hBox1->Fit(myPanel);
 }
 
 

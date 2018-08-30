@@ -11,27 +11,37 @@ GlobalsTuningsPage::GlobalsTuningsPage(wxBookCtrlBase *parent, LinnStrument * pL
 	m_Settings = pMyLinnStrument->GetGlobalSettings();
 	pMyParent = parent;
 	wxPanel * myPanel = new wxPanel(this, -1);
-	wxBoxSizer * hBoxSettings = new wxBoxSizer(wxHORIZONTAL);
+	wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
 	
 	// Controls
 		// Value is an LSRowOffsetType
 		wrbGLOBAL_ROW_OFFSET = new wxRadioBox(myPanel, GLOBAL_ROW_OFFSET_ID, L"Row offset &type", wxDefaultPosition, wxDefaultSize, WXSIZEOF(RowOffsetTypes), RowOffsetTypes, m_Settings.GetGLOBAL_ROW_OFFSET(), wxRA_SPECIFY_ROWS);
-	// Value is an LSCustomRowOffset
+		hBox1->Add(wrbGLOBAL_ROW_OFFSET, 0, wxEXPAND);
+		// Value is an LSCustomRowOffset
 	wrbGLOBAL_CUSTOM_ROW_OFFSET = new wxRadioBox(myPanel, GLOBAL_CUSTOM_ROW_OFFSET_ID, L"&Custom row offset", wxDefaultPosition, wxDefaultSize, WXSIZEOF(CustomRowOffsets), CustomRowOffsets, m_Settings.GetGLOBAL_CUSTOM_ROW_OFFSET(), wxRA_SPECIFY_ROWS);
+	hBox1->Add(wrbGLOBAL_CUSTOM_ROW_OFFSET, 0, wxEXPAND);
 	// Values are constrained by MIN_CC and MAX_CC
 	wscGLOBAL_GUITAR_NOTE_TUNING_ROW1 = new wxSpinCtrl(myPanel, GLOBAL_GUITAR_NOTE_TUNING_ROW1_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, m_Settings.GetGLOBAL_GUITAR_NOTE_TUNING_ROW1(), "Row &1 tuning");
-wscGLOBAL_GUITAR_NOTE_TUNING_ROW2 = new wxSpinCtrl(myPanel, GLOBAL_GUITAR_NOTE_TUNING_ROW2_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, m_Settings.GetGLOBAL_GUITAR_NOTE_TUNING_ROW2(), "Row &2 tuning");
+	hBox1->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW1, 0, wxEXPAND);
+	wscGLOBAL_GUITAR_NOTE_TUNING_ROW2 = new wxSpinCtrl(myPanel, GLOBAL_GUITAR_NOTE_TUNING_ROW2_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, m_Settings.GetGLOBAL_GUITAR_NOTE_TUNING_ROW2(), "Row &2 tuning");
+	hBox1->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW2, 0, wxEXPAND);
 	wscGLOBAL_GUITAR_NOTE_TUNING_ROW3 = new wxSpinCtrl(myPanel, GLOBAL_GUITAR_NOTE_TUNING_ROW3_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, m_Settings.GetGLOBAL_GUITAR_NOTE_TUNING_ROW3(), "Row &3 tuning");
+	hBox1->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW3, 0, wxEXPAND);
 	wscGLOBAL_GUITAR_NOTE_TUNING_ROW4 = new wxSpinCtrl(myPanel, GLOBAL_GUITAR_NOTE_TUNING_ROW4_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, m_Settings.GetGLOBAL_GUITAR_NOTE_TUNING_ROW4(), "Row &4 tuning");
+	hBox1->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW4, 0, wxEXPAND);
 	wscGLOBAL_GUITAR_NOTE_TUNING_ROW5 = new wxSpinCtrl(myPanel, GLOBAL_GUITAR_NOTE_TUNING_ROW5_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, m_Settings.GetGLOBAL_GUITAR_NOTE_TUNING_ROW5(), "Row &5 tuning");
+	hBox1->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW5, 0, wxEXPAND);
 	wscGLOBAL_GUITAR_NOTE_TUNING_ROW6 = new wxSpinCtrl(myPanel, GLOBAL_GUITAR_NOTE_TUNING_ROW6_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, m_Settings.GetGLOBAL_GUITAR_NOTE_TUNING_ROW6(), "Row &6 tuning");
+	hBox1->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW6, 0, wxEXPAND);
 	wscGLOBAL_GUITAR_NOTE_TUNING_ROW7 = new wxSpinCtrl(myPanel, GLOBAL_GUITAR_NOTE_TUNING_ROW7_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, m_Settings.GetGLOBAL_GUITAR_NOTE_TUNING_ROW7(), "Row &7 tuning");
+	hBox1->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW7, 0, wxEXPAND);
 	wscGLOBAL_GUITAR_NOTE_TUNING_ROW8 = new wxSpinCtrl(myPanel, GLOBAL_GUITAR_NOTE_TUNING_ROW8_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, m_Settings.GetGLOBAL_GUITAR_NOTE_TUNING_ROW8(), "Row &8 tuning");
+	hBox1->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW8, 0, wxEXPAND);
 
-	myPanel->SetSizer(hBoxSettings);
-	hBoxSettings->SetSizeHints(this);
+	myPanel->SetSizer(hBox1);
+	hBox1->SetSizeHints(this);
 	myPanel->Fit();
-	hBoxSettings->Fit(myPanel);
+	hBox1->Fit(myPanel);
 }
 
 

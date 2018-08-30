@@ -39,7 +39,7 @@ LSAccessFrame::LSAccessFrame(const wxString& title)
 	// create a status bar 
 	CreateStatusBar(2);
 	SetStatusText("Welcome to LSAccess!");
-
+	this->Maximize();
 	// Initialize the LinnStrument itself
 	pLinnStrument = new LinnStrument();
 		}

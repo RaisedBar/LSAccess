@@ -11,20 +11,23 @@ GlobalsSplitPage::GlobalsSplitPage(wxBookCtrlBase *parent, LinnStrument * pLinnS
 	m_Settings = pMyLinnStrument->GetGlobalSettings();
 	pMyParent = parent;
 	wxPanel * myPanel = new wxPanel(this, -1);
-	wxBoxSizer * hBoxSettings = new wxBoxSizer(wxHORIZONTAL);
+	wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
 
 	// Controls
-	wxCheckBox * chkGLOBAL_SPLIT_ACTIVE = new wxCheckBox(myPanel, GLOBAL_SPLIT_ACTIVE_ID, L"&Split");
+	chkGLOBAL_SPLIT_ACTIVE = new wxCheckBox(myPanel, GLOBAL_SPLIT_ACTIVE_ID, L"&Split");
 	chkGLOBAL_SPLIT_ACTIVE->SetValue(m_Settings.GetGLOBAL_SPLIT_ACTIVE());
+	hBox1->Add(chkGLOBAL_SPLIT_ACTIVE, 0, wxEXPAND);
 	// Value is constrained by MIN_SPLIT_COLUMN and MAX_SPLIT_COLUMN  
-	wxSpinCtrl * wscGLOBAL_SPLIT_COLUMN = new wxSpinCtrl(myPanel, GLOBAL_SPLIT_COLUMN_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_SPLIT_COLUMN, MAX_SPLIT_COLUMN, m_Settings.GetGLOBAL_SPLIT_COLUMN(), "Split &column");
-	wxCheckBox * chkDEVICE_LEFT_HANDED = new wxCheckBox(myPanel, DEVICE_LEFT_HANDED_ID, L"&Left-handed");
+wscGLOBAL_SPLIT_COLUMN = new wxSpinCtrl(myPanel, GLOBAL_SPLIT_COLUMN_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_SPLIT_COLUMN, MAX_SPLIT_COLUMN, m_Settings.GetGLOBAL_SPLIT_COLUMN(), "Split &column");
+	hBox1->Add(wscGLOBAL_SPLIT_COLUMN, 0, wxEXPAND);
+	chkDEVICE_LEFT_HANDED = new wxCheckBox(myPanel, DEVICE_LEFT_HANDED_ID, L"&Left-handed");
 	chkDEVICE_LEFT_HANDED->SetValue(m_Settings.GetDEVICE_LEFT_HANDED());
+	hBox1->Add(chkDEVICE_LEFT_HANDED, 0, wxEXPAND);
 
-	myPanel->SetSizer(hBoxSettings);
-	hBoxSettings->SetSizeHints(this);
+	myPanel->SetSizer(hBox1);
+	hBox1->SetSizeHints(this);
 	myPanel->Fit();
-	hBoxSettings->Fit(myPanel);
+	hBox1->Fit(myPanel);
 }
 
 

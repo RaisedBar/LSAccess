@@ -25,6 +25,7 @@ SpecialPage::SpecialPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, c
 		L"Sequencer"
 };
 wrbSPECIAL = new wxRadioBox(myPanel, SPECIAL_ID, L"Mode", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Specials), Specials, 0, wxRA_SPECIFY_ROWS);
+hBox1->Add(wrbSPECIAL, 0, wxEXPAND);
 
 hBox1->Add(wrbSPECIAL, 0, wxEXPAND);
 	myPanel->SetSizer(hBox1);

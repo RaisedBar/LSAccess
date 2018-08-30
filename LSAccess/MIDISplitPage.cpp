@@ -12,54 +12,82 @@ MIDISplitPage::MIDISplitPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrumen
 m_Settings = pMyLinnStrument->GetPerSplitSettings();
 pMyParent = parent;
 wxPanel * myPanel = new wxPanel(this, -1);
-wxBoxSizer * hBoxSettings = new wxBoxSizer(wxHORIZONTAL);
+wxBoxSizer * vBox1 = new wxBoxSizer(wxVERTICAL);
+wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
+wxBoxSizer * hBox2 = new wxBoxSizer(wxHORIZONTAL);
 
 // Controls
 // Value is an LS_MIDIMode
 wrbSPLIT_MODE = new wxRadioBox(myPanel, SPLIT_MODE_ID, L"&Split mode", wxDefaultPosition, wxDefaultSize, WXSIZEOF(SplitModes), SplitModes, m_Settings.GetSPLIT_MODE(split), wxRA_SPECIFY_ROWS);
-	// Value is a MIDI channel number:
+vBox1->Add(wrbSPLIT_MODE, 0, wxEXPAND);
+// Value is a MIDI channel number:
 wscMIDI_MAIN_CHANNEL = new wxSpinCtrl(myPanel, MIDI_MAIN_CHANNEL_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_MIDI_CHANNEL, MAX_MIDI_CHANNEL, m_Settings.GetMIDI_MAIN_CHANNEL(split), "Main MIDI channel");
+vBox1->Add(wscMIDI_MAIN_CHANNEL, 0, wxEXPAND);
 // Value is an LSChannelOrder
 wrbCHANNEL_PER_ROW_ORDER = new wxRadioBox(myPanel, CHANNEL_PER_ROW_ORDER_ID, L"Channel &Order", wxDefaultPosition, wxDefaultSize, WXSIZEOF(ChannelOrders), ChannelOrders, m_Settings.GetCHANNEL_PER_ROW_ORDER(split), wxRA_SPECIFY_ROWS);
+vBox1->Add(wrbCHANNEL_PER_ROW_ORDER, 0, wxEXPAND);
+
 chkCHANNEL_PER_NOTE_1 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_1_ID, L"Channel per note &1");
 chkCHANNEL_PER_NOTE_1->SetValue(m_Settings.GetCHANNEL_PER_NOTE_1(split));
+hBox1->Add(chkCHANNEL_PER_NOTE_1, 0, wxEXPAND);
 chkCHANNEL_PER_NOTE_2 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_2_ID, L"Channel per note &2");
 chkCHANNEL_PER_NOTE_2->SetValue(m_Settings.GetCHANNEL_PER_NOTE_2(split));
+hBox1->Add(chkCHANNEL_PER_NOTE_2, 0, wxEXPAND);
 chkCHANNEL_PER_NOTE_3 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_3_ID, L"Channel per note &3");
 chkCHANNEL_PER_NOTE_3->SetValue(m_Settings.GetCHANNEL_PER_NOTE_3(split));
+hBox1->Add(chkCHANNEL_PER_NOTE_3, 0, wxEXPAND);
 chkCHANNEL_PER_NOTE_4 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_4_ID, L"Channel per note &4");
 chkCHANNEL_PER_NOTE_4->SetValue(m_Settings.GetCHANNEL_PER_NOTE_4(split));
+hBox1->Add(chkCHANNEL_PER_NOTE_4, 0, wxEXPAND);
 chkCHANNEL_PER_NOTE_5 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_5_ID, L"Channel per note &5");
 chkCHANNEL_PER_NOTE_5->SetValue(m_Settings.GetCHANNEL_PER_NOTE_5(split));
+hBox1->Add(chkCHANNEL_PER_NOTE_5, 0, wxEXPAND);
 chkCHANNEL_PER_NOTE_6 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_6_ID, L"Channel per note &6");;
 chkCHANNEL_PER_NOTE_6->SetValue(m_Settings.GetCHANNEL_PER_NOTE_6(split));
+hBox1->Add(chkCHANNEL_PER_NOTE_6, 0, wxEXPAND);
 chkCHANNEL_PER_NOTE_7 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_7_ID, L"Channel per note &7");
 chkCHANNEL_PER_NOTE_7->SetValue(m_Settings.GetCHANNEL_PER_NOTE_7(split));
+hBox1->Add(chkCHANNEL_PER_NOTE_7, 0, wxEXPAND);
 chkCHANNEL_PER_NOTE_8 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_8_ID, L"Channel per note &8");
 chkCHANNEL_PER_NOTE_8->SetValue(m_Settings.GetCHANNEL_PER_NOTE_8(split));
+hBox1->Add(chkCHANNEL_PER_NOTE_8, 0, wxEXPAND);
+
 chkCHANNEL_PER_NOTE_9 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_9_ID, L"Channel per note &9");
 chkCHANNEL_PER_NOTE_9->SetValue(m_Settings.GetCHANNEL_PER_NOTE_9(split));
+hBox2->Add(chkCHANNEL_PER_NOTE_9, 0, wxEXPAND);
 chkCHANNEL_PER_NOTE_10 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_10_ID, L"Channel per note 10");
 chkCHANNEL_PER_NOTE_10->SetValue(m_Settings.GetCHANNEL_PER_NOTE_10(split));
+hBox2->Add(chkCHANNEL_PER_NOTE_10, 0, wxEXPAND);
 chkCHANNEL_PER_NOTE_11 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_11_ID, L"Channel per note &11");
 chkCHANNEL_PER_NOTE_11->SetValue(m_Settings.GetCHANNEL_PER_NOTE_11(split));
+hBox2->Add(chkCHANNEL_PER_NOTE_11, 0, wxEXPAND);
 chkCHANNEL_PER_NOTE_12 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_12_ID, L"Channel per note &12");
 chkCHANNEL_PER_NOTE_12->SetValue(m_Settings.GetCHANNEL_PER_NOTE_12(split));
+hBox2->Add(chkCHANNEL_PER_NOTE_12, 0, wxEXPAND);
 chkCHANNEL_PER_NOTE_13 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_13_ID, L"Channel per note 13");
 chkCHANNEL_PER_NOTE_13->SetValue(m_Settings.GetCHANNEL_PER_NOTE_13(split));
+hBox2->Add(chkCHANNEL_PER_NOTE_13, 0, wxEXPAND);
 chkCHANNEL_PER_NOTE_14 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_14_ID, L"Channel per note 14");
 chkCHANNEL_PER_NOTE_14->SetValue(m_Settings.GetCHANNEL_PER_NOTE_14(split));
+hBox2->Add(chkCHANNEL_PER_NOTE_14, 0, wxEXPAND);
 chkCHANNEL_PER_NOTE_15 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_15_ID, L"Channel per note 15");
 chkCHANNEL_PER_NOTE_15->SetValue(m_Settings.GetCHANNEL_PER_NOTE_15(split));
+hBox2->Add(chkCHANNEL_PER_NOTE_15, 0, wxEXPAND);
 chkCHANNEL_PER_NOTE_16 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_16_ID, L"Channel per note 16");
 chkCHANNEL_PER_NOTE_16->SetValue(m_Settings.GetCHANNEL_PER_NOTE_16(split));
+hBox2->Add(chkCHANNEL_PER_NOTE_16, 0, wxEXPAND);
+
 // Value is a MIDI channel number:
 wscMIDI_PER_ROW_LOWEST_CHANNEL = new wxSpinCtrl(myPanel, MIDI_PER_ROW_LOWEST_CHANNEL_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_MIDI_CHANNEL, MAX_MIDI_CHANNEL, m_Settings.GetMIDI_PER_ROW_LOWEST_CHANNEL(split), "MIDI per row lowest channel");
+vBox1->Add(wscMIDI_PER_ROW_LOWEST_CHANNEL, 0, wxEXPAND);
 
-myPanel->SetSizer(hBoxSettings);
-hBoxSettings->SetSizeHints(this);
+vBox1->Add(hBox1, 0, wxEXPAND);
+vBox1->Add(hBox2, 0, wxEXPAND);
+
+myPanel->SetSizer(vBox1);
+vBox1->SetSizeHints(this);
 myPanel->Fit();
-hBoxSettings->Fit(myPanel);
+vBox1->Fit(myPanel);
 }
 
 
