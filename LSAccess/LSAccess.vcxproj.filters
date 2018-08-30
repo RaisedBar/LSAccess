@@ -120,6 +120,9 @@
     <ClInclude Include="MIDIDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MIDI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LSAccess.cpp">
@@ -213,6 +216,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MIDIDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MIDI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
