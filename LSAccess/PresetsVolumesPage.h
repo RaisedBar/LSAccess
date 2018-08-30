@@ -27,8 +27,24 @@ public:
 	PresetsVolumesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, LSSplitType split);
 
 private:
+	// event handlers
+	DECLARE_EVENT_TABLE()
+
+	void OnGLOBAL_SETTINGS_PRESET_LOAD(wxCommandEvent& event);
+		void OnProgramNumber(wxSpinEvent& event);
+	void OnVolume(wxSpinEvent& event);
+
+	// data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
 	LSGlobalSettings m_Settings;
+	LSSplitType m_Split;
+	
+	// Controls
+			// Value is an LSPresetNumber
+	wxRadioBox * wrbGLOBAL_SETTINGS_PRESET_LOAD;
+	// Values constrained by MIN_CC and MAX_CC
+	wxSpinCtrl * wscProgramNumber;
+	wxSpinCtrl * wscVolume;
 };
 

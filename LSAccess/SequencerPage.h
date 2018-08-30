@@ -27,11 +27,23 @@ public:
 	SequencerPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split);
 
 private:
+	// event handlers
+	DECLARE_EVENT_TABLE()
+		
+void OnSEQUENCER_TOGGLE_PLAY(wxCommandEvent& event);
+	void OnSEQUENCER_TOGGLE_MUTE(wxCommandEvent& event);
+	void OnSEQUENCER_PREVIOUS_PATTERN(wxCommandEvent& event);
+	void OnSEQUENCER_NEXT_PATTERN(wxCommandEvent& event);
+		void OnSEQUENCER_PATTERN(wxSpinEvent& event);
+	
+// data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
 	LSPerSplitSettings m_Settings;
+	LSSplitType m_Split;
 
-	// controls
+	
+// controls
 			// Toggles:
 	wxCheckBox * chkSEQUENCER_TOGGLE_PLAY, * chkSEQUENCER_TOGGLE_MUTE;
 	wxButton *btnSEQUENCER_PREVIOUS_PATTERN, * btnSEQUENCER_NEXT_PATTERN;

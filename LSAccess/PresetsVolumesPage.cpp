@@ -5,6 +5,7 @@
 PresetsVolumesPage::PresetsVolumesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, LSSplitType split)
 	:wxPanel(parent),
 	pMyLinnStrument(new LinnStrument),
+	m_Split(split),
 	pMyParent(new wxBookCtrl())
 {
 	pMyLinnStrument = pLinnStrument;
@@ -27,4 +28,30 @@ PresetsVolumesPage::PresetsVolumesPage(wxBookCtrlBase *parent, LinnStrument * pL
 }
 
 
+// event handlers
 
+void PresetsVolumesPage::OnGLOBAL_SETTINGS_PRESET_LOAD(wxCommandEvent& event)
+{
+	m_Settings.SetLSPresetNumber(wrbGLOBAL_SETTINGS_PRESET_LOAD->GetSelection());
+}
+
+
+void PresetsVolumesPage::OnProgramNumber(wxSpinEvent& event)
+{
+	m_Settings.SetMIDIProgram(wscProgramNumber->GetValue(), m_Split);
+}
+
+
+void PresetsVolumesPage::OnVolume(wxSpinEvent& event)
+{
+	m_Settings.SetVolume(wscVolume->GetValue(), m_Split);
+}
+
+
+// Event table
+BEGIN_EVENT_TABLE(PresetsVolumesPage, wxPanel)
+EVT_SPIN(ProgramNumber_ID, PresetsVolumesPage::OnProgramNumber)
+EVT_SPIN(Volume_ID, PresetsVolumesPage::OnVolume)
+
+EVT_RADIOBOX(GLOBAL_SETTINGS_PRESET_LOAD_ID, PresetsVolumesPage::OnGLOBAL_SETTINGS_PRESET_LOAD)
+END_EVENT_TABLE()

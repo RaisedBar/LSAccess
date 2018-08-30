@@ -5,13 +5,14 @@
 SpecialPage::SpecialPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)
 	:wxPanel(parent),
 	pMyLinnStrument(new LinnStrument),
+	m_Split(split),
 	pMyParent(new wxBookCtrl())
 {
 	pMyLinnStrument = pLinnStrument;
 	m_Settings = pMyLinnStrument->GetPerSplitSettings();
 	pMyParent = parent;
 	wxPanel * myPanel = new wxPanel(this, -1);
-	wxBoxSizer * hBoxSettings = new wxBoxSizer(wxHORIZONTAL);
+	wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
 
 	// Controls
 	// Value is an LSSpecial:
@@ -25,10 +26,23 @@ SpecialPage::SpecialPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, c
 };
 wrbSPECIAL = new wxRadioBox(myPanel, SPECIAL_ID, L"Mode", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Specials), Specials, 0, wxRA_SPECIFY_ROWS);
 
-	myPanel->SetSizer(hBoxSettings);
-	hBoxSettings->SetSizeHints(this);
+hBox1->Add(wrbSPECIAL, 0, wxEXPAND);
+	myPanel->SetSizer(hBox1);
+	hBox1->SetSizeHints(this);
 	myPanel->Fit();
-	hBoxSettings->Fit(myPanel);
+	hBox1->Fit(myPanel);
 }
 
 
+// event handlers
+
+void SpecialPage::OnSpecial(wxCommandEvent& event)
+{
+	m_Settings.SetSPECIAL(wrbSPECIAL->GetSelection(), m_Split);
+}
+
+
+// Event table
+BEGIN_EVENT_TABLE(SpecialPage, wxPanel)
+EVT_RADIOBOX(SPECIAL_ID, SpecialPage::OnSpecial)
+END_EVENT_TABLE()

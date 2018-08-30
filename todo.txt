@@ -1,21 +1,4 @@
-Add event handlers for UI controls
-done = axesPage
-done = BendPage
-done = ColorsPage
-done=FadersPage
-done = FootSwitchesPage
-done = GlobalsAccentNoteLightsPage
-done = GlobalsNoteLightsPage
-done = GlobalsArpPage
-done = GlobalsPowerMIDIPage
-done = GlobalsSplitPage
-done = GlobalsTuningsPage
-done = GlobalsVelocityPressurePage
-done = LowRowPage
-done = MIDISplitPage
-done = OctaveTransposePage
-done = PanelSwitchesPage
-
+Add sizers
 Add routine to get all initial values from MIDI
 Add detection of O/S update state
 Add dialogs for DIN I/O

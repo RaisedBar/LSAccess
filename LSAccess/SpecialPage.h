@@ -27,9 +27,16 @@ public:
 	SpecialPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split);
 
 private:
+	// event handlers
+	DECLARE_EVENT_TABLE()
+
+	void OnSpecial(wxCommandEvent& event);
+	
+	// data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
 	LSPerSplitSettings m_Settings;
+	LSSplitType m_Split;
 
 	// controls
 // Value is an LSSpecial:
