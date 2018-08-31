@@ -1,3 +1,6 @@
 Add routine to get all initial values from MIDI
+
 Add detection of O/S update state
-Add saving state
+you can discover those with WMI, Win32_SerialPort class.
+
+Add saving state/options

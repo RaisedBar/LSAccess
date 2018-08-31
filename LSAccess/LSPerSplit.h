@@ -4,10 +4,9 @@
 #pragma once
 
 // Value is an LSSplitMode
-const unsigned int SPLIT_MODE_NRPN = 0;
-
+const unsigned int SPLIT_LEFT_MAIN_MODE_NRPN = 0;
 // Value constrained by MIN_MIDI_CHANNEL and MAX_MIDI_CHANNEL
-const unsigned int MIDI_MAIN_CHANNEL_NRPN = 1;
+const unsigned int SPLIT_LEFT_MAIN_CHANNEL_NRPN = 1;
 
 enum class LSSplitType
 {

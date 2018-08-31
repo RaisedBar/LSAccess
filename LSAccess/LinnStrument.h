@@ -646,7 +646,11 @@ public:
 	void SetSpeakNotes(bool blnSpeakNotes);
 	
 private:
-		// MIDI devices
+	void SendNRPN(unsigned int nChannel, unsigned int NRPNNumber, unsigned int NRPNValue);
+	void SetLSParameter( unsigned int NRPNParameterIn, unsigned int NRPNValueIn);
+	
+	// data
+// MIDI devices
 		RtMidiIn * m_MIDIIn;
 		RtMidiOut * m_MIDIOut;
 		// MIDI port ID values;
@@ -656,12 +660,12 @@ private:
 		LSGlobalSettings m_GlobalSettings;
 		
 		NRPNQueue m_NRPNQueue;
-		unsigned int m_NRPNParameter, m_NRPNValue;
-				bool m_SpeakNotes;
+		unsigned int m_NRPNParameterIn, m_NRPNValueIn;
+		bool blnReceivedNRPNResetMSB, blnReceivedNRPNResetLSB;
+		bool m_SpeakNotes;
 					};
 
 std::string MIDINoteName(unsigned char nNoteNumber);
 void SendCC(unsigned char CCNumber, unsigned char CCValue);
-void SendNRPN(unsigned int NRPNNumber, unsigned int NRPNValue);
 
 void LSCallback(double deltatime, std::vector< unsigned char > *message, void *pLinnStrument);

@@ -618,13 +618,13 @@ case CC_DATA_DECREMENT:
 	}
 	break;
 
-case CC_NRPN_LSB: 
+case CC_NRPN_PARAM_LSB:
 	{
 		wstrOut = wstrNRPNLSB;
 	}
 	break;
 
-case CC_NRPN_MSB: 
+case CC_NRPN_PARAM_MSB:
 	{
 		wstrOut = wstrNRPNMSB;
 	}
