@@ -66,9 +66,6 @@
     <ClInclude Include="GlobalsFrame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NRPNQueue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="LSGlobals.h">
       <Filter>Header Files</Filter>
     </ClInclude>

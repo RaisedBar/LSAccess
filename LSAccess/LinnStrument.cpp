@@ -1483,7 +1483,7 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 		{
 if ((blnReceivedNRPNResetLSB) && (m_NRPNParameterIn == REQUEST_VALUE_OF_NRPN))
 			{
-	m_NRPNParameterIn = m_NRPNQueue.Front();
+	m_NRPNParameterIn = m_NRPNQueue.front();
 	m_NRPNQueue.pop();
 				SetLSParameter(m_NRPNParameterIn, m_NRPNValueIn);
 				blnReceivedNRPNResetMSB = false;

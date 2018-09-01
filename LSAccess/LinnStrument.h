@@ -4,11 +4,11 @@
 
 #include <RtMidi.h>
 #include <wx/string.h>
+#include <queue>
 
 #include "LSPerSplit.h"
 #include "LSGlobals.h"
 #include "LSOctaveTranspose.h"
-#include "NRPNQueue.h"
 #include "MIDIDialog.h"
 #include "MIDI.h"
 
@@ -655,13 +655,19 @@ private:
 		RtMidiOut * m_MIDIOut;
 		// MIDI port ID values;
 		int m_InputID, m_OutputID;
+
+
+// LinnStrument parameters
 		LSPerSplitSettings m_PerSplitSettings;
 		LSOctaveTransposeSettings m_OctaveTransposeSettings;
 		LSGlobalSettings m_GlobalSettings;
-		
-		NRPNQueue m_NRPNQueue;
+		std::queue <unsigned int> m_NRPNQueue;
+
+		// MIDI traffic handling
 		unsigned int m_NRPNParameterIn, m_NRPNValueIn;
 		bool blnReceivedNRPNResetMSB, blnReceivedNRPNResetLSB;
+
+// Application options
 		bool m_SpeakNotes;
 					};
 
