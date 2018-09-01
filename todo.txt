@@ -1,3 +1,5 @@
+Check value for SPLIT_RIGHT_SEND_Z_NRPN
+
 Add routine to get all initial values from MIDI
 
 Add detection of O/S update state

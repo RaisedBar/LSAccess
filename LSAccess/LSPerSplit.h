@@ -352,12 +352,12 @@ unsigned int GetMIDI_MAIN_CHANNEL(LSSplitType split);
 	// Toggles:
 	void SetRESET_PITCH_ON_RELEASE(unsigned int nValue, LSSplitType split);
 	void SetSEND_Y(unsigned int nValue, LSSplitType split);
-	void SetSEND_Z(unsigned int nValue, LSSplitType split);
-	// Values are constrained by MIN_CC and MAX_CC
+		// Values are constrained by MIN_CC and MAX_CC
 	// CC 1 or CC 74 are recommended, any CC is possible though
 	void SetCC_FOR_Y(unsigned int nValue, LSSplitType split);
 	// Toggle:
 	void SetRELATIVE_Y(unsigned int nValue, LSSplitType split);
+	void SetSEND_Z(unsigned int nValue, LSSplitType split);
 	void SetRELATIVE_Z(unsigned int nValue, LSSplitType split);
 	// Value is an LSExpressionZ
 	void SetMIDI_EXPRESSION_FOR_Z(unsigned int nValue, LSSplitType split);
