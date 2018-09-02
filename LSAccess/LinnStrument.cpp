@@ -162,7 +162,11 @@ LinnStrument::~LinnStrument()
 		std::string wstrError(error.getMessage());
 		m_OutputID = -1;
 	}
-}
+		
+		// Dereference the callback
+		m_MIDIIn->setCallback(NULL);
+		delete m_MIDIIn;
+		}
 
 
 int LinnStrument::GetUSBInPortID()
@@ -1192,25 +1196,25 @@ void LinnStrument::SetLSParameter(unsigned int NRPNParameterIn, unsigned int NRP
 	}
 	break;
 
-	case GLOBAL_SWITCH1_ASSIGN_NRPN:
+	case SWITCH1_ASSIGN_NRPN:
 	{
 		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
 	}
 	break;
 
-	case GLOBAL_SWITCH2_ASSIGN_NRPN:
+	case SWITCH2_ASSIGN_NRPN:
 	{
 		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
 	}
 	break;
 
-	case GLOBAL_FOOT_LEFT_ASSIGN_NRPN:
+	case FOOT_LEFT_ASSIGN_NRPN:
 	{
 		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
 	}
 	break;
 
-	case GLOBAL_FOOT_RIGHT_ASSIGN_NRPN:
+	case FOOT_RIGHT_ASSIGN_NRPN:
 	{
 		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
 	}
@@ -1258,25 +1262,25 @@ void LinnStrument::SetLSParameter(unsigned int NRPNParameterIn, unsigned int NRP
 	}
 	break;
 
-	case GLOBAL_SWITCH1_BOTH_SPLITS_NRPN:
+	case SWITCH1_BOTH_SPLITS_NRPN:
 	{
 		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
 	}
 	break;
 
-	case GLOBAL_SWITCH2_BOTH_SPLITS_NRPN:
+	case SWITCH2_BOTH_SPLITS_NRPN:
 	{
 		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
 	}
 	break;
 
-	case GLOBAL_FOOT_LEFT_BOTH_SPLITS_NRPN:
+	case FOOT_LEFT_BOTH_SPLITS_NRPN:
 	{
 		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
 	}
 	break;
 
-	case GLOBAL_FOOT_RIGHT_BOTH_SPLITS_NRPN:
+	case FOOT_RIGHT_BOTH_SPLITS_NRPN:
 	{
 		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
 	}
@@ -1354,49 +1358,49 @@ void LinnStrument::SetLSParameter(unsigned int NRPNParameterIn, unsigned int NRP
 	}
 	break;
 
-	case GLOBAL_CC_FOR_LEFT_FOOT_CC65:
+	case CC_FOR_LEFT_FOOT_CC65:
 	{
 		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
 	}
 	break;
 
-	case GLOBAL_CC_FOR_RIGHT_FOOT_CC65:
+	case CC_FOR_RIGHT_FOOT_CC65:
 	{
 		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
 	}
 	break;
 
-	case GLOBAL_CC_FOR_SWITCH1_CC65:
+	case CC_FOR_SWITCH1_CC65:
 	{
 		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
 	}
 	break;
 
-	case GLOBAL_CC_FOR_SWITCH2_CC65:
+	case CC_FOR_SWITCH2_CC65:
 	{
 		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
 	}
 	break;
 
-	case GLOBAL_CC_FOR_LEFT_FOOT_SUSTAIN:
+	case CC_FOR_LEFT_FOOT_SUSTAIN:
 	{
 		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
 	}
 	break;
 
-	case GLOBAL_CC_FOR_RIGHT_FOOT_SUSTAIN:
+	case CC_FOR_RIGHT_FOOT_SUSTAIN:
 	{
 		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
 	}
 	break;
 
-	case GLOBAL_CC_FOR_SWITCH1_SUSTAIN:
+	case CC_FOR_SWITCH1_SUSTAIN:
 	{
 		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
 	}
 	break;
 
-	case GLOBAL_CC_FOR_SWITCH2_SUSTAIN:
+	case CC_FOR_SWITCH2_SUSTAIN:
 	{
 		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
 	}
@@ -1569,6 +1573,18 @@ LSPerSplitSettings LinnStrument::GetPerSplitSettings()
 LSOctaveTransposeSettings LinnStrument::GetOctaveTransposeSettings()
 {
 	return m_OctaveTransposeSettings;
+}
+
+
+LSSwitchSettings LinnStrument::GetSwitchSettings()
+{
+	return m_SwitchSettings;
+}
+
+
+void LinnStrument::SetSwitchSettings(LSSwitchSettings SwitchSettings)
+{
+	m_SwitchSettings = SwitchSettings;
 }
 
 

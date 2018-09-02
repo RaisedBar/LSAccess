@@ -7,8 +7,9 @@
 #include <queue>
 
 #include "LSPerSplit.h"
-#include "LSGlobals.h"
 #include "LSOctaveTranspose.h"
+#include "LSSwitches.h"
+#include "LSGlobals.h"
 #include "MIDIDialog.h"
 #include "MIDI.h"
 
@@ -638,6 +639,8 @@ public:
 	void SetPerSplitSettings(LSPerSplitSettings splitSettings);
 	LSOctaveTransposeSettings GetOctaveTransposeSettings();
 	void SetOctaveTransposeSettings(LSOctaveTransposeSettings octaveTransposeSettings);
+	LSSwitchSettings GetSwitchSettings();
+	void SetSwitchSettings(LSSwitchSettings SwitchSettings);
 	LSGlobalSettings GetGlobalSettings();
 	void SetGlobalSettings(LSGlobalSettings globalSettings);
 		void ProcessMessage(std::vector <unsigned char> vBytes);
@@ -661,6 +664,7 @@ private:
 // LinnStrument parameters
 		LSPerSplitSettings m_PerSplitSettings;
 		LSOctaveTransposeSettings m_OctaveTransposeSettings;
+		LSSwitchSettings m_SwitchSettings;
 		LSGlobalSettings m_GlobalSettings;
 		std::queue <unsigned int> m_NRPNQueue;
 

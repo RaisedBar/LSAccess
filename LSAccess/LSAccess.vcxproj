@@ -162,6 +162,7 @@
     <ClInclude Include="GlobalsSplitPage.h" />
     <ClInclude Include="GlobalsTuningsPage.h" />
     <ClInclude Include="GlobalsVelocityPressurePage.h" />
+    <ClInclude Include="LSSwitches.h" />
     <ClInclude Include="MIDI.h" />
     <ClInclude Include="MIDIDialog.h" />
     <ClInclude Include="MIDISplitPage.h" />

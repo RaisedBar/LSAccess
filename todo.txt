@@ -1,3 +1,5 @@
+fix case statements in linnstrument.h - bad in globals section at the very least
+
 Add routine to get all initial values from MIDI
 
 Add detection of O/S update state

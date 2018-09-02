@@ -18,7 +18,7 @@
 #include <wx/spinctrl.h>
 
 #include "LinnStrument.h"
-#include "LSGlobals.h"
+#include "LSSwitches.h"
 #include "LSEnums.h"
 
 class PanelSwitchesPage : public wxPanel
@@ -30,34 +30,34 @@ private:
 	// event handlers
 	DECLARE_EVENT_TABLE()
 
-	void OnGLOBAL_SWITCH1_ASSIGN(wxCommandEvent& event);
-	void OnGLOBAL_SWITCH1_BOTH_SPLITS(wxCommandEvent& event);
-	void OnGLOBAL_SWITCH2_ASSIGN(wxCommandEvent& event);
-	void OnGLOBAL_SWITCH2_BOTH_SPLITS(wxCommandEvent& event);
-void OnGLOBAL_CC_FOR_SWITCH1_SUSTAIN(wxSpinEvent& event);
-	void OnGLOBAL_CC_FOR_SWITCH1_CC65(wxSpinEvent& event);
-	void OnGLOBAL_CC_FOR_SWITCH2_SUSTAIN(wxSpinEvent& event);
-	void OnGLOBAL_CC_FOR_SWITCH2_CC65(wxSpinEvent& event);
+	void OnSWITCH1_ASSIGN(wxCommandEvent& event);
+	void OnSWITCH1_BOTH_SPLITS(wxCommandEvent& event);
+	void OnSWITCH2_ASSIGN(wxCommandEvent& event);
+	void OnSWITCH2_BOTH_SPLITS(wxCommandEvent& event);
+void OnCC_FOR_SWITCH1_SUSTAIN(wxSpinEvent& event);
+	void OnCC_FOR_SWITCH1_CC65(wxSpinEvent& event);
+	void OnCC_FOR_SWITCH2_SUSTAIN(wxSpinEvent& event);
+	void OnCC_FOR_SWITCH2_CC65(wxSpinEvent& event);
 	
 	// data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
-	LSGlobalSettings m_Settings;
+	LSSwitchSettings m_Settings;
 
 	// controls
 	// Value is an LSSwitchAssignment
-	wxRadioBox * wrbGLOBAL_SWITCH1_ASSIGN;
+	wxRadioBox * wrbSWITCH1_ASSIGN;
 	// Toggle:
-	wxCheckBox * chkGLOBAL_SWITCH1_BOTH_SPLITS;
+	wxCheckBox * chkSWITCH1_BOTH_SPLITS;
 	// Values are constrained by MIN_CC and MAX_CC
 	// WXSpinCtrl * wscGLOABAL_CC_FOR_CC65;  // Changes the CC for all switches - Legacy option, see NRPN 255 - 258
-	wxSpinCtrl * wscGLOBAL_CC_FOR_SWITCH1_SUSTAIN;
-	wxSpinCtrl * wscGLOBAL_CC_FOR_SWITCH1_CC65;
+	wxSpinCtrl * wscCC_FOR_SWITCH1_SUSTAIN;
+	wxSpinCtrl * wscCC_FOR_SWITCH1_CC65;
 	// Value is an LSSwitchAssignment
-	wxRadioBox * wrbGLOBAL_SWITCH2_ASSIGN;
+	wxRadioBox * wrbSWITCH2_ASSIGN;
 	// Toggle:
-	wxCheckBox * chkGLOBAL_SWITCH2_BOTH_SPLITS;
+	wxCheckBox * chkSWITCH2_BOTH_SPLITS;
 	// Values are constrained by MIN_CC and MAX_CC
-	wxSpinCtrl * wscGLOBAL_CC_FOR_SWITCH2_SUSTAIN;
-	wxSpinCtrl * wscGLOBAL_CC_FOR_SWITCH2_CC65;
+	wxSpinCtrl * wscCC_FOR_SWITCH2_SUSTAIN;
+	wxSpinCtrl * wscCC_FOR_SWITCH2_CC65;
 	};

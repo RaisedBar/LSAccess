@@ -120,6 +120,9 @@
     <ClInclude Include="MIDI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LSSwitches.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LSAccess.cpp">
