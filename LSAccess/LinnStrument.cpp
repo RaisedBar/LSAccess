@@ -31,7 +31,14 @@ std::string MIDINoteName(unsigned char nNoteNumber)
 
 void SendCC(unsigned char CCNumber, unsigned char CCValue)
 {
+
 }
+
+
+void LinnStrument::SendNRPN(LSSplitType split, unsigned int NRPNNumber, unsigned int NRPNValue)
+{
+	SendNRPN(m_PerSplitSettings.GetMIDI_MAIN_CHANNEL(split), NRPNNumber, NRPNValue);
+	}
 
 
 void LinnStrument::SendNRPN(unsigned int nChannel, unsigned int NRPNNumber, unsigned int NRPNValue)
@@ -47,6 +54,10 @@ void LinnStrument::SendNRPN(unsigned int nChannel, unsigned int NRPNNumber, unsi
 }
 
 // Calculate the MSB and LSB values here
+	myNRPNParameterMSB = MIDI().GetMSB(NRPNNumber);
+	myNRPNParameterLSB = MIDI().GetLSB( NRPNNumber);
+	myNRPNValueMSB = MIDI().GetMSB( NRPNValue);
+	myNRPNValueLSB = MIDI().GetLSB( NRPNValue);
 
 	myMessage.push_back( (unsigned char) nChannel);
 	myMessage.push_back(myNRPNParameterMSB);
@@ -58,6 +69,7 @@ void LinnStrument::SendNRPN(unsigned int nChannel, unsigned int NRPNNumber, unsi
 	myMessage.push_back(myNRPNValueLSB);
 	m_MIDIOut->sendMessage(&myMessage);
 
+// Always send the reset or bad things can happen
 	myMessage.push_back((unsigned char)nChannel);
 	myMessage.push_back(RESET_NRPN_CC_MSB);
 	myMessage.push_back(127);
@@ -75,7 +87,6 @@ void LSCallback(double deltatime, std::vector< unsigned char > *message, void *p
 	LinnStrument * pMyLinnStrument = (LinnStrument*)pLinnStrument;
 	pMyLinnStrument->ProcessMessage(*message);
 }
-
 
 LinnStrument::LinnStrument():
 	m_OutputID(-1),
@@ -1448,9 +1459,9 @@ void LinnStrument::SetLSParameter(unsigned int NRPNParameterIn, unsigned int NRP
 
 void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 {
-	unsigned char nStatus = MIDI().ShortMsgStatus(myMessage);
+	unsigned char nCmd = MIDI().ShortMsgCommandNibble(myMessage);
 
-	switch (nStatus)
+	switch (nCmd)
 	{
 	case MIDI_CMD_NOTE_ON:
 	{
@@ -1458,14 +1469,24 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 		{
 			unsigned char nNoteNumber = MIDI().ShortMsgData1(myMessage);
 			std::string strNoteName = MIDINoteName(nNoteNumber);
-			// Announce
+			// Announce and update status bar
+		}
+	}
+	break;
+
+	case MIDI_CMD_NOTE_OFF:
+	{
+		if (m_SpeakNotes)
+		{
+			unsigned char nNoteNumber = MIDI().ShortMsgData1(myMessage);
+						// Update status bar
 		}
 	}
 	break;
 
 	case CC_NRPN_PARAM_MSB:
 	{
-		m_NRPNParameterIn = MIDI().ShortMsgData2(myMessage) * 127;
+		m_NRPNParameterIn = MIDI().ShortMsgData2(myMessage) * 128;
 	}
 	break;
 
@@ -1493,6 +1514,7 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 		{
 			m_NRPNParameterIn = m_NRPNQueue.front();
 			m_NRPNQueue.pop();
+			// We now have enough information to change the value of a member
 			SetLSParameter(m_NRPNParameterIn, m_NRPNValueIn);
 			blnReceivedNRPNResetMSB = false;
 			blnReceivedNRPNResetLSB = false;
@@ -1508,6 +1530,7 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 	{
 		if (blnReceivedNRPNResetMSB)
 		{
+			// We now have enough information to change the value of a member
 			SetLSParameter(m_NRPNParameterIn, m_NRPNValueIn);
 			blnReceivedNRPNResetMSB = false;
 			blnReceivedNRPNResetLSB = false;

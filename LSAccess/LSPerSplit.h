@@ -149,7 +149,7 @@ const unsigned int SPLIT_RIGHT_SEND_Y_NRPN = 124;
 const unsigned int SPLIT_RIGHT_CC_FOR_Y_NRPN = 125;
 // Toggle:
 const unsigned int SPLIT_RIGHT_RELATIVE_Y_NRPN = 126;
-const unsigned int SPLIT_RIGHT_RELATIVE_Z_NRPN = 127;
+const unsigned int SPLIT_RIGHT_SEND_Z_NRPN = 127;
 // Value is an LSExpressionZ
 const unsigned int SPLIT_RIGHT_MIDI_EXPRESSION_FOR_Z_NRPN = 128;
 // Values are constrained by MIN_CC and MAX_CC
