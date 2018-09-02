@@ -164,8 +164,11 @@ LinnStrument::~LinnStrument()
 	}
 		
 		// Dereference the callback
+		
+		// Tidy up
 		m_MIDIIn->setCallback(NULL);
 		delete m_MIDIIn;
+		delete m_MIDIOut;
 		}
 
 
