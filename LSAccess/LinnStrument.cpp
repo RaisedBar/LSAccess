@@ -82,6 +82,87 @@ void LinnStrument::SendNRPN(unsigned int nChannel, unsigned int NRPNNumber, unsi
 }
 
 
+void LinnStrument::QueryNRPN(unsigned int nParameterNumber)
+{
+	SendNRPN(m_PerSplitSettings.GetMIDI_MAIN_CHANNEL(LSSplitType::LEFT), REQUEST_VALUE_OF_NRPN, nParameterNumber);
+}
+
+
+void LinnStrument::QueryPerSplitSettings()
+{
+
+}
+
+void LinnStrument::QueryGlobalSettings()
+{
+	QueryNRPN(GLOBAL_SPLIT_ACTIVE_NRPN);
+	QueryNRPN(GLOBAL_SELECTED_SPLIT_NRPN);
+	QueryNRPN(GLOBAL_SPLIT_COLUMN_NRPN);
+	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_C_NRPN);
+	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_C_SHARP_NRPN);
+	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_D_NRPN);
+	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_D_SHARP_NRPN);
+	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_E_NRPN);
+	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_F_NRPN);
+	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_F_SHARP_NRPN);
+	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_G_NRPN);
+	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_G_SHARP_NRPN);
+	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_A_NRPN);
+	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_A_SHARP_NRPN);
+	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_B_NRPN);
+	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_C_NRPN);
+	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_C_SHARP_NRPN);
+	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_D_NRPN);
+	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_D_SHARP_NRPN);
+	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_E_NRPN);
+	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_F_NRPN);
+	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_F_SHARP_NRPN);
+	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_G_NRPN);
+	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_G_SHARP_NRPN);
+	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_A_NRPN);
+	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_A_SHARP_NRPN);
+	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_B_NRPN);
+	QueryNRPN(GLOBAL_ROW_OFFSET_NRPN);
+	QueryNRPN(GLOBAL_VELOCITY_SENSITIVITY_NRPN);
+	QueryNRPN(GLOBAL_PRESSURE_SENSITIVITY_NRPN);
+	QueryNRPN(GLOBAL_MIDI_DEVICE_IO_NRPN);
+	QueryNRPN(GLOBAL_ARP_DIRECTION_NRPN);
+	QueryNRPN(GLOBAL_ARP_TEMPO_NOTE_VALUE_NRPN);
+	QueryNRPN(GLOBAL_ARP_OCTAVE_EXTENSION_NRPN);
+	QueryNRPN(GLOBAL_CLOCK_BPM_NRPN);
+	QueryNRPN(GLOBAL_SETTINGS_PRESET_LOAD_NRPN);
+	QueryNRPN(GLOBAL_PRESSURE_AFTERTOUCH_NRPN);
+	QueryNRPN(DEVICE_USER_FIRMWARE_MODE_NRPN);
+	QueryNRPN(DEVICE_LEFT_HANDED_NRPN);
+	QueryNRPN(GLOBAL_ACTIVE_LIGHTS_PRESET_NRPN);
+	QueryNRPN(GLOBAL_MIN_VELOCITY_VALUE_NRPN);
+	QueryNRPN(GLOBAL_MAX_VELOCITY_VALUE_NRPN);
+	QueryNRPN(GLOBAL_FIXED_VELOCITY_VALUE_NRPN);
+	QueryNRPN(DEVICE_MIN_BYTE_INTERVAL_VALUE_NRPN);
+	QueryNRPN(GLOBAL_CUSTOM_ROW_OFFSET_NRPN);
+	QueryNRPN(DEVICE_MIDI_THRU_NRPN);
+	QueryNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW1_NRPN);
+	QueryNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW2_NRPN);
+	QueryNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW3_NRPN);
+	QueryNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW4_NRPN);
+	QueryNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW5_NRPN);
+	QueryNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW6_NRPN);
+	QueryNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW7_NRPN);
+	QueryNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW8_NRPN);
+}
+
+
+void LinnStrument::QuerySwitchSettings()
+{
+
+}
+
+void LinnStrument::QueryOctaveTransposeSettings()
+{
+
+}
+
+
 void LSCallback(double deltatime, std::vector< unsigned char > *message, void *pLinnStrument)
 {
 	LinnStrument * pMyLinnStrument = (LinnStrument*)pLinnStrument;
@@ -1039,283 +1120,283 @@ void LinnStrument::SetLSParameter(unsigned int NRPNParameterIn, unsigned int NRP
 
 	case GLOBAL_SELECTED_SPLIT_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_SELECTED_SPLIT(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_SPLIT_COLUMN_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_SPLIT_COLUMN(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_MAIN_NOTE_LIGHT_C_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_MAIN_NOTE_LIGHT_C(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_MAIN_NOTE_LIGHT_C_SHARP_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_MAIN_NOTE_LIGHT_C_SHARP(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_MAIN_NOTE_LIGHT_D_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_MAIN_NOTE_LIGHT_D(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_MAIN_NOTE_LIGHT_D_SHARP_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_MAIN_NOTE_LIGHT_D_SHARP(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_MAIN_NOTE_LIGHT_E_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_MAIN_NOTE_LIGHT_E(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_MAIN_NOTE_LIGHT_F_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_MAIN_NOTE_LIGHT_F(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_MAIN_NOTE_LIGHT_F_SHARP_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_MAIN_NOTE_LIGHT_F_SHARP(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_MAIN_NOTE_LIGHT_G_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_MAIN_NOTE_LIGHT_G(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_MAIN_NOTE_LIGHT_G_SHARP_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_MAIN_NOTE_LIGHT_G_SHARP(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_MAIN_NOTE_LIGHT_A_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_MAIN_NOTE_LIGHT_A(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_MAIN_NOTE_LIGHT_A_SHARP_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_MAIN_NOTE_LIGHT_A_SHARP(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_MAIN_NOTE_LIGHT_B_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_MAIN_NOTE_LIGHT_B(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_ACCENT_NOTE_LIGHT_C_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_ACCENT_NOTE_LIGHT_C(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_ACCENT_NOTE_LIGHT_C_SHARP_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_ACCENT_NOTE_LIGHT_C_SHARP(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_ACCENT_NOTE_LIGHT_D_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_ACCENT_NOTE_LIGHT_D(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_ACCENT_NOTE_LIGHT_D_SHARP_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_ACCENT_NOTE_LIGHT_D_SHARP(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_ACCENT_NOTE_LIGHT_E_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_ACCENT_NOTE_LIGHT_E(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_ACCENT_NOTE_LIGHT_F_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_ACCENT_NOTE_LIGHT_F(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_ACCENT_NOTE_LIGHT_F_SHARP_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_ACCENT_NOTE_LIGHT_F_SHARP(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_ACCENT_NOTE_LIGHT_G_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_ACCENT_NOTE_LIGHT_G(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_ACCENT_NOTE_LIGHT_G_SHARP_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_ACCENT_NOTE_LIGHT_G_SHARP(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_ACCENT_NOTE_LIGHT_A_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_ACCENT_NOTE_LIGHT_A(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_ACCENT_NOTE_LIGHT_A_SHARP_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_ACCENT_NOTE_LIGHT_A_SHARP(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_ACCENT_NOTE_LIGHT_B_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_ACCENT_NOTE_LIGHT_B(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_ROW_OFFSET_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_ROW_OFFSET(NRPNValueIn);
 	}
 	break;
 
 	case SWITCH1_ASSIGN_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_SwitchSettings.SetSWITCH1_ASSIGN(NRPNValueIn);
 	}
 	break;
 
 	case SWITCH2_ASSIGN_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_SwitchSettings.SetSWITCH2_ASSIGN(NRPNValueIn);
 	}
 	break;
 
 	case FOOT_LEFT_ASSIGN_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_SwitchSettings.SetFOOT_LEFT_ASSIGN(NRPNValueIn);
 	}
 	break;
 
 	case FOOT_RIGHT_ASSIGN_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_SwitchSettings.SetFOOT_RIGHT_ASSIGN(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_VELOCITY_SENSITIVITY_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_VELOCITY_SENSITIVITY(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_PRESSURE_SENSITIVITY_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_PRESSURE_SENSITIVITY(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_MIDI_DEVICE_IO_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_MIDI_DEVICE_IO(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_ARP_DIRECTION_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_ARP_DIRECTION(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_ARP_TEMPO_NOTE_VALUE_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_ARP_TEMPO_NOTE_VALUE(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_ARP_OCTAVE_EXTENSION_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_ARP_OCTAVE_EXTENSION(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_CLOCK_BPM_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_CLOCK_BPM(NRPNValueIn);
 	}
 	break;
 
 	case SWITCH1_BOTH_SPLITS_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_SwitchSettings.SetSWITCH1_BOTH_SPLITS(NRPNValueIn);
 	}
 	break;
 
 	case SWITCH2_BOTH_SPLITS_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_SwitchSettings.SetSWITCH2_BOTH_SPLITS(NRPNValueIn);
 	}
 	break;
 
 	case FOOT_LEFT_BOTH_SPLITS_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_SwitchSettings.SetFOOT_LEFT_BOTH_SPLITS(NRPNValueIn);
 	}
 	break;
 
 	case FOOT_RIGHT_BOTH_SPLITS_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_SwitchSettings.SetFOOT_RIGHT_BOTH_SPLITS(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_SETTINGS_PRESET_LOAD_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_SETTINGS_PRESET_LOAD(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_PRESSURE_AFTERTOUCH_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_PRESSURE_AFTERTOUCH(NRPNValueIn);
 	}
 	break;
 
 	case DEVICE_USER_FIRMWARE_MODE_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetDEVICE_USER_FIRMWARE_MODE(NRPNValueIn);
 	}
 	break;
 
 	case DEVICE_LEFT_HANDED_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetDEVICE_LEFT_HANDED(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_ACTIVE_LIGHTS_PRESET_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_ACTIVE_LIGHTS_PRESET(NRPNValueIn);
 	}
 	break;
 
@@ -1327,133 +1408,133 @@ void LinnStrument::SetLSParameter(unsigned int NRPNParameterIn, unsigned int NRP
 
 	case GLOBAL_MIN_VELOCITY_VALUE_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_MIN_VELOCITY_VALUE(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_MAX_VELOCITY_VALUE_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_MAX_VELOCITY_VALUE(NRPNValueIn);
 	}
 	break;
 
 	case GLOBAL_FIXED_VELOCITY_VALUE_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_FIXED_VELOCITY_VALUE(NRPNValueIn);
 	}
 	break;
 
 	case DEVICE_MIN_BYTE_INTERVAL_VALUE_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetDEVICE_MIN_BYTE_INTERVAL_VALUE(NRPNValueIn);
 	}
 	break;
 
-	case GLOBAL_CUSTOM_ROW_OFFSET:
+	case GLOBAL_CUSTOM_ROW_OFFSET_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_CUSTOM_ROW_OFFSET(NRPNValueIn);
 	}
 	break;
 
 	case DEVICE_MIDI_THRU_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetDEVICE_MIDI_THRU(NRPNValueIn);
 	}
 	break;
 
 	case CC_FOR_LEFT_FOOT_CC65:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_SwitchSettings.SetCC_FOR_LEFT_FOOT_CC65(NRPNValueIn);
 	}
 	break;
 
 	case CC_FOR_RIGHT_FOOT_CC65:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_SwitchSettings.SetCC_FOR_RIGHT_FOOT_CC65(NRPNValueIn);
 	}
 	break;
 
 	case CC_FOR_SWITCH1_CC65:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_SwitchSettings.SetCC_FOR_SWITCH1_CC65(NRPNValueIn);
 	}
 	break;
 
 	case CC_FOR_SWITCH2_CC65:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_SwitchSettings.SetCC_FOR_SWITCH2_CC65(NRPNValueIn);
 	}
 	break;
 
 	case CC_FOR_LEFT_FOOT_SUSTAIN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_SwitchSettings.SetCC_FOR_LEFT_FOOT_SUSTAIN(NRPNValueIn);
 	}
 	break;
 
 	case CC_FOR_RIGHT_FOOT_SUSTAIN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_SwitchSettings.SetCC_FOR_RIGHT_FOOT_SUSTAIN(NRPNValueIn);
 	}
 	break;
 
 	case CC_FOR_SWITCH1_SUSTAIN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_SwitchSettings.SetCC_FOR_SWITCH1_SUSTAIN(NRPNValueIn);
 	}
 	break;
 
 	case CC_FOR_SWITCH2_SUSTAIN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_SwitchSettings.SetCC_FOR_SWITCH2_SUSTAIN(NRPNValueIn);
 	}
 	break;
 
-	case GLOBAL_GUITAR_NOTE_TUNING_ROW1:
+	case GLOBAL_GUITAR_NOTE_TUNING_ROW1_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_GUITAR_NOTE_TUNING_ROW1(NRPNValueIn);
 	}
 	break;
 
-	case GLOBAL_GUITAR_NOTE_TUNING_ROW2:
+	case GLOBAL_GUITAR_NOTE_TUNING_ROW2_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_GUITAR_NOTE_TUNING_ROW2(NRPNValueIn);
 	}
 	break;
 
-	case GLOBAL_GUITAR_NOTE_TUNING_ROW3:
+	case GLOBAL_GUITAR_NOTE_TUNING_ROW3_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_GUITAR_NOTE_TUNING_ROW3(NRPNValueIn);
 	}
 	break;
 
-	case GLOBAL_GUITAR_NOTE_TUNING_ROW4:
+	case GLOBAL_GUITAR_NOTE_TUNING_ROW4_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_GUITAR_NOTE_TUNING_ROW4(NRPNValueIn);
 	}
 	break;
 
-	case GLOBAL_GUITAR_NOTE_TUNING_ROW5:
+	case GLOBAL_GUITAR_NOTE_TUNING_ROW5_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_GUITAR_NOTE_TUNING_ROW5(NRPNValueIn);
 	}
 	break;
 
-	case GLOBAL_GUITAR_NOTE_TUNING_ROW6:
+	case GLOBAL_GUITAR_NOTE_TUNING_ROW6_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_GUITAR_NOTE_TUNING_ROW6(NRPNValueIn);
 	}
 	break;
 
-	case GLOBAL_GUITAR_NOTE_TUNING_ROW7:
+	case GLOBAL_GUITAR_NOTE_TUNING_ROW7_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_GUITAR_NOTE_TUNING_ROW7(NRPNValueIn);
 	}
 	break;
 
-	case GLOBAL_GUITAR_NOTE_TUNING_ROW8:
+	case GLOBAL_GUITAR_NOTE_TUNING_ROW8_NRPN:
 	{
-		m_GlobalSettings.SetGLOBAL_SPLIT_ACTIVE(NRPNValueIn);
+		m_GlobalSettings.SetGLOBAL_GUITAR_NOTE_TUNING_ROW8(NRPNValueIn);
 	}
 	break;
 

@@ -3,18 +3,6 @@
 
 #pragma once
 
-enum class LS_MIDIDevice
-{
-	MIDI_DIN_JACKS = 0,
-	USB = 1
-};
-
-const wxString MIDIDeviceConnections[] =
-{
-	L"DIN jacks",
-	L"USB"
-};
-
 // Toggle:
 const unsigned int GLOBAL_SPLIT_ACTIVE_NRPN = 200;
 // Value is LSSplitType
@@ -60,7 +48,7 @@ const unsigned int GLOBAL_ARP_DIRECTION_NRPN = 235;
 const unsigned int GLOBAL_ARP_TEMPO_NOTE_VALUE_NRPN = 236;
 // Value is LSGlobalArpOctaveExtension
 const unsigned int GLOBAL_ARP_OCTAVE_EXTENSION_NRPN = 237;
-// Value = 1 - 360  (applies when receiving no MIDI clock)
+// Value_NRPN = 1 - 360  (applies when receiving no MIDI clock)
 const unsigned int GLOBAL_CLOCK_BPM_NRPN = 238;
 // Value is LSPresetNumber
 const unsigned int GLOBAL_SETTINGS_PRESET_LOAD_NRPN = 243;
@@ -70,24 +58,36 @@ const unsigned int DEVICE_USER_FIRMWARE_MODE_NRPN = 245;
 const unsigned int DEVICE_LEFT_HANDED_NRPN = 246;
 // Value is constrained by MIN_LIGHTS_PRESET and MAX_LIGHTS_PRESET 
 const unsigned int GLOBAL_ACTIVE_LIGHTS_PRESET_NRPN = 247;
-									  // Values are constrained by MIN_CC and MAX_CC
+// Values are constrained by MIN_CC and MAX_CC
 const unsigned int GLOBAL_MIN_VELOCITY_VALUE_NRPN = 249;
 const unsigned int GLOBAL_MAX_VELOCITY_VALUE_NRPN = 250;
 const unsigned int GLOBAL_FIXED_VELOCITY_VALUE_NRPN = 251;
-// Value range =     0 - 512  
+// Value range_NRPN =     0 - 512  
 const unsigned int DEVICE_MIN_BYTE_INTERVAL_VALUE_NRPN = 252;
 // Value is LSCustomRowOffset
-const unsigned int GLOBAL_CUSTOM_ROW_OFFSET = 253;
+const unsigned int GLOBAL_CUSTOM_ROW_OFFSET_NRPN = 253;
 // Toggle:
 const unsigned int DEVICE_MIDI_THRU_NRPN = 254;
-const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW1 = 263;
-const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW2 = 264;
-const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW3 = 265;
-const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW4 = 266;
-const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW5 = 267;
-const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW6 = 268;
-const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW7 = 269;
-const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW8 = 270;
+const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW1_NRPN = 263;
+const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW2_NRPN = 264;
+const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW3_NRPN = 265;
+const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW4_NRPN = 266;
+const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW5_NRPN = 267;
+const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW6_NRPN = 268;
+const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW7_NRPN = 269;
+const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW8_NRPN = 270;
+
+enum class LS_MIDIDevice
+{
+	MIDI_DIN_JACKS = 0,
+	USB = 1
+};
+
+const wxString MIDIDeviceConnections[] =
+{
+	L"DIN jacks",
+	L"USB"
+};
 
 class LSGlobalSettings
 {
@@ -743,7 +743,303 @@ unsigned int GetGLOBAL_MAIN_NOTE_LIGHT_C()
 		m_GLOBAL_GUITAR_NOTE_TUNING_ROW8 = nValue;
 	}
 
-	private:
+	void QueryGLOBAL_SPLIT_ACTIVE()
+	{
+
+	}
+
+	void QueryGLOBAL_SELECTED_SPLIT()
+	{
+
+	}
+
+	void QueryGLOBAL_SPLIT_COLUMN()
+	{
+
+	}
+
+	void QueryGLOBAL_MAIN_NOTE_LIGHT_C()
+	{
+
+	}
+
+	void QueryGLOBAL_MAIN_NOTE_LIGHT_C_SHARP()
+	{
+
+	}
+
+	void QueryGLOBAL_MAIN_NOTE_LIGHT_D()
+	{
+
+	}
+
+	void QueryGLOBAL_MAIN_NOTE_LIGHT_D_SHARP()
+	{
+
+	}
+
+	void QueryGLOBAL_MAIN_NOTE_LIGHT_E()
+	{
+
+	}
+
+	void QueryGLOBAL_MAIN_NOTE_LIGHT_F()
+	{
+
+	}
+
+	void QueryGLOBAL_MAIN_NOTE_LIGHT_F_SHARP()
+	{
+
+	}
+
+	void QueryGLOBAL_MAIN_NOTE_LIGHT_G()
+	{
+
+	}
+
+	void QueryGLOBAL_MAIN_NOTE_LIGHT_G_SHARP()
+	{
+
+	}
+
+	void QueryGLOBAL_MAIN_NOTE_LIGHT_A()
+	{
+
+	}
+
+	void QueryGLOBAL_MAIN_NOTE_LIGHT_A_SHARP()
+	{
+
+	}
+
+	void QueryGLOBAL_MAIN_NOTE_LIGHT_B()
+	{
+
+	}
+
+	void QueryGLOBAL_ACCENT_NOTE_LIGHT_C()
+	{
+
+	}
+
+	void QueryGLOBAL_ACCENT_NOTE_LIGHT_C_SHARP()
+	{
+
+	}
+
+	void QueryGLOBAL_ACCENT_NOTE_LIGHT_D()
+	{
+
+	}
+
+	void QueryGLOBAL_ACCENT_NOTE_LIGHT_D_SHARP()
+	{
+
+	}
+
+	void QueryGLOBAL_ACCENT_NOTE_LIGHT_E()
+	{
+
+	}
+
+	void QueryGLOBAL_ACCENT_NOTE_LIGHT_F()
+	{
+
+	}
+
+	void QueryGLOBAL_ACCENT_NOTE_LIGHT_F_SHARP()
+	{
+
+	}
+
+	void QueryGLOBAL_ACCENT_NOTE_LIGHT_G()
+	{
+
+	}
+
+	void QueryGLOBAL_ACCENT_NOTE_LIGHT_G_SHARP()
+	{
+
+	}
+
+	void QueryGLOBAL_ACCENT_NOTE_LIGHT_A()
+	{
+
+	}
+
+	void QueryGLOBAL_ACCENT_NOTE_LIGHT_A_SHARP()
+	{
+
+	}
+
+	void QueryGLOBAL_ACCENT_NOTE_LIGHT_B()
+	{
+
+	}
+
+	void QueryGLOBAL_ROW_OFFSET()
+	{
+
+	}
+
+	void QueryGLOBAL_VELOCITY_SENSITIVITY()
+	{
+
+	}
+
+	void QueryGLOBAL_PRESSURE_SENSITIVITY()
+	{
+
+	}
+
+	void QueryGLOBAL_MIDI_DEVICE_IO()
+	{
+
+	}
+
+	void QueryGLOBAL_ARP_DIRECTION()
+	{
+
+	}
+
+	void QueryGLOBAL_ARP_TEMPO_NOTE_VALUE()
+	{
+
+	}
+
+	void QueryGLOBAL_ARP_OCTAVE_EXTENSION()
+	{
+
+	}
+
+	void QueryGLOBAL_CLOCK_BPM()
+	{
+
+	}
+
+	void QueryGLOBAL_SETTINGS_PRESET_LOAD()
+	{
+
+	}
+
+	void QueryGLOBAL_PRESSURE_AFTERTOUCH()
+	{
+
+	}
+
+	void QueryDEVICE_USER_FIRMWARE_MODE()
+	{
+
+	}
+
+	void QueryDEVICE_LEFT_HANDED()
+	{
+
+	}
+
+	void QueryGLOBAL_ACTIVE_LIGHTS_PRESET()
+	{
+
+	}
+
+	void QueryGLOBAL_MIN_VELOCITY_VALUE()
+	{
+
+	}
+
+	void QueryGLOBAL_MAX_VELOCITY_VALUE()
+	{
+
+	}
+
+	void QueryGLOBAL_FIXED_VELOCITY_VALUE()
+	{
+
+	}
+
+	void QueryDEVICE_MIN_BYTE_INTERVAL_VALUE()
+	{
+
+	}
+
+	void QueryGLOBAL_CUSTOQueryROW_OFFSET()
+	{
+
+	}
+
+	void QueryDEVICE_MIDI_THRU()
+	{
+
+	}
+
+	void QueryGLOBAL_GUITAR_NOTE_TUNING_ROW1()
+	{
+
+	}
+
+	void QueryGLOBAL_GUITAR_NOTE_TUNING_ROW2()
+	{
+
+	}
+
+	void QueryGLOBAL_GUITAR_NOTE_TUNING_ROW3()
+	{
+
+	}
+
+	void QueryGLOBAL_GUITAR_NOTE_TUNING_ROW4()
+	{
+
+	}
+
+	void QueryGLOBAL_GUITAR_NOTE_TUNING_ROW5()
+	{
+
+	}
+
+	void QueryGLOBAL_GUITAR_NOTE_TUNING_ROW6()
+	{
+
+	}
+
+	void QueryGLOBAL_GUITAR_NOTE_TUNING_ROW7()
+	{
+
+	}
+
+	void QueryGLOBAL_GUITAR_NOTE_TUNING_ROW8()
+	{
+
+	}
+
+	void QueryLSPresetNumber()
+	{
+
+	}
+
+	void QueryLEFT_PROGRAM()
+	{
+
+	}
+
+	void QueryRIGHT_PROGRAM()
+	{
+
+	}
+
+	void QueryLEFT_VOLUME()
+	{
+
+	}
+
+	void QueryRIGHT_VOLUME()
+	{
+
+	}
+
+
+private:
 				unsigned int m_GLOBAL_SPLIT_ACTIVE;
 				// Value is LSSplitType
 				unsigned int m_GLOBAL_SELECTED_SPLIT;

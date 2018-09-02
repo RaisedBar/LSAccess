@@ -644,7 +644,13 @@ public:
 	LSGlobalSettings GetGlobalSettings();
 	void SetGlobalSettings(LSGlobalSettings globalSettings);
 		void ProcessMessage(std::vector <unsigned char> vBytes);
-// Option to use speech to output note names
+		void QueryNRPN(unsigned int nParameterNumber);
+		void QueryPerSplitSettings();
+		void QueryGlobalSettings();
+		void QuerySwitchSettings();
+		void QueryOctaveTransposeSettings();
+
+			// Option to use speech to output note names
 	bool GetSpeakNotes();
 	void SetSpeakNotes(bool blnSpeakNotes);
 	
