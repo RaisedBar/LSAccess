@@ -4,7 +4,6 @@
 
 SequencerPage::SequencerPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)
 	:wxPanel(parent),
-	pMyLinnStrument(new LinnStrument),
 	m_Split(split),
 	pMyParent(new wxBookCtrl())
 {

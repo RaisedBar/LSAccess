@@ -657,7 +657,7 @@ public:
 	
 private:
 	void SendNRPN(LSSplitType split, unsigned int NRPNNumber, unsigned int NRPNValue);
-	void SendNRPN(unsigned int nChannel, unsigned int NRPNNumber, unsigned int NRPNValue);
+	void SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned int NRPNValue);
 	void SetLSParameter( unsigned int NRPNParameterIn, unsigned int NRPNValueIn);
 	
 	// data

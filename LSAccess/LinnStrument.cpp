@@ -29,7 +29,7 @@ LinnStrument::LinnStrument():
 		m_OutputID = GetUSBOutPortID();
 		m_InputID = GetUSBInPortID();
 
-		if ((m_OutputID == -1) || (m_InputID == -1))
+			if ((m_OutputID == -1) || (m_InputID == -1))
 		{
 			// Prompt for appropriate DIN sockets
 			MIDIDialog * pMIDIDialog = new MIDIDialog(L"LinnStrument MIDI I/O jacks");
@@ -1399,14 +1399,21 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 
 	switch (nCmd)
 	{
+	case MIDI_CMD_PITCH_WHEEL:
+	{
+		int x = 1;
+	}
+	break;
+
 	case MIDI_CMD_NOTE_ON:
 	{
-		if (m_SpeakNotes)
-		{
+		// if (m_SpeakNotes)
+		// {
 			unsigned char nNoteNumber = MIDI().ShortMsgData1(myMessage);
 			std::string strNoteName = MIDI().GetNoteName(nNoteNumber);
+			wxMessageBox(strNoteName, "Test");
 			// Announce and update status bar
-		}
+		// }
 	}
 	break;
 
@@ -1532,9 +1539,11 @@ void LinnStrument::SendNRPN(LSSplitType split, unsigned int NRPNNumber, unsigned
 }
 
 
-void LinnStrument::SendNRPN(unsigned int nChannel, unsigned int NRPNNumber, unsigned int NRPNValue)
+void LinnStrument::SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned int NRPNValue)
 {
 	std::vector<unsigned char> myMessage;
+	unsigned char myCmdNibble = MIDI_CMD_CONTROL_CHANGE;
+	unsigned char myStatusByte = (myCmdNibble * 128) + nChannelNibble;
 	unsigned char myNRPNParameterMSB, myNRPNParameterLSB;
 	unsigned char myNRPNValueMSB, myNRPNValueLSB;
 
@@ -1550,26 +1559,54 @@ void LinnStrument::SendNRPN(unsigned int nChannel, unsigned int NRPNNumber, unsi
 	myNRPNValueMSB = MIDI().GetMSB(NRPNValue);
 	myNRPNValueLSB = MIDI().GetLSB(NRPNValue);
 
-	myMessage.push_back((unsigned char)nChannel);
+try
+{
+	myMessage.push_back(myStatusByte);
 	myMessage.push_back(myNRPNParameterMSB);
 	myMessage.push_back(myNRPNParameterLSB);
-	m_MIDIOut->sendMessage(&myMessage);
+			m_MIDIOut->sendMessage(&myMessage);
+}  // end try
+catch (RtMidiError &error)
+{
+	std::string wstrError(error.getMessage());
+}
 
-	myMessage.push_back((unsigned char)nChannel);
+try
+{
+	myMessage.push_back(myStatusByte);
 	myMessage.push_back(myNRPNValueMSB);
 	myMessage.push_back(myNRPNValueLSB);
 	m_MIDIOut->sendMessage(&myMessage);
+}  // end try
+catch (RtMidiError &error)
+{
+	std::string wstrError(error.getMessage());
+}
 
 	// Always send the reset or bad things can happen
-	myMessage.push_back((unsigned char)nChannel);
+	try
+	{
+		myMessage.push_back(myStatusByte);
 	myMessage.push_back(RESET_NRPN_CC_MSB);
 	myMessage.push_back(127);
 	m_MIDIOut->sendMessage(&myMessage);
+	}  // end try
+	catch (RtMidiError &error)
+	{
+		std::string wstrError(error.getMessage());
+	}
 
-	myMessage.push_back((unsigned char)nChannel);
+	try
+	{
+		myMessage.push_back(myStatusByte);
 	myMessage.push_back(RESET_NRPN_CC_LSB);
 	myMessage.push_back(127);
 	m_MIDIOut->sendMessage(&myMessage);
+	}  // end try
+	catch (RtMidiError &error)
+	{
+		std::string wstrError(error.getMessage());
+	}
 }
 
 

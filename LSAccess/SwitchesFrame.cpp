@@ -8,8 +8,7 @@
 
 
 SwitchesFrame::SwitchesFrame(const wxString& title, LinnStrument * pLinnStrument)
-	: wxFrame(NULL, wxID_ANY, title),
-	pMyLinnStrument(new LinnStrument)
+	: wxFrame(NULL, wxID_ANY, title)
 {
 	pMyLinnStrument = pLinnStrument;
 

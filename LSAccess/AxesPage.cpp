@@ -4,8 +4,7 @@
 
 AxesPage::AxesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)
 	:wxPanel(parent),
-	pMyLinnStrument(new LinnStrument),
-	pMyParent(new wxBookCtrl()),
+		pMyParent(new wxBookCtrl()),
 	m_Split(split)
 {
 	pMyLinnStrument = pLinnStrument;

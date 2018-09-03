@@ -1,5 +1,4 @@
-Add routine to get all initial values from MIDI
-
+add speech output
 Add detection of O/S update state
 you can discover those with WMI, Win32_SerialPort class.
 

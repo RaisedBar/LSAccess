@@ -4,7 +4,6 @@
 
 PresetsVolumesPage::PresetsVolumesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, LSSplitType split)
 	:wxPanel(parent),
-	pMyLinnStrument(new LinnStrument),
 	m_Split(split),
 	pMyParent(new wxBookCtrl())
 {

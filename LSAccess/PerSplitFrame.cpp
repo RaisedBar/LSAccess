@@ -8,8 +8,7 @@
 
 
 PerSplitFrame::PerSplitFrame(const wxString& title, LinnStrument * pLinnStrument, const LSSplitType split)
-	: wxFrame(NULL, wxID_ANY, title),
-	pMyLinnStrument(new LinnStrument)
+	: wxFrame(NULL, wxID_ANY, title)
 {
 	pMyLinnStrument = pLinnStrument;
 
@@ -24,7 +23,7 @@ PerSplitFrame::PerSplitFrame(const wxString& title, LinnStrument * pLinnStrument
 	pColorsPage = new ColorsPage(pNotebook, pLinnStrument, split);
 	pLowRowPage = new LowRowPage(pNotebook, pLinnStrument, split);
 	pFadersPage = new FadersPage(pNotebook, pLinnStrument, split);
-	pSpecialPage = new SpecialPage(pNotebook, pLinnStrument, split);
+ 	pSpecialPage = new SpecialPage(pNotebook, pLinnStrument, split);
 
 	pNotebook->AddPage(pMIDISplitPage, L"MIDI", true);
 	pNotebook->AddPage(pBendPage, L"Bend (X-axis)", false);

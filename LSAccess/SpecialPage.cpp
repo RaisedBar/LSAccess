@@ -4,7 +4,6 @@
 
 SpecialPage::SpecialPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)
 	:wxPanel(parent),
-	pMyLinnStrument(new LinnStrument),
 	m_Split(split),
 	pMyParent(new wxBookCtrl())
 {
@@ -27,7 +26,6 @@ SpecialPage::SpecialPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, c
 wrbSPECIAL = new wxRadioBox(myPanel, SPECIAL_ID, L"Mode", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Specials), Specials, 0, wxRA_SPECIFY_ROWS);
 hBox1->Add(wrbSPECIAL, 0, wxEXPAND);
 
-hBox1->Add(wrbSPECIAL, 0, wxEXPAND);
 	myPanel->SetSizer(hBox1);
 	hBox1->SetSizeHints(this);
 	myPanel->Fit();

@@ -4,7 +4,6 @@
 
 GlobalsAccentNoteLightsPage::GlobalsAccentNoteLightsPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument)
 	:wxPanel(parent),
-	pMyLinnStrument(new LinnStrument),
 	pMyParent(new wxBookCtrl())
 {
 	pMyLinnStrument = pLinnStrument;
