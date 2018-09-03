@@ -3,17 +3,13 @@
 
 #pragma once
 
+#include "LSEnums.h"
+
+
 // Value is an LSSplitMode
 const unsigned int SPLIT_LEFT_MAIN_MODE_NRPN = 0;
 // Value constrained by MIN_MIDI_CHANNEL and MAX_MIDI_CHANNEL
 const unsigned int SPLIT_LEFT_MAIN_CHANNEL_NRPN = 1;
-
-enum class LSSplitType
-{
-	LEFT = 0,
-	RIGHT= 1
-};
-
 // Toggles:
 const unsigned int SPLIT_LEFT_CHANNEL_PER_NOTE_1_NRPN = 2;
 const unsigned int SPLIT_LEFT_CHANNEL_PER_NOTE_2_NRPN = 3;
@@ -63,11 +59,6 @@ const unsigned int SPLIT_LEFT_COLOR_LOWROW_NRPN = 33;
 const unsigned int SPLIT_LEFT_LOWROW_MODE_NRPN = 34;
 // Value is an LSSpecial:
 const unsigned int SPLIT_LEFT_SPECIAL_NRPN = 35;
-// Value is an LSOctave
-const unsigned int SPLIT_LEFT_OCTAVE_NRPN = 36;
-// Values are from LSPitch
-const unsigned int SPLIT_LEFT_PITCH_TRANSPOSE_NRPN = 37;
-const unsigned int SPLIT_LEFT_TRANSPOSE_LIGHTS_NRPN = 38;
 // Value is an LSExpressionY
 const unsigned int SPLIT_LEFT_EXPRESSION_FOR_Y_NRPN = 39;
 
@@ -164,11 +155,6 @@ const unsigned int SPLIT_RIGHT_COLOR_LOWROW_NRPN = 133;
 const unsigned int SPLIT_RIGHT_LOWROW_MODE_NRPN = 134;
 // Value is an LSSpecial:
 const unsigned int SPLIT_RIGHT_SPECIAL_NRPN = 135;
-// Value is an LSOctave
-const unsigned int SPLIT_RIGHT_OCTAVE_NRPN = 136;
-// Values are from LSPitch
-const unsigned int SPLIT_RIGHT_PITCH_TRANSPOSE_NRPN = 137;
-const unsigned int SPLIT_RIGHT_TRANSPOSE_LIGHTS_NRPN = 138;
 // Value is an LSExpressionY
 const unsigned int SPLIT_RIGHT_EXPRESSION_FOR_Y_NRPN = 139;
 

@@ -3,6 +3,9 @@
 
 #pragma once
 
+#include "LSEnums.h"
+
+
 // Toggle:
 const unsigned int GLOBAL_SPLIT_ACTIVE_NRPN = 200;
 // Value is LSSplitType
@@ -76,18 +79,6 @@ const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW5_NRPN = 267;
 const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW6_NRPN = 268;
 const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW7_NRPN = 269;
 const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW8_NRPN = 270;
-
-enum class LS_MIDIDevice
-{
-	MIDI_DIN_JACKS = 0,
-	USB = 1
-};
-
-const wxString MIDIDeviceConnections[] =
-{
-	L"DIN jacks",
-	L"USB"
-};
 
 class LSGlobalSettings
 {

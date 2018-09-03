@@ -212,7 +212,6 @@
     <ClCompile Include="LSAccess.cpp" />
     <ClCompile Include="LSAccessFrame.cpp" />
     <ClCompile Include="LinnStrument.cpp" />
-    <ClCompile Include="LSOctaveTranspose.cpp" />
     <ClCompile Include="LSPerSplit.cpp" />
     <ClCompile Include="BendPage.cpp" />
     <ClCompile Include="PresetsVolumesPage.cpp" />

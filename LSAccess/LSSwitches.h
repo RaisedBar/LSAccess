@@ -1,4 +1,4 @@
-// LSSwitch.h
+// LSSwitches.h
 
 #pragma once
 
@@ -215,5 +215,4 @@ private:
 	unsigned int m_CC_FOR_RIGHT_FOOT_SUSTAIN;
 	unsigned int m_CC_FOR_SWITCH1_SUSTAIN;
 	unsigned int m_CC_FOR_SWITCH2_SUSTAIN;
-
 };

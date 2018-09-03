@@ -137,9 +137,6 @@
     <ClCompile Include="LSPerSplit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LSOctaveTranspose.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SequencerPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

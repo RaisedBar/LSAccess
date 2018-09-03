@@ -5,6 +5,24 @@
 
 #include <wx/wx.h>
 
+enum class LS_MIDIDevice
+{
+	MIDI_DIN_JACKS = 0,
+	USB = 1
+};
+
+const wxString MIDIDeviceConnections[] =
+{
+	L"DIN jacks",
+	L"USB"
+};
+
+enum class LSSplitType
+{
+	LEFT = 0,
+	RIGHT = 1
+};
+
 // IDs for the controls and the menu commands
 enum
 {
