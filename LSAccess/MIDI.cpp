@@ -1199,3 +1199,41 @@ unsigned int nBytePos = nNibbleCount / 2;
 
 return nNibbleValue;
 }
+
+
+unsigned char MIDI::GetMSB(unsigned int nValue)
+{
+	return ((unsigned char)nValue & 0xFFFF0000);
+}
+
+unsigned char MIDI::GetLSB(unsigned int nValue)
+{
+	return ((unsigned char)nValue & 0x0000FFFF);
+}
+
+
+std::string MIDI::GetNoteName(unsigned char nNoteNumber)
+{
+	std::string strNoteName;
+	int nOctaveNumber = ((nNoteNumber + 12) / 12) - 1;
+
+	switch (nNoteNumber % 12)
+	{
+	case 0: strNoteName = "C";
+	case 1: strNoteName = "C#";
+	case 2: strNoteName = "D";
+	case 3: strNoteName = "D#";
+	case 4: strNoteName = "E";
+	case 5: strNoteName = "F";
+	case 6: strNoteName = "F#";
+	case 7: strNoteName = "G";
+	case 8: strNoteName = "G#";
+	case 9: strNoteName = "A";
+	case 10: strNoteName = "A#";
+	case 11: strNoteName = "B";
+	default: strNoteName = "";
+	}  // end switch
+	return strNoteName.append(std::to_string(nOctaveNumber));
+}
+
+

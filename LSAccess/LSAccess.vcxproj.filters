@@ -134,9 +134,6 @@
     <ClCompile Include="LinnStrument.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LSPerSplit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SequencerPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

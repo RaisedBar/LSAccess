@@ -649,6 +649,7 @@ public:
 		void QueryGlobalSettings();
 		void QuerySwitchSettings();
 		void QueryOctaveTransposeSettings();
+		void QueryAll();
 
 			// Option to use speech to output note names
 	bool GetSpeakNotes();

@@ -306,17 +306,9 @@ bool IsValidSysExHeader( std::vector <unsigned char> vMyBytes);
 std::string MIDIHash(); 
 std::string NibbledShortMIDIHash( std::vector <unsigned char> myMessage, int nNibbles);
 int NibbledMessageValue( std::string strHash, std::vector <unsigned char> vBuffer);
-
-unsigned char GetMSB( unsigned int nValue)
-{
-	return ( (unsigned char) nValue & 0xFFFF0000);
-}
-
-unsigned char GetLSB( unsigned int nValue)
-{
-	return ( (unsigned char) nValue & 0x0000FFFF);
-}
-
+unsigned char GetMSB(unsigned int nValue);
+unsigned char GetLSB(unsigned int nValue);
+std::string GetNoteName(unsigned char nNoteNumber);
 
 private:
 std::string ShortMIDIHash( std::vector <unsigned char> myMessage);

@@ -3,32 +3,6 @@
 #include "LinnStrument.h"
 
 
-
-std::string MIDINoteName(unsigned char nNoteNumber)
-{
-	std::string strNoteName;
-	int nOctaveNumber = ((nNoteNumber + 12) / 12) - 1;
-
-	switch (nNoteNumber % 12)
-	{
-	case 0: strNoteName = "C";
-	case 1: strNoteName = "C#";
-	case 2: strNoteName = "D";
-	case 3: strNoteName = "D#";
-	case 4: strNoteName = "E";
-	case 5: strNoteName = "F";
-	case 6: strNoteName = "F#";
-	case 7: strNoteName = "G";
-	case 8: strNoteName = "G#";
-	case 9: strNoteName = "A";
-	case 10: strNoteName = "A#";
-	case 11: strNoteName = "B";
-	default: strNoteName = "";
-	}  // end switch
-	return strNoteName.append(std::to_string(nOctaveNumber));
-}
-
-
 void SendCC(unsigned char CCNumber, unsigned char CCValue)
 {
 
@@ -184,6 +158,14 @@ void LinnStrument::QuerySwitchSettings()
 	QueryNRPN(CC_FOR_SWITCH2_SUSTAIN);
 }
 
+
+void LinnStrument::QueryAll()
+{
+	QueryPerSplitSettings();
+	QueryGlobalSettings();
+	QuerySwitchSettings();
+	QueryOctaveTransposeSettings();
+}
 
 void LSCallback(double deltatime, std::vector< unsigned char > *message, void *pLinnStrument)
 {
@@ -1578,7 +1560,7 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 		if (m_SpeakNotes)
 		{
 			unsigned char nNoteNumber = MIDI().ShortMsgData1(myMessage);
-			std::string strNoteName = MIDINoteName(nNoteNumber);
+			std::string strNoteName = MIDI().GetNoteName(nNoteNumber);
 			// Announce and update status bar
 		}
 	}
