@@ -1396,24 +1396,22 @@ void LinnStrument::SetLSParameter(unsigned int NRPNParameterIn, unsigned int NRP
 void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 {
 	unsigned char nCmd = MIDI().ShortMsgCommandNibble(myMessage);
-
+	unsigned char nChannel = MIDI().ShortMsgChannelNibble(myMessage);
+	unsigned char nData1 = MIDI().ShortMsgData1(myMessage);
+	unsigned char nData2 = MIDI().ShortMsgData2(myMessage);
+	// wxMessageBox(wxString::Format("%X %X %2X %2X", nCmd, nChannel, nData1, nData2), "Test");
+	// wxMessageBox(wxString::Format("%X", nCmd), "Test");
+			
 	switch (nCmd)
 	{
-	case MIDI_CMD_PITCH_WHEEL:
+		case MIDI_CMD_NOTE_ON:
 	{
-		int x = 1;
+if (m_SpeakNotes)
+		{
+		unsigned char nNoteNumber = MIDI().ShortMsgData1(myMessage);
+		std::string strNoteName = MIDI().GetNoteName(nNoteNumber);
+				// Announce and update status bar
 	}
-	break;
-
-	case MIDI_CMD_NOTE_ON:
-	{
-		// if (m_SpeakNotes)
-		// {
-			unsigned char nNoteNumber = MIDI().ShortMsgData1(myMessage);
-			std::string strNoteName = MIDI().GetNoteName(nNoteNumber);
-			wxMessageBox(strNoteName, "Test");
-			// Announce and update status bar
-		// }
 	}
 	break;
 
@@ -1422,74 +1420,85 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 		if (m_SpeakNotes)
 		{
 			unsigned char nNoteNumber = MIDI().ShortMsgData1(myMessage);
-						// Update status bar
+			// Update status bar
 		}
 	}
 	break;
 
-	case CC_NRPN_PARAM_MSB:
+	case MIDI_CMD_CONTROL_CHANGE:
 	{
-		m_NRPNParameterIn = MIDI().ShortMsgData2(myMessage) * 128;
-	}
-	break;
-
-	case CC_NRPN_PARAM_LSB:
-	{
-		m_NRPNParameterIn = m_NRPNParameterIn + MIDI().ShortMsgData2(myMessage);
-	}
-	break;
-
-	case CC_NRPN_VALUE_MSB:
-	{
-		m_NRPNValueIn = MIDI().ShortMsgData2(myMessage) * 127;
-	}
-	break;
-
-	case CC_NRPN_VALUE_LSB:
-	{
-		m_NRPNValueIn = m_NRPNValueIn + MIDI().ShortMsgData2(myMessage);
-	}
-	break;
-
-	case RESET_NRPN_CC_MSB:
-	{
-		if ((blnReceivedNRPNResetLSB) && (m_NRPNParameterIn == REQUEST_VALUE_OF_NRPN))
+		switch (nData1)
 		{
-			m_NRPNParameterIn = m_NRPNQueue.front();
-			m_NRPNQueue.pop();
-			// We now have enough information to change the value of a member
-			SetLSParameter(m_NRPNParameterIn, m_NRPNValueIn);
-			blnReceivedNRPNResetMSB = false;
-			blnReceivedNRPNResetLSB = false;
-		}
-		else
+		case CC_NRPN_PARAM_MSB:
 		{
-			blnReceivedNRPNResetLSB = true;
+			m_NRPNParameterIn = MIDI().ShortMsgData2(myMessage) * 128;
 		}
-	}
-	break;
+		break;
 
-	case RESET_NRPN_CC_LSB:
-	{
-		if (blnReceivedNRPNResetMSB)
+		case CC_NRPN_PARAM_LSB:
 		{
-			// We now have enough information to change the value of a member
-			SetLSParameter(m_NRPNParameterIn, m_NRPNValueIn);
-			blnReceivedNRPNResetMSB = false;
-			blnReceivedNRPNResetLSB = false;
+			m_NRPNParameterIn = m_NRPNParameterIn + MIDI().ShortMsgData2(myMessage);
 		}
-		else
-		{
-			blnReceivedNRPNResetLSB = true;
-		}
-	}
-	break;
+		break;
 
+		case CC_NRPN_VALUE_MSB:
+		{
+			m_NRPNValueIn = MIDI().ShortMsgData2(myMessage) * 127;
+		}
+		break;
+
+		case CC_NRPN_VALUE_LSB:
+		{
+			m_NRPNValueIn = m_NRPNValueIn + MIDI().ShortMsgData2(myMessage);
+		}
+		break;
+
+		case RESET_NRPN_CC_MSB:
+		{
+			if ((blnReceivedNRPNResetLSB) && (m_NRPNParameterIn == REQUEST_VALUE_OF_NRPN))
+			{
+				m_NRPNParameterIn = m_NRPNQueue.front();
+				m_NRPNQueue.pop();
+				// We now have enough information to change the value of a member
+				SetLSParameter(m_NRPNParameterIn, m_NRPNValueIn);
+				blnReceivedNRPNResetMSB = false;
+				blnReceivedNRPNResetLSB = false;
+			}
+			else
+			{
+				blnReceivedNRPNResetLSB = true;
+			}
+		}
+		break;
+
+		case RESET_NRPN_CC_LSB:
+		{
+			if (blnReceivedNRPNResetMSB)
+			{
+				// We now have enough information to change the value of a member
+				SetLSParameter(m_NRPNParameterIn, m_NRPNValueIn);
+				blnReceivedNRPNResetMSB = false;
+				blnReceivedNRPNResetLSB = false;
+			}
+			else
+			{
+				blnReceivedNRPNResetLSB = true;
+			}
+		}
+		break;
+
+		default:
+		{
+		}
+		break;
+		}   // end switch
+	}  // end case MIDI_CMD_CONTROL_CHANGE
+	break;
+	
 	default:
-	{
-	}
-	break;
-	}  // end switch
+	{}
+	break;  
+}  // end switch
 }
 
 

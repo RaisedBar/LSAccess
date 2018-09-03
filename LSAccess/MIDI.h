@@ -277,14 +277,14 @@ bool ByteFromHexString( std::wstring strIn);
 
 std::vector <unsigned char> LastCompleteMessage();
 int ShortMsgStatus( std::vector <unsigned char> myMessage);
-int ShortMsgStatus( int nCommandNibble, int nChannelNibble);
+unsigned char ShortMsgStatus( int nCommandNibble, int nChannelNibble);
 std::wstring StatusCommandString( std::vector <unsigned char> vBuffer);
-int ShortMsgChannelNibble( std::vector <unsigned char> myMessage);
-	int ShortMsgCommandNibble( std::vector <unsigned char> myMessage);
-int ShortMsgData1( std::vector <unsigned char> myMessage);
-int ShortMsgData2( std::vector <unsigned char> myMessage);
-int ShortMsgData1HighNibble( std::vector <unsigned char> myMessage);
-int ShortMsgData1LowNibble( std::vector <unsigned char> myMessage);
+unsigned char ShortMsgChannelNibble( std::vector <unsigned char> myMessage);
+	unsigned char ShortMsgCommandNibble( std::vector <unsigned char> myMessage);
+unsigned char ShortMsgData1( std::vector <unsigned char> myMessage);
+unsigned char ShortMsgData2( std::vector <unsigned char> myMessage);
+unsigned char ShortMsgData1HighNibble( std::vector <unsigned char> myMessage);
+unsigned char ShortMsgData1LowNibble( std::vector <unsigned char> myMessage);
 std::wstring ControllerString( unsigned char nData1);
 
 std::vector <unsigned char> SysExManufacturerID( std::vector <unsigned char> vMessages);

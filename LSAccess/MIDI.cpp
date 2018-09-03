@@ -702,15 +702,15 @@ return wstrOut;
 }
 
 
-int MIDI::ShortMsgStatus( int nCommandNibble, int nChannelNibble)
+unsigned char MIDI::ShortMsgStatus( int nCommandNibble, int nChannelNibble)
 {
 return (nCommandNibble * 16) + nChannelNibble;
 }
 
 
-int MIDI::ShortMsgChannelNibble( std::vector <unsigned char> myMessage)
+unsigned char MIDI::ShortMsgChannelNibble( std::vector <unsigned char> myMessage)
 {
-int nTemp = ShortMsgStatus( myMessage);
+unsigned char nTemp = ShortMsgStatus( myMessage);
 
 if (nTemp < 0)
 {
@@ -723,9 +723,9 @@ return (nTemp & MIDI_CHN_MASK);
 }
 
 
-	int MIDI::ShortMsgCommandNibble( std::vector <unsigned char> myMessage)
+	unsigned char MIDI::ShortMsgCommandNibble( std::vector <unsigned char> myMessage)
 	{
-int nTemp = ShortMsgStatus( myMessage);
+unsigned char nTemp = ShortMsgStatus( myMessage);
 		
 if (nTemp < 0)
 	{
@@ -733,12 +733,12 @@ if (nTemp < 0)
 }
 else
 	{
-		return (nTemp & MIDI_CODE_MASK);	
+		return (nTemp & MIDI_CODE_MASK) /16;	
 }
 	}
 
 
-int MIDI::ShortMsgData1( std::vector <unsigned char> myMessage)
+unsigned char MIDI::ShortMsgData1( std::vector <unsigned char> myMessage)
 {
 unsigned int nSize = myMessage.size();
 	
@@ -753,7 +753,7 @@ unsigned int nSize = myMessage.size();
 		}
 
 
-int MIDI::ShortMsgData2( std::vector <unsigned char> myMessage)
+unsigned char MIDI::ShortMsgData2( std::vector <unsigned char> myMessage)
 {
 unsigned int nSize = myMessage.size();
 	
@@ -1114,7 +1114,7 @@ return strResult;
 }
 
 
-int MIDI::ShortMsgData1HighNibble( std::vector <unsigned char> myMessage)
+unsigned char MIDI::ShortMsgData1HighNibble( std::vector <unsigned char> myMessage)
 {
 int nTemp = ShortMsgData1( myMessage);
 		
@@ -1124,12 +1124,12 @@ if (nTemp < 0)
 }
 else
 	{
-		return (nTemp & MIDI_CODE_MASK);	
+		return ( (unsigned char) nTemp & MIDI_CODE_MASK);	
 }
 }
 
 
-int MIDI::ShortMsgData1LowNibble( std::vector <unsigned char> myMessage)
+unsigned char MIDI::ShortMsgData1LowNibble( std::vector <unsigned char> myMessage)
 {
 int nTemp = ShortMsgData1( myMessage);
 		
@@ -1219,20 +1219,84 @@ std::string MIDI::GetNoteName(unsigned char nNoteNumber)
 
 	switch (nNoteNumber % 12)
 	{
-	case 0: strNoteName = "C";
-	case 1: strNoteName = "C#";
-	case 2: strNoteName = "D";
-	case 3: strNoteName = "D#";
-	case 4: strNoteName = "E";
-	case 5: strNoteName = "F";
-	case 6: strNoteName = "F#";
-	case 7: strNoteName = "G";
-	case 8: strNoteName = "G#";
-	case 9: strNoteName = "A";
-	case 10: strNoteName = "A#";
-	case 11: strNoteName = "B";
-	default: strNoteName = "";
-	}  // end switch
+	case 0: 
+	{
+		strNoteName = "C";
+	}
+	break;
+
+	case 1: 
+	{
+		strNoteName = "C#";
+	}
+	break;
+
+	case 2: 
+	{
+		strNoteName = "D";
+	}
+	break;
+	
+	case 3: 
+	{
+	strNoteName = "D#"; 
+	}
+	break;
+
+	case 4: 
+	{
+		strNoteName = "E";
+	}
+	break;
+
+	case 5: 
+	{
+		strNoteName = "F";
+	}
+	break;
+
+	case 6: 
+	{
+		strNoteName = "F#";
+	}
+	break;
+
+	case 7: 
+	{
+		strNoteName = "G";
+	}
+	break;
+
+	case 8: 
+	{
+		strNoteName = "G#";
+	}
+	break;
+
+	case 9: 
+	{
+		strNoteName = "A";
+	}
+	break;
+
+	case 10: 
+	{
+		strNoteName = "A#";
+	}
+	break;
+
+	case 11: 
+	{
+		strNoteName = "B";
+	}
+	break;
+
+	default: 
+	{
+		strNoteName = "";
+	}
+	break;
+		}  // end switch
 	return strNoteName.append(std::to_string(nOctaveNumber));
 }
 
