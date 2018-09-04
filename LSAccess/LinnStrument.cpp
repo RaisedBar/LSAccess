@@ -30,9 +30,11 @@ void LSCallback(double deltatime, std::vector< unsigned char > *message, void *p
 LinnStrument::LinnStrument():
 	m_OutputID(-1),
 	m_InputID( -1),
-	blnReceivedNRPNResetMSB(false),
-	blnReceivedNRPNResetLSB(false),
-	m_SpeakNotes(false)
+	blnReceivedNRPNParameterMSB( false),
+	blnReceivedNRPNParameterLSB(false),
+blnReceivedNRPNValueMSB(false),
+blnReceivedNRPNValueLSB(false),
+m_SpeakNotes(false)
 	{
 	try
 	{
@@ -1443,25 +1445,39 @@ if (m_SpeakNotes)
 		{
 		case SET_NRPN_CC_MSB:
 		{
+			blnReceivedNRPNParameterMSB = true;
 			m_NRPNParameterIn = MIDI().ShortMsgData2(myMessage) * 128;
 		}
 		break;
 
 		case SET_NRPN_CC_LSB:
 		{
+			blnReceivedNRPNParameterLSB = true;
 			m_NRPNParameterIn = m_NRPNParameterIn + MIDI().ShortMsgData2(myMessage);
 		}
 		break;
 
 		case CC_NRPN_VALUE_MSB:
 		{
+			blnReceivedNRPNValueMSB = true;
 			m_NRPNValueIn = MIDI().ShortMsgData2(myMessage) * 127;
 		}
 		break;
 
 		case CC_NRPN_VALUE_LSB:
 		{
+			blnReceivedNRPNValueLSB = true;
 			m_NRPNValueIn = m_NRPNValueIn + MIDI().ShortMsgData2(myMessage);
+			// We should now have enough information to change the value of a member
+			if (blnReceivedNRPNValueMSB && blnReceivedNRPNValueLSB)
+			{
+				SetLSParameter(m_NRPNQueue.front(), m_NRPNValueIn);
+				m_NRPNQueue.pop();
+				blnReceivedNRPNParameterMSB = false;
+				blnReceivedNRPNParameterLSB = false;
+				blnReceivedNRPNValueMSB = false;
+				blnReceivedNRPNValueLSB = false;
+			}
 		}
 		break;
 
@@ -1471,9 +1487,7 @@ if (m_SpeakNotes)
 
 		case RESET_NRPN_CC_LSB:
 		{
-			// We now have enough information to change the value of a member
-			SetLSParameter(m_NRPNParameterIn, m_NRPNValueIn);
-		}
+			}
 		break;
 
 		default:

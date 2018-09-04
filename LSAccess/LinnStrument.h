@@ -681,7 +681,8 @@ private:
 
 		// MIDI traffic handling
 		unsigned int m_NRPNParameterIn, m_NRPNValueIn;
-		bool blnReceivedNRPNResetMSB, blnReceivedNRPNResetLSB;
+		bool blnReceivedNRPNParameterMSB, blnReceivedNRPNParameterLSB;
+		bool blnReceivedNRPNValueMSB, blnReceivedNRPNValueLSB;
 
 // Application options
 		bool m_SpeakNotes;
