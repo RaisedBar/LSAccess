@@ -65,6 +65,7 @@ const unsigned char CELL_COLOR_CHANGE = 22;           // Change the color of the
 // Name of LinnStrument when connected over USB
 const std::string LSUSBName = "LinnStrument MIDI";
 // Name of LinnStrument when in O/S update mode
+// todo
 const std::string LSOSUpdateName = "";
 
 // Values for toggle parameters
@@ -644,7 +645,10 @@ public:
 	LSGlobalSettings GetGlobalSettings();
 	void SetGlobalSettings(LSGlobalSettings globalSettings);
 		void ProcessMessage(std::vector <unsigned char> vBytes);
-		void QueryNRPN(unsigned int nParameterNumber);
+
+		void QueryLeftChannel();
+		void QueryRightChannel();
+				void QueryNRPN(unsigned int nParameterNumber);
 		void QueryPerSplitSettings();
 		void QueryGlobalSettings();
 		void QuerySwitchSettings();

@@ -1203,7 +1203,7 @@ return nNibbleValue;
 
 unsigned char MIDI::GetMSB(unsigned int nValue)
 {
-	return ((unsigned char)nValue & 0xFFFF0000);
+	return ((unsigned char)nValue & 0xFFFF0000) /128;
 }
 
 unsigned char MIDI::GetLSB(unsigned int nValue)

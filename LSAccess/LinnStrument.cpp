@@ -1,6 +1,18 @@
 // LinnStrument.cpp
 
 #include "LinnStrument.h"
+#include <Windows.h>
+#include <iostream>
+#include <sstream>
+
+#define DBOUT( s )            \
+{                             \
+   std::wostringstream os_;    \
+   os_ << s;                   \
+   OutputDebugStringW( os_.str().c_str() );  \
+}
+
+
 
 
 void SendCC(unsigned char CCNumber, unsigned char CCValue)
@@ -59,6 +71,8 @@ LinnStrument::LinnStrument():
 			m_MIDIOut->openPort(m_OutputID);
 			m_MIDIIn->openPort(m_InputID);
 			m_MIDIIn->setCallback(&LSCallback, (void*)this);
+			QueryLeftChannel();
+			QueryRightChannel();
 			QueryAll();
 		}
 	}  // end try
@@ -1399,8 +1413,6 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 	unsigned char nChannel = MIDI().ShortMsgChannelNibble(myMessage);
 	unsigned char nData1 = MIDI().ShortMsgData1(myMessage);
 	unsigned char nData2 = MIDI().ShortMsgData2(myMessage);
-	// wxMessageBox(wxString::Format("%X %X %2X %2X", nCmd, nChannel, nData1, nData2), "Test");
-	// wxMessageBox(wxString::Format("%X", nCmd), "Test");
 			
 	switch (nCmd)
 	{
@@ -1429,13 +1441,13 @@ if (m_SpeakNotes)
 	{
 		switch (nData1)
 		{
-		case CC_NRPN_PARAM_MSB:
+		case SET_NRPN_CC_MSB:
 		{
 			m_NRPNParameterIn = MIDI().ShortMsgData2(myMessage) * 128;
 		}
 		break;
 
-		case CC_NRPN_PARAM_LSB:
+		case SET_NRPN_CC_LSB:
 		{
 			m_NRPNParameterIn = m_NRPNParameterIn + MIDI().ShortMsgData2(myMessage);
 		}
@@ -1454,36 +1466,13 @@ if (m_SpeakNotes)
 		break;
 
 		case RESET_NRPN_CC_MSB:
-		{
-			if ((blnReceivedNRPNResetLSB) && (m_NRPNParameterIn == REQUEST_VALUE_OF_NRPN))
-			{
-				m_NRPNParameterIn = m_NRPNQueue.front();
-				m_NRPNQueue.pop();
-				// We now have enough information to change the value of a member
-				SetLSParameter(m_NRPNParameterIn, m_NRPNValueIn);
-				blnReceivedNRPNResetMSB = false;
-				blnReceivedNRPNResetLSB = false;
-			}
-			else
-			{
-				blnReceivedNRPNResetLSB = true;
-			}
-		}
-		break;
+		{}
+					break;
 
 		case RESET_NRPN_CC_LSB:
 		{
-			if (blnReceivedNRPNResetMSB)
-			{
-				// We now have enough information to change the value of a member
-				SetLSParameter(m_NRPNParameterIn, m_NRPNValueIn);
-				blnReceivedNRPNResetMSB = false;
-				blnReceivedNRPNResetLSB = false;
-			}
-			else
-			{
-				blnReceivedNRPNResetLSB = true;
-			}
+			// We now have enough information to change the value of a member
+			SetLSParameter(m_NRPNParameterIn, m_NRPNValueIn);
 		}
 		break;
 
@@ -1551,28 +1540,35 @@ void LinnStrument::SendNRPN(LSSplitType split, unsigned int NRPNNumber, unsigned
 void LinnStrument::SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned int NRPNValue)
 {
 	std::vector<unsigned char> myMessage;
-	unsigned char myCmdNibble = MIDI_CMD_CONTROL_CHANGE;
-	unsigned char myStatusByte = (myCmdNibble * 128) + nChannelNibble;
-	unsigned char myNRPNParameterMSB, myNRPNParameterLSB;
-	unsigned char myNRPNValueMSB, myNRPNValueLSB;
+	std::wstring wstrDebug;
+		unsigned char myStatusByte = (MIDI_CMD_CONTROL_CHANGE * 16) + nChannelNibble;
+	unsigned char myNRPNParameterLSB = NRPNNumber % 128;
+	unsigned char myNRPNParameterMSB = (NRPNNumber - myNRPNParameterLSB) / 128;
+	unsigned char myNRPNValueLSB = NRPNValue % 128;
+		unsigned char myNRPNValueMSB = (NRPNValue - myNRPNValueLSB) / 128;
+		
+		wstrDebug = L"Status = ";
+		DBOUT(wstrDebug.append(std::to_wstring(myStatusByte)).append(L"\n"))
+									wstrDebug = L"NRPN param MSB = ";
+		DBOUT(wstrDebug.append(std::to_wstring(myNRPNParameterMSB).append(L"\n")))
+			wstrDebug = L"NRPN param LSB = ";
+		DBOUT(wstrDebug.append(std::to_wstring(myNRPNParameterLSB).append(L"\n")))
+						wstrDebug = L"NRPN value MSB = ";
+	DBOUT(wstrDebug.append(std::to_wstring(myNRPNValueMSB).append(L"\n")))
+		wstrDebug = L"NRPN value LSB = ";
+	DBOUT(wstrDebug.append(std::to_wstring(myNRPNValueLSB).append(L"\n")))
 
-	if (NRPNNumber == REQUEST_VALUE_OF_NRPN)
+		if (NRPNNumber == REQUEST_VALUE_OF_NRPN)
 	{
 		// Record the NRPN parameter we're querying
 		m_NRPNQueue.push(NRPNValue);
 	}
 
-	// Calculate the MSB and LSB values here
-	myNRPNParameterMSB = MIDI().GetMSB(NRPNNumber);
-	myNRPNParameterLSB = MIDI().GetLSB(NRPNNumber);
-	myNRPNValueMSB = MIDI().GetMSB(NRPNValue);
-	myNRPNValueLSB = MIDI().GetLSB(NRPNValue);
-
 try
 {
 	myMessage.push_back(myStatusByte);
+	myMessage.push_back(SET_NRPN_CC_MSB);
 	myMessage.push_back(myNRPNParameterMSB);
-	myMessage.push_back(myNRPNParameterLSB);
 			m_MIDIOut->sendMessage(&myMessage);
 }  // end try
 catch (RtMidiError &error)
@@ -1580,10 +1576,40 @@ catch (RtMidiError &error)
 	std::string wstrError(error.getMessage());
 }
 
+myMessage.clear();
+
 try
 {
 	myMessage.push_back(myStatusByte);
+	myMessage.push_back(SET_NRPN_CC_LSB);
+	myMessage.push_back(myNRPNParameterLSB);
+	m_MIDIOut->sendMessage(&myMessage);
+}  // end try
+catch (RtMidiError &error)
+{
+	std::string wstrError(error.getMessage());
+}
+
+myMessage.clear();
+
+try
+{
+	myMessage.push_back(myStatusByte);
+	myMessage.push_back(CC_NRPN_VALUE_MSB);
 	myMessage.push_back(myNRPNValueMSB);
+	m_MIDIOut->sendMessage(&myMessage);
+}  // end try
+catch (RtMidiError &error)
+{
+	std::string wstrError(error.getMessage());
+}
+
+myMessage.clear();
+
+try
+{
+	myMessage.push_back(myStatusByte);
+	myMessage.push_back(CC_NRPN_VALUE_LSB);
 	myMessage.push_back(myNRPNValueLSB);
 	m_MIDIOut->sendMessage(&myMessage);
 }  // end try
@@ -1592,7 +1618,9 @@ catch (RtMidiError &error)
 	std::string wstrError(error.getMessage());
 }
 
-	// Always send the reset or bad things can happen
+myMessage.clear();
+
+// Always send the reset or bad things can happen
 	try
 	{
 		myMessage.push_back(myStatusByte);
@@ -1605,6 +1633,8 @@ catch (RtMidiError &error)
 		std::string wstrError(error.getMessage());
 	}
 
+	myMessage.clear();
+
 	try
 	{
 		myMessage.push_back(myStatusByte);
@@ -1615,6 +1645,26 @@ catch (RtMidiError &error)
 	catch (RtMidiError &error)
 	{
 		std::string wstrError(error.getMessage());
+	}
+	
+	myMessage.clear();
+}
+
+
+void LinnStrument::QueryLeftChannel()
+{
+	for ( unsigned char nChannel = (MIN_MIDI_CHANNEL - 1); nChannel < MAX_MIDI_CHANNEL; nChannel++)
+	{
+		SendNRPN(nChannel, REQUEST_VALUE_OF_NRPN, SPLIT_LEFT_MAIN_CHANNEL_NRPN);
+	}
+}
+
+
+void LinnStrument::QueryRightChannel()
+{
+	for (unsigned char nChannel = (MIN_MIDI_CHANNEL - 1); nChannel < MAX_MIDI_CHANNEL; nChannel++)
+	{
+		SendNRPN(nChannel, REQUEST_VALUE_OF_NRPN, SPLIT_RIGHT_MAIN_CHANNEL_NRPN);
 	}
 }
 
