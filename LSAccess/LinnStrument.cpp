@@ -1,9 +1,6 @@
 // LinnStrument.cpp
 
 #include "LinnStrument.h"
-#include <Windows.h>
-#include <iostream>
-#include <sstream>
 
 #define DBOUT( s )            \
 {                             \
@@ -13,6 +10,12 @@
 }
 
 
+std::wstring widen(const std::string& s)
+{
+std::vector<wchar_t> buf(MultiByteToWideChar(CP_ACP, 0, s.c_str(), s.size() + 1, 0, 0));
+	MultiByteToWideChar(CP_ACP, 0, s.c_str(), s.size() + 1, &buf[0], buf.size());
+		return std::wstring(&buf[0]);
+	}
 
 
 void SendCC(unsigned char CCNumber, unsigned char CCValue)
@@ -30,12 +33,28 @@ void LSCallback(double deltatime, std::vector< unsigned char > *message, void *p
 LinnStrument::LinnStrument():
 	m_OutputID(-1),
 	m_InputID( -1),
-	blnReceivedNRPNParameterMSB( false),
-	blnReceivedNRPNParameterLSB(false),
-blnReceivedNRPNValueMSB(false),
-blnReceivedNRPNValueLSB(false),
-m_SpeakNotes(false)
+m_ReceivedNRPNValueMSB(false),
+m_ReceivedNRPNValueLSB(false),
+m_Waiting(false),
+m_SpeakNotes(false),
+m_Sent(0),
+m_Received(0),
+pVoice(NULL)
 	{
+		if (FAILED(::CoInitialize(NULL)))
+	{
+		m_SpeakNotes = false;
+	}
+	else
+	{
+		HRESULT hr = CoCreateInstance(CLSID_SpVoice, NULL, CLSCTX_ALL, IID_ISpVoice, (void **) &pVoice);
+	
+		if (SUCCEEDED(hr))
+			{
+			m_SpeakNotes = true;
+						}
+		}
+		
 	try
 	{
 		m_MIDIIn = new RtMidiIn();
@@ -46,7 +65,8 @@ m_SpeakNotes(false)
 			if ((m_OutputID == -1) || (m_InputID == -1))
 		{
 			// Prompt for appropriate DIN sockets
-			MIDIDialog * pMIDIDialog = new MIDIDialog(L"LinnStrument MIDI I/O jacks");
+/*
+MIDIDialog * pMIDIDialog = new MIDIDialog(L"LinnStrument MIDI I/O jacks");
 			if (pMIDIDialog->ShowModal() == wxID_OK)
 			{
 												m_GlobalSettings.SetGLOBAL_MIDI_DEVICE_IO( m_GlobalSettings.GetLS_MIDIDeviceIndex(LS_MIDIDevice::MIDI_DIN_JACKS));
@@ -66,8 +86,9 @@ m_SpeakNotes(false)
 				m_InputID = -1;
 				m_OutputID = -1;
 			}  // dialog cancelled
+			*/
 		}   
-		else  // USB connection detected
+			else  // USB connection detected
 		{
 			m_GlobalSettings.SetGLOBAL_MIDI_DEVICE_IO(m_GlobalSettings.GetLS_MIDIDeviceIndex(LS_MIDIDevice::USB));
 			m_MIDIOut->openPort(m_OutputID);
@@ -75,8 +96,16 @@ m_SpeakNotes(false)
 			m_MIDIIn->setCallback(&LSCallback, (void*)this);
 			QueryLeftChannel();
 			QueryRightChannel();
+			m_Sent = 0;
+			m_Received = 0;
 			QueryAll();
-		}
+			std::wstring wstrDebug = L"Queries sent = ";
+			wstrDebug.append(std::to_wstring(m_Sent)).append(L"\n");
+DBOUT(wstrDebug)
+wstrDebug = L"Queries sent = ";
+wstrDebug.append(std::to_wstring(m_Received)).append(L"\n");
+DBOUT(wstrDebug)
+}
 	}  // end try
 		catch (RtMidiError &error)
 	{
@@ -85,12 +114,13 @@ m_SpeakNotes(false)
 		m_OutputID = -1;
 		m_GlobalSettings.SetGLOBAL_MIDI_DEVICE_IO(m_GlobalSettings.GetLS_MIDIDeviceIndex(LS_MIDIDevice::MIDI_DIN_JACKS));
 	}
-				}
+		HRESULT hr = pVoice->Speak(L"LinnStrument initialised", 0, NULL);
+}
 
 
 LinnStrument::~LinnStrument()
 {
-	try
+try
 	{
 		if (m_MIDIIn->isPortOpen())
 		{
@@ -108,13 +138,17 @@ LinnStrument::~LinnStrument()
 		m_OutputID = -1;
 	}
 		
-		// Dereference the callback
-		
-		// Tidy up
+		// Dereference the callback and tidy up
 		m_MIDIIn->setCallback(NULL);
 		delete m_MIDIIn;
 		delete m_MIDIOut;
-		}
+		
+		// Tidy up SAPI
+		pVoice->Release();
+pVoice = NULL;
+// Tidy up COM
+		::CoUninitialize();
+}
 
 
 int LinnStrument::GetUSBInPortID()
@@ -1424,7 +1458,10 @@ if (m_SpeakNotes)
 		{
 		unsigned char nNoteNumber = MIDI().ShortMsgData1(myMessage);
 		std::string strNoteName = MIDI().GetNoteName(nNoteNumber);
+		std::wstring wstrNoteName = widen(strNoteName);
+		LPCWSTR result = wstrNoteName.c_str();
 				// Announce and update status bar
+		HRESULT hr = pVoice->Speak( result, 0, NULL);
 	}
 	}
 	break;
@@ -1445,38 +1482,36 @@ if (m_SpeakNotes)
 		{
 		case SET_NRPN_CC_MSB:
 		{
-			blnReceivedNRPNParameterMSB = true;
 			m_NRPNParameterIn = MIDI().ShortMsgData2(myMessage) * 128;
 		}
 		break;
 
 		case SET_NRPN_CC_LSB:
 		{
-			blnReceivedNRPNParameterLSB = true;
 			m_NRPNParameterIn = m_NRPNParameterIn + MIDI().ShortMsgData2(myMessage);
 		}
 		break;
 
 		case CC_NRPN_VALUE_MSB:
 		{
-			blnReceivedNRPNValueMSB = true;
+			m_ReceivedNRPNValueMSB = true;
 			m_NRPNValueIn = MIDI().ShortMsgData2(myMessage) * 127;
 		}
 		break;
 
 		case CC_NRPN_VALUE_LSB:
 		{
-			blnReceivedNRPNValueLSB = true;
+			m_ReceivedNRPNValueLSB = true;
 			m_NRPNValueIn = m_NRPNValueIn + MIDI().ShortMsgData2(myMessage);
 			// We should now have enough information to change the value of a member
-			if (blnReceivedNRPNValueMSB && blnReceivedNRPNValueLSB)
+			if (m_ReceivedNRPNValueMSB && m_ReceivedNRPNValueLSB)
 			{
 				SetLSParameter(m_NRPNQueue.front(), m_NRPNValueIn);
 				m_NRPNQueue.pop();
-				blnReceivedNRPNParameterMSB = false;
-				blnReceivedNRPNParameterLSB = false;
-				blnReceivedNRPNValueMSB = false;
-				blnReceivedNRPNValueLSB = false;
+				m_Received++;
+				m_Waiting = false;
+								m_ReceivedNRPNValueMSB = false;
+				m_ReceivedNRPNValueLSB = false;
 			}
 		}
 		break;
@@ -1576,6 +1611,7 @@ void LinnStrument::SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumbe
 	{
 		// Record the NRPN parameter we're querying
 		m_NRPNQueue.push(NRPNValue);
+		m_Sent++;
 	}
 
 try
@@ -1686,6 +1722,12 @@ void LinnStrument::QueryRightChannel()
 void LinnStrument::QueryNRPN(unsigned int nParameterNumber)
 {
 	SendNRPN(m_PerSplitSettings.GetMIDI_MAIN_CHANNEL(LSSplitType::LEFT), REQUEST_VALUE_OF_NRPN, nParameterNumber);
+	m_Waiting = true;
+
+	while (m_Waiting)
+	{
+		Sleep(1);
+	}
 }
 
 

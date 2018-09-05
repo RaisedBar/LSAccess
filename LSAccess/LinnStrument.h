@@ -4,7 +4,19 @@
 
 #include <RtMidi.h>
 #include <wx/string.h>
+
+#include <iostream>
+#include <sstream>
 #include <queue>
+
+#define _ATL_APARTMENT_THREADED
+#include <atlbase.h>
+//You may derive a class from CComModule and use it if you want to override something,
+//but do not change the name of _Module
+extern CComModule _Module;
+#include <atlcom.h>
+#include <sapi.h>
+#include <Windows.h>
 
 #include "LSPerSplit.h"
 #include "LSOctaveTranspose.h"
@@ -671,8 +683,7 @@ private:
 		// MIDI port ID values;
 		int m_InputID, m_OutputID;
 
-
-// LinnStrument parameters
+		// LinnStrument parameters
 		LSPerSplitSettings m_PerSplitSettings;
 		LSOctaveTransposeSettings m_OctaveTransposeSettings;
 		LSSwitchSettings m_SwitchSettings;
@@ -681,12 +692,14 @@ private:
 
 		// MIDI traffic handling
 		unsigned int m_NRPNParameterIn, m_NRPNValueIn;
-		bool blnReceivedNRPNParameterMSB, blnReceivedNRPNParameterLSB;
-		bool blnReceivedNRPNValueMSB, blnReceivedNRPNValueLSB;
+		bool m_ReceivedNRPNValueMSB, m_ReceivedNRPNValueLSB;
+		bool m_Waiting;
+		unsigned int m_Sent, m_Received;
 
 // Application options
 		bool m_SpeakNotes;
-					};
+		ISpVoice * pVoice;
+		};
 
 std::string MIDINoteName(unsigned char nNoteNumber);
 void SendCC(unsigned char CCNumber, unsigned char CCValue);
