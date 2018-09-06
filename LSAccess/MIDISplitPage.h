@@ -18,7 +18,6 @@
 #include <wx/spinctrl.h>
 
 #include "LinnStrument.h"
-#include "LSPerSplit.h"
 #include "LSEnums.h"
 
 class MIDISplitPage: public wxPanel
@@ -55,7 +54,6 @@ void OnCHANNEL_PER_ROW_ORDER(wxCommandEvent& event);
 	// data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
-		LSPerSplitSettings m_Settings;
 		LSSplitType m_Split;
 	
 		// controls

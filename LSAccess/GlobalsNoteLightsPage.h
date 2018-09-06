@@ -18,7 +18,6 @@
 #include <wx/spinctrl.h>
 
 #include "LinnStrument.h"
-#include "LSPerSplit.h"
 #include "LSEnums.h"
 
 class GlobalsNoteLightsPage : public wxPanel
@@ -47,7 +46,6 @@ private:
 	// data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
-	LSGlobalSettings m_Settings;
 
 	// controls
 	// Toggles:

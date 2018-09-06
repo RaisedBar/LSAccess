@@ -18,7 +18,6 @@
 #include <wx/spinctrl.h>
 
 #include "LinnStrument.h"
-#include "LSGlobals.h"
 #include "LSEnums.h"
 
 class GlobalsSplitPage : public wxPanel
@@ -37,8 +36,6 @@ private:
 // data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
-	LSGlobalSettings m_Settings;
-
 
 // controls
 // Controls

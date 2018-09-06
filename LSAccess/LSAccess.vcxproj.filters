@@ -24,12 +24,6 @@
     <ClInclude Include="LSAccessFrame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LSPerSplit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LSOctaveTranspose.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="LSEnums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -64,9 +58,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GlobalsFrame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LSGlobals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GlobalsNoteLightsPage.h">
@@ -118,9 +109,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MIDI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LSSwitches.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

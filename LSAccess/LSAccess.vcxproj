@@ -166,7 +166,6 @@
     <ClInclude Include="GlobalsSplitPage.h" />
     <ClInclude Include="GlobalsTuningsPage.h" />
     <ClInclude Include="GlobalsVelocityPressurePage.h" />
-    <ClInclude Include="LSSwitches.h" />
     <ClInclude Include="MIDI.h" />
     <ClInclude Include="MIDIDialog.h" />
     <ClInclude Include="MIDISplitPage.h" />
@@ -174,15 +173,12 @@
     <ClInclude Include="FadersPage.h" />
     <ClInclude Include="LowRowPage.h" />
     <ClInclude Include="LSEnums.h" />
-    <ClInclude Include="LSGlobals.h" />
     <ClInclude Include="OctaveTransposeFrame.h" />
     <ClInclude Include="OctaveTransposePage.h" />
     <ClInclude Include="PerSplitFrame.h" />
     <ClInclude Include="LSAccessFrame.h" />
     <ClInclude Include="LinnStrument.h" />
     <ClInclude Include="LSAccess.h" />
-    <ClInclude Include="LSOctaveTranspose.h" />
-    <ClInclude Include="LSPerSplit.h" />
     <ClInclude Include="BendPage.h" />
     <ClInclude Include="PresetsVolumesPage.h" />
     <ClInclude Include="PresetsVolumesFrame.h" />

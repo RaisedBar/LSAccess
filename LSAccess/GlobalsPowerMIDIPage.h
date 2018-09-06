@@ -18,7 +18,6 @@
 #include <wx/spinctrl.h>
 
 #include "LinnStrument.h"
-#include "LSGlobals.h"
 #include "LSEnums.h"
 
 class GlobalsPowerMIDIPage : public wxPanel
@@ -38,7 +37,6 @@ private:
 // data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
-	LSGlobalSettings m_Settings;
 
 	// Controls
 		// Value is an LS_MIDIDevice

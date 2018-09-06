@@ -18,7 +18,6 @@
 #include <wx/spinctrl.h>
 
 #include "LinnStrument.h"
-#include "LSSwitches.h"
 #include "LSEnums.h"
 
 class PanelSwitchesPage : public wxPanel
@@ -42,8 +41,7 @@ void OnCC_FOR_SWITCH1_SUSTAIN(wxSpinEvent& event);
 	// data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
-	LSSwitchSettings m_Settings;
-
+	
 	// controls
 	// Value is an LSSwitchAssignment
 	wxRadioBox * wrbSWITCH1_ASSIGN;

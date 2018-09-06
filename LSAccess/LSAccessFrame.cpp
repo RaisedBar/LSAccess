@@ -40,9 +40,7 @@ LSAccessFrame::LSAccessFrame(const wxString& title)
 	CreateStatusBar(2);
 	SetStatusText("Welcome to LSAccess!");
 	this->Maximize();
-	// Initialize the LinnStrument itself
-	pLinnStrument = new LinnStrument();
-		}
+}		
 
 
 // event handlers
@@ -55,48 +53,48 @@ void LSAccessFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 
 void LSAccessFrame::OnLeftSplitSettings(wxCommandEvent& event)
 {
-	PerSplitFrame * pLeftSplit = new PerSplitFrame( L"Left Split", pLinnStrument, LSSplitType::LEFT);
+	PerSplitFrame * pLeftSplit = new PerSplitFrame( L"Left Split", &m_LinnStrument, LSSplitType::LEFT);
 	pLeftSplit->Show(true);
 	}
 
 void LSAccessFrame::OnRightSplitSettings(wxCommandEvent& event)
 {
-	PerSplitFrame * pRightSplit = new PerSplitFrame(L"Right Split", pLinnStrument, LSSplitType::RIGHT);
+	PerSplitFrame * pRightSplit = new PerSplitFrame(L"Right Split", &m_LinnStrument, LSSplitType::RIGHT);
 	pRightSplit->Show(true);
 }
 
 
 void LSAccessFrame::OnOctaveTransposeSettings(wxCommandEvent& event)
 {
-	OctaveTransposeFrame * pOctaveTransposeFrame = new OctaveTransposeFrame(L"Octave/Transpose", pLinnStrument);
+	OctaveTransposeFrame * pOctaveTransposeFrame = new OctaveTransposeFrame(L"Octave/Transpose", &m_LinnStrument);
 	pOctaveTransposeFrame->Show(true);
 	}
 
 
 void LSAccessFrame::OnPresetsVolumesSettings(wxCommandEvent& event)
 {
-	PresetsVolumesFrame * pPresetsVolumesFrame = new PresetsVolumesFrame(L"Presets/Volumes", pLinnStrument);
+	PresetsVolumesFrame * pPresetsVolumesFrame = new PresetsVolumesFrame(L"Presets/Volumes", &m_LinnStrument);
 	pPresetsVolumesFrame->Show(true);
 }
 
 
 void LSAccessFrame::OnSwitchSettings(wxCommandEvent& event)
 {
-	SwitchesFrame * pSwitchesFrame = new SwitchesFrame(L"Switches", pLinnStrument);
+	SwitchesFrame * pSwitchesFrame = new SwitchesFrame(L"Switches", &m_LinnStrument);
 	pSwitchesFrame->Show(true);
 }
 
 
 void LSAccessFrame::OnGlobalSettings(wxCommandEvent& event)
 {
-	GlobalsFrame * pGlobalsFrame = new GlobalsFrame(L"Globals", pLinnStrument);
+	GlobalsFrame * pGlobalsFrame = new GlobalsFrame(L"Globals", &m_LinnStrument);
 	pGlobalsFrame->Show(true);
 }
 
 
 void LSAccessFrame::OnStepSequencerSettings(wxCommandEvent& event)
 {
-	SequencerFrame * pSequencerFrame = new SequencerFrame(L"Step Sequencer", pLinnStrument);
+	SequencerFrame * pSequencerFrame = new SequencerFrame(L"Step Sequencer", &m_LinnStrument);
 	pSequencerFrame->Show(true);
 }
 

@@ -18,7 +18,6 @@
 #include <wx/spinctrl.h>
 
 #include "LinnStrument.h"
-#include "LSOctaveTranspose.h"
 #include "LSEnums.h"
 
 class OctaveTransposePage : public wxPanel
@@ -37,8 +36,7 @@ private:
 	// data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
-	LSOctaveTransposeSettings m_Settings;
-	LSSplitType m_Split;
+		LSSplitType m_Split;
 
 // controls
 			// Value is an LSOctave

@@ -18,7 +18,6 @@
 #include <wx/spinctrl.h>
 
 #include "LinnStrument.h"
-#include "LSPerSplit.h"
 #include "LSEnums.h"
 
 class SequencerPage : public wxPanel
@@ -39,8 +38,7 @@ void OnSEQUENCER_TOGGLE_PLAY(wxCommandEvent& event);
 // data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
-	LSPerSplitSettings m_Settings;
-	LSSplitType m_Split;
+		LSSplitType m_Split;
 
 	
 // controls

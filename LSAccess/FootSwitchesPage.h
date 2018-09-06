@@ -18,7 +18,6 @@
 #include <wx/spinctrl.h>
 
 #include "LinnStrument.h"
-#include "LSSwitches.h"
 #include "LSEnums.h"
 
 class FootSwitchesPage : public wxPanel
@@ -42,8 +41,7 @@ void OnCC_FOR_LEFT_FOOT_CC65(wxSpinEvent& event);
 	// data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
-	LSSwitchSettings m_Settings;
-	
+		
 	// controls
 // Value is an LSSwitchAssignment
 	wxRadioBox * wrbFOOT_LEFT_ASSIGN;

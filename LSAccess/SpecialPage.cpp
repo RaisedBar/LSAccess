@@ -5,12 +5,10 @@
 SpecialPage::SpecialPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)
 	:wxPanel(parent),
 	m_Split(split),
-	pMyParent(new wxBookCtrl())
+	pMyLinnStrument(pLinnStrument),
+	pMyParent(parent)
 {
-	pMyLinnStrument = pLinnStrument;
-	m_Settings = pMyLinnStrument->GetPerSplitSettings();
-	pMyParent = parent;
-	wxPanel * myPanel = new wxPanel(this, -1);
+		wxPanel * myPanel = new wxPanel(this, -1);
 	wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
 
 	// Controls
@@ -37,7 +35,7 @@ hBox1->Add(wrbSPECIAL, 0, wxEXPAND);
 
 void SpecialPage::OnSpecial(wxCommandEvent& event)
 {
-	m_Settings.SetSPECIAL(wrbSPECIAL->GetSelection(), m_Split);
+	pMyLinnStrument->SetSPECIAL(wrbSPECIAL->GetSelection(), m_Split);
 }
 
 

@@ -51,7 +51,7 @@ public:
 
 private:
 	// Internal storage
-	LinnStrument * pLinnStrument;
+	LinnStrument m_LinnStrument;
 	wxNotebook * pNotebook;
 	
 	wxDECLARE_EVENT_TABLE();

@@ -5,24 +5,22 @@
 SequencerPage::SequencerPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)
 	:wxPanel(parent),
 	m_Split(split),
-	pMyParent(new wxBookCtrl())
+	pMyLinnStrument(pLinnStrument),
+	pMyParent(parent)
 {
-	pMyLinnStrument = pLinnStrument;
-	m_Settings = pMyLinnStrument->GetPerSplitSettings();
-	pMyParent = parent;
-	wxPanel * myPanel = new wxPanel(this, -1);
+				wxPanel * myPanel = new wxPanel(this, -1);
 	wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
 
 	// Controls
 // Value is an LSPatternNumber
-	wscSEQUENCER_PATTERN = new wxSpinCtrl(myPanel, SEQUENCER_PATTERN_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_SEQUENCER_PATTERN, MAX_SEQUENCER_PATTERN, m_Settings.GetSEQUENCER_PATTERN(split), "&Pattern");
+	wscSEQUENCER_PATTERN = new wxSpinCtrl(myPanel, SEQUENCER_PATTERN_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_SEQUENCER_PATTERN, MAX_SEQUENCER_PATTERN, pMyLinnStrument->GetSEQUENCER_PATTERN(split), "&Pattern");
 	hBox1->Add(wscSEQUENCER_PATTERN, 0, wxEXPAND);
 	// Toggles:
 	chkSEQUENCER_TOGGLE_PLAY = new wxCheckBox(myPanel, SEQUENCER_TOGGLE_PLAY_ID, L"&Play");
-	chkSEQUENCER_TOGGLE_PLAY->SetValue(m_Settings.GetSEQUENCER_TOGGLE_PLAY(split));
+	chkSEQUENCER_TOGGLE_PLAY->SetValue(pMyLinnStrument->GetSEQUENCER_TOGGLE_PLAY(split));
 	hBox1->Add(chkSEQUENCER_TOGGLE_PLAY, 0, wxEXPAND);
 	chkSEQUENCER_TOGGLE_MUTE = new wxCheckBox(myPanel, SEQUENCER_TOGGLE_MUTE_ID, L"&Mute");
-		chkSEQUENCER_TOGGLE_MUTE->SetValue(m_Settings.GetSEQUENCER_TOGGLE_MUTE(split));
+		chkSEQUENCER_TOGGLE_MUTE->SetValue(pMyLinnStrument->GetSEQUENCER_TOGGLE_MUTE(split));
 		hBox1->Add(chkSEQUENCER_TOGGLE_MUTE, 0, wxEXPAND);
 		btnSEQUENCER_PREVIOUS_PATTERN = new wxButton(myPanel, SEQUENCER_PREVIOUS_PATTERN_ID, L"&Back");
 		hBox1->Add(btnSEQUENCER_PREVIOUS_PATTERN, 0, wxEXPAND);
@@ -40,31 +38,31 @@ SequencerPage::SequencerPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrumen
 
 void SequencerPage::OnSEQUENCER_TOGGLE_PLAY(wxCommandEvent& event)
 {
-	m_Settings.SetSEQUENCER_TOGGLE_PLAY(chkSEQUENCER_TOGGLE_PLAY->GetValue(), m_Split);
+	pMyLinnStrument->SetSEQUENCER_TOGGLE_PLAY(chkSEQUENCER_TOGGLE_PLAY->GetValue(), m_Split);
 }
 
 
 void SequencerPage::OnSEQUENCER_TOGGLE_MUTE(wxCommandEvent& event)
 {
-	m_Settings.SetSEQUENCER_TOGGLE_MUTE(chkSEQUENCER_TOGGLE_MUTE->GetValue(), m_Split);
+	pMyLinnStrument->SetSEQUENCER_TOGGLE_MUTE(chkSEQUENCER_TOGGLE_MUTE->GetValue(), m_Split);
 }
 
 
 void SequencerPage::OnSEQUENCER_PREVIOUS_PATTERN(wxCommandEvent& event)
 {
-	m_Settings.SetSEQUENCER_PREVIOUS_PATTERN(1, m_Split);
+	pMyLinnStrument->SetSEQUENCER_PREVIOUS_PATTERN(1, m_Split);
 }
 
 
 void SequencerPage::OnSEQUENCER_NEXT_PATTERN(wxCommandEvent& event)
 {
-	m_Settings.SetSEQUENCER_NEXT_PATTERN(1, m_Split);
+	pMyLinnStrument->SetSEQUENCER_NEXT_PATTERN(1, m_Split);
 }
 
 
 void SequencerPage::OnSEQUENCER_PATTERN(wxSpinEvent& event)
 {
-	m_Settings.SetSEQUENCER_PATTERN(wscSEQUENCER_PATTERN->GetValue(), m_Split);
+	pMyLinnStrument->SetSEQUENCER_PATTERN(wscSEQUENCER_PATTERN->GetValue(), m_Split);
 }
 
 

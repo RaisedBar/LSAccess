@@ -8,11 +8,10 @@
 
 
 PerSplitFrame::PerSplitFrame(const wxString& title, LinnStrument * pLinnStrument, const LSSplitType split)
-	: wxFrame(NULL, wxID_ANY, title)
+	: wxFrame(NULL, wxID_ANY, title),
+	pMyLinnStrument(pLinnStrument)
 {
-	pMyLinnStrument = pLinnStrument;
-
-	// Set up the multi-tab notebook
+		// Set up the multi-tab notebook
 	wxPanel * pPanel = new wxPanel(this);
 	wxBoxSizer * vBox1 = new wxBoxSizer(wxVERTICAL);
 

@@ -18,7 +18,6 @@
 #include <wx/spinctrl.h>
 
 #include "LinnStrument.h"
-#include "LSPerSplit.h"
 #include "LSEnums.h"
 
 class AxesPage : public wxPanel
@@ -58,7 +57,6 @@ private:
 		// Data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
-	LSPerSplitSettings m_Settings;
-	LSSplitType m_Split;
+		LSSplitType m_Split;
 };
 

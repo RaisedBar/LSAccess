@@ -18,7 +18,6 @@
 #include <wx/spinctrl.h>
 
 #include "LinnStrument.h"
-#include "LSGlobals.h"
 #include "LSEnums.h"
 
 class GlobalsVelocityPressurePage : public wxPanel
@@ -40,7 +39,6 @@ void OnGLOBAL_MIN_VELOCITY_VALUE(wxSpinEvent& event);
 // data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
-	LSGlobalSettings m_Settings;
 
 // controls
 				// Value is an LSVelocityRange

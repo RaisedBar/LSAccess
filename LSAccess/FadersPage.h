@@ -18,7 +18,6 @@
 #include <wx/spinctrl.h>
 
 #include "LinnStrument.h"
-#include "LSPerSplit.h"
 #include "LSEnums.h"
 
 class FadersPage : public wxPanel
@@ -42,8 +41,7 @@ void OnCC_FOR_FADER8(wxSpinEvent& event);
 	// data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
-	LSPerSplitSettings m_Settings;
-	LSSplitType m_Split;
+		LSSplitType m_Split;
 
 	// controls
 				// Value is constrained by MIN_FADER_CC and MAX_FADER_CC

@@ -4,23 +4,22 @@
 
 OctaveTransposePage::OctaveTransposePage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)
 	:wxPanel(parent),
-	pMyParent(new wxBookCtrl()),
-	m_Split(split)
-{
-	pMyLinnStrument = pLinnStrument;
-	m_Settings = pMyLinnStrument->GetOctaveTransposeSettings();
-	pMyParent = parent;
+	m_Split(split),
+	pMyLinnStrument(pLinnStrument),
+
+	pMyParent(parent)
+	{
 	wxPanel * myPanel = new wxPanel(this, -1);
 	wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
 
 	// Controls
 	// Value is an LSOctave
-	wrbOctave = new wxRadioBox(myPanel, OCTAVE_ID, L"&Octave", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Octaves), Octaves, m_Settings.GetOctave(split), wxRA_SPECIFY_ROWS);
+	wrbOctave = new wxRadioBox(myPanel, OCTAVE_ID, L"&Octave", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Octaves), Octaves, pMyLinnStrument->GetOctave(split), wxRA_SPECIFY_ROWS);
 	hBox1->Add(wrbOctave, 0, wxEXPAND);
 	// Values are from LSPitch
-	wrbPITCH_TRANSPOSE = new wxRadioBox(myPanel, TRANSPOSE_PITCH_ID, L"&Pitch transpose", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Pitches), Pitches, m_Settings.GetTransposePitch(split), wxRA_SPECIFY_ROWS);
+	wrbPITCH_TRANSPOSE = new wxRadioBox(myPanel, TRANSPOSE_PITCH_ID, L"&Pitch transpose", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Pitches), Pitches, pMyLinnStrument->GetTransposePitch(split), wxRA_SPECIFY_ROWS);
 	hBox1->Add(wrbPITCH_TRANSPOSE, 0, wxEXPAND);
-	wrbTRANSPOSE_LIGHTS = new wxRadioBox(myPanel, TRANSPOSE_LIGHTS_ID, L"Transpose &lights", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Pitches), Pitches, m_Settings.GetTransposeLights(split), wxRA_SPECIFY_ROWS);
+	wrbTRANSPOSE_LIGHTS = new wxRadioBox(myPanel, TRANSPOSE_LIGHTS_ID, L"Transpose &lights", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Pitches), Pitches, pMyLinnStrument->GetTransposeLights(split), wxRA_SPECIFY_ROWS);
 	hBox1->Add(wrbTRANSPOSE_LIGHTS, 0, wxEXPAND);
 
 	myPanel->SetSizer(hBox1);
@@ -34,19 +33,19 @@ OctaveTransposePage::OctaveTransposePage(wxBookCtrlBase *parent, LinnStrument * 
 
 void OctaveTransposePage::OnOctave(wxCommandEvent& event)
 {
-	m_Settings.SetOctave(wrbOctave->GetSelection(), m_Split);
+	pMyLinnStrument->SetOctave(wrbOctave->GetSelection(), m_Split);
 }
 
 
 void OctaveTransposePage::OnPITCH_TRANSPOSE(wxCommandEvent& event)
 {
-	m_Settings.SetTransposePitch(wrbPITCH_TRANSPOSE->GetSelection(), m_Split);
+	pMyLinnStrument->SetTransposePitch(wrbPITCH_TRANSPOSE->GetSelection(), m_Split);
 }
 
 
 void OctaveTransposePage::OnTRANSPOSE_LIGHTS(wxCommandEvent& event)
 {
-	m_Settings.SetTransposeLights(wrbTRANSPOSE_LIGHTS->GetSelection(), m_Split);
+	pMyLinnStrument->SetTransposeLights(wrbTRANSPOSE_LIGHTS->GetSelection(), m_Split);
 }
 
 

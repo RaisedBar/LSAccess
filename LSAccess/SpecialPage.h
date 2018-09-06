@@ -18,7 +18,6 @@
 #include <wx/spinctrl.h>
 
 #include "LinnStrument.h"
-#include "LSPerSplit.h"
 #include "LSEnums.h"
 
 class SpecialPage : public wxPanel
@@ -35,8 +34,7 @@ private:
 	// data
 	LinnStrument * pMyLinnStrument;
 	wxBookCtrlBase *pMyParent;
-	LSPerSplitSettings m_Settings;
-	LSSplitType m_Split;
+		LSSplitType m_Split;
 
 	// controls
 // Value is an LSSpecial:
