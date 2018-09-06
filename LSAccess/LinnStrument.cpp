@@ -38,28 +38,26 @@ m_ReceivedNRPNValueLSB(false),
 m_Waiting(false),
 m_SpeakNotes(true),
 m_Sent(0),
-m_Received(0),
-pVoice(NULL)
+m_Received(0)
 	{
-		if (FAILED(::CoInitialize(NULL)))
+		
+	// Initialise COM
+	HRESULT hr = CoInitialize(NULL);
+
+	// Declare the smart pointer for speech output.
+		// Use its member function CoCreateInstance to
+	// create the COM object and obtain the ISpVoice pointer.
+	hr = pSpeech.CoCreateInstance(CLSID_SpVoice);
+	if (FAILED(hr)) 
 	{
 		m_SpeakNotes = false;
 	}
-	else
-	{
-		HRESULT hr = CoCreateInstance(CLSID_SpVoice, NULL, CLSCTX_ALL, IID_ISpVoice, (void **) &pVoice);
-	
-		if (FAILED(hr))
-			{
-			m_SpeakNotes = false;
-						}
 		else
-		{
-			hr = pVoice->Speak(L"hello", 0, NULL);
-		}
-		}
+	{
+		m_SpeakNotes = true;
+	}
 		
-		m_MIDIIn = new RtMidiIn();
+	m_MIDIIn = new RtMidiIn();
 		m_MIDIOut = new RtMidiOut();
 		m_OutputID = GetUSBOutPortID();
 		m_InputID = GetUSBInPortID();
@@ -125,10 +123,11 @@ LinnStrument::~LinnStrument()
 		delete m_MIDIOut;
 		
 		// Tidy up SAPI
-		pVoice->Release();
-pVoice = NULL;
+// 		pVoice->Release();
+//pVoice = NULL;
 // Tidy up COM
-		::CoUninitialize();
+		// ::CoUninitialize();
+		CoUninitialize();
 }
 
 
@@ -1438,10 +1437,15 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 				unsigned char nNoteNumber = MIDI().ShortMsgData1(myMessage);
 				std::string strNoteName = MIDI().GetNoteName(nNoteNumber);
 				std::wstring wstrNoteName = widen(strNoteName);
-				LPCWSTR result = wstrNoteName.c_str();
+				// LPCWSTR myNoteName = wstrNoteName.c_str();
 				// Announce and update status bar
-				HRESULT hr = pVoice->Speak(L"Note", 0, NULL);
-			}
+				// Use the overloaded -> operator to call the interface methods.
+				HRESULT hr = pSpeech->Speak(wstrNoteName.c_str(), 0, NULL);
+				if (FAILED(hr)) { /*... handle hr error*/ }
+				{
+					// m_SpeakNotes = false;
+				}
+												}
 		}
 		break;
 

@@ -3996,8 +3996,7 @@ private:
 
 	// Application options
 	bool m_SpeakNotes;
-	ISpVoice * pVoice;
-
+		CComPtr<ISpVoice> pSpeech;
 	// MIDI devices
 		RtMidiIn * m_MIDIIn;
 		RtMidiOut * m_MIDIOut;
