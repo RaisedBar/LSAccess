@@ -30,18 +30,18 @@ void LSCallback(double deltatime, std::vector< unsigned char > *message, void *p
 	pMyLinnStrument->ProcessMessage(*message);
 }
 
-LinnStrument::LinnStrument():
+LinnStrument::LinnStrument(wxWindow * parent):
+	m_Parent(parent),
 	m_OutputID(-1),
-	m_InputID( -1),
-m_ReceivedNRPNValueMSB(false),
-m_ReceivedNRPNValueLSB(false),
-m_Waiting(false),
-m_SpeakNotes(true),
-m_Sent(0),
-m_Received(0)
-	{
-		
-	// Initialise COM
+	m_InputID(-1),
+	m_ReceivedNRPNValueMSB(false),
+	m_ReceivedNRPNValueLSB(false),
+	m_Waiting(false),
+	m_SpeakNotes(true),
+	m_Sent(0),
+	m_Received(0)
+{
+				// Initialise COM
 	HRESULT hr = CoInitialize(NULL);
 
 	// Declare the smart pointer for speech output.
@@ -50,11 +50,8 @@ m_Received(0)
 	hr = pSpeech.CoCreateInstance(CLSID_SpVoice);
 	if (FAILED(hr)) 
 	{
-		m_SpeakNotes = false;
-	}
-		else
-	{
-		m_SpeakNotes = true;
+		// m_SpeakMessages = false;
+				// m_SpeakNotes = false;
 	}
 		
 	m_MIDIIn = new RtMidiIn();
@@ -79,7 +76,7 @@ MIDIDialog * pMIDIDialog = new MIDIDialog(L"LinnStrument MIDI I/O jacks");
 														m_MIDIIn->setCallback(&LSCallback, (void*)this);
 														QueryLeftChannel();
 														QueryRightChannel();
-														m_Sent = 0;
+																												m_Sent = 0;
 														m_Received = 0;
 														QueryAll();
 													}  // if valid DIN port selections
@@ -88,6 +85,16 @@ MIDIDialog * pMIDIDialog = new MIDIDialog(L"LinnStrument MIDI I/O jacks");
 			{
 				m_InputID = -1;
 				m_OutputID = -1;
+				
+				if (m_SpeakMessages)
+					{
+						hr = pSpeech->Speak(L"LinnStrument not connected", 0, NULL);
+				if (FAILED(hr)) { /*... handle hr error*/ }
+				{
+					// m_SpeakMessages = false;
+					// m_SpeakNotes = false;
+				}
+								}
 			}  // dialog cancelled
 					}   
 			else  // USB connection detected
@@ -96,18 +103,26 @@ MIDIDialog * pMIDIDialog = new MIDIDialog(L"LinnStrument MIDI I/O jacks");
 				m_MIDIOut->openPort(m_OutputID);
 				m_MIDIIn->openPort(m_InputID);
 				m_MIDIIn->setCallback(&LSCallback, (void*)this);
+if (m_SpeakMessages)
+{
+				HRESULT hr = pSpeech->Speak(L"LinnStrument connected via USB", 0, NULL);
+				if (FAILED(hr)) { /*... handle hr error*/ }
+				{
+					// m_SpeakMessages = false;
+					// m_SpeakNotes = false;
+				}
+				}
 				QueryLeftChannel();
 				QueryRightChannel();
 				m_Sent = 0;
 				m_Received = 0;
 				QueryAll();
 			}
-
 }
 
 LinnStrument::~LinnStrument()
 {
-		if (m_MIDIIn->isPortOpen())
+			if (m_MIDIIn->isPortOpen())
 		{
 			m_MIDIIn->closePort();
 		}
@@ -1435,12 +1450,12 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 			if (m_SpeakNotes)
 			{
 				unsigned char nNoteNumber = MIDI().ShortMsgData1(myMessage);
-				std::string strNoteName = MIDI().GetNoteName(nNoteNumber);
-				std::wstring wstrNoteName = widen(strNoteName);
+				std::wstring wstrNoteName = MIDI().GetWideNoteName(nNoteNumber);
+				// std::wstring wstrNoteName = widen(strNoteName);
 				// LPCWSTR myNoteName = wstrNoteName.c_str();
 				// Announce and update status bar
 				// Use the overloaded -> operator to call the interface methods.
-				HRESULT hr = pSpeech->Speak(wstrNoteName.c_str(), 0, NULL);
+				HRESULT hr = pSpeech->Speak( (LPCWSTR) wstrNoteName.c_str(), 0, NULL);
 				if (FAILED(hr)) { /*... handle hr error*/ }
 				{
 					// m_SpeakNotes = false;
@@ -1523,6 +1538,22 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 }
 
 
+bool LinnStrument::GetSpeakMessages()
+{
+	return m_SpeakMessages;
+}
+
+void LinnStrument::SetSpeakMessages(bool blnSpeakMessages)
+{
+	m_SpeakMessages = blnSpeakMessages;
+		}
+
+void LinnStrument::SendNRPN(LSSplitType split, unsigned int NRPNNumber, unsigned int NRPNValue)
+{
+	SendNRPN(GetMIDI_MAIN_CHANNEL(split), NRPNNumber, NRPNValue);
+}
+
+
 bool LinnStrument::GetSpeakNotes()
 {
 	return m_SpeakNotes;
@@ -1531,13 +1562,7 @@ bool LinnStrument::GetSpeakNotes()
 void LinnStrument::SetSpeakNotes(bool blnSpeakNotes)
 {
 	m_SpeakNotes = blnSpeakNotes;
-}
-
-void LinnStrument::SendNRPN(LSSplitType split, unsigned int NRPNNumber, unsigned int NRPNValue)
-{
-	SendNRPN(GetMIDI_MAIN_CHANNEL(split), NRPNNumber, NRPNValue);
-}
-
+		}
 
 void LinnStrument::SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned int NRPNValue)
 {

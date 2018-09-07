@@ -945,7 +945,7 @@ const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW8_NRPN = 270;
 class LinnStrument
 {
 public:
-	LinnStrument();
+	LinnStrument( wxWindow * parent);
 	~LinnStrument();
 
 	int GetUSBInPortID();
@@ -961,8 +961,10 @@ public:
 		void QueryOctaveTransposeSettings();
 		void QueryAll();
 
-			// Option to use speech to output note names
-	bool GetSpeakNotes();
+			// Options to use speech output
+		bool GetSpeakMessages();
+		void SetSpeakMessages(bool blnSpeakNotes);
+		bool GetSpeakNotes();
 	void SetSpeakNotes(bool blnSpeakNotes);
 	
 	// Per-split settings
@@ -3987,6 +3989,8 @@ private:
 	void SetLSParameter( unsigned int NRPNParameterIn, unsigned int NRPNValueIn);
 	
 	// data
+	// Parent window
+	wxWindow * m_Parent;
 // LinnStrument message tracking
 	std::queue <unsigned int> m_NRPNQueue;
 		unsigned int m_NRPNParameterIn, m_NRPNValueIn;
@@ -3995,8 +3999,9 @@ private:
 	unsigned int m_Sent, m_Received;
 
 	// Application options
-	bool m_SpeakNotes;
-		CComPtr<ISpVoice> pSpeech;
+	bool m_SpeakMessages, m_SpeakNotes;
+		
+	CComPtr<ISpVoice> pSpeech;
 	// MIDI devices
 		RtMidiIn * m_MIDIIn;
 		RtMidiOut * m_MIDIOut;

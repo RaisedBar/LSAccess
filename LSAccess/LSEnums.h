@@ -29,7 +29,7 @@ enum
 	// File menu
 	ID_Quit = wxID_EXIT,
 	
-	// View menu
+	// Settings menu
 	ID_LeftSplitSettings,
 	ID_RightSplitSettings,
 
@@ -226,6 +226,10 @@ CC_FOR_RIGHT_FOOT_SUSTAIN_ID,
 	ProgramNumber_ID,
 	Volume_ID,
 		
+	// Options menu
+		ID_SpeakMessages,
+ID_SpeakNotes,
+
 	// Help menu
 	// it is important for the id corresponding to the "About" command to have
 		// this standard value as otherwise it won't be handled properly under Mac

@@ -309,6 +309,7 @@ int NibbledMessageValue( std::string strHash, std::vector <unsigned char> vBuffe
 unsigned char GetMSB(unsigned int nValue);
 unsigned char GetLSB(unsigned int nValue);
 std::string GetNoteName(unsigned char nNoteNumber);
+std::wstring GetWideNoteName(unsigned char nNoteNumber);
 
 private:
 std::string ShortMIDIHash( std::vector <unsigned char> myMessage);

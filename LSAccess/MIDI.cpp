@@ -1221,83 +1221,172 @@ std::string MIDI::GetNoteName(unsigned char nNoteNumber)
 	{
 	case 0: 
 	{
-		strNoteName = "C";
+		strNoteName = "C#";
 	}
 	break;
 
 	case 1: 
 	{
-		strNoteName = "C#";
-	}
-	break;
-
-	case 2: 
-	{
 		strNoteName = "D";
 	}
 	break;
 	
-	case 3: 
+	case 2: 
 	{
 	strNoteName = "D#"; 
 	}
 	break;
 
-	case 4: 
+	case 3: 
 	{
 		strNoteName = "E";
 	}
 	break;
 
-	case 5: 
+	case 4: 
 	{
 		strNoteName = "F";
 	}
 	break;
 
-	case 6: 
+	case 5: 
 	{
 		strNoteName = "F#";
 	}
 	break;
 
-	case 7: 
+	case 6: 
 	{
 		strNoteName = "G";
 	}
 	break;
 
-	case 8: 
+	case 7: 
 	{
 		strNoteName = "G#";
 	}
 	break;
 
-	case 9: 
+	case 8: 
 	{
 		strNoteName = "A";
 	}
 	break;
 
-	case 10: 
+	case 9: 
 	{
 		strNoteName = "A#";
 	}
 	break;
 
-	case 11: 
+	case 10: 
 	{
 		strNoteName = "B";
 	}
 	break;
 
-	default: 
+	case 11:
+	{
+		strNoteName = "C";
+	}
+	break;
+
+	default:
 	{
 		strNoteName = "";
 	}
 	break;
 		}  // end switch
 	return strNoteName.append(std::to_string(nOctaveNumber));
+}
+
+
+std::wstring MIDI::GetWideNoteName(unsigned char nNoteNumber)
+{
+	std::wstring wstrNoteName;
+	int nOctaveNumber = ((nNoteNumber + 12) / 12) - 1;
+
+	switch (nNoteNumber % 12)
+	{
+	case 0:
+	{
+		wstrNoteName = L"C#";
+	}
+	break;
+
+	case 1:
+	{
+		wstrNoteName = L"D";
+	}
+	break;
+
+	case 2:
+	{
+		wstrNoteName = L"D#";
+	}
+	break;
+
+	case 3:
+	{
+		wstrNoteName = L"E";
+	}
+	break;
+
+	case 4:
+	{
+		wstrNoteName = L"F";
+	}
+	break;
+
+	case 5:
+	{
+		wstrNoteName = L"F#";
+	}
+	break;
+
+	case 6:
+	{
+		wstrNoteName = L"G";
+	}
+	break;
+
+	case 7:
+	{
+		wstrNoteName = L"G#";
+	}
+	break;
+
+	case 8:
+	{
+		wstrNoteName = L"A";
+	}
+	break;
+
+	case 9:
+	{
+		wstrNoteName = L"A#";
+	}
+	break;
+
+	case 10:
+	{
+		wstrNoteName = L"B";
+	}
+	break;
+
+	case 11:
+	{
+		wstrNoteName = L"C";
+	}
+	break;
+
+	default:
+	{
+		wstrNoteName = L"";
+	}
+	break;
+	}  // end switch
+	return wstrNoteName.append(std::to_wstring(nOctaveNumber));
 }
 
 

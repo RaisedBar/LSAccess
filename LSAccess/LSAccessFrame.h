@@ -25,6 +25,11 @@
 #endif
 
 #include <wx/notebook.h>
+#include <wx/stdpaths.h>
+#include <wx/config.h>
+#include <wx/confbase.h>
+#include <wx/fileconf.h>
+#include <wx/dir.h>
 
 #include "LSEnums.h"
 
@@ -32,6 +37,20 @@ class LSAccessFrame : public wxFrame
 {
 public:
 	LSAccessFrame(const wxString& title);
+	~LSAccessFrame();
+
+	void SetSpeakMessages(bool blnSpeakMessages)
+	{
+		mnuSpeakMessages->Check(blnSpeakMessages);
+	}
+
+
+	
+	void SetSpeakNotes(bool blnSpeakNotes)
+	{
+		mnuSpeakNotes->Check(blnSpeakNotes);
+	}
+
 
 	// event handlers (these functions should _not_ be virtual)
 	// File menu
@@ -46,12 +65,22 @@ public:
 		void OnGlobalSettings(wxCommandEvent& event);
 		void OnStepSequencerSettings(wxCommandEvent& event);
 
+// Options menu
+		void OnSpeakMessages(wxCommandEvent& event);
+		void OnSpeakNotes(wxCommandEvent& event);
+
 // Help menu
 	void OnAbout(wxCommandEvent& event);
 
 private:
+	// Menus
+	wxMenu * FileMenu, *SettingsMenu, *OptionsMenu, *HelpMenu;
+	wxMenuItem * mnuSpeakMessages, *mnuSpeakNotes;
+
 	// Internal storage
-	LinnStrument m_LinnStrument;
+	LinnStrument * m_LinnStrument;
+	wxFileName m_IniFile;
+	wxFileConfig * m_Config;
 	wxNotebook * pNotebook;
 	
 	wxDECLARE_EVENT_TABLE();
