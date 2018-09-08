@@ -17,10 +17,18 @@ extern CComModule _Module;
 #include <atlcom.h>
 #include <sapi.h>
 #include <Windows.h>
+#include <wx/msw/winundef.h> 
 
 #include "MIDIDialog.h"
 #include "MIDI.h"
 #include "LSEnums.h"
+
+#define DBOUT( s )            \
+{                             \
+   std::wostringstream os_;    \
+   os_ << s;                   \
+   OutputDebugStringW( os_.str().c_str() );  \
+}
 
 /*
 The following definitions are derived from:
