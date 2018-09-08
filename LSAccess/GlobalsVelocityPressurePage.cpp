@@ -26,7 +26,7 @@ pMyParent(parent)
 	hBox1->Add(wrbGLOBAL_PRESSURE_SENSITIVITY, 0, wxEXPAND);
 	// Toggle
 	chkGLOBAL_PRESSURE_AFTERTOUCH = new wxCheckBox(myPanel, GLOBAL_PRESSURE_AFTERTOUCH_ID, L"Pressure &aftertouch");
-	chkGLOBAL_PRESSURE_AFTERTOUCH->SetValue(pMyLinnStrument->GetGLOBAL_PRESSURE_AFTERTOUCH());
+	chkGLOBAL_PRESSURE_AFTERTOUCH->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_PRESSURE_AFTERTOUCH()));
 	hBox1->Add(chkGLOBAL_PRESSURE_AFTERTOUCH, 0, wxEXPAND);
 
 	myPanel->SetSizer(hBox1);

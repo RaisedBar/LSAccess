@@ -1221,7 +1221,7 @@ std::string MIDI::GetNoteName(unsigned char nNoteNumber)
 	{
 	case 0: 
 	{
-		strNoteName = "C#";
+		strNoteName = "C sharp";
 	}
 	break;
 
@@ -1233,7 +1233,7 @@ std::string MIDI::GetNoteName(unsigned char nNoteNumber)
 	
 	case 2: 
 	{
-	strNoteName = "D#"; 
+	strNoteName = "D sharp"; 
 	}
 	break;
 
@@ -1251,7 +1251,7 @@ std::string MIDI::GetNoteName(unsigned char nNoteNumber)
 
 	case 5: 
 	{
-		strNoteName = "F#";
+		strNoteName = "F sharp";
 	}
 	break;
 
@@ -1263,7 +1263,7 @@ std::string MIDI::GetNoteName(unsigned char nNoteNumber)
 
 	case 7: 
 	{
-		strNoteName = "G#";
+		strNoteName = "G sharp";
 	}
 	break;
 
@@ -1275,7 +1275,7 @@ std::string MIDI::GetNoteName(unsigned char nNoteNumber)
 
 	case 9: 
 	{
-		strNoteName = "A#";
+		strNoteName = "A sharp";
 	}
 	break;
 

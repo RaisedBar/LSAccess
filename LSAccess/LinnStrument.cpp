@@ -141,8 +141,7 @@ LinnStrument::~LinnStrument()
 // 		pVoice->Release();
 //pVoice = NULL;
 // Tidy up COM
-		// ::CoUninitialize();
-		CoUninitialize();
+				CoUninitialize();
 }
 
 
@@ -189,6 +188,9 @@ int LinnStrument::GetUSBOutPortID()
 
 void LinnStrument::SetLSParameter(unsigned int NRPNParameterIn, unsigned int NRPNValueIn)
 {
+	DBOUT( L"Parameter = " + std::to_wstring(NRPNParameterIn) + L"\n")
+			DBOUT( L"Value = " + std::to_wstring(NRPNValueIn) + L"\n")
+
 		// Update the appropriate member based on the provided NRPN parameter number
 			switch (NRPNParameterIn)
 	{
@@ -1451,13 +1453,12 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 			{
 				unsigned char nNoteNumber = MIDI().ShortMsgData1(myMessage);
 				std::wstring wstrNoteName = MIDI().GetWideNoteName(nNoteNumber);
-				// std::wstring wstrNoteName = widen(strNoteName);
-				// LPCWSTR myNoteName = wstrNoteName.c_str();
 				// Announce and update status bar
 				// Use the overloaded -> operator to call the interface methods.
 				HRESULT hr = pSpeech->Speak( (LPCWSTR) wstrNoteName.c_str(), 0, NULL);
-				if (FAILED(hr)) { /*... handle hr error*/ }
+				if (FAILED(hr)) // handle hr error
 				{
+					// m_SpeakMessages = false;
 					// m_SpeakNotes = false;
 				}
 												}
@@ -1466,11 +1467,8 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 
 		case MIDI_CMD_NOTE_OFF:
 	{
-		if (m_SpeakNotes)
-		{
-			unsigned char nNoteNumber = MIDI().ShortMsgData1(myMessage);
+		unsigned char nNoteNumber = MIDI().ShortMsgData1(myMessage);
 			// Update status bar
-		}
 	}
 	break;
 
@@ -1548,12 +1546,6 @@ void LinnStrument::SetSpeakMessages(bool blnSpeakMessages)
 	m_SpeakMessages = blnSpeakMessages;
 		}
 
-void LinnStrument::SendNRPN(LSSplitType split, unsigned int NRPNNumber, unsigned int NRPNValue)
-{
-	SendNRPN(GetMIDI_MAIN_CHANNEL(split), NRPNNumber, NRPNValue);
-}
-
-
 bool LinnStrument::GetSpeakNotes()
 {
 	return m_SpeakNotes;
@@ -1563,6 +1555,12 @@ void LinnStrument::SetSpeakNotes(bool blnSpeakNotes)
 {
 	m_SpeakNotes = blnSpeakNotes;
 		}
+
+void LinnStrument::SendNRPN(LSSplitType split, unsigned int NRPNNumber, unsigned int NRPNValue)
+{
+	SendNRPN(GetMIDI_MAIN_CHANNEL(split), NRPNNumber, NRPNValue);
+}
+
 
 void LinnStrument::SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned int NRPNValue)
 {
@@ -1574,18 +1572,7 @@ void LinnStrument::SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumbe
 	unsigned char myNRPNValueLSB = NRPNValue % 128;
 		unsigned char myNRPNValueMSB = (NRPNValue - myNRPNValueLSB) / 128;
 		
-		wstrDebug = L"Status = ";
-		DBOUT(wstrDebug.append(std::to_wstring(myStatusByte)).append(L"\n"))
-									wstrDebug = L"NRPN param MSB = ";
-		DBOUT(wstrDebug.append(std::to_wstring(myNRPNParameterMSB).append(L"\n")))
-			wstrDebug = L"NRPN param LSB = ";
-		DBOUT(wstrDebug.append(std::to_wstring(myNRPNParameterLSB).append(L"\n")))
-						wstrDebug = L"NRPN value MSB = ";
-	DBOUT(wstrDebug.append(std::to_wstring(myNRPNValueMSB).append(L"\n")))
-		wstrDebug = L"NRPN value LSB = ";
-	DBOUT(wstrDebug.append(std::to_wstring(myNRPNValueLSB).append(L"\n")))
-
-		if (NRPNNumber == REQUEST_VALUE_OF_NRPN)
+			if (NRPNNumber == REQUEST_VALUE_OF_NRPN)
 	{
 		// Record the NRPN parameter we're querying
 		m_NRPNQueue.push(NRPNValue);

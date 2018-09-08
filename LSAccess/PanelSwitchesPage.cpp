@@ -18,7 +18,7 @@ pMyParent(parent)
 	hBox1->Add(wrbSWITCH1_ASSIGN, 0, wxEXPAND);
 	// Toggle:
 chkSWITCH1_BOTH_SPLITS = new wxCheckBox(myPanel, SWITCH1_BOTH_SPLITS_ID, L"Switch 1 affects both splits");
-	chkSWITCH1_BOTH_SPLITS->SetValue(pMyLinnStrument->GetSWITCH1_BOTH_SPLITS());
+	chkSWITCH1_BOTH_SPLITS->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetSWITCH1_BOTH_SPLITS()));
 	hBox1->Add(chkSWITCH1_BOTH_SPLITS, 0, wxEXPAND);
 	// Values are constrained by MIN_CC and MAX_CC
 	// WXSpinCtrl * wscGLOABAL_CC_FOR_CC65;  // Changes the CC for all switches - Legacy option, see NRPN 255 - 258
@@ -32,7 +32,7 @@ chkSWITCH1_BOTH_SPLITS = new wxCheckBox(myPanel, SWITCH1_BOTH_SPLITS_ID, L"Switc
 			hBox2->Add(wrbSWITCH2_ASSIGN, 0, wxEXPAND);
 			// Toggle:
 chkSWITCH2_BOTH_SPLITS = new wxCheckBox(myPanel, SWITCH2_BOTH_SPLITS_ID, L"Switch 2 affects both splits");
-	chkSWITCH2_BOTH_SPLITS->SetValue(pMyLinnStrument->GetSWITCH2_BOTH_SPLITS());
+	chkSWITCH2_BOTH_SPLITS->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetSWITCH2_BOTH_SPLITS()));
 	hBox2->Add(chkSWITCH2_BOTH_SPLITS, 0, wxEXPAND);
 	// Values are constrained by MIN_CC and MAX_CC
 	wscCC_FOR_SWITCH2_SUSTAIN = new wxSpinCtrl(myPanel, CC_FOR_SWITCH2_SUSTAIN_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetCC_FOR_SWITCH2_SUSTAIN(), "CC for switch  2 sustain");

@@ -17,10 +17,10 @@ SequencerPage::SequencerPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrumen
 	hBox1->Add(wscSEQUENCER_PATTERN, 0, wxEXPAND);
 	// Toggles:
 	chkSEQUENCER_TOGGLE_PLAY = new wxCheckBox(myPanel, SEQUENCER_TOGGLE_PLAY_ID, L"&Play");
-	chkSEQUENCER_TOGGLE_PLAY->SetValue(pMyLinnStrument->GetSEQUENCER_TOGGLE_PLAY(split));
+	chkSEQUENCER_TOGGLE_PLAY->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetSEQUENCER_TOGGLE_PLAY(split)));
 	hBox1->Add(chkSEQUENCER_TOGGLE_PLAY, 0, wxEXPAND);
 	chkSEQUENCER_TOGGLE_MUTE = new wxCheckBox(myPanel, SEQUENCER_TOGGLE_MUTE_ID, L"&Mute");
-		chkSEQUENCER_TOGGLE_MUTE->SetValue(pMyLinnStrument->GetSEQUENCER_TOGGLE_MUTE(split));
+		chkSEQUENCER_TOGGLE_MUTE->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetSEQUENCER_TOGGLE_MUTE(split)));
 		hBox1->Add(chkSEQUENCER_TOGGLE_MUTE, 0, wxEXPAND);
 		btnSEQUENCER_PREVIOUS_PATTERN = new wxButton(myPanel, SEQUENCER_PREVIOUS_PATTERN_ID, L"&Back");
 		hBox1->Add(btnSEQUENCER_PREVIOUS_PATTERN, 0, wxEXPAND);

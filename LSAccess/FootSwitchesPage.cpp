@@ -18,7 +18,7 @@ FootSwitchesPage::FootSwitchesPage(wxBookCtrlBase *parent, LinnStrument * pLinnS
 	hBox1->Add(wrbFOOT_LEFT_ASSIGN, 0, wxEXPAND);
 	// Toggle:
 chkFOOT_LEFT_BOTH_SPLITS = new wxCheckBox(myPanel, FOOT_LEFT_BOTH_SPLITS_ID, L"Left switch affects both splits");
-	chkFOOT_LEFT_BOTH_SPLITS->SetValue(pMyLinnStrument->GetFOOT_LEFT_BOTH_SPLITS());
+	chkFOOT_LEFT_BOTH_SPLITS->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetFOOT_LEFT_BOTH_SPLITS()));
 	hBox1->Add(chkFOOT_LEFT_BOTH_SPLITS, 0, wxEXPAND);
 	// Values are constrained by MIN_CC and MAX_CC
 	wscCC_FOR_LEFT_FOOT_SUSTAIN = new wxSpinCtrl(myPanel, CC_FOR_LEFT_FOOT_SUSTAIN_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetCC_FOR_LEFT_FOOT_SUSTAIN(), "CC for left switch  sustain");
@@ -31,7 +31,7 @@ chkFOOT_LEFT_BOTH_SPLITS = new wxCheckBox(myPanel, FOOT_LEFT_BOTH_SPLITS_ID, L"L
 		hBox2->Add(wrbFOOT_RIGHT_ASSIGN, 0, wxEXPAND);
 		// Toggle:
 	chkFOOT_RIGHT_BOTH_SPLITS = new wxCheckBox(myPanel, FOOT_RIGHT_BOTH_SPLITS_ID, L"Right switch affects both splits");
-	chkFOOT_RIGHT_BOTH_SPLITS->SetValue(pMyLinnStrument->GetFOOT_RIGHT_BOTH_SPLITS());
+	chkFOOT_RIGHT_BOTH_SPLITS->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetFOOT_RIGHT_BOTH_SPLITS()));
 	hBox2->Add(chkFOOT_RIGHT_BOTH_SPLITS, 0, wxEXPAND);
 	// Values are constrained by MIN_CC and MAX_CC
 	wscCC_FOR_RIGHT_FOOT_SUSTAIN = new wxSpinCtrl(myPanel, CC_FOR_RIGHT_FOOT_SUSTAIN_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetCC_FOR_RIGHT_FOOT_SUSTAIN(), "CC for right switch sustain");

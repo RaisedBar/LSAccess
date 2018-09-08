@@ -948,6 +948,30 @@ public:
 	LinnStrument( wxWindow * parent);
 	~LinnStrument();
 
+	static bool LSToggle(unsigned int nValue)
+	{
+		if (nValue == 0)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+	
+	static unsigned int LSToggle(bool blnValue)
+	{
+		if (blnValue)
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
 	int GetUSBInPortID();
 	int GetUSBOutPortID();
 		void ProcessMessage(std::vector <unsigned char> vBytes);
@@ -3687,303 +3711,7 @@ public:
 		m_GLOBAL_GUITAR_NOTE_TUNING_ROW8 = nValue;
 	}
 
-	void QueryGLOBAL_SPLIT_ACTIVE()
-	{
-
-	}
-
-	void QueryGLOBAL_SELECTED_SPLIT()
-	{
-
-	}
-
-	void QueryGLOBAL_SPLIT_COLUMN()
-	{
-
-	}
-
-	void QueryGLOBAL_MAIN_NOTE_LIGHT_C()
-	{
-
-	}
-
-	void QueryGLOBAL_MAIN_NOTE_LIGHT_C_SHARP()
-	{
-
-	}
-
-	void QueryGLOBAL_MAIN_NOTE_LIGHT_D()
-	{
-
-	}
-
-	void QueryGLOBAL_MAIN_NOTE_LIGHT_D_SHARP()
-	{
-
-	}
-
-	void QueryGLOBAL_MAIN_NOTE_LIGHT_E()
-	{
-
-	}
-
-	void QueryGLOBAL_MAIN_NOTE_LIGHT_F()
-	{
-
-	}
-
-	void QueryGLOBAL_MAIN_NOTE_LIGHT_F_SHARP()
-	{
-
-	}
-
-	void QueryGLOBAL_MAIN_NOTE_LIGHT_G()
-	{
-
-	}
-
-	void QueryGLOBAL_MAIN_NOTE_LIGHT_G_SHARP()
-	{
-
-	}
-
-	void QueryGLOBAL_MAIN_NOTE_LIGHT_A()
-	{
-
-	}
-
-	void QueryGLOBAL_MAIN_NOTE_LIGHT_A_SHARP()
-	{
-
-	}
-
-	void QueryGLOBAL_MAIN_NOTE_LIGHT_B()
-	{
-
-	}
-
-	void QueryGLOBAL_ACCENT_NOTE_LIGHT_C()
-	{
-
-	}
-
-	void QueryGLOBAL_ACCENT_NOTE_LIGHT_C_SHARP()
-	{
-
-	}
-
-	void QueryGLOBAL_ACCENT_NOTE_LIGHT_D()
-	{
-
-	}
-
-	void QueryGLOBAL_ACCENT_NOTE_LIGHT_D_SHARP()
-	{
-
-	}
-
-	void QueryGLOBAL_ACCENT_NOTE_LIGHT_E()
-	{
-
-	}
-
-	void QueryGLOBAL_ACCENT_NOTE_LIGHT_F()
-	{
-
-	}
-
-	void QueryGLOBAL_ACCENT_NOTE_LIGHT_F_SHARP()
-	{
-
-	}
-
-	void QueryGLOBAL_ACCENT_NOTE_LIGHT_G()
-	{
-
-	}
-
-	void QueryGLOBAL_ACCENT_NOTE_LIGHT_G_SHARP()
-	{
-
-	}
-
-	void QueryGLOBAL_ACCENT_NOTE_LIGHT_A()
-	{
-
-	}
-
-	void QueryGLOBAL_ACCENT_NOTE_LIGHT_A_SHARP()
-	{
-
-	}
-
-	void QueryGLOBAL_ACCENT_NOTE_LIGHT_B()
-	{
-
-	}
-
-	void QueryGLOBAL_ROW_OFFSET()
-	{
-
-	}
-
-	void QueryGLOBAL_VELOCITY_SENSITIVITY()
-	{
-
-	}
-
-	void QueryGLOBAL_PRESSURE_SENSITIVITY()
-	{
-
-	}
-
-	void QueryGLOBAL_MIDI_DEVICE_IO()
-	{
-
-	}
-
-	void QueryGLOBAL_ARP_DIRECTION()
-	{
-
-	}
-
-	void QueryGLOBAL_ARP_TEMPO_NOTE_VALUE()
-	{
-
-	}
-
-	void QueryGLOBAL_ARP_OCTAVE_EXTENSION()
-	{
-
-	}
-
-	void QueryGLOBAL_CLOCK_BPM()
-	{
-
-	}
-
-	void QueryGLOBAL_SETTINGS_PRESET_LOAD()
-	{
-
-	}
-
-	void QueryGLOBAL_PRESSURE_AFTERTOUCH()
-	{
-
-	}
-
-	void QueryDEVICE_USER_FIRMWARE_MODE()
-	{
-
-	}
-
-	void QueryDEVICE_LEFT_HANDED()
-	{
-
-	}
-
-	void QueryGLOBAL_ACTIVE_LIGHTS_PRESET()
-	{
-
-	}
-
-	void QueryGLOBAL_MIN_VELOCITY_VALUE()
-	{
-
-	}
-
-	void QueryGLOBAL_MAX_VELOCITY_VALUE()
-	{
-
-	}
-
-	void QueryGLOBAL_FIXED_VELOCITY_VALUE()
-	{
-
-	}
-
-	void QueryDEVICE_MIN_BYTE_INTERVAL_VALUE()
-	{
-
-	}
-
-	void QueryGLOBAL_CUSTOQueryROW_OFFSET()
-	{
-
-	}
-
-	void QueryDEVICE_MIDI_THRU()
-	{
-
-	}
-
-	void QueryGLOBAL_GUITAR_NOTE_TUNING_ROW1()
-	{
-
-	}
-
-	void QueryGLOBAL_GUITAR_NOTE_TUNING_ROW2()
-	{
-
-	}
-
-	void QueryGLOBAL_GUITAR_NOTE_TUNING_ROW3()
-	{
-
-	}
-
-	void QueryGLOBAL_GUITAR_NOTE_TUNING_ROW4()
-	{
-
-	}
-
-	void QueryGLOBAL_GUITAR_NOTE_TUNING_ROW5()
-	{
-
-	}
-
-	void QueryGLOBAL_GUITAR_NOTE_TUNING_ROW6()
-	{
-
-	}
-
-	void QueryGLOBAL_GUITAR_NOTE_TUNING_ROW7()
-	{
-
-	}
-
-	void QueryGLOBAL_GUITAR_NOTE_TUNING_ROW8()
-	{
-
-	}
-
-	void QueryLSPresetNumber()
-	{
-
-	}
-
-	void QueryLEFT_PROGRAM()
-	{
-
-	}
-
-	void QueryRIGHT_PROGRAM()
-	{
-
-	}
-
-	void QueryLEFT_VOLUME()
-	{
-
-	}
-
-	void QueryRIGHT_VOLUME()
-	{
-
-	}
-
-
-private:
+	private:
 	void SendNRPN(LSSplitType split, unsigned int NRPNNumber, unsigned int NRPNValue);
 	void SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned int NRPNValue);
 	void SetLSParameter( unsigned int NRPNParameterIn, unsigned int NRPNValueIn);

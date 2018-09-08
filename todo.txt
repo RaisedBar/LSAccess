@@ -1,7 +1,7 @@
 debug saving state/options
 debug f9/f10 not changing checked state of Options menu items
-Add code to empty method implementations in linnstrument.cpp
-
+Add LinnStrument::LSToggle calls to all checkbox event handlers
+Add type converters for any other LinnStrument parameters that don't translate correctly.
 Add detection of O/S update state
 you can discover those with WMI, Win32_SerialPort class.
 
