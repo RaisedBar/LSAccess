@@ -13,15 +13,7 @@ SpecialPage::SpecialPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, c
 
 	// Controls
 	// Value is an LSSpecial:
-	wxString Specials[] =
-	{
-		L"Off",
-		L"Arp",
-		L"CC Faders",
-		L"Strum",
-		L"Sequencer"
-};
-wrbSPECIAL = new wxRadioBox(myPanel, SPECIAL_ID, L"Mode", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Specials), Specials, 0, wxRA_SPECIFY_ROWS);
+	wrbSPECIAL = new wxRadioBox(myPanel, SPECIAL_ID, L"Mode", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Specials), Specials, 0, wxRA_SPECIFY_ROWS);
 hBox1->Add(wrbSPECIAL, 0, wxEXPAND);
 
 	myPanel->SetSizer(hBox1);
