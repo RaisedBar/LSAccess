@@ -1,5 +1,5 @@
 Add SendNRPN calls to all page event handlers
-done = all up to and including LowRowPage.cpp
+done = all up to and including MIDISplitPage.cpp
 Add functionality to send out MIDI patch change messages
 Check if LinnStrument responds to patch changes
 debug saving state/options
