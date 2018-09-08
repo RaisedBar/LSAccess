@@ -1549,6 +1549,12 @@ void LinnStrument::SetSpeakNotes(bool blnSpeakNotes)
 	m_SpeakNotes = blnSpeakNotes;
 		}
 
+void LinnStrument::SendNRPN( unsigned int NRPNNumber, unsigned int NRPNValue)
+{
+	SendNRPN(GetMIDI_MAIN_CHANNEL(LSSplitType::LEFT), NRPNNumber, NRPNValue);
+}
+
+
 void LinnStrument::SendNRPN(LSSplitType split, unsigned int NRPNNumber, unsigned int NRPNValue)
 {
 	SendNRPN(GetMIDI_MAIN_CHANNEL(split), NRPNNumber, NRPNValue);
@@ -1557,9 +1563,13 @@ void LinnStrument::SendNRPN(LSSplitType split, unsigned int NRPNNumber, unsigned
 
 void LinnStrument::SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned int NRPNValue)
 {
-	std::vector<unsigned char> myMessage;
-	std::wstring wstrDebug;
-		unsigned char myStatusByte = (MIDI_CMD_CONTROL_CHANGE * 16) + nChannelNibble;
+std::vector<unsigned char> myMessage;
+
+DBOUT( L"Sending channel = " + std::to_wstring(nChannelNibble) + L"\n")
+DBOUT(L"Parameter = " + std::to_wstring(NRPNNumber) + L"\n")
+DBOUT(L"Value = " + std::to_wstring(NRPNValue) + L"\n")
+
+unsigned char myStatusByte = (MIDI_CMD_CONTROL_CHANGE * 16) + nChannelNibble;
 	unsigned char myNRPNParameterLSB = NRPNNumber % 128;
 	unsigned char myNRPNParameterMSB = (NRPNNumber - myNRPNParameterLSB) / 128;
 	unsigned char myNRPNValueLSB = NRPNValue % 128;

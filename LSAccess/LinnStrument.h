@@ -1123,6 +1123,7 @@ public:
 	}
 
 
+	/*
 	unsigned int GetRELATIVE_Z(LSSplitType split)
 	{
 		if (split == LSSplitType::LEFT)
@@ -1134,7 +1135,7 @@ public:
 			return m_RIGHT_RELATIVE_Z;
 		}
 	}
-
+	*/
 
 	// Value is an LSExpressionZ
 	unsigned int GetEXPRESSION_FOR_Z(LSSplitType split)
@@ -2012,6 +2013,7 @@ public:
 	}
 
 
+	/*
 	void SetRELATIVE_Z(unsigned int nValue, LSSplitType split)
 	{
 		if (split == LSSplitType::LEFT)
@@ -2023,6 +2025,7 @@ public:
 			m_RIGHT_RELATIVE_Z = nValue;
 		}
 	}
+*/
 
 
 	// Value is an LSExpressionZ
@@ -3444,9 +3447,11 @@ public:
 		m_GLOBAL_GUITAR_NOTE_TUNING_ROW8 = nValue;
 	}
 
-	private:
+void SendNRPN(unsigned int NRPNNumber, unsigned int NRPNValue);
 	void SendNRPN(LSSplitType split, unsigned int NRPNNumber, unsigned int NRPNValue);
-	void SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned int NRPNValue);
+
+	private:
+void SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned int NRPNValue);
 	void SetLSParameter( unsigned int NRPNParameterIn, unsigned int NRPNValueIn);
 	
 	// data

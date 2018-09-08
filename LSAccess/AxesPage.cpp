@@ -51,9 +51,11 @@ AxesPage::AxesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const L
 	// CC 11 is recommended, any CC is possible though
 		wscCC_FOR_Z = new wxSpinCtrl(myPanel, CC_FOR_Z_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetCC_FOR_Z(split), "CC for Z");
 		hBoxZ->Add(wscCC_FOR_Z, 0, wxEXPAND);
+		/*
 		chkRELATIVE_Z = new wxCheckBox(myPanel, RELATIVE_Z_ID, L"&Relative &Z");
 		chkRELATIVE_Z->SetValue(pMyLinnStrument->GetRELATIVE_Z(split));
 		hBoxZ->Add(chkRELATIVE_Z, 0, wxEXPAND);
+		*/
 		// Value is an LSExpressionZ
 		wrbEXPRESSION_FOR_Z = new wxRadioBox(myPanel, EXPRESSION_FOR_Z_ID, L"MIDI Expression for Z", wxDefaultPosition, wxDefaultSize, WXSIZEOF(ExpressionZ), ExpressionZ, pMyLinnStrument->GetEXPRESSION_FOR_Z(split), wxRA_SPECIFY_ROWS);
 		hBoxZ->Add(wrbEXPRESSION_FOR_Z, 0, wxEXPAND);
@@ -73,84 +75,198 @@ AxesPage::AxesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const L
 void AxesPage::OnSEND_Y(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetSEND_Y(LinnStrument::LSToggle( chkSEND_Y->GetValue()), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_SEND_Y_NRPN, pMyLinnStrument->GetSEND_Y(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_SEND_Y_NRPN, pMyLinnStrument->GetSEND_Y(m_Split));
+	}
 		}
 
 
 void AxesPage::OnMIN_CC_FOR_Y(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetMIN_CC_FOR_Y(wscMIN_CC_FOR_Y->GetValue(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_MIN_CC_FOR_Y_NRPN, pMyLinnStrument->GetMIN_CC_FOR_Y(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_MIN_CC_FOR_Y_NRPN, pMyLinnStrument->GetMIN_CC_FOR_Y(m_Split));
+	}
 }
 
 
 void AxesPage::OnMAX_CC_FOR_Y(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetMAX_CC_FOR_Y(wscMAX_CC_FOR_Y->GetValue(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_MAX_CC_FOR_Y_NRPN, pMyLinnStrument->GetMAX_CC_FOR_Y(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_MAX_CC_FOR_Y_NRPN, pMyLinnStrument->GetMAX_CC_FOR_Y(m_Split));
+	}
 }
 
 
 void AxesPage::OnCC_FOR_Y(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetCC_FOR_Y(wscCC_FOR_Y->GetValue(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_CC_FOR_Y_NRPN, pMyLinnStrument->GetCC_FOR_Y(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_CC_FOR_Y_NRPN, pMyLinnStrument->GetCC_FOR_Y(m_Split));
+	}
 }
 
 
 void AxesPage::OnRELATIVE_Y(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetRELATIVE_Y(LinnStrument::LSToggle(chkRELATIVE_Y->GetValue()),  m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_RELATIVE_Y_NRPN, pMyLinnStrument->GetRELATIVE_Y(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_RELATIVE_Y_NRPN, pMyLinnStrument->GetRELATIVE_Y(m_Split));
+	}
 }
 
 
 void AxesPage::OnEXPRESSION_FOR_Y(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetEXPRESSION_FOR_Y(wrbEXPRESSION_FOR_Y->GetSelection(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_EXPRESSION_FOR_Y_NRPN, pMyLinnStrument->GetEXPRESSION_FOR_Y(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_EXPRESSION_FOR_Y_NRPN, pMyLinnStrument->GetEXPRESSION_FOR_Y(m_Split));
+	}
 }
 
 
 void AxesPage::OnINITIAL_RELATIVE_VALUE_FOR_Y(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetINITIAL_RELATIVE_VALUE_FOR_Y(wscINITIAL_RELATIVE_VALUE_FOR_Y->GetValue(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_INITIAL_RELATIVE_VALUE_FOR_Y_NRPN, pMyLinnStrument->GetINITIAL_RELATIVE_VALUE_FOR_Y(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_INITIAL_RELATIVE_VALUE_FOR_Y_NRPN, pMyLinnStrument->GetINITIAL_RELATIVE_VALUE_FOR_Y(m_Split));
+	}
 }
 
 
 void AxesPage::OnSEND_Z(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetSEND_Z(LinnStrument::LSToggle(chkSEND_Z->GetValue()), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_SEND_Z_NRPN, pMyLinnStrument->GetSEND_Z(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_SEND_Z_NRPN, pMyLinnStrument->GetSEND_Z(m_Split));
+	}
 }
 
 
 void AxesPage::OnMIN_CC_FOR_Z(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetMIN_CC_FOR_Z(wscMIN_CC_FOR_Z->GetValue(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_MIN_CC_FOR_Z_NRPN, pMyLinnStrument->GetMIN_CC_FOR_Z(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_MIN_CC_FOR_Z_NRPN, pMyLinnStrument->GetMIN_CC_FOR_Z(m_Split));
+	}
 }
 
 
 void AxesPage::OnMAX_CC_FOR_Z(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetMAX_CC_FOR_Y(wscMAX_CC_FOR_Y->GetValue(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_MAX_CC_FOR_Z_NRPN, pMyLinnStrument->GetMAX_CC_FOR_Z(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_MAX_CC_FOR_Z_NRPN, pMyLinnStrument->GetMAX_CC_FOR_Z(m_Split));
+	}
 }
 
 
 void AxesPage::OnCC_FOR_Z(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetCC_FOR_Z(wscCC_FOR_Z->GetValue(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_CC_FOR_Z_NRPN, pMyLinnStrument->GetCC_FOR_Z(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_CC_FOR_Z_NRPN, pMyLinnStrument->GetCC_FOR_Z(m_Split));
+	}
 }
 
 
+/*
 void AxesPage::OnRELATIVE_Z(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetRELATIVE_Z(LinnStrument::LSToggle(chkRELATIVE_Z->GetValue()), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_REL, pMyLinnStrument->GetRELATIVE_Z(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_RELATIVE_Z_NRPN, pMyLinnStrument->GetRELATIVE_Z(m_Split));
+	}
 }
+*/
 
 
 void AxesPage::OnEXPRESSION_FOR_Z(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetEXPRESSION_FOR_Z(wrbEXPRESSION_FOR_Z->GetSelection(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_MIDI_EXPRESSION_FOR_Z_NRPN, pMyLinnStrument->GetEXPRESSION_FOR_Z(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_MIDI_EXPRESSION_FOR_Z_NRPN, pMyLinnStrument->GetEXPRESSION_FOR_Z(m_Split));
+	}
 }
 
 
 void AxesPage::On14BIT_CC_VALUE_FOR_Z(wxSpinEvent& event)
 {
 	pMyLinnStrument->Set14BIT_CC_VALUE_FOR_Z(wsc14BIT_CC_VALUE_FOR_Z->GetValue(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_14BIT_CC_VALUE_FOR_Z_NRPN, pMyLinnStrument->Get14BIT_CC_VALUE_FOR_Z(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_14BIT_CC_VALUE_FOR_Z_NRPN, pMyLinnStrument->Get14BIT_CC_VALUE_FOR_Z(m_Split));
+	}
 }
 
 
@@ -159,7 +275,7 @@ BEGIN_EVENT_TABLE(AxesPage, wxPanel)
 EVT_CHECKBOX(SEND_Y_ID, AxesPage::OnSEND_Y)
 EVT_CHECKBOX(RELATIVE_Y_ID, AxesPage::OnRELATIVE_Y)
 EVT_CHECKBOX(SEND_Z_ID, AxesPage::OnSEND_Z)
-EVT_CHECKBOX(RELATIVE_Z_ID, AxesPage::OnRELATIVE_Z)
+// EVT_CHECKBOX(RELATIVE_Z_ID, AxesPage::OnRELATIVE_Z)
 
 EVT_SPINCTRL(MIN_CC_FOR_Y_ID, AxesPage::OnMIN_CC_FOR_Y)
 EVT_SPINCTRL(MAX_CC_FOR_Y_ID, AxesPage::OnMAX_CC_FOR_Y)
