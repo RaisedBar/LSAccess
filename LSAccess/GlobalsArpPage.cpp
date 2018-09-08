@@ -36,24 +36,28 @@ pMyParent(parent)
 void GlobalsArpPage::OnGLOBAL_ARP_DIRECTION(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetGLOBAL_ARP_DIRECTION(wrbGLOBAL_ARP_DIRECTION->GetSelection());
-}
+	pMyLinnStrument->SendNRPN(GLOBAL_ARP_DIRECTION_NRPN, pMyLinnStrument->GetGLOBAL_ARP_DIRECTION());
+	}
 
 
 void GlobalsArpPage::OnGLOBAL_ARP_TEMPO_NOTE_VALUE(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetGLOBAL_ARP_TEMPO_NOTE_VALUE( LinnStrument::IntToLSArpTempoNoteType(wrbGLOBAL_ARP_TEMPO_NOTE_VALUE->GetSelection()));
+	pMyLinnStrument->SendNRPN(GLOBAL_ARP_TEMPO_NOTE_VALUE_NRPN, pMyLinnStrument->GetGLOBAL_ARP_TEMPO_NOTE_VALUE());
 }
 
 
 void GlobalsArpPage::OnGLOBAL_ARP_OCTAVE_EXTENSION(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetGLOBAL_ARP_OCTAVE_EXTENSION(wrbGLOBAL_ARP_OCTAVE_EXTENSION->GetSelection());
+	pMyLinnStrument->SendNRPN(GLOBAL_ARP_OCTAVE_EXTENSION_NRPN, pMyLinnStrument->GetGLOBAL_ARP_OCTAVE_EXTENSION());
 }
 
 
 void GlobalsArpPage::OnGLOBAL_CLOCK_BPM(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetGLOBAL_CLOCK_BPM(wscGLOBAL_CLOCK_BPM->GetValue());
+	pMyLinnStrument->SendNRPN(GLOBAL_CLOCK_BPM_NRPN, pMyLinnStrument->GetGLOBAL_CLOCK_BPM());
 }
 
 

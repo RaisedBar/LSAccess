@@ -47,60 +47,70 @@ pMyParent(parent)
 void GlobalsTuningsPage::OnGLOBAL_GUITAR_NOTE_TUNING_ROW1(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetGLOBAL_GUITAR_NOTE_TUNING_ROW1(wscGLOBAL_GUITAR_NOTE_TUNING_ROW1->GetValue());
+	pMyLinnStrument->SendNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW1_NRPN, pMyLinnStrument->GetGLOBAL_GUITAR_NOTE_TUNING_ROW1());
 }
 
 
 void GlobalsTuningsPage::OnGLOBAL_GUITAR_NOTE_TUNING_ROW2(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetGLOBAL_GUITAR_NOTE_TUNING_ROW2(wscGLOBAL_GUITAR_NOTE_TUNING_ROW2->GetValue());
+	pMyLinnStrument->SendNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW2_NRPN, pMyLinnStrument->GetGLOBAL_GUITAR_NOTE_TUNING_ROW2());
 }
 
 
 void GlobalsTuningsPage::OnGLOBAL_GUITAR_NOTE_TUNING_ROW3(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetGLOBAL_GUITAR_NOTE_TUNING_ROW3(wscGLOBAL_GUITAR_NOTE_TUNING_ROW3->GetValue());
+	pMyLinnStrument->SendNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW3_NRPN, pMyLinnStrument->GetGLOBAL_GUITAR_NOTE_TUNING_ROW3());
 }
 
 
 void GlobalsTuningsPage::OnGLOBAL_GUITAR_NOTE_TUNING_ROW4(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetGLOBAL_GUITAR_NOTE_TUNING_ROW4(wscGLOBAL_GUITAR_NOTE_TUNING_ROW4->GetValue());
+	pMyLinnStrument->SendNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW4_NRPN, pMyLinnStrument->GetGLOBAL_GUITAR_NOTE_TUNING_ROW4());
 }
 
 
 void GlobalsTuningsPage::OnGLOBAL_GUITAR_NOTE_TUNING_ROW5(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetGLOBAL_GUITAR_NOTE_TUNING_ROW5(wscGLOBAL_GUITAR_NOTE_TUNING_ROW5->GetValue());
+	pMyLinnStrument->SendNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW5_NRPN, pMyLinnStrument->GetGLOBAL_GUITAR_NOTE_TUNING_ROW5());
 }
 
 
 void GlobalsTuningsPage::OnGLOBAL_GUITAR_NOTE_TUNING_ROW6(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetGLOBAL_GUITAR_NOTE_TUNING_ROW6(wscGLOBAL_GUITAR_NOTE_TUNING_ROW6->GetValue());
+	pMyLinnStrument->SendNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW6_NRPN, pMyLinnStrument->GetGLOBAL_GUITAR_NOTE_TUNING_ROW6());
 }
 
 
 void GlobalsTuningsPage::OnGLOBAL_GUITAR_NOTE_TUNING_ROW7(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetGLOBAL_GUITAR_NOTE_TUNING_ROW7(wscGLOBAL_GUITAR_NOTE_TUNING_ROW7->GetValue());
+	pMyLinnStrument->SendNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW7_NRPN, pMyLinnStrument->GetGLOBAL_GUITAR_NOTE_TUNING_ROW7());
 }
 
 
 void GlobalsTuningsPage::OnGLOBAL_GUITAR_NOTE_TUNING_ROW8(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetGLOBAL_GUITAR_NOTE_TUNING_ROW8(wscGLOBAL_GUITAR_NOTE_TUNING_ROW8->GetValue());
+	pMyLinnStrument->SendNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW8_NRPN, pMyLinnStrument->GetGLOBAL_GUITAR_NOTE_TUNING_ROW8());
 }
 
 
 void GlobalsTuningsPage::OnGLOBAL_ROW_OFFSET(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetGLOBAL_ROW_OFFSET(LinnStrument::IntToLSRowOffsetType( wrbGLOBAL_ROW_OFFSET->GetSelection()));
+	pMyLinnStrument->SendNRPN(GLOBAL_ROW_OFFSET_NRPN, pMyLinnStrument->GetGLOBAL_ROW_OFFSET());
 }
 
 
 void GlobalsTuningsPage::OnGLOBAL_CUSTOM_ROW_OFFSET(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetGLOBAL_CUSTOM_ROW_OFFSET(wrbGLOBAL_CUSTOM_ROW_OFFSET->GetSelection());
+	pMyLinnStrument->SendNRPN(GLOBAL_CUSTOM_ROW_OFFSET_ID, pMyLinnStrument->GetGLOBAL_CUSTOM_ROW_OFFSET());
 }
 
 

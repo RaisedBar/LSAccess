@@ -53,48 +53,56 @@ chkFOOT_LEFT_BOTH_SPLITS = new wxCheckBox(myPanel, FOOT_LEFT_BOTH_SPLITS_ID, L"L
 void FootSwitchesPage::OnFOOT_LEFT_ASSIGN(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetFOOT_LEFT_ASSIGN(wrbFOOT_LEFT_ASSIGN->GetSelection());
+		pMyLinnStrument->SendNRPN(FOOT_LEFT_ASSIGN_NRPN, pMyLinnStrument->GetFOOT_LEFT_ASSIGN());
 }
 
 
 void FootSwitchesPage::OnFOOT_LEFT_BOTH_SPLITS(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetFOOT_LEFT_BOTH_SPLITS(LinnStrument::LSToggle(chkFOOT_LEFT_BOTH_SPLITS->GetValue()));
+	pMyLinnStrument->SendNRPN(FOOT_LEFT_BOTH_SPLITS_NRPN, pMyLinnStrument->GetFOOT_LEFT_BOTH_SPLITS());
 }
 
 
 void FootSwitchesPage::OnCC_FOR_LEFT_FOOT_SUSTAIN(wxSpinEvent& event)
 {	
 	pMyLinnStrument->SetCC_FOR_LEFT_FOOT_SUSTAIN(wscCC_FOR_LEFT_FOOT_SUSTAIN->GetValue());
+	pMyLinnStrument->SendNRPN(CC_FOR_LEFT_FOOT_SUSTAIN, pMyLinnStrument->GetCC_FOR_LEFT_FOOT_SUSTAIN());
 }
 
 
 void FootSwitchesPage::OnCC_FOR_LEFT_FOOT_CC65(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetCC_FOR_LEFT_FOOT_CC65(wscCC_FOR_LEFT_FOOT_CC65->GetValue());
+	pMyLinnStrument->SendNRPN(CC_FOR_LEFT_FOOT_CC65, pMyLinnStrument->GetCC_FOR_LEFT_FOOT_CC65());
 }
 
 
 void FootSwitchesPage::OnFOOT_RIGHT_ASSIGN(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetFOOT_RIGHT_ASSIGN(wrbFOOT_RIGHT_ASSIGN->GetSelection());
+	pMyLinnStrument->SendNRPN(FOOT_RIGHT_ASSIGN_NRPN, pMyLinnStrument->GetFOOT_RIGHT_ASSIGN());
 }
 
 
 void FootSwitchesPage::OnFOOT_RIGHT_BOTH_SPLITS(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetFOOT_RIGHT_BOTH_SPLITS(LinnStrument::LSToggle(chkFOOT_RIGHT_BOTH_SPLITS->GetValue()));
+	pMyLinnStrument->SendNRPN(FOOT_RIGHT_BOTH_SPLITS_NRPN, pMyLinnStrument->GetFOOT_RIGHT_BOTH_SPLITS());
 }
 
 
 void FootSwitchesPage::OnCC_FOR_RIGHT_FOOT_SUSTAIN(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetCC_FOR_RIGHT_FOOT_SUSTAIN(wscCC_FOR_RIGHT_FOOT_SUSTAIN->GetValue());
+	pMyLinnStrument->SendNRPN(CC_FOR_RIGHT_FOOT_SUSTAIN, pMyLinnStrument->GetCC_FOR_RIGHT_FOOT_SUSTAIN());
 }
 
 
 void FootSwitchesPage::OnCC_FOR_RIGHT_FOOT_CC65(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetCC_FOR_RIGHT_FOOT_CC65(wscCC_FOR_RIGHT_FOOT_CC65->GetValue());
+	pMyLinnStrument->SendNRPN(CC_FOR_RIGHT_FOOT_CC65, pMyLinnStrument->GetCC_FOR_RIGHT_FOOT_CC65());
 }
 
 

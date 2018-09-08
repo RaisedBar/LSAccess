@@ -36,29 +36,69 @@ wxPanel * myPanel = new wxPanel(this, -1);
 void ColorsPage::OnCOLOR_MAIN(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetCOLOR_MAIN( wrbCOLOR_MAIN->GetSelection(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_COLOR_MAIN_NRPN, pMyLinnStrument->GetCOLOR_MAIN(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_COLOR_MAIN_NRPN, pMyLinnStrument->GetCOLOR_MAIN(m_Split));
+	}
 }
 
 
 void ColorsPage::OnCOLOR_ACCENT(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetCOLOR_ACCENT( wrbCOLOR_ACCENT->GetSelection(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_COLOR_ACCENT_NRPN, pMyLinnStrument->GetCOLOR_ACCENT(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_COLOR_ACCENT_NRPN, pMyLinnStrument->GetCOLOR_ACCENT(m_Split));
+	}
 }
 
 
 void ColorsPage::OnCOLOR_PLAYED(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetCOLOR_PLAYED( wrbCOLOR_PLAYED->GetSelection(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_COLOR_PLAYED_NRPN, pMyLinnStrument->GetCOLOR_PLAYED(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_COLOR_PLAYED_NRPN, pMyLinnStrument->GetCOLOR_PLAYED(m_Split));
+	}
 }
 
 void ColorsPage::OnCOLOR_LOWROW(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetCOLOR_MAIN( wrbCOLOR_MAIN->GetSelection(), m_Split);
+	pMyLinnStrument->SetCOLOR_LOWROW( wrbCOLOR_LOWROW->GetSelection(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_COLOR_LOWROW_NRPN, pMyLinnStrument->GetCOLOR_LOWROW(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_COLOR_LOWROW_NRPN, pMyLinnStrument->GetCOLOR_LOWROW(m_Split));
+	}
 }
 
 
 void ColorsPage::OnAnimation(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetTOUCH_ANIMATION(wrbAnimation->GetSelection(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_TOUCH_ANIMATION_NRPN, pMyLinnStrument->GetTOUCH_ANIMATION(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_TOUCH_ANIMATION_NRPN, pMyLinnStrument->GetTOUCH_ANIMATION(m_Split));
+	}
 }
 
 

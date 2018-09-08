@@ -38,24 +38,28 @@ wscDEVICE_MIN_BYTE_INTERVAL_VALUE = new wxSpinCtrl(myPanel, DEVICE_MIN_BYTE_INTE
 void GlobalsPowerMIDIPage::OnGLOBAL_MIDI_DEVICE_IO(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetGLOBAL_MIDI_DEVICE_IO(wrbGLOBAL_MIDI_DEVICE_IO->GetSelection());
+	pMyLinnStrument->SendNRPN(GLOBAL_MIDI_DEVICE_IO_NRPN, pMyLinnStrument->GetGLOBAL_MIDI_DEVICE_IO());
 }
 
 
 void GlobalsPowerMIDIPage::OnDEVICE_MIDI_THRU(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetDEVICE_MIDI_THRU(LinnStrument::LSToggle(chkDEVICE_MIDI_THRU->GetValue()));
+	pMyLinnStrument->SendNRPN(DEVICE_MIDI_THRU_NRPN, pMyLinnStrument->GetDEVICE_MIDI_THRU());
 }
 
 
 void GlobalsPowerMIDIPage::OnDEVICE_USER_FIRMWARE_MODE(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetDEVICE_USER_FIRMWARE_MODE(LinnStrument::LSToggle(chkDEVICE_USER_FIRMWARE_MODE->GetValue()));
+	pMyLinnStrument->SendNRPN(DEVICE_USER_FIRMWARE_MODE_NRPN, pMyLinnStrument->GetDEVICE_USER_FIRMWARE_MODE());
 }
 
 
 void GlobalsPowerMIDIPage::OnDEVICE_MIN_BYTE_INTERVAL_VALUE(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetDEVICE_MIN_BYTE_INTERVAL_VALUE(wscDEVICE_MIN_BYTE_INTERVAL_VALUE->GetValue());
+	pMyLinnStrument->SendNRPN(DEVICE_MIN_BYTE_INTERVAL_VALUE_NRPN, pMyLinnStrument->GetDEVICE_MIN_BYTE_INTERVAL_VALUE());
 }
 
 

@@ -42,11 +42,27 @@ pMyParent(parent)
 void FadersPage::OnCC_FOR_FADER1(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetCC_FOR_FADER1(wscCC_FOR_FADER1->GetValue(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_CC_FOR_FADER1_NRPN, pMyLinnStrument->GetCC_FOR_FADER1(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_CC_FOR_FADER1_NRPN, pMyLinnStrument->GetCC_FOR_FADER1(m_Split));
+	}
 }
 
 
 void FadersPage::OnCC_FOR_FADER2(wxSpinEvent& event)
 {
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_CC_FOR_FADER2_NRPN, pMyLinnStrument->GetCC_FOR_FADER2(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_CC_FOR_FADER2_NRPN, pMyLinnStrument->GetCC_FOR_FADER2(m_Split));
+	}
 	pMyLinnStrument->SetCC_FOR_FADER2(wscCC_FOR_FADER2->GetValue(), m_Split);
 }
 
@@ -54,36 +70,84 @@ void FadersPage::OnCC_FOR_FADER2(wxSpinEvent& event)
 void FadersPage::OnCC_FOR_FADER3(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetCC_FOR_FADER3(wscCC_FOR_FADER3->GetValue(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_CC_FOR_FADER3_NRPN, pMyLinnStrument->GetCC_FOR_FADER3(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_CC_FOR_FADER3_NRPN, pMyLinnStrument->GetCC_FOR_FADER3(m_Split));
+	}
 }
 
 
 void FadersPage::OnCC_FOR_FADER4(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetCC_FOR_FADER4(wscCC_FOR_FADER4->GetValue(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_CC_FOR_FADER4_NRPN, pMyLinnStrument->GetCC_FOR_FADER4(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_CC_FOR_FADER4_NRPN, pMyLinnStrument->GetCC_FOR_FADER4(m_Split));
+	}
 }
 
 
 void FadersPage::OnCC_FOR_FADER5(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetCC_FOR_FADER5(wscCC_FOR_FADER5->GetValue(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_CC_FOR_FADER5_NRPN, pMyLinnStrument->GetCC_FOR_FADER5(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_CC_FOR_FADER5_NRPN, pMyLinnStrument->GetCC_FOR_FADER5(m_Split));
+	}
 }
 
 
 void FadersPage::OnCC_FOR_FADER6(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetCC_FOR_FADER6(wscCC_FOR_FADER6->GetValue(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_CC_FOR_FADER6_NRPN, pMyLinnStrument->GetCC_FOR_FADER6(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_CC_FOR_FADER6_NRPN, pMyLinnStrument->GetCC_FOR_FADER6(m_Split));
+	}
 }
 
 
 void FadersPage::OnCC_FOR_FADER7(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetCC_FOR_FADER7(wscCC_FOR_FADER7->GetValue(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_CC_FOR_FADER7_NRPN, pMyLinnStrument->GetCC_FOR_FADER7(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_CC_FOR_FADER7_NRPN, pMyLinnStrument->GetCC_FOR_FADER7(m_Split));
+	}
 }
 
 
 void FadersPage::OnCC_FOR_FADER8(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetCC_FOR_FADER8(wscCC_FOR_FADER8->GetValue(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_CC_FOR_FADER8_NRPN, pMyLinnStrument->GetCC_FOR_FADER8(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_CC_FOR_FADER8_NRPN, pMyLinnStrument->GetCC_FOR_FADER8(m_Split));
+	}
 }
 
 

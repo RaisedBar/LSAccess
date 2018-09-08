@@ -41,36 +41,42 @@ pMyParent(parent)
 void GlobalsVelocityPressurePage::OnGLOBAL_VELOCITY_SENSITIVITY(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetGLOBAL_VELOCITY_SENSITIVITY(wrbGLOBAL_VELOCITY_SENSITIVITY->GetSelection());
+	pMyLinnStrument->SendNRPN(GLOBAL_VELOCITY_SENSITIVITY_NRPN, pMyLinnStrument->GetGLOBAL_VELOCITY_SENSITIVITY());
 }
 
 
 void GlobalsVelocityPressurePage::OnGLOBAL_PRESSURE_AFTERTOUCH(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetGLOBAL_PRESSURE_AFTERTOUCH(LinnStrument::LSToggle(chkGLOBAL_PRESSURE_AFTERTOUCH->GetValue()));
+	pMyLinnStrument->SendNRPN(GLOBAL_PRESSURE_AFTERTOUCH_NRPN, pMyLinnStrument->GetGLOBAL_PRESSURE_AFTERTOUCH());
 }
 
 
 void GlobalsVelocityPressurePage::OnGLOBAL_PRESSURE_SENSITIVITY(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetGLOBAL_PRESSURE_SENSITIVITY(wrbGLOBAL_PRESSURE_SENSITIVITY->GetSelection());
+	pMyLinnStrument->SendNRPN(GLOBAL_PRESSURE_SENSITIVITY_NRPN, pMyLinnStrument->GetGLOBAL_PRESSURE_SENSITIVITY());
 }
 
 
 void GlobalsVelocityPressurePage::OnGLOBAL_FIXED_VELOCITY_VALUE(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetGLOBAL_FIXED_VELOCITY_VALUE(wscGLOBAL_FIXED_VELOCITY_VALUE->GetValue());
+	pMyLinnStrument->SendNRPN(GLOBAL_FIXED_VELOCITY_VALUE_NRPN, pMyLinnStrument->GetGLOBAL_FIXED_VELOCITY_VALUE());
 }
 
 
 void GlobalsVelocityPressurePage::OnGLOBAL_MAX_VELOCITY_VALUE(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetGLOBAL_MAX_VELOCITY_VALUE(wscGLOBAL_MAX_VELOCITY_VALUE->GetValue());
+	pMyLinnStrument->SendNRPN(GLOBAL_MAX_VELOCITY_VALUE_NRPN, pMyLinnStrument->GetGLOBAL_MAX_VELOCITY_VALUE());
 }
 
 
 void GlobalsVelocityPressurePage::OnGLOBAL_MIN_VELOCITY_VALUE(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetGLOBAL_MIN_VELOCITY_VALUE(wscGLOBAL_MIN_VELOCITY_VALUE->GetValue());
+	pMyLinnStrument->SendNRPN(GLOBAL_MIN_VELOCITY_VALUE_NRPN, pMyLinnStrument->GetGLOBAL_MIN_VELOCITY_VALUE());
 }
 
 
