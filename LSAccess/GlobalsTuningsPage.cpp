@@ -12,7 +12,7 @@ pMyParent(parent)
 	
 	// Controls
 		// Value is an LSRowOffsetType
-		wrbGLOBAL_ROW_OFFSET = new wxRadioBox(myPanel, GLOBAL_ROW_OFFSET_ID, L"Row offset &type", wxDefaultPosition, wxDefaultSize, WXSIZEOF(RowOffsetTypes), RowOffsetTypes, pMyLinnStrument->GetGLOBAL_ROW_OFFSET(), wxRA_SPECIFY_ROWS);
+		wrbGLOBAL_ROW_OFFSET = new wxRadioBox(myPanel, GLOBAL_ROW_OFFSET_ID, L"Row offset &type", wxDefaultPosition, wxDefaultSize, WXSIZEOF(RowOffsetTypes), RowOffsetTypes, LinnStrument::LSRowOffsetTypeToInt( pMyLinnStrument->GetGLOBAL_ROW_OFFSET()), wxRA_SPECIFY_ROWS);
 		hBox1->Add(wrbGLOBAL_ROW_OFFSET, 0, wxEXPAND);
 		// Value is an LSCustomRowOffset
 	wrbGLOBAL_CUSTOM_ROW_OFFSET = new wxRadioBox(myPanel, GLOBAL_CUSTOM_ROW_OFFSET_ID, L"&Custom row offset", wxDefaultPosition, wxDefaultSize, WXSIZEOF(CustomRowOffsets), CustomRowOffsets, pMyLinnStrument->GetGLOBAL_CUSTOM_ROW_OFFSET(), wxRA_SPECIFY_ROWS);
@@ -94,7 +94,7 @@ void GlobalsTuningsPage::OnGLOBAL_GUITAR_NOTE_TUNING_ROW8(wxSpinEvent& event)
 
 void GlobalsTuningsPage::OnGLOBAL_ROW_OFFSET(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetGLOBAL_ROW_OFFSET(wrbGLOBAL_ROW_OFFSET->GetSelection());
+	pMyLinnStrument->SetGLOBAL_ROW_OFFSET(LinnStrument::IntToLSRowOffsetType( wrbGLOBAL_ROW_OFFSET->GetSelection()));
 }
 
 

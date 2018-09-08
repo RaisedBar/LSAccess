@@ -18,7 +18,7 @@ pMyParent(parent)
 	wrbGLOBAL_ARP_DIRECTION = new wxRadioBox(myPanel, GLOBAL_ARP_DIRECTION_ID, L"&Direction", wxDefaultPosition, wxDefaultSize, WXSIZEOF(ArpDirections), ArpDirections, pMyLinnStrument->GetGLOBAL_ARP_DIRECTION(), wxRA_SPECIFY_ROWS);
 	hBox1->Add(wrbGLOBAL_ARP_DIRECTION, 0, wxEXPAND);
 	// Value is an LSArpTempoNoteType
-	wrbGLOBAL_ARP_TEMPO_NOTE_VALUE = new wxRadioBox(myPanel, GLOBAL_ARP_TEMPO_NOTE_VALUE_ID, L"&Note value", wxDefaultPosition, wxDefaultSize, WXSIZEOF(ArpTempoNoteTypes), ArpTempoNoteTypes, pMyLinnStrument->GetGLOBAL_ARP_TEMPO_NOTE_VALUE(), wxRA_SPECIFY_ROWS);
+	wrbGLOBAL_ARP_TEMPO_NOTE_VALUE = new wxRadioBox(myPanel, GLOBAL_ARP_TEMPO_NOTE_VALUE_ID, L"&Note value", wxDefaultPosition, wxDefaultSize, WXSIZEOF(ArpTempoNoteTypes), ArpTempoNoteTypes, LinnStrument::LSArpTempoNoteTypeToInt( pMyLinnStrument->GetGLOBAL_ARP_TEMPO_NOTE_VALUE()), wxRA_SPECIFY_ROWS);
 	hBox1->Add(wrbGLOBAL_ARP_TEMPO_NOTE_VALUE, 0, wxEXPAND);
 	// Value is an LSGlobalArpOctaveExtension
 		wrbGLOBAL_ARP_OCTAVE_EXTENSION = new wxRadioBox(myPanel, GLOBAL_ARP_OCTAVE_EXTENSION_ID, L"&Octave extension", wxDefaultPosition, wxDefaultSize, WXSIZEOF(ArpOctaveExtensions), ArpOctaveExtensions, pMyLinnStrument->GetGLOBAL_ARP_OCTAVE_EXTENSION(), wxRA_SPECIFY_ROWS);
@@ -41,7 +41,7 @@ void GlobalsArpPage::OnGLOBAL_ARP_DIRECTION(wxCommandEvent& event)
 
 void GlobalsArpPage::OnGLOBAL_ARP_TEMPO_NOTE_VALUE(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetGLOBAL_ARP_TEMPO_NOTE_VALUE(wrbGLOBAL_ARP_TEMPO_NOTE_VALUE->GetSelection());
+	pMyLinnStrument->SetGLOBAL_ARP_TEMPO_NOTE_VALUE( LinnStrument::IntToLSArpTempoNoteType(wrbGLOBAL_ARP_TEMPO_NOTE_VALUE->GetSelection()));
 }
 
 

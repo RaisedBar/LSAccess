@@ -429,7 +429,251 @@ public:
 	LinnStrument( wxWindow * parent);
 	~LinnStrument();
 
-	static bool LSToggle(unsigned int nValue)
+	static unsigned int LSArpTempoNoteTypeToInt( unsigned int nLSArpTempoNoteType)
+	{
+		switch (nLSArpTempoNoteType)
+		{
+		case 1:
+		{
+			return 0;
+		}
+		break;
+
+		case 2:
+		{
+			return 1;
+		}
+		break;
+
+		case 3:
+		{
+			return 2;
+		}
+		break;
+
+		case 4:
+		{
+			return 3;
+		}
+		break;
+
+		case 5:
+		{
+			return 4;
+		}
+		break;
+
+		case 6:
+		{
+			return 5;
+		}
+		break;
+
+		case 7:
+		{
+			return 6;
+		}
+		break;
+
+		default:
+		{
+			return 1;  // 8th note
+		}
+		break;
+			   		}  // end switch
+	}
+
+
+	static unsigned int IntToLSArpTempoNoteType( unsigned int nInt)
+	{
+		switch (nInt)
+		{
+		case 0:
+		{
+			return 1;
+		}
+		break;
+
+		case 1:
+		{
+			return 2;
+		}
+		break;
+
+		case 2:
+		{
+			return 3;
+		}
+		break;
+
+				case 3:
+		{
+			return 4;
+		}
+		break;
+
+		case 4:
+		{
+			return 5;
+		}
+		break;
+
+		case 5:
+		{
+			return 6;
+		}
+		break;
+				
+		case 6:
+		{
+			return 7;
+		}
+		break;
+
+		default:
+		{
+			return 1;
+		}
+		break;
+		}   // end switch
+			}
+
+
+	static unsigned int LSRowOffsetTypeToInt(unsigned int nLSRowOffsetType)
+	{
+// Useful for converting an LSRowOffsetType to a control index
+		switch (nLSRowOffsetType)
+		{
+		case 0:
+		{
+			return 0;
+		}
+		break;
+
+		case 3:
+		{
+			return 1;
+		}
+		break;
+
+		case 4:
+		{
+			return 2;
+		}
+		break;
+
+		case 5:
+		{
+			return 3;
+		}
+		break;
+
+		case 6:
+		{
+			return 4;
+		}
+		break;
+
+		case 7:
+		{
+			return 5;
+		}
+		break;
+
+		case 12:
+		{
+			return 6;
+		}
+		break;
+
+		case 13:
+		{
+			return 7;
+		}
+		break;
+
+		case 127:
+		{
+			return 8;
+		}
+		break;
+
+		default:
+		{
+			return 4;
+		}
+		break;
+		}  // end switch
+	}
+
+	static unsigned int IntToLSRowOffsetType(unsigned int nInt)
+	{
+		// Useful for setting the value of an LSRowOffsetType from a control index
+		switch (nInt)
+		{
+		case 0:
+		{
+			return 0;
+		}
+		break;
+
+		case 1:
+		{
+			return 3;
+		}
+		break;
+
+		case 2:
+		{
+			return 4;
+		}
+		break;
+
+		case 3:
+		{
+			return 5;
+		}
+		break;
+
+		case 4:
+		{
+			return 6;
+		}
+		break;
+
+		case 5:
+		{
+			return 7;
+		}
+		break;
+
+		case 6:
+		{
+			return 12;
+		}
+		break;
+
+		case 7:
+		{
+			return 13;
+		}
+		break;
+
+		case 8:
+		{
+			return 127;
+		}
+		break;
+
+		default:
+		{
+			return 4;  // Default LinnStrument tuning
+		}
+		break;
+		}  // end switch
+		}
+
+			static bool LSToggle(unsigned int nValue)
 	{
 		if (nValue == 0)
 		{
