@@ -28,21 +28,23 @@ wscGLOBAL_SPLIT_COLUMN = new wxSpinCtrl(myPanel, GLOBAL_SPLIT_COLUMN_ID, "", wxD
 }
 
 
+// Event handlers
+
 void GlobalsSplitPage::OnGLOBAL_SPLIT_ACTIVE(wxCommandEvent& event)
 {
-
+	pMyLinnStrument->SetGLOBAL_SPLIT_ACTIVE(LinnStrument::LSToggle(chkGLOBAL_SPLIT_ACTIVE->GetValue()));
 }
 
 
 void GlobalsSplitPage::OnDEVICE_LEFT_HANDED(wxCommandEvent& event)
 {
-
+	pMyLinnStrument->SetDEVICE_LEFT_HANDED(LinnStrument::LSToggle(chkDEVICE_LEFT_HANDED->GetValue()));
 }
 
 
 void GlobalsSplitPage::OnGLOBAL_SPLIT_COLUMN(wxSpinEvent& event)
 {
-
+	pMyLinnStrument->SetGLOBAL_SPLIT_COLUMN(wscGLOBAL_SPLIT_COLUMN->GetValue());
 }
 
 

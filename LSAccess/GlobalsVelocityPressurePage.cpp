@@ -46,7 +46,7 @@ void GlobalsVelocityPressurePage::OnGLOBAL_VELOCITY_SENSITIVITY(wxCommandEvent& 
 
 void GlobalsVelocityPressurePage::OnGLOBAL_PRESSURE_AFTERTOUCH(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetGLOBAL_PRESSURE_AFTERTOUCH(chkGLOBAL_PRESSURE_AFTERTOUCH->GetValue());
+	pMyLinnStrument->SetGLOBAL_PRESSURE_AFTERTOUCH(LinnStrument::LSToggle(chkGLOBAL_PRESSURE_AFTERTOUCH->GetValue()));
 }
 
 

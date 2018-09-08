@@ -31,6 +31,8 @@ wxPanel * myPanel = new wxPanel(this, -1);
 }
 
 
+// Event handlers
+
 void ColorsPage::OnCOLOR_MAIN(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetCOLOR_MAIN( wrbCOLOR_MAIN->GetSelection(), m_Split);

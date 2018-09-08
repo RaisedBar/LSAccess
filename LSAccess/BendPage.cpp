@@ -38,19 +38,23 @@ hBox1->Fit(myPanel);
 }
 
 
+// Event handlers
+
 void BendPage::OnBEND_RANGE(wxSpinEvent& event)
-{}
+{
+	pMyLinnStrument->SetBEND_RANGE(wscBEND_RANGE->GetValue(), m_Split);
+}
 
 
 void BendPage::OnBEND_TOGGLE(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetBEND_TOGGLE(chkBEND_TOGGLE->GetValue(), m_Split);
+	pMyLinnStrument->SetBEND_TOGGLE(LinnStrument::LSToggle(chkBEND_TOGGLE->GetValue()), m_Split);
 }
 
 
 void BendPage::OnBEND_QUANTIZE_TOGGLE(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetBEND_QUANTIZE_TOGGLE(chkBEND_QUANTIZE_TOGGLE->GetValue(), m_Split);
+	pMyLinnStrument->SetBEND_QUANTIZE_TOGGLE(LinnStrument::LSToggle(chkBEND_QUANTIZE_TOGGLE->GetValue()), m_Split);
 }
 
 
@@ -62,7 +66,7 @@ void BendPage::OnBendQuantize(wxCommandEvent& event)
 
 void BendPage::OnRESET_PITCH_ON_RELEASE(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetRESET_PITCH_ON_RELEASE(chkRESET_PITCH_ON_RELEASE->GetValue(), m_Split);
+	pMyLinnStrument->SetRESET_PITCH_ON_RELEASE(LinnStrument::LSToggle(chkRESET_PITCH_ON_RELEASE->GetValue()), m_Split);
 }
 
 

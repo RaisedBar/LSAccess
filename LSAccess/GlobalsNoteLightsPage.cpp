@@ -66,78 +66,77 @@ vBox1->Add(hBox2, 0, wxEXPAND);
 }
 
 
-
-
+// Event handlers
 
 void GlobalsNoteLightsPage::OnGLOBAL_MAIN_NOTE_LIGHT_C(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_C(chkGLOBAL_MAIN_NOTE_LIGHT_C->GetValue());
+	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_C(LinnStrument::LSToggle(chkGLOBAL_MAIN_NOTE_LIGHT_C->GetValue()));
 }
 
 
 void GlobalsNoteLightsPage::OnGLOBAL_MAIN_NOTE_LIGHT_C_SHARP(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_C_SHARP(chkGLOBAL_MAIN_NOTE_LIGHT_C_SHARP->GetValue());
+	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_C_SHARP(LinnStrument::LSToggle(chkGLOBAL_MAIN_NOTE_LIGHT_C_SHARP->GetValue()));
 }
 
 
 void GlobalsNoteLightsPage::OnGLOBAL_MAIN_NOTE_LIGHT_D(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_D(chkGLOBAL_MAIN_NOTE_LIGHT_D->GetValue());
+	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_D(LinnStrument::LSToggle(chkGLOBAL_MAIN_NOTE_LIGHT_D->GetValue()));
 }
 
 
 void GlobalsNoteLightsPage::OnGLOBAL_MAIN_NOTE_LIGHT_D_SHARP(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_D_SHARP(chkGLOBAL_MAIN_NOTE_LIGHT_D_SHARP->GetValue());
+	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_D_SHARP(LinnStrument::LSToggle(chkGLOBAL_MAIN_NOTE_LIGHT_D_SHARP->GetValue()));
 }
 
 
 void GlobalsNoteLightsPage::OnGLOBAL_MAIN_NOTE_LIGHT_E(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_E(chkGLOBAL_MAIN_NOTE_LIGHT_E->GetValue());
+	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_E(LinnStrument::LSToggle(chkGLOBAL_MAIN_NOTE_LIGHT_E->GetValue()));
 }
 
 
 void GlobalsNoteLightsPage::OnGLOBAL_MAIN_NOTE_LIGHT_F(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_F(chkGLOBAL_MAIN_NOTE_LIGHT_F->GetValue());
+	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_F(LinnStrument::LSToggle(chkGLOBAL_MAIN_NOTE_LIGHT_F->GetValue()));
 }
 
 
 void GlobalsNoteLightsPage::OnGLOBAL_MAIN_NOTE_LIGHT_F_SHARP(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_F_SHARP(chkGLOBAL_MAIN_NOTE_LIGHT_F_SHARP->GetValue());
+	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_F_SHARP(LinnStrument::LSToggle(chkGLOBAL_MAIN_NOTE_LIGHT_F_SHARP->GetValue()));
 }
 
 
 void GlobalsNoteLightsPage::OnGLOBAL_MAIN_NOTE_LIGHT_G(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_G(chkGLOBAL_MAIN_NOTE_LIGHT_G->GetValue());
+	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_G(LinnStrument::LSToggle(chkGLOBAL_MAIN_NOTE_LIGHT_G->GetValue()));
 }
 
 
 void GlobalsNoteLightsPage::OnGLOBAL_MAIN_NOTE_LIGHT_G_SHARP(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_G_SHARP(chkGLOBAL_MAIN_NOTE_LIGHT_G_SHARP->GetValue());
+	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_G_SHARP(LinnStrument::LSToggle(chkGLOBAL_MAIN_NOTE_LIGHT_G_SHARP->GetValue()));
 }
 
 
 void GlobalsNoteLightsPage::OnGLOBAL_MAIN_NOTE_LIGHT_A(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_A(chkGLOBAL_MAIN_NOTE_LIGHT_A->GetValue());
+	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_A(LinnStrument::LSToggle(chkGLOBAL_MAIN_NOTE_LIGHT_A->GetValue()));
 }
 
 
 void GlobalsNoteLightsPage::OnGLOBAL_MAIN_NOTE_LIGHT_A_SHARP(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_A_SHARP(chkGLOBAL_MAIN_NOTE_LIGHT_A_SHARP->GetValue());
+	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_A_SHARP(LinnStrument::LSToggle(chkGLOBAL_MAIN_NOTE_LIGHT_A_SHARP->GetValue()));
 }
 
 
 void GlobalsNoteLightsPage::OnGLOBAL_MAIN_NOTE_LIGHT_B(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_B(chkGLOBAL_MAIN_NOTE_LIGHT_B->GetValue());
+	pMyLinnStrument->SetGLOBAL_MAIN_NOTE_LIGHT_B(LinnStrument::LSToggle(chkGLOBAL_MAIN_NOTE_LIGHT_B->GetValue()));
 }
 
 

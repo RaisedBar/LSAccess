@@ -48,6 +48,8 @@ chkFOOT_LEFT_BOTH_SPLITS = new wxCheckBox(myPanel, FOOT_LEFT_BOTH_SPLITS_ID, L"L
 }
 
 
+// Event handlers
+
 void FootSwitchesPage::OnFOOT_LEFT_ASSIGN(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetFOOT_LEFT_ASSIGN(wrbFOOT_LEFT_ASSIGN->GetSelection());
@@ -56,7 +58,7 @@ void FootSwitchesPage::OnFOOT_LEFT_ASSIGN(wxCommandEvent& event)
 
 void FootSwitchesPage::OnFOOT_LEFT_BOTH_SPLITS(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetFOOT_LEFT_BOTH_SPLITS(chkFOOT_LEFT_BOTH_SPLITS->GetValue());
+	pMyLinnStrument->SetFOOT_LEFT_BOTH_SPLITS(LinnStrument::LSToggle(chkFOOT_LEFT_BOTH_SPLITS->GetValue()));
 }
 
 
@@ -80,7 +82,7 @@ void FootSwitchesPage::OnFOOT_RIGHT_ASSIGN(wxCommandEvent& event)
 
 void FootSwitchesPage::OnFOOT_RIGHT_BOTH_SPLITS(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetFOOT_RIGHT_BOTH_SPLITS(chkFOOT_RIGHT_BOTH_SPLITS->GetValue());
+	pMyLinnStrument->SetFOOT_RIGHT_BOTH_SPLITS(LinnStrument::LSToggle(chkFOOT_RIGHT_BOTH_SPLITS->GetValue()));
 }
 
 

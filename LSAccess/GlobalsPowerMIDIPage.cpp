@@ -43,13 +43,13 @@ void GlobalsPowerMIDIPage::OnGLOBAL_MIDI_DEVICE_IO(wxCommandEvent& event)
 
 void GlobalsPowerMIDIPage::OnDEVICE_MIDI_THRU(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetDEVICE_MIDI_THRU(chkDEVICE_MIDI_THRU->GetValue());
+	pMyLinnStrument->SetDEVICE_MIDI_THRU(LinnStrument::LSToggle(chkDEVICE_MIDI_THRU->GetValue()));
 }
 
 
 void GlobalsPowerMIDIPage::OnDEVICE_USER_FIRMWARE_MODE(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetDEVICE_USER_FIRMWARE_MODE(chkDEVICE_USER_FIRMWARE_MODE->GetValue());
+	pMyLinnStrument->SetDEVICE_USER_FIRMWARE_MODE(LinnStrument::LSToggle(chkDEVICE_USER_FIRMWARE_MODE->GetValue()));
 }
 
 

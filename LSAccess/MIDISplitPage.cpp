@@ -88,6 +88,8 @@ vBox1->Fit(myPanel);
 }
 
 
+// Event handlers
+
 void MIDISplitPage::OnMIDI_MAIN_CHANNEL(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetMIDI_MAIN_CHANNEL(wscMIDI_MAIN_CHANNEL->GetValue(), m_Split);
@@ -103,97 +105,97 @@ void MIDISplitPage::OnMIDI_PER_ROW_LOWEST_CHANNEL(wxSpinEvent& event)
 
 void MIDISplitPage::OnCHANNEL_PER_NOTE_1(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetCHANNEL_PER_NOTE_1(chkCHANNEL_PER_NOTE_1->GetValue(), m_Split);
+	pMyLinnStrument->SetCHANNEL_PER_NOTE_1(LinnStrument::LSToggle(chkCHANNEL_PER_NOTE_1->GetValue()), m_Split);
 }
 
 
 void MIDISplitPage::OnCHANNEL_PER_NOTE_2(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetCHANNEL_PER_NOTE_2(chkCHANNEL_PER_NOTE_2->GetValue(), m_Split);
+	pMyLinnStrument->SetCHANNEL_PER_NOTE_2(LinnStrument::LSToggle(chkCHANNEL_PER_NOTE_2->GetValue()), m_Split);
 }
 
 
 void MIDISplitPage::OnCHANNEL_PER_NOTE_3(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetCHANNEL_PER_NOTE_3(chkCHANNEL_PER_NOTE_3->GetValue(), m_Split);
+	pMyLinnStrument->SetCHANNEL_PER_NOTE_3(LinnStrument::LSToggle(chkCHANNEL_PER_NOTE_3->GetValue()), m_Split);
 }
 
 
 void MIDISplitPage::OnCHANNEL_PER_NOTE_4(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetCHANNEL_PER_NOTE_4(chkCHANNEL_PER_NOTE_4->GetValue(), m_Split);
+	pMyLinnStrument->SetCHANNEL_PER_NOTE_4(LinnStrument::LSToggle(chkCHANNEL_PER_NOTE_4->GetValue()), m_Split);
 }
 
 
 void MIDISplitPage::OnCHANNEL_PER_NOTE_5(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetCHANNEL_PER_NOTE_5(chkCHANNEL_PER_NOTE_5->GetValue(), m_Split);
+	pMyLinnStrument->SetCHANNEL_PER_NOTE_5(LinnStrument::LSToggle(chkCHANNEL_PER_NOTE_5->GetValue()), m_Split);
 }
 
 
 void MIDISplitPage::OnCHANNEL_PER_NOTE_6(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetCHANNEL_PER_NOTE_6(chkCHANNEL_PER_NOTE_6->GetValue(), m_Split);
+	pMyLinnStrument->SetCHANNEL_PER_NOTE_6(LinnStrument::LSToggle(chkCHANNEL_PER_NOTE_6->GetValue()), m_Split);
 }
 
 
 void MIDISplitPage::OnCHANNEL_PER_NOTE_7(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetCHANNEL_PER_NOTE_7(chkCHANNEL_PER_NOTE_7->GetValue(), m_Split);
+	pMyLinnStrument->SetCHANNEL_PER_NOTE_7(LinnStrument::LSToggle(chkCHANNEL_PER_NOTE_7->GetValue()), m_Split);
 }
 
 
 void MIDISplitPage::OnCHANNEL_PER_NOTE_8(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetCHANNEL_PER_NOTE_8(chkCHANNEL_PER_NOTE_8->GetValue(), m_Split);
+	pMyLinnStrument->SetCHANNEL_PER_NOTE_8(LinnStrument::LSToggle(chkCHANNEL_PER_NOTE_8->GetValue()), m_Split);
 }
 
 
 void MIDISplitPage::OnCHANNEL_PER_NOTE_9(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetCHANNEL_PER_NOTE_9(chkCHANNEL_PER_NOTE_9->GetValue(), m_Split);
+	pMyLinnStrument->SetCHANNEL_PER_NOTE_9(LinnStrument::LSToggle(chkCHANNEL_PER_NOTE_9->GetValue()), m_Split);
 }
 
 
 void MIDISplitPage::OnCHANNEL_PER_NOTE_10(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetCHANNEL_PER_NOTE_10(chkCHANNEL_PER_NOTE_10->GetValue(), m_Split);
+	pMyLinnStrument->SetCHANNEL_PER_NOTE_10(LinnStrument::LSToggle(chkCHANNEL_PER_NOTE_10->GetValue()), m_Split);
 }
 
 
 void MIDISplitPage::OnCHANNEL_PER_NOTE_11(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetCHANNEL_PER_NOTE_11(chkCHANNEL_PER_NOTE_11->GetValue(), m_Split);
+	pMyLinnStrument->SetCHANNEL_PER_NOTE_11(LinnStrument::LSToggle(chkCHANNEL_PER_NOTE_11->GetValue()), m_Split);
 }
 
 
 void MIDISplitPage::OnCHANNEL_PER_NOTE_12(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetCHANNEL_PER_NOTE_12(chkCHANNEL_PER_NOTE_12->GetValue(), m_Split);
+	pMyLinnStrument->SetCHANNEL_PER_NOTE_12(LinnStrument::LSToggle(chkCHANNEL_PER_NOTE_12->GetValue()), m_Split);
 }
 
 
 void MIDISplitPage::OnCHANNEL_PER_NOTE_13(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetCHANNEL_PER_NOTE_13(chkCHANNEL_PER_NOTE_13->GetValue(), m_Split);
+	pMyLinnStrument->SetCHANNEL_PER_NOTE_13(LinnStrument::LSToggle(chkCHANNEL_PER_NOTE_13->GetValue()), m_Split);
 }
 
 
 void MIDISplitPage::OnCHANNEL_PER_NOTE_14(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetCHANNEL_PER_NOTE_14(chkCHANNEL_PER_NOTE_14->GetValue(), m_Split);
+	pMyLinnStrument->SetCHANNEL_PER_NOTE_14(LinnStrument::LSToggle(chkCHANNEL_PER_NOTE_14->GetValue()), m_Split);
 }
 
 
 void MIDISplitPage::OnCHANNEL_PER_NOTE_15(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetCHANNEL_PER_NOTE_15(chkCHANNEL_PER_NOTE_15->GetValue(), m_Split);
+	pMyLinnStrument->SetCHANNEL_PER_NOTE_15(LinnStrument::LSToggle(chkCHANNEL_PER_NOTE_15->GetValue()), m_Split);
 }
 
 
 void MIDISplitPage::OnCHANNEL_PER_NOTE_16(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetCHANNEL_PER_NOTE_16(chkCHANNEL_PER_NOTE_16->GetValue(), m_Split);
+	pMyLinnStrument->SetCHANNEL_PER_NOTE_16(LinnStrument::LSToggle(chkCHANNEL_PER_NOTE_16->GetValue()), m_Split);
 }
 
 

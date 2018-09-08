@@ -38,25 +38,25 @@ SequencerPage::SequencerPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrumen
 
 void SequencerPage::OnSEQUENCER_TOGGLE_PLAY(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetSEQUENCER_TOGGLE_PLAY(chkSEQUENCER_TOGGLE_PLAY->GetValue(), m_Split);
+	pMyLinnStrument->SetSEQUENCER_TOGGLE_PLAY(LinnStrument::LSToggle(chkSEQUENCER_TOGGLE_PLAY->GetValue()), m_Split);
 }
 
 
 void SequencerPage::OnSEQUENCER_TOGGLE_MUTE(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetSEQUENCER_TOGGLE_MUTE(chkSEQUENCER_TOGGLE_MUTE->GetValue(), m_Split);
+	pMyLinnStrument->SetSEQUENCER_TOGGLE_MUTE(LinnStrument::LSToggle(chkSEQUENCER_TOGGLE_MUTE->GetValue()), m_Split);
 }
 
 
 void SequencerPage::OnSEQUENCER_PREVIOUS_PATTERN(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetSEQUENCER_PREVIOUS_PATTERN(1, m_Split);
+	pMyLinnStrument->SetSEQUENCER_PREVIOUS_PATTERN( 1, m_Split);
 }
 
 
 void SequencerPage::OnSEQUENCER_NEXT_PATTERN(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetSEQUENCER_NEXT_PATTERN(1, m_Split);
+	pMyLinnStrument->SetSEQUENCER_NEXT_PATTERN( 1, m_Split);
 }
 
 

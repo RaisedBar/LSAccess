@@ -72,7 +72,7 @@ AxesPage::AxesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const L
 
 void AxesPage::OnSEND_Y(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetSEND_Y(chkSEND_Y->GetValue(), m_Split);
+	pMyLinnStrument->SetSEND_Y(LinnStrument::LSToggle( chkSEND_Y->GetValue()), m_Split);
 		}
 
 
@@ -96,7 +96,7 @@ void AxesPage::OnCC_FOR_Y(wxSpinEvent& event)
 
 void AxesPage::OnRELATIVE_Y(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetRELATIVE_Y(chkRELATIVE_Y->GetValue(),  m_Split);
+	pMyLinnStrument->SetRELATIVE_Y(LinnStrument::LSToggle(chkRELATIVE_Y->GetValue()),  m_Split);
 }
 
 
@@ -114,7 +114,7 @@ void AxesPage::OnINITIAL_RELATIVE_VALUE_FOR_Y(wxSpinEvent& event)
 
 void AxesPage::OnSEND_Z(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetSEND_Z(chkSEND_Z->GetValue(), m_Split);
+	pMyLinnStrument->SetSEND_Z(LinnStrument::LSToggle(chkSEND_Z->GetValue()), m_Split);
 }
 
 
@@ -138,7 +138,7 @@ void AxesPage::OnCC_FOR_Z(wxSpinEvent& event)
 
 void AxesPage::OnRELATIVE_Z(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetRELATIVE_Z(chkRELATIVE_Z->GetValue(), m_Split);
+	pMyLinnStrument->SetRELATIVE_Z(LinnStrument::LSToggle(chkRELATIVE_Z->GetValue()), m_Split);
 }
 
 

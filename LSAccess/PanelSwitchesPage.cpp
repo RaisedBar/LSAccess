@@ -60,7 +60,7 @@ void PanelSwitchesPage::OnSWITCH1_ASSIGN(wxCommandEvent& event)
 
 void PanelSwitchesPage::OnSWITCH1_BOTH_SPLITS(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetSWITCH1_BOTH_SPLITS(chkSWITCH1_BOTH_SPLITS->GetValue());
+	pMyLinnStrument->SetSWITCH1_BOTH_SPLITS(LinnStrument::LSToggle( chkSWITCH1_BOTH_SPLITS->GetValue()));
 }
 
 
@@ -72,7 +72,7 @@ void PanelSwitchesPage::OnSWITCH2_ASSIGN(wxCommandEvent& event)
 
 void PanelSwitchesPage::OnSWITCH2_BOTH_SPLITS(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetSWITCH2_BOTH_SPLITS(chkSWITCH2_BOTH_SPLITS->GetValue());
+	pMyLinnStrument->SetSWITCH2_BOTH_SPLITS(LinnStrument::LSToggle(chkSWITCH2_BOTH_SPLITS->GetValue()));
 }
 
 
