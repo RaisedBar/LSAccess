@@ -55,48 +55,56 @@ vBox1->Add(hBox2, 0, wxEXPAND);
 void PanelSwitchesPage::OnSWITCH1_ASSIGN(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetSWITCH1_ASSIGN(wrbSWITCH1_ASSIGN->GetSelection());
+	pMyLinnStrument->SendNRPN(SWITCH1_ASSIGN_NRPN, pMyLinnStrument->GetSWITCH1_ASSIGN());
 }
 
 
 void PanelSwitchesPage::OnSWITCH1_BOTH_SPLITS(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetSWITCH1_BOTH_SPLITS(LinnStrument::LSToggle( chkSWITCH1_BOTH_SPLITS->GetValue()));
+	pMyLinnStrument->SendNRPN(SWITCH1_BOTH_SPLITS_NRPN, pMyLinnStrument->GetSWITCH1_BOTH_SPLITS());
 }
 
 
 void PanelSwitchesPage::OnSWITCH2_ASSIGN(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetSWITCH2_ASSIGN(wrbSWITCH2_ASSIGN->GetSelection());
+	pMyLinnStrument->SendNRPN(SWITCH2_ASSIGN_NRPN, pMyLinnStrument->GetSWITCH2_ASSIGN());
 }
 
 
 void PanelSwitchesPage::OnSWITCH2_BOTH_SPLITS(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetSWITCH2_BOTH_SPLITS(LinnStrument::LSToggle(chkSWITCH2_BOTH_SPLITS->GetValue()));
+	pMyLinnStrument->SendNRPN(SWITCH2_BOTH_SPLITS_ID, pMyLinnStrument->GetSWITCH2_BOTH_SPLITS());
 }
 
 
 void PanelSwitchesPage::OnCC_FOR_SWITCH1_SUSTAIN(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetCC_FOR_SWITCH1_SUSTAIN(wscCC_FOR_SWITCH1_SUSTAIN->GetValue());
+	pMyLinnStrument->SendNRPN(CC_FOR_SWITCH1_SUSTAIN, pMyLinnStrument->GetCC_FOR_SWITCH1_SUSTAIN());
 }
 
 
 void PanelSwitchesPage::OnCC_FOR_SWITCH1_CC65(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetCC_FOR_SWITCH1_CC65( wscCC_FOR_SWITCH1_CC65->GetValue());
+	pMyLinnStrument->SendNRPN(CC_FOR_SWITCH1_CC65, pMyLinnStrument->GetCC_FOR_SWITCH1_CC65());
 }
 
 
 void PanelSwitchesPage::OnCC_FOR_SWITCH2_SUSTAIN(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetCC_FOR_SWITCH2_SUSTAIN(wscCC_FOR_SWITCH2_SUSTAIN->GetValue());
+	pMyLinnStrument->SendNRPN(CC_FOR_SWITCH2_SUSTAIN, pMyLinnStrument->GetCC_FOR_SWITCH2_SUSTAIN());
 }
 
 
 void PanelSwitchesPage::OnCC_FOR_SWITCH2_CC65(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetCC_FOR_SWITCH2_CC65(wscCC_FOR_SWITCH2_CC65->GetValue());
+	pMyLinnStrument->SendNRPN(CC_FOR_SWITCH2_CC65, pMyLinnStrument->GetCC_FOR_SWITCH2_CC65());
 }
 
 

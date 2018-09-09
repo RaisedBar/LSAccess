@@ -28,6 +28,14 @@ hBox1->Add(wrbSPECIAL, 0, wxEXPAND);
 void SpecialPage::OnSpecial(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetSPECIAL(wrbSPECIAL->GetSelection(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_SPECIAL_NRPN, pMyLinnStrument->GetSPECIAL(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_SPECIAL_NRPN, pMyLinnStrument->GetSPECIAL(m_Split));
+	}
 }
 
 

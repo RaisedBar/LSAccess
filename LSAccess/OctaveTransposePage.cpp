@@ -34,18 +34,42 @@ OctaveTransposePage::OctaveTransposePage(wxBookCtrlBase *parent, LinnStrument * 
 void OctaveTransposePage::OnOctave(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetOctave(wrbOctave->GetSelection(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_OCTAVE_NRPN, pMyLinnStrument->GetOCTAVE(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_OCTAVE_NRPN, pMyLinnStrument->GetOCTAVE(m_Split));
+	}
 }
 
 
 void OctaveTransposePage::OnPITCH_TRANSPOSE(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetTransposePitch(wrbPITCH_TRANSPOSE->GetSelection(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_PITCH_TRANSPOSE_NRPN, pMyLinnStrument->GetPITCH_TRANSPOSE(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_PITCH_TRANSPOSE_NRPN, pMyLinnStrument->GetPITCH_TRANSPOSE(m_Split));
+	}
 }
 
 
 void OctaveTransposePage::OnTRANSPOSE_LIGHTS(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetTransposeLights(wrbTRANSPOSE_LIGHTS->GetSelection(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_TRANSPOSE_LIGHTS_NRPN, pMyLinnStrument->GetTransposeLights(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_TRANSPOSE_LIGHTS_NRPN, pMyLinnStrument->GetTransposeLights(m_Split));
+	}
 }
 
 

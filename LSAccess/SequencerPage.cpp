@@ -39,30 +39,70 @@ SequencerPage::SequencerPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrumen
 void SequencerPage::OnSEQUENCER_TOGGLE_PLAY(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetSEQUENCER_TOGGLE_PLAY(LinnStrument::LSToggle(chkSEQUENCER_TOGGLE_PLAY->GetValue()), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_SEQUENCER_TOGGLE_PLAY_NRPN, pMyLinnStrument->GetSEQUENCER_TOGGLE_PLAY(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_SEQUENCER_TOGGLE_PLAY_NRPN, pMyLinnStrument->GetSEQUENCER_TOGGLE_PLAY(m_Split));
+	}
 }
 
 
 void SequencerPage::OnSEQUENCER_TOGGLE_MUTE(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetSEQUENCER_TOGGLE_MUTE(LinnStrument::LSToggle(chkSEQUENCER_TOGGLE_MUTE->GetValue()), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_SEQUENCER_TOGGLE_MUTE_NRPN, pMyLinnStrument->GetSEQUENCER_TOGGLE_MUTE(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_SEQUENCER_TOGGLE_MUTE_NRPN, pMyLinnStrument->GetSEQUENCER_TOGGLE_MUTE(m_Split));
+	}
 }
 
 
 void SequencerPage::OnSEQUENCER_PREVIOUS_PATTERN(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetSEQUENCER_PREVIOUS_PATTERN( 1, m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_SEQUENCER_PREVIOUS_PATTERN_NRPN, pMyLinnStrument->GetSEQUENCER_PREVIOUS_PATTERN(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_SEQUENCER_PREVIOUS_PATTERN_NRPN, pMyLinnStrument->GetSEQUENCER_PREVIOUS_PATTERN(m_Split));
+	}
 }
 
 
 void SequencerPage::OnSEQUENCER_NEXT_PATTERN(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetSEQUENCER_NEXT_PATTERN( 1, m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_SEQUENCER_NEXT_PATTERN_NRPN, pMyLinnStrument->GetSEQUENCER_NEXT_PATTERN(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_SEQUENCER_NEXT_PATTERN_NRPN, pMyLinnStrument->GetSEQUENCER_NEXT_PATTERN(m_Split));
+	}
 }
 
 
 void SequencerPage::OnSEQUENCER_PATTERN(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetSEQUENCER_PATTERN(wscSEQUENCER_PATTERN->GetValue(), m_Split);
+	if (m_Split == LSSplitType::LEFT)
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_LEFT_SEQUENCER_PATTERN_NRPN, pMyLinnStrument->GetSEQUENCER_PATTERN(m_Split));
+	}
+	else
+	{
+		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_SEQUENCER_PATTERN_NRPN, pMyLinnStrument->GetSEQUENCER_PATTERN(m_Split));
+	}
 }
 
 
