@@ -1,5 +1,6 @@
 // GlobalsAccentNoteLightsPage.cpp
 
+#include "stdafx.h"
 #include "GlobalsAccentNoteLightsPage.h"
 
 GlobalsAccentNoteLightsPage::GlobalsAccentNoteLightsPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument)

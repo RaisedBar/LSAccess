@@ -1,5 +1,5 @@
-Add functionality to send out MIDI patch change messages
-Check if LinnStrument responds to patch changes
+What happens when a MIDI program change message is sent to the LinnStrument?
+What happens when GLOBAL_SETTINGS_PRESET_LOAD_NRPN (NRPN 243) is sent the the LinnStrument?
 debug saving state/options
 debug f9/f10 not changing checked state of Options menu items
 Add detection of O/S update state

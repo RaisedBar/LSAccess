@@ -1,5 +1,5 @@
 // AxesPage.cpp
-
+#include "stdafx.h"
 #include "AxesPage.h"
 
 AxesPage::AxesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)

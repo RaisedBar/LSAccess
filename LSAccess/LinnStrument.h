@@ -9,6 +9,7 @@
 #include <sstream>
 #include <queue>
 
+#ifdef __WINDOWS__
 #define _ATL_APARTMENT_THREADED
 #include <atlbase.h>
 //You may derive a class from CComModule and use it if you want to override something,
@@ -18,6 +19,9 @@ extern CComModule _Module;
 #include <sapi.h>
 #include <Windows.h>
 #include <wx/msw/winundef.h> 
+
+#include "enumser.h"
+#endif
 
 #include "MIDIDialog.h"
 #include "MIDI.h"

@@ -1,5 +1,6 @@
 // GlobalsVelocityPressurePage.cpp
 
+#include "stdafx.h"
 #include "GlobalsVelocityPressurePage.h"
 
 GlobalsVelocityPressurePage::GlobalsVelocityPressurePage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument)

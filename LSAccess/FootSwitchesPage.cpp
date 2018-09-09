@@ -1,5 +1,6 @@
 // FootSwitchesPage.cpp
 
+#include "stdafx.h"
 #include "FootSwitchesPage.h"
 
 FootSwitchesPage::FootSwitchesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument)

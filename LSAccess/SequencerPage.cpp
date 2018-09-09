@@ -1,5 +1,6 @@
 // SequencerPage.cpp
 
+#include "stdafx.h"
 #include "SequencerPage.h"
 
 SequencerPage::SequencerPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)

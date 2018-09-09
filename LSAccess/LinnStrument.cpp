@@ -1,5 +1,6 @@
 // LinnStrument.cpp
 
+#include "stdafx.h"
 #include "LinnStrument.h"
 
 
@@ -1563,62 +1564,65 @@ void LinnStrument::SendNRPN(LSSplitType split, unsigned int NRPNNumber, unsigned
 
 void LinnStrument::SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned int NRPNValue)
 {
-std::vector<unsigned char> myMessage;
-
-DBOUT( L"Sending channel = " + std::to_wstring(nChannelNibble) + L"\n")
-DBOUT(L"Parameter = " + std::to_wstring(NRPNNumber) + L"\n")
-DBOUT(L"Value = " + std::to_wstring(NRPNValue) + L"\n")
-
-unsigned char myStatusByte = (MIDI_CMD_CONTROL_CHANGE * 16) + nChannelNibble;
-	unsigned char myNRPNParameterLSB = NRPNNumber % 128;
-	unsigned char myNRPNParameterMSB = (NRPNNumber - myNRPNParameterLSB) / 128;
-	unsigned char myNRPNValueLSB = NRPNValue % 128;
-		unsigned char myNRPNValueMSB = (NRPNValue - myNRPNValueLSB) / 128;
-		
-			if (NRPNNumber == REQUEST_VALUE_OF_NRPN)
+	if (m_MIDIOut->isPortOpen())
 	{
-		// Record the NRPN parameter we're querying
-		m_NRPNQueue.push(NRPNValue);
-		m_Sent++;
+		std::vector<unsigned char> myMessage;
+
+		DBOUT(L"Sending channel = " + std::to_wstring(nChannelNibble) + L"\n")
+			DBOUT(L"Parameter = " + std::to_wstring(NRPNNumber) + L"\n")
+			DBOUT(L"Value = " + std::to_wstring(NRPNValue) + L"\n")
+
+			unsigned char myStatusByte = (MIDI_CMD_CONTROL_CHANGE * 16) + nChannelNibble;
+		unsigned char myNRPNParameterLSB = NRPNNumber % 128;
+		unsigned char myNRPNParameterMSB = (NRPNNumber - myNRPNParameterLSB) / 128;
+		unsigned char myNRPNValueLSB = NRPNValue % 128;
+		unsigned char myNRPNValueMSB = (NRPNValue - myNRPNValueLSB) / 128;
+
+		if (NRPNNumber == REQUEST_VALUE_OF_NRPN)
+		{
+			// Record the NRPN parameter we're querying
+			m_NRPNQueue.push(NRPNValue);
+			m_Sent++;
+		}
+
+		myMessage.push_back(myStatusByte);
+		myMessage.push_back(SET_NRPN_CC_MSB);
+		myMessage.push_back(myNRPNParameterMSB);
+		m_MIDIOut->sendMessage(&myMessage);
+		myMessage.clear();
+
+		myMessage.push_back(myStatusByte);
+		myMessage.push_back(SET_NRPN_CC_LSB);
+		myMessage.push_back(myNRPNParameterLSB);
+		m_MIDIOut->sendMessage(&myMessage);
+		myMessage.clear();
+
+		myMessage.push_back(myStatusByte);
+		myMessage.push_back(CC_NRPN_VALUE_MSB);
+		myMessage.push_back(myNRPNValueMSB);
+		m_MIDIOut->sendMessage(&myMessage);
+		myMessage.clear();
+
+		myMessage.push_back(myStatusByte);
+		myMessage.push_back(CC_NRPN_VALUE_LSB);
+		myMessage.push_back(myNRPNValueLSB);
+		m_MIDIOut->sendMessage(&myMessage);
+		myMessage.clear();
+
+		// Always send the reset or bad things can happen
+		myMessage.push_back(myStatusByte);
+		myMessage.push_back(RESET_NRPN_CC_MSB);
+		myMessage.push_back(127);
+		m_MIDIOut->sendMessage(&myMessage);
+		myMessage.clear();
+
+		myMessage.push_back(myStatusByte);
+		myMessage.push_back(RESET_NRPN_CC_LSB);
+		myMessage.push_back(127);
+		m_MIDIOut->sendMessage(&myMessage);
+		myMessage.clear();
+	}  // Is the output port open?
 	}
-
-	myMessage.push_back(myStatusByte);
-	myMessage.push_back(SET_NRPN_CC_MSB);
-	myMessage.push_back(myNRPNParameterMSB);
-			m_MIDIOut->sendMessage(&myMessage);
-myMessage.clear();
-
-	myMessage.push_back(myStatusByte);
-	myMessage.push_back(SET_NRPN_CC_LSB);
-	myMessage.push_back(myNRPNParameterLSB);
-	m_MIDIOut->sendMessage(&myMessage);
-myMessage.clear();
-
-	myMessage.push_back(myStatusByte);
-	myMessage.push_back(CC_NRPN_VALUE_MSB);
-	myMessage.push_back(myNRPNValueMSB);
-	m_MIDIOut->sendMessage(&myMessage);
-myMessage.clear();
-
-	myMessage.push_back(myStatusByte);
-	myMessage.push_back(CC_NRPN_VALUE_LSB);
-	myMessage.push_back(myNRPNValueLSB);
-	m_MIDIOut->sendMessage(&myMessage);
-myMessage.clear();
-
-// Always send the reset or bad things can happen
-		myMessage.push_back(myStatusByte);
-	myMessage.push_back(RESET_NRPN_CC_MSB);
-	myMessage.push_back(127);
-	m_MIDIOut->sendMessage(&myMessage);
-	myMessage.clear();
-
-		myMessage.push_back(myStatusByte);
-	myMessage.push_back(RESET_NRPN_CC_LSB);
-	myMessage.push_back(127);
-	m_MIDIOut->sendMessage(&myMessage);
-	myMessage.clear();
-}
 
 
 void LinnStrument::QueryLeftChannel()

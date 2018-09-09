@@ -1,5 +1,6 @@
 // FadersPage.cpp
 
+#include "stdafx.h"
 #include "FadersPage.h"
 
 FadersPage::FadersPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)

@@ -1,5 +1,6 @@
 // SpecialPage.cpp
 
+#include "stdafx.h"
 #include "SpecialPage.h"
 
 SpecialPage::SpecialPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)

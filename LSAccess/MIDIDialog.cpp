@@ -4,6 +4,7 @@
 // Raised Bar Ltd.
 // http://www.raisedbar.net
 
+#include "stdafx.h"
 #include "MIDIDialog.h"
 
 

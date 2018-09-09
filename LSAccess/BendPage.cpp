@@ -1,5 +1,6 @@
 // BendPage.cpp
 
+#include "stdafx.h"
 #include "BendPage.h"
 
 BendPage::BendPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)

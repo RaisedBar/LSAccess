@@ -1,5 +1,6 @@
 // GlobalsSplitPage.cpp
 
+#include "stdafx.h"
 #include "GlobalsSplitPage.h"
 
 GlobalsSplitPage::GlobalsSplitPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument)

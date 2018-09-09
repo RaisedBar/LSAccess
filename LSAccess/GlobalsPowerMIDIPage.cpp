@@ -1,5 +1,6 @@
 // GlobalsPowerMIDIPage.cpp
 
+#include "stdafx.h"
 #include "GlobalsPowerMIDIPage.h"
 
 GlobalsPowerMIDIPage::GlobalsPowerMIDIPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument)

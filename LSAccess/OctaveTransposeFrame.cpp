@@ -4,6 +4,7 @@
 // http://www.raisedbar.net
 
 
+#include "stdafx.h"
 #include "OctaveTransposeFrame.h"
 
 

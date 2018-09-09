@@ -31,7 +31,9 @@
 #include <wx/fileconf.h>
 #include <wx/dir.h>
 
-#include "LSEnums.h"
+#include <Windows.h>
+#include <Dbt.h>
+#include <wx/msw/winundef.h> 
 
 class LSAccessFrame : public wxFrame
 {
@@ -73,6 +75,14 @@ public:
 	void OnAbout(wxCommandEvent& event);
 
 private:
+	// Event handlers for hardware changes
+	// Windows:
+#ifdef __WINDOWS__
+		WXLRESULT MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam);
+#endif
+// Mac:
+
+
 	// Menus
 	wxMenu * FileMenu, *SettingsMenu, *OptionsMenu, *HelpMenu;
 	wxMenuItem * mnuSpeakMessages, *mnuSpeakNotes;

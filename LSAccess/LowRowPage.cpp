@@ -1,5 +1,6 @@
 // LowRowPage.cpp
 
+#include "stdafx.h"
 #include "LowRowPage.h"
 
 LowRowPage::LowRowPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)

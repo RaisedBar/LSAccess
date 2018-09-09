@@ -1,5 +1,6 @@
 // PresetsVolumesPage.cpp
 
+#include "stdafx.h"
 #include "PresetsVolumesPage.h"
 
 PresetsVolumesPage::PresetsVolumesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, LSSplitType split)
@@ -33,18 +34,21 @@ wscVolume = new wxSpinCtrl(myPanel, Volume_ID, "", wxDefaultPosition, wxDefaultS
 void PresetsVolumesPage::OnGLOBAL_SETTINGS_PRESET_LOAD(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetLSPresetNumber(wrbGLOBAL_SETTINGS_PRESET_LOAD->GetSelection());
+	pMyLinnStrument->SendNRPN(GLOBAL_SETTINGS_PRESET_LOAD_NRPN, pMyLinnStrument->GetGLOBAL_SETTINGS_PRESET_LOAD());
 }
 
 
 void PresetsVolumesPage::OnProgramNumber(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetMIDIProgram(wscProgramNumber->GetValue(), m_Split);
+	// Not sure what should happen here
 }
 
 
 void PresetsVolumesPage::OnVolume(wxSpinEvent& event)
 {
 	pMyLinnStrument->SetVolume(wscVolume->GetValue(), m_Split);
+// Not sure what should happen here
 }
 
 

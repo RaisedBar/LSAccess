@@ -1,6 +1,7 @@
 // LSAccessFrame.cpp
 // Main window for the application
 
+#include "stdafx.h"
 #include "LSAccessFrame.h"
 
 
@@ -94,6 +95,21 @@ LSAccessFrame::~LSAccessFrame()
 
 
 // event handlers
+
+#ifdef __WINDOWS__
+WXLRESULT LSAccessFrame::MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam) {
+	//wxLogDebug(wxT("MSWWindowProc %08x %08x %08x"), nMsg, wParam, lParam);
+	
+	// Detect hardware changes as LinnStrument transitions to/from MIDI and O/S update modes
+	if (nMsg == WM_DEVICECHANGE && (wParam == DBT_DEVICEARRIVAL || wParam == DBT_DEVICEREMOVECOMPLETE))
+	{
+		wxLogDebug(wxT("WM_DEVICECHANGE %x %x"), wParam, lParam);
+		// do your work here
+	}
+	return wxFrame::MSWWindowProc(nMsg, wParam, lParam);
+}
+#endif
+
 
 void LSAccessFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 {

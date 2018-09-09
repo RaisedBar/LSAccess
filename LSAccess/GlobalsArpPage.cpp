@@ -1,5 +1,6 @@
 // GlobalsArpPage.cpp
 
+#include "stdafx.h"
 #include "GlobalsArpPage.h"
 
 GlobalsArpPage::GlobalsArpPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument)

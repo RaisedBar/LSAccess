@@ -1,5 +1,6 @@
 // GlobalsTuningsPage.cpp
 
+#include "stdafx.h"
 #include "GlobalsTuningsPage.h"
 
 GlobalsTuningsPage::GlobalsTuningsPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument)

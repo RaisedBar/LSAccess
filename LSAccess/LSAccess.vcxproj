@@ -88,7 +88,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
@@ -119,7 +119,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -157,6 +157,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AxesPage.h" />
+    <ClInclude Include="enumser.h" />
     <ClInclude Include="GlobalsAccentNoteLightsPage.h" />
     <ClInclude Include="GlobalsArpPage.h" />
     <ClInclude Include="FootSwitchesPage.h" />
@@ -185,12 +186,14 @@
     <ClInclude Include="SequencerFrame.h" />
     <ClInclude Include="SequencerPage.h" />
     <ClInclude Include="SpecialPage.h" />
+    <ClInclude Include="stdafx.h" />
     <ClInclude Include="SwitchesFrame.h" />
     <ClInclude Include="PanelSwitchesPage.h" />
     <ClInclude Include="VelocityPressurePage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AxesPage.cpp" />
+    <ClCompile Include="enumser.cpp" />
     <ClCompile Include="GlobalsAccentNoteLightsPage.cpp" />
     <ClCompile Include="FootSwitchesPage.cpp" />
     <ClCompile Include="GlobalsArpPage.cpp" />
@@ -218,6 +221,10 @@
     <ClCompile Include="SequencerFrame.cpp" />
     <ClCompile Include="SequencerPage.cpp" />
     <ClCompile Include="SpecialPage.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="SwitchesFrame.cpp" />
     <ClCompile Include="PanelSwitchesPage.cpp" />
   </ItemGroup>

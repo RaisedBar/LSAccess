@@ -1,5 +1,6 @@
 // MIDISplitPage.cpp
 
+#include "stdafx.h"
 #include "MIDISplitPage.h"
 
 MIDISplitPage::MIDISplitPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)

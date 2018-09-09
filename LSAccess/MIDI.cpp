@@ -1,6 +1,7 @@
 // MIDI.cpp 
 // implementation of the MIDI utility class
 
+#include "stdafx.h"
 #include "MIDI.h"
 
 

@@ -1,5 +1,6 @@
 // OctaveTransposePage.cpp
 
+#include "stdafx.h"
 #include "OctaveTransposePage.h"
 
 OctaveTransposePage::OctaveTransposePage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)

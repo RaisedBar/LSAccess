@@ -1,5 +1,6 @@
 // ColorsPage.cpp
 
+#include "stdafx.h"
 #include "ColorsPage.h"
 
 ColorsPage::ColorsPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const LSSplitType split)

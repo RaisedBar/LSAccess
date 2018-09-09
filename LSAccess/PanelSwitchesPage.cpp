@@ -1,5 +1,6 @@
 // PanelSwitchesPage.cpp
 
+#include "stdafx.h"
 #include "PanelSwitchesPage.h"
 
 PanelSwitchesPage::PanelSwitchesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument)
