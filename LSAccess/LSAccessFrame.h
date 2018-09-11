@@ -30,29 +30,20 @@
 #include <wx/confbase.h>
 #include <wx/fileconf.h>
 #include <wx/dir.h>
+#include <wx/string.h>
 
 #include <Windows.h>
 #include <Dbt.h>
 #include <wx/msw/winundef.h> 
+
+const std::wstring wstrVendor = L"Raised Bar";
+const 	std::wstring wstrAppName = L"LSAccess";
 
 class LSAccessFrame : public wxFrame
 {
 public:
 	LSAccessFrame(const wxString& title);
 	~LSAccessFrame();
-
-	void SetSpeakMessages(bool blnSpeakMessages)
-	{
-		mnuSpeakMessages->Check(blnSpeakMessages);
-	}
-
-
-	
-	void SetSpeakNotes(bool blnSpeakNotes)
-	{
-		mnuSpeakNotes->Check(blnSpeakNotes);
-	}
-
 
 	// event handlers (these functions should _not_ be virtual)
 	// File menu
@@ -70,25 +61,28 @@ public:
 // Options menu
 		void OnSpeakMessages(wxCommandEvent& event);
 		void OnSpeakNotes(wxCommandEvent& event);
+void OnRefreshAll(wxCommandEvent& event);
 
 // Help menu
 	void OnAbout(wxCommandEvent& event);
 
 private:
 	// Event handlers for hardware changes
+	/*
 	// Windows:
 #ifdef __WINDOWS__
 		WXLRESULT MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam);
 #endif
+*/
 // Mac:
 
-
-	// Menus
+	void onStatusUpdate(wxCommandEvent& event);
+	
+		// Menus
 	wxMenu * FileMenu, *SettingsMenu, *OptionsMenu, *HelpMenu;
-	wxMenuItem * mnuSpeakMessages, *mnuSpeakNotes;
-
+	
 	// Internal storage
-	LinnStrument * m_LinnStrument;
+	LinnStrument * pLinnStrument;
 	wxFileName m_IniFile;
 	wxFileConfig * m_Config;
 	wxNotebook * pNotebook;

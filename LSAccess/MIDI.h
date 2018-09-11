@@ -43,6 +43,9 @@
 #define MIDI_MONO_ON	0x7e
 #define MIDI_POLY_ON	0x7f
 
+// The maximum number of values storable by a single MIDI byte (7 bits)
+const unsigned int MAX_BYTE_VALUES = 128;
+
 // RPN and NRPN controller values:
 // RPN 98 and 99, 
 // NRPN  100 and 101

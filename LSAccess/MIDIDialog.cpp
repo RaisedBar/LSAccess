@@ -91,7 +91,7 @@ myMIDIOut = new RtMidiOut();
 } 
 catch ( RtMidiError &error ) 
 {
- wxMessageBox( error.getMessage(), this->GetTitle(), wxOK | wxICON_ERROR);
+ wxMessageBox( error.getMessage(), this->GetTitle(), wxOK | wxICON_ERROR, this);
 }
 */
 wxPanel * myPanel = new wxPanel(this, -1);

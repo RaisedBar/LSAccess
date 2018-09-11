@@ -444,16 +444,20 @@ enum class LSPresetNumber
 	ZERO = 0,
 	ONE = 1,
 	TWO = 2,
-	THREE = 3
-};
+	THREE = 3,
+	FOUR = 4,
+	FIVE = 5
+	};
 
 const wxString PresetNumbers[] =
 {
 	L"0",
 	L"1",
 	L"2",
-	L"3"
-};
+	L"3",
+	L"4",
+	L"5"
+	};
 
 enum class LSCustomRowOffset
 {
@@ -557,11 +561,13 @@ enum
 	// File menu
 	ID_Quit = wxID_EXIT,
 	
-	// Settings menu
+// Status bar update message ID
+STATUS_UPDATE_ID,
+
+// Settings menu
 	ID_LeftSplitSettings,
 	ID_RightSplitSettings,
-
-	ID_NOTEBOOK,
+		ID_NOTEBOOK,
 	
 	// MIDISplitPage
 	SPLIT_MODE_ID,
@@ -754,6 +760,9 @@ CC_FOR_RIGHT_FOOT_SUSTAIN_ID,
 	ProgramNumber_ID,
 	Volume_ID,
 		
+	// Refresh all editor values by querying the hardware
+	ID_RefreshAll,
+
 	// Options menu
 		ID_SpeakMessages,
 ID_SpeakNotes,

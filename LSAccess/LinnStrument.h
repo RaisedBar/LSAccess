@@ -1,3 +1,4 @@
+
 // LinnStrument.h
 
 #pragma once
@@ -435,10 +436,22 @@ const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW7_NRPN = 269;
 const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW8_NRPN = 270;
 
 
+// define a custom event type 
+wxDEFINE_EVENT(wxEVT_LS_NOTE_UPDATE, wxThreadEvent);
+
+// it may also be convenient to define an event table macro for this event type
+#define EVT_LS_NOTE_UPDATE( id, fn) \
+    DECLARE_EVENT_TABLE_ENTRY( \
+        wxEVT_LS_NOTE_UPDATE, id, wxID_ANY, \
+        wxThreadEventHandler(fn), \
+        (wxObject *) NULL \
+    ),
+
+
 class LinnStrument
 {
 public:
-	LinnStrument( wxWindow * parent);
+	LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool blnSpeakMessages, bool blnSpeakNotes);
 	~LinnStrument();
 
 	static unsigned int LSArpTempoNoteTypeToInt( unsigned int nLSArpTempoNoteType)
@@ -722,7 +735,14 @@ public:
 		void QueryOctaveTransposeSettings();
 		void QueryAll();
 
-			// Options to use speech output
+			// Options for MIDI I/O
+		
+		int GetMIDIInID();
+		void SetMIDIInID(int nID);
+		int GetMIDIOutID();
+		void SetMIDIOutID(int nID);
+		
+		// Options to use speech output
 		bool GetSpeakMessages();
 		void SetSpeakMessages(bool blnSpeakNotes);
 		bool GetSpeakNotes();
@@ -3457,18 +3477,23 @@ void SendNRPN(unsigned int NRPNNumber, unsigned int NRPNValue);
 	private:
 void SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned int NRPNValue);
 	void SetLSParameter( unsigned int NRPNParameterIn, unsigned int NRPNValueIn);
-	
+	void UpdateStatusBar();
+
 	// data
 	// Parent window
 	wxWindow * m_Parent;
-// LinnStrument message tracking
+
+	// LinnStrument message tracking
 	std::queue <unsigned int> m_NRPNQueue;
 		unsigned int m_NRPNParameterIn, m_NRPNValueIn;
 	bool m_ReceivedNRPNValueMSB, m_ReceivedNRPNValueLSB;
 	bool m_Waiting;
 	unsigned int m_Sent, m_Received;
 
-	// Application options
+// Track note information;
+	bool m_NotesHeld[MAX_BYTE_VALUES];
+
+// Application options
 	bool m_SpeakMessages, m_SpeakNotes;
 		
 	CComPtr<ISpVoice> pSpeech;
@@ -3775,6 +3800,30 @@ void SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned in
 		unsigned int m_LEFT_PROGRAM, m_RIGHT_PROGRAM;
 		unsigned int m_LEFT_VOLUME, m_RIGHT_VOLUME;
 };
+
+class StatusObject : public wxObject
+{
+public:
+	StatusObject()
+				{};
+
+	~StatusObject()
+	{};
+
+	void SetText(std::wstring wstrText)
+	{
+		m_Text = wstrText;
+	}
+
+	std::wstring GetText()
+	{
+		return m_Text;
+	}
+
+private:
+	std::wstring m_Text;
+};
+
 
 std::string MIDINoteName(unsigned char nNoteNumber);
 void SendCC(unsigned char CCNumber, unsigned char CCValue);

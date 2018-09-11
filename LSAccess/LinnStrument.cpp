@@ -24,96 +24,88 @@ void LSCallback(double deltatime, std::vector< unsigned char > *message, void *p
 	pMyLinnStrument->ProcessMessage(*message);
 }
 
-LinnStrument::LinnStrument(wxWindow * parent):
+LinnStrument::LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool blnSpeakMessages, bool blnSpeakNotes) :
 	m_Parent(parent),
-	m_OutputID(-1),
-	m_InputID(-1),
+	m_InputID(nInputID),
+	m_OutputID(nOutputID),
+	m_SpeakMessages(blnSpeakMessages),
+	m_SpeakNotes(blnSpeakNotes),
 	m_ReceivedNRPNValueMSB(false),
 	m_ReceivedNRPNValueLSB(false),
 	m_Waiting(false),
-	m_SpeakNotes(true),
 	m_Sent(0),
 	m_Received(0)
 {
-				// Initialise COM
+	// Initialise note tracking
+	for (unsigned int i= 0; i < MAX_BYTE_VALUES; i++)
+	{
+		m_NotesHeld[i] = false;
+	}
+	
+	// Initialise COM
 	HRESULT hr = CoInitialize(NULL);
-
 	// Declare the smart pointer for speech output.
-		// Use its member function CoCreateInstance to
-	// create the COM object and obtain the ISpVoice pointer.
+	// Use its member function CoCreateInstance to
+// create the COM object and obtain the ISpVoice pointer.
 	hr = pSpeech.CoCreateInstance(CLSID_SpVoice);
-	if (FAILED(hr)) 
+	if (FAILED(hr))
 	{
 		// m_SpeakMessages = false;
 				// m_SpeakNotes = false;
 	}
-		
+
 	m_MIDIIn = new RtMidiIn();
-		m_MIDIOut = new RtMidiOut();
-		m_OutputID = GetUSBOutPortID();
-		m_InputID = GetUSBInPortID();
+	m_MIDIOut = new RtMidiOut();
+	int nUSBInID = GetUSBInPortID();
+	int nUSBOutID = GetUSBOutPortID();
 
-			if ((m_OutputID == -1) || (m_InputID == -1))
+	if ((nUSBInID != -1) && (nUSBOutID != -1))
+	{
+		// USB connection detected, so ignore any saved port ID values and override
+		m_GLOBAL_MIDI_DEVICE_IO = GetLS_MIDIDeviceIndex(LS_MIDIDevice::USB);
+		m_InputID = nUSBInID;
+		m_OutputID = nUSBOutID;
+	}
+
+	if ((m_InputID == -1) || (m_OutputID == -1))
+	{
+		// No USB connection detected and no MIDI I/O ports saved, so get user to specify DIN connections
+		MIDIDialog * pMIDIDialog = new MIDIDialog(L"LinnStrument MIDI I/O jacks");
+		if (pMIDIDialog->ShowModal() == wxID_OK)
 		{
-			// Prompt for appropriate DIN sockets
-MIDIDialog * pMIDIDialog = new MIDIDialog(L"LinnStrument MIDI I/O jacks");
-			if (pMIDIDialog->ShowModal() == wxID_OK)
-			{
-												SetGLOBAL_MIDI_DEVICE_IO( GetLS_MIDIDeviceIndex(LS_MIDIDevice::MIDI_DIN_JACKS));
-												m_OutputID = pMIDIDialog->GetSelectedOutput();
-													m_InputID = pMIDIDialog->GetSelectedInput();
+			m_OutputID = pMIDIDialog->GetSelectedOutput();
+			m_InputID = pMIDIDialog->GetSelectedInput();
+			m_GLOBAL_MIDI_DEVICE_IO = GetLS_MIDIDeviceIndex(LS_MIDIDevice::USB);
+		}  // End of manual DIN selection
+	}
 
-													if ((m_OutputID != -1) && (m_InputID != -1))
-													{
-														m_MIDIOut->openPort();
-														m_MIDIIn->openPort(pMIDIDialog->GetSelectedInput());
-														m_MIDIIn->setCallback(&LSCallback, (void*)this);
-														QueryLeftChannel();
-														QueryRightChannel();
-																												m_Sent = 0;
-														m_Received = 0;
-														QueryAll();
-													}  // if valid DIN port selections
-																}   // if dialog OK
-			else
+	// Now we have valid port ID values, so open the ports and initialise parameter values
+	if ((m_OutputID != -1) && (m_InputID != -1))
+	{
+		m_MIDIOut->openPort(m_OutputID);
+		m_MIDIIn->openPort(m_InputID);
+		m_MIDIIn->setCallback(&LSCallback, (void*)this);
+		QueryLeftChannel();
+		QueryRightChannel();
+		m_Sent = 0;
+		m_Received = 0;
+		QueryAll();
+	}
+	else
+	{
+		if (m_SpeakMessages)
+		{
+			hr = pSpeech->Speak(L"LinnStrument not connected", 0, NULL);
+			if (FAILED(hr))
 			{
-				m_InputID = -1;
-				m_OutputID = -1;
-				
-				if (m_SpeakMessages)
-					{
-						hr = pSpeech->Speak(L"LinnStrument not connected", 0, NULL);
-				if (FAILED(hr)) { /*... handle hr error*/ }
-				{
-					// m_SpeakMessages = false;
-					// m_SpeakNotes = false;
-				}
-								}
-			}  // dialog cancelled
-					}   
-			else  // USB connection detected
-			{
-				SetGLOBAL_MIDI_DEVICE_IO(GetLS_MIDIDeviceIndex(LS_MIDIDevice::USB));
-				m_MIDIOut->openPort(m_OutputID);
-				m_MIDIIn->openPort(m_InputID);
-				m_MIDIIn->setCallback(&LSCallback, (void*)this);
-if (m_SpeakMessages)
-{
-				HRESULT hr = pSpeech->Speak(L"LinnStrument connected via USB", 0, NULL);
-				if (FAILED(hr)) { /*... handle hr error*/ }
-				{
-					// m_SpeakMessages = false;
-					// m_SpeakNotes = false;
-				}
-				}
-				QueryLeftChannel();
-				QueryRightChannel();
-				m_Sent = 0;
-				m_Received = 0;
-				QueryAll();
+				// m_SpeakMessages = false;
+				// m_SpeakNotes = false;
 			}
+		}
+	}
 }
 
+	
 LinnStrument::~LinnStrument()
 {
 			if (m_MIDIIn->isPortOpen())
@@ -1443,9 +1435,11 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 	{
 		case MIDI_CMD_NOTE_ON:
 		{
+			unsigned char nNoteNumber = MIDI().ShortMsgData1(myMessage);
+			m_NotesHeld[nNoteNumber] = true;
+			
 			if (m_SpeakNotes)
 			{
-				unsigned char nNoteNumber = MIDI().ShortMsgData1(myMessage);
 				std::wstring wstrNoteName = MIDI().GetWideNoteName(nNoteNumber);
 				// Announce and update status bar
 				// Use the overloaded -> operator to call the interface methods.
@@ -1462,7 +1456,8 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 		case MIDI_CMD_NOTE_OFF:
 	{
 		unsigned char nNoteNumber = MIDI().ShortMsgData1(myMessage);
-			// Update status bar
+		m_NotesHeld[nNoteNumber] = false;
+		// Update status bar
 	}
 	break;
 
@@ -1892,3 +1887,55 @@ void LinnStrument::QueryAll()
 	QueryOctaveTransposeSettings();
 }
 
+int LinnStrument::GetMIDIInID()
+{
+	return m_InputID;
+}
+
+void LinnStrument::SetMIDIInID(int nID)
+{
+	m_InputID = nID;
+	if (m_MIDIIn->isPortOpen())
+	{
+		m_MIDIIn->cancelCallback();
+		m_MIDIIn->closePort();
+		m_MIDIIn->openPort(m_InputID);
+		m_MIDIIn->setCallback(&LSCallback, (void*)this);
+	}
+}
+
+int LinnStrument::GetMIDIOutID()
+{
+	return m_OutputID;
+}
+
+void LinnStrument::SetMIDIOutID(int nID)
+{
+	m_OutputID = nID;
+	if (m_MIDIOut->isPortOpen())
+	{
+		m_MIDIOut->closePort();
+		m_MIDIOut->openPort(m_OutputID);
+	}
+}
+
+void LinnStrument::UpdateStatusBar()
+{
+	std::wstring wstrText;
+
+	for (unsigned int i = 0; i < MAX_BYTE_VALUES; i++)
+	{
+		if (m_NotesHeld[i])
+		{
+			wstrText = wstrText + MIDI().GetNoteName(i) + " ";
+		}
+	}
+
+		StatusObject * pStatusObj = new StatusObject();
+	pStatusObj->SetText(wstrText);
+
+	wxCommandEvent event(wxEVT_COMMAND_TEXT_UPDATED, STATUS_UPDATE_ID);
+	event.SetEventObject(pStatusObj);
+	m_Parent->GetEventHandler()->AddPendingEvent(event);
+	// delete pDisplayObj;
+	}

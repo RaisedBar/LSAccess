@@ -1,7 +1,5 @@
-What happens when a MIDI program change message is sent to the LinnStrument?
-What happens when GLOBAL_SETTINGS_PRESET_LOAD_NRPN (NRPN 243) is sent the the LinnStrument?
-debug saving state/options
 debug f9/f10 not changing checked state of Options menu items
 Add detection of O/S update state
 you can discover those with WMI, Win32_SerialPort class.
+Add credit for the serial module to the About box, if it works.
 
