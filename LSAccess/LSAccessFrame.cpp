@@ -134,22 +134,32 @@ LSAccessFrame::~LSAccessFrame()
 
 // event handlers
 
-/*
-#ifdef __WINDOWS__
-WXLRESULT LSAccessFrame::MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam) {
-	//wxLogDebug(wxT("MSWWindowProc %08x %08x %08x"), nMsg, wParam, lParam);
+WXLRESULT LSAccessFrame::MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam) 
+{
+	wxLogDebug(wxT("MSWWindowProc %08x %08x %08x"), nMsg, wParam, lParam);
 	
 // Detect hardware changes as LinnStrument transitions to/from MIDI and O/S update modes
-	if (nMsg == WM_DEVICECHANGE && (wParam == DBT_DEVICEARRIVAL || wParam == DBT_DEVICEREMOVECOMPLETE))
+	if (nMsg == WM_DEVICECHANGE)
+		// && (wParam == DBT_DEVICEARRIVAL || wParam == DBT_DEVICEREMOVECOMPLETE))
 	{
-		wxMessageBox("Hardware change", wstrAppName + L" test", wxOK | wxICON_INFORMATION, this);
 		wxLogDebug(wxT("WM_DEVICECHANGE %x %x"), wParam, lParam);
-		// do your work here
-	}
+					// Check for new USB connection
+		unsigned int nInputID = pLinnStrument->GetUSBInPortID();
+					unsigned int nOutputID = pLinnStrument->GetUSBOutPortID();
+										
+					if ((nInputID != -1) && (nOutputID != -1))
+					{
+						// USB connection
+						pLinnStrument->SetMIDIInID(nInputID);
+						pLinnStrument->SetMIDIOutID(nOutputID);
+					}
+					else
+					{
+						// Check for LinnStrument serial port (i.e. O/S update mode
+					}  // end if USB
+	}  // end if wm_devicechange
 	return wxFrame::MSWWindowProc(nMsg, wParam, lParam);
 }
-#endif
-*/
 
 
 void LSAccessFrame::OnQuit(wxCommandEvent& WXUNUSED(event))

@@ -68,12 +68,11 @@ void OnRefreshAll(wxCommandEvent& event);
 
 private:
 	// Event handlers for hardware changes
-	/*
-	// Windows:
-#ifdef __WINDOWS__
+		// Windows:
+// #ifdef __WINDOWS__
 		WXLRESULT MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam);
-#endif
-*/
+// #endif
+
 // Mac:
 
 	void onStatusUpdate(wxCommandEvent& event);

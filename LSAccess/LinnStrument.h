@@ -2829,6 +2829,30 @@ public:
 
 	// Global settings
 	
+	LS_MIDIDevice GetLS_MIDIDeviceType(unsigned int nDevice)
+	{
+		switch (nDevice)
+		{
+		case 0:
+		{
+			return LS_MIDIDevice::MIDI_DIN_JACKS;
+		}
+		break;
+
+		case 1:
+		{
+			return LS_MIDIDevice::USB;
+		}
+		break;
+
+		default:
+		{
+			return LS_MIDIDevice::MIDI_DIN_JACKS;
+		}
+		break;
+		}
+	};
+
 	unsigned int GetLS_MIDIDeviceIndex(LS_MIDIDevice device)
 	{
 		switch (device)
