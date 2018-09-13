@@ -1,4 +1,3 @@
-
 // LinnStrument.h
 
 #pragma once
@@ -87,8 +86,7 @@ const unsigned char CELL_COLOR_CHANGE = 22;           // Change the color of the
 // Name of LinnStrument when connected over USB
 const std::string LSUSBName = "LinnStrument MIDI";
 // Name of LinnStrument when in O/S update mode
-// todo
-const std::string LSOSUpdateName = "";
+const std::string LSOSUpdateName = "LinnStrument Programming Port (Com";
 
 // Valid MIDI channel number range:
 // const unsigned int MIN_MIDI_CHANNEL = 1;
@@ -436,23 +434,33 @@ const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW7_NRPN = 269;
 const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW8_NRPN = 270;
 
 
-// define a custom event type 
-wxDEFINE_EVENT(wxEVT_LS_NOTE_UPDATE, wxThreadEvent);
-
-// it may also be convenient to define an event table macro for this event type
-#define EVT_LS_NOTE_UPDATE( id, fn) \
-    DECLARE_EVENT_TABLE_ENTRY( \
-        wxEVT_LS_NOTE_UPDATE, id, wxID_ANY, \
-        wxThreadEventHandler(fn), \
-        (wxObject *) NULL \
-    ),
+// Custom event
+wxDECLARE_EVENT(NoteEvent, wxCommandEvent);
 
 
 class LinnStrument
 {
 public:
+	LinnStrument()
+	{};
+	
 	LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool blnSpeakMessages, bool blnSpeakNotes);
 	~LinnStrument();
+
+	wxWindow * GetParent();
+	void SetParent(wxWindow * parent);
+	
+	// Options for MIDI I/O
+	int GetMIDIInID();
+	void SetMIDIInID(int nID);
+	int GetMIDIOutID();
+	void SetMIDIOutID(int nID);
+
+	// Options to use speech output
+	bool GetSpeakMessages();
+	void SetSpeakMessages(bool blnSpeakNotes);
+	bool GetSpeakNotes();
+	void SetSpeakNotes(bool blnSpeakNotes);
 
 	static unsigned int LSArpTempoNoteTypeToInt( unsigned int nLSArpTempoNoteType)
 	{
@@ -724,7 +732,8 @@ public:
 
 	int GetUSBInPortID();
 	int GetUSBOutPortID();
-		void ProcessMessage(std::vector <unsigned char> vBytes);
+	bool IsUpdateMode();
+	void ProcessMessage(std::vector <unsigned char> vBytes);
 
 		void QueryLeftChannel();
 		void QueryRightChannel();
@@ -735,20 +744,7 @@ public:
 		void QueryOctaveTransposeSettings();
 		void QueryAll();
 
-			// Options for MIDI I/O
-		
-		int GetMIDIInID();
-		void SetMIDIInID(int nID);
-		int GetMIDIOutID();
-		void SetMIDIOutID(int nID);
-		
-		// Options to use speech output
-		bool GetSpeakMessages();
-		void SetSpeakMessages(bool blnSpeakNotes);
-		bool GetSpeakNotes();
-	void SetSpeakNotes(bool blnSpeakNotes);
-	
-	// Per-split settings
+			// Per-split settings
 	unsigned int GetSPLIT_MODE(LSSplitType split)
 	{
 		if (split == LSSplitType::LEFT)
@@ -3497,6 +3493,7 @@ public:
 
 void SendNRPN(unsigned int NRPNNumber, unsigned int NRPNValue);
 	void SendNRPN(LSSplitType split, unsigned int NRPNNumber, unsigned int NRPNValue);
+	void Speak(std::wstring wstrIn);
 
 	private:
 void SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned int NRPNValue);
@@ -3519,9 +3516,11 @@ void SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned in
 
 // Application options
 	bool m_SpeakMessages, m_SpeakNotes;
-		
-	CComPtr<ISpVoice> pSpeech;
-	// MIDI devices
+		CComPtr<ISpVoice> pSpeech;
+	
+// Serial port detection
+		bool m_CanDetectSerialPorts;
+		// MIDI devices
 		RtMidiIn * m_MIDIIn;
 		RtMidiOut * m_MIDIOut;
 		// MIDI port ID values;
@@ -3824,30 +3823,6 @@ void SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned in
 		unsigned int m_LEFT_PROGRAM, m_RIGHT_PROGRAM;
 		unsigned int m_LEFT_VOLUME, m_RIGHT_VOLUME;
 };
-
-class StatusObject : public wxObject
-{
-public:
-	StatusObject()
-				{};
-
-	~StatusObject()
-	{};
-
-	void SetText(std::wstring wstrText)
-	{
-		m_Text = wstrText;
-	}
-
-	std::wstring GetText()
-	{
-		return m_Text;
-	}
-
-private:
-	std::wstring m_Text;
-};
-
 
 std::string MIDINoteName(unsigned char nNoteNumber);
 void SendCC(unsigned char CCNumber, unsigned char CCValue);

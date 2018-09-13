@@ -3,6 +3,8 @@
 #include "stdafx.h"
 #include "LinnStrument.h"
 
+wxDEFINE_EVENT(NoteEvent, wxCommandEvent);
+
 
 std::wstring widen(const std::string& s)
 {
@@ -34,7 +36,8 @@ LinnStrument::LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool 
 	m_ReceivedNRPNValueLSB(false),
 	m_Waiting(false),
 	m_Sent(0),
-	m_Received(0)
+	m_Received(0),
+	m_CanDetectSerialPorts( true)
 {
 	// Initialise note tracking
 	for (unsigned int i= 0; i < MAX_BYTE_VALUES; i++)
@@ -44,6 +47,7 @@ LinnStrument::LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool 
 	
 	// Initialise COM
 	HRESULT hr = CoInitialize(NULL);
+	
 	// Declare the smart pointer for speech output.
 	// Use its member function CoCreateInstance to
 // create the COM object and obtain the ISpVoice pointer.
@@ -54,62 +58,74 @@ LinnStrument::LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool 
 				// m_SpeakNotes = false;
 	}
 
-	m_MIDIIn = new RtMidiIn();
+	//Initialize COM security (Required by CEnumerateSerial::UsingWMI)
+	hr = CoInitializeSecurity(nullptr, -1, nullptr, nullptr, RPC_C_AUTHN_LEVEL_DEFAULT, RPC_C_IMP_LEVEL_IMPERSONATE, nullptr, EOAC_NONE, nullptr);
+	if (FAILED(hr))
+	{
+		m_CanDetectSerialPorts = false;
+					}
+	
+			m_MIDIIn = new RtMidiIn();
 	m_MIDIOut = new RtMidiOut();
-	int nUSBInID = GetUSBInPortID();
-	int nUSBOutID = GetUSBOutPortID();
 
-	if ((nUSBInID != -1) && (nUSBOutID != -1))
+	if ((m_MIDIIn->getPortCount() == 0) || (m_MIDIOut->getPortCount() == 0))
 	{
-		// USB connection detected, so ignore any saved port ID values and override
-		m_GLOBAL_MIDI_DEVICE_IO = GetLS_MIDIDeviceIndex(LS_MIDIDevice::USB);
-		m_InputID = nUSBInID;
-		m_OutputID = nUSBOutID;
-	}
-
-	if ((m_InputID == -1) || (m_OutputID == -1))
-	{
-		// No USB connection detected and no MIDI I/O ports saved, so get user to specify DIN connections
-		MIDIDialog * pMIDIDialog = new MIDIDialog(L"LinnStrument MIDI I/O jacks");
-		if (pMIDIDialog->ShowModal() == wxID_OK)
-		{
-			m_OutputID = pMIDIDialog->GetSelectedOutput();
-			m_InputID = pMIDIDialog->GetSelectedInput();
-			m_GLOBAL_MIDI_DEVICE_IO = GetLS_MIDIDeviceIndex(LS_MIDIDevice::USB);
-		}  // End of manual DIN selection
-	}
-
-	// Now we have valid port ID values, so open the ports and initialise parameter values
-	if ((m_OutputID != -1) && (m_InputID != -1))
-	{
-		m_MIDIOut->openPort(m_OutputID);
-		m_MIDIIn->openPort(m_InputID);
-		m_MIDIIn->setCallback(&LSCallback, (void*)this);
-		QueryLeftChannel();
-		QueryRightChannel();
-		m_Sent = 0;
-		m_Received = 0;
-		QueryAll();
+		m_InputID = -1;
+		m_OutputID = -1;
 	}
 	else
 	{
-		if (m_SpeakMessages)
+		int nUSBInID = GetUSBInPortID();
+		int nUSBOutID = GetUSBOutPortID();
+
+		if ((nUSBInID != -1) && (nUSBOutID != -1))
 		{
-			hr = pSpeech->Speak(L"LinnStrument not connected", 0, NULL);
-			if (FAILED(hr))
-			{
-				// m_SpeakMessages = false;
-				// m_SpeakNotes = false;
-			}
+			// USB connection detected, so ignore any saved port ID values and override
+			m_GLOBAL_MIDI_DEVICE_IO = GetLS_MIDIDeviceIndex(LS_MIDIDevice::USB);
+			m_InputID = nUSBInID;
+			m_OutputID = nUSBOutID;
 		}
+
+		if ((m_InputID == -1) || (m_OutputID == -1))
+		{
+			// No USB connection detected and no MIDI I/O ports saved, so get user to specify DIN connections
+			MIDIDialog * pMIDIDialog = new MIDIDialog(L"LinnStrument MIDI I/O jacks");
+			if (pMIDIDialog->ShowModal() == wxID_OK)
+			{
+				m_OutputID = pMIDIDialog->GetSelectedOutput();
+				m_InputID = pMIDIDialog->GetSelectedInput();
+				m_GLOBAL_MIDI_DEVICE_IO = GetLS_MIDIDeviceIndex(LS_MIDIDevice::USB);
+			}  // End of manual DIN selection
+		}
+
+		// Now we have valid port ID values, so open the ports and initialise parameter values
+		if ((m_OutputID != -1) && (m_InputID != -1))
+		{
+			m_MIDIOut->openPort(m_OutputID);
+			m_MIDIIn->openPort(m_InputID);
+			m_MIDIIn->setCallback(&LSCallback, (void*)this);
+			QueryLeftChannel();
+			QueryRightChannel();
+			m_Sent = 0;
+			m_Received = 0;
+			QueryAll();
+		}  // end if DIN ports selected
+	}  // end if 0 input and output ports
+	
+		if ((m_SpeakMessages)
+			&& (m_InputID == -1)
+			&& (m_OutputID == -1))
+		{
+			Speak(L"LinnStrument not connected");
+			}
 	}
-}
 
 	
 LinnStrument::~LinnStrument()
 {
 			if (m_MIDIIn->isPortOpen())
 		{
+				m_MIDIIn->cancelCallback();
 			m_MIDIIn->closePort();
 		}
 
@@ -1441,15 +1457,9 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 			if (m_SpeakNotes)
 			{
 				std::wstring wstrNoteName = MIDI().GetWideNoteName(nNoteNumber);
-				// Announce and update status bar
-				// Use the overloaded -> operator to call the interface methods.
-				HRESULT hr = pSpeech->Speak( (LPCWSTR) wstrNoteName.c_str(), 0, NULL);
-				if (FAILED(hr)) // handle hr error
-				{
-					// m_SpeakMessages = false;
-					// m_SpeakNotes = false;
-				}
+												Speak( wstrNoteName);
 												}
+			UpdateStatusBar();
 		}
 		break;
 
@@ -1457,7 +1467,7 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 	{
 		unsigned char nNoteNumber = MIDI().ShortMsgData1(myMessage);
 		m_NotesHeld[nNoteNumber] = false;
-		// Update status bar
+		UpdateStatusBar();
 	}
 	break;
 
@@ -1919,6 +1929,17 @@ void LinnStrument::SetMIDIOutID(int nID)
 	}
 }
 
+wxWindow * LinnStrument::GetParent()
+{
+	return m_Parent;
+}
+
+void LinnStrument::SetParent(wxWindow * parent)
+{
+	m_Parent = parent;
+}
+
+
 void LinnStrument::UpdateStatusBar()
 {
 	std::wstring wstrText;
@@ -1931,11 +1952,138 @@ void LinnStrument::UpdateStatusBar()
 		}
 	}
 
-		StatusObject * pStatusObj = new StatusObject();
-	pStatusObj->SetText(wstrText);
+		wxCommandEvent myNoteEvent(NoteEvent, STATUS_UPDATE_ID);
+	myNoteEvent.SetString(wstrText);
+					m_Parent->GetEventHandler()->ProcessEvent(myNoteEvent);
+		}
 
-	wxCommandEvent event(wxEVT_COMMAND_TEXT_UPDATED, STATUS_UPDATE_ID);
-	event.SetEventObject(pStatusObj);
-	m_Parent->GetEventHandler()->AddPendingEvent(event);
-	// delete pDisplayObj;
+
+bool LinnStrument::IsUpdateMode()
+{
+	bool blnResult = false;
+
+	// LSOSUpdateName is what we're looking for
+
+	CEnumerateSerial::CPortsArray ports;
+	CEnumerateSerial::CPortAndNamesArray portAndNames;
+	CEnumerateSerial::CNamesArray names;
+	wxString wxstrOut;
+
+#ifndef NO_CENUMERATESERIAL_USING_CREATEFILE
+		wxstrOut = "CreateFile method reports\n";
+	if (CEnumerateSerial::UsingCreateFile(ports))
+	{
+		for (const auto& port : ports)
+			wxstrOut = wxstrOut + wxString::Format( "COM%u\n", port);
 	}
+	else
+		wxstrOut = wxstrOut + wxString::Format("CEnumerateSerial::UsingCreateFile failed, Error:%u\n"), GetLastError();
+#endif //#ifndef NO_CENUMERATESERIAL_USING_CREATEFILE
+
+#ifndef NO_CENUMERATESERIAL_USING_QUERYDOSDEVICE
+		wxstrOut = wxstrOut + wxString::Format( "QueryDosDevice method reports\n");
+	if (CEnumerateSerial::UsingQueryDosDevice(ports))
+	{
+		for (const auto& port : ports)
+			wxstrOut = wxstrOut + wxString::Format( "COM%u\n", port);
+	}
+	else
+		wxstrOut = wxstrOut + wxString::Format("CEnumerateSerial::UsingQueryDosDevice failed, Error:%u\n"), GetLastError();
+#endif //#ifndef NO_CENUMERATESERIAL_USING_QUERYDOSDEVICE
+
+#ifndef NO_CENUMERATESERIAL_USING_GETDEFAULTCOMMCONFIG
+	wxstrOut = wxstrOut + wxString::Format("GetDefaultCommConfig method reports\n");
+	if (CEnumerateSerial::UsingGetDefaultCommConfig(ports))
+	{
+		for (const auto& port : ports)
+			wxstrOut = wxstrOut + wxString::Format("COM%u\n", port);
+	}
+	else
+		wxstrOut = wxstrOut + wxString::Format( "CEnumerateSerial::UsingGetDefaultCommConfig failed, Error:%u\n", GetLastError());
+#endif //#ifndef NO_CENUMERATESERIAL_USING_GETDEFAULTCOMMCONFIG
+
+#ifndef NO_CENUMERATESERIAL_USING_SETUPAPI1
+	wxstrOut = wxstrOut + wxString::Format( "Device Manager (SetupAPI - GUID_DEVINTERFACE_COMPORT) reports\n");
+	if (CEnumerateSerial::UsingSetupAPI1(portAndNames))
+	{
+		for (const auto& port : portAndNames)
+			wxstrOut = wxstrOut + wxString::Format( "COM%u <%s>\n", port.first, port.second.c_str());
+	}
+	else
+		wxstrOut = wxstrOut + wxString::Format( "CEnumerateSerial::UsingSetupAPI1 failed, Error:%u\n", GetLastError());
+#endif //#ifndef NO_CENUMERATESERIAL_USING_SETUPAPI1
+
+#ifndef NO_CENUMERATESERIAL_USING_SETUPAPI2
+	wxstrOut = wxstrOut + wxString::Format( "Device Manager (SetupAPI - Ports Device information set) reports\n");
+	if (CEnumerateSerial::UsingSetupAPI2(portAndNames))
+	{
+		for (const auto& port : portAndNames)
+			wxstrOut = wxstrOut + wxString::Format( "COM%u <%s>\n", port.first, port.second.c_str());
+	}
+	else
+		wxstrOut = wxstrOut + wxString::Format( "CEnumerateSerial::UsingSetupAPI2 failed, Error:%u\n", GetLastError());
+#endif //#ifndef NO_CENUMERATESERIAL_USING_SETUPAPI2
+
+#ifndef NO_CENUMERATESERIAL_USING_ENUMPORTS
+	wxstrOut = wxstrOut + wxString::Format( "EnumPorts method reports\n");
+	if (CEnumerateSerial::UsingEnumPorts(portAndNames))
+	{
+		for (const auto& port : portAndNames)
+			wxstrOut = wxstrOut + wxString::Format( "COM%u <%s>\n", port.first, port.second.c_str());
+	}
+	else
+		wxstrOut = wxstrOut + wxString::Format( "CEnumerateSerial::UsingEnumPorts failed, Error:%u\n", GetLastError());
+#endif //#ifndef NO_CENUMERATESERIAL_USING_ENUMPORTS
+
+#ifndef NO_CENUMERATESERIAL_USING_WMI
+	wxstrOut = wxstrOut + wxString::Format( "WMI method reports\n");
+	HRESULT hr = CEnumerateSerial::UsingWMI(portAndNames);
+	if (SUCCEEDED(hr))
+	{
+		for (const auto& port : portAndNames)
+			wxstrOut = wxstrOut + wxString::Format( "COM%u <%s>\n", port.first, port.second.c_str());
+	}
+	else
+		wxstrOut = wxstrOut + wxString::Format( "CEnumerateSerial::UsingWMI failed, Error:%08X\n", hr);
+#endif //#ifndef NO_CENUMERATESERIAL_USING_WMI
+
+#ifndef NO_CENUMERATESERIAL_USING_COMDB
+	wxstrOut = wxstrOut + wxString::Format( "ComDB method reports\n");
+	if (CEnumerateSerial::UsingComDB(ports))
+	{
+		for (const auto& port : ports)
+			wxstrOut = wxstrOut + wxString::Format( "COM%u\n", port);
+	}
+	else
+		wxstrOut = wxstrOut + wxString::Format( "CEnumerateSerial::UsingComDB failed, Error:%u\n", GetLastError());
+#endif //#ifndef NO_CENUMERATESERIAL_USING_COMDB
+
+#ifndef NO_CENUMERATESERIAL_USING_REGISTRY
+	wxstrOut = wxstrOut + wxString::Format( "Registry method reports\n");
+	if (CEnumerateSerial::UsingRegistry(names))
+	{
+		for (const auto& name : names)
+			wxstrOut = wxstrOut + wxString::Format( "%s\n", name.c_str());
+	}
+	else
+		wxstrOut = wxstrOut + wxString::Format( "CEnumerateSerial::UsingRegistry failed, Error:%u\n", GetLastError());
+#endif //#ifndef NO_CENUMERATESERIAL_USING_REGISTRY
+
+#ifndef NO_CENUMERATESERIAL_USING_GETCOMMPORTS
+	wxstrOut = wxstrOut + wxString::Format( "UsingGetCommPorts method reports\n");
+	if (CEnumerateSerial::UsingGetCommPorts(ports))
+	{
+		for (const auto& port : ports)
+			wxstrOut = wxstrOut + wxString::Format( "COM%u\n", port);
+	}
+	else
+		wxstrOut = wxstrOut + wxString::Format( "CEnumerateSerial::UsingGetCommPorts failed, Error:%u\n", GetLastError());
+#endif //#ifndef NO_CENUMERATESERIAL_USING_GETCOMMPORTS
+	wxMessageBox(wxstrOut);
+	return blnResult;
+}
+
+void LinnStrument::Speak(std::wstring wstrIn)
+{
+	HRESULT hr = pSpeech->Speak((LPCWSTR)wstrIn.c_str(), 0, NULL);
+}

@@ -77,9 +77,16 @@ LSAccessFrame::LSAccessFrame(const wxString& title)
 	}
 
 	// We now have enough information to create the LinnStrument
-	pLinnStrument = new LinnStrument( this, nInputID, nOutputID, blnSpeakMessages, blnSpeakNotes);
+	try
+	{
+		m_LinnStrument = LinnStrument::LinnStrument(this, nInputID, nOutputID, blnSpeakMessages, blnSpeakNotes);
+	}
+catch (RtMidiError &error)
+{
+	wxMessageBox(error.getMessage(), wstrAppName + L" error", wxOK | wxICON_ERROR);
+}
 
-	// create a menu bar
+			// create a menu bar
 	FileMenu = new wxMenu;
 	FileMenu->Append(ID_Quit, "E&xit\tAlt-X", "Quit this program");
 
@@ -112,7 +119,7 @@ OptionsMenu->AppendCheckItem( ID_SpeakMessages, "&Speak messages\tF9", "Enable s
 	SetMenuBar(menuBar);
 
 	// create a status bar 
-	CreateStatusBar(2);
+	CreateStatusBar();
 		SetStatusText("Welcome to LSAccess!");
 	this->Maximize();
 }		
@@ -122,14 +129,14 @@ LSAccessFrame::~LSAccessFrame()
 {
 	// Save settings and clean-up
 	m_Config->SetPath(strSpeechOptions);
-	m_Config->Write(strSpeakMessages, pLinnStrument->GetSpeakMessages());
-	m_Config->Write(strSpeakNotes, pLinnStrument->GetSpeakNotes());
+	m_Config->Write(strSpeakMessages, m_LinnStrument.GetSpeakMessages());
+	m_Config->Write(strSpeakNotes, m_LinnStrument.GetSpeakNotes());
 	m_Config->SetPath( strMIDIOptions);
-	m_Config->Write(strInPort, pLinnStrument->GetMIDIInID());
-	m_Config->Write(strOutPort, pLinnStrument->GetMIDIOutID());
+	m_Config->Write(strInPort, m_LinnStrument.GetMIDIInID());
+	m_Config->Write(strOutPort, m_LinnStrument.GetMIDIOutID());
 	m_Config->Flush();
 	delete m_Config;
-}
+	}
 
 
 // event handlers
@@ -137,27 +144,116 @@ LSAccessFrame::~LSAccessFrame()
 WXLRESULT LSAccessFrame::MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam) 
 {
 	wxLogDebug(wxT("MSWWindowProc %08x %08x %08x"), nMsg, wParam, lParam);
-	
+	std::wstring wstrOut;
+
 // Detect hardware changes as LinnStrument transitions to/from MIDI and O/S update modes
 	if (nMsg == WM_DEVICECHANGE)
 		// && (wParam == DBT_DEVICEARRIVAL || wParam == DBT_DEVICEREMOVECOMPLETE))
 	{
 		wxLogDebug(wxT("WM_DEVICECHANGE %x %x"), wParam, lParam);
-					// Check for new USB connection
-		unsigned int nInputID = pLinnStrument->GetUSBInPortID();
-					unsigned int nOutputID = pLinnStrument->GetUSBOutPortID();
-										
-					if ((nInputID != -1) && (nOutputID != -1))
-					{
-						// USB connection
-						pLinnStrument->SetMIDIInID(nInputID);
-						pLinnStrument->SetMIDIOutID(nOutputID);
-					}
-					else
-					{
-						// Check for LinnStrument serial port (i.e. O/S update mode
-					}  // end if USB
-	}  // end if wm_devicechange
+		switch (wParam)
+		{
+		case DBT_CONFIGCHANGECANCELED:   // 0x0019 A request to change the current configuration (dock or undock) has been canceled.
+		{
+			wstrOut = L"DBT_CONFIGCHANGECANCELED";
+		}
+		break;
+
+		case DBT_CONFIGCHANGED:   // 0x0018 The current configuration has changed, due to a dock or undock.
+		{
+			wstrOut = L"DBT_CONFIGCHANGED";
+		}
+		break;
+
+		case DBT_CUSTOMEVENT:   // 0x8006 A custom event has occurred.
+		{
+			wstrOut = L"DBT_CUSTOMEVENT";
+		}
+		break;
+
+		case DBT_DEVICEARRIVAL:   // 0x8000 A device or piece of media has been inserted and is now available.
+		{
+			wstrOut = L"DBT_DEVICEARRIVAL";
+		}
+		break;
+
+		case DBT_DEVICEQUERYREMOVE:   // 0x8001 Permission is requested to remove a device or piece of media. Any application can deny this request and cancel the removal.
+		{
+			wstrOut = L"DBT_DEVICEQUERYREMOVE";
+		} 
+		break;
+
+		case DBT_DEVICEQUERYREMOVEFAILED:   // 0x8002 A request to remove a device or piece of media has been canceled.
+		{
+			wstrOut = L"DBT_DEVICEQUERYREMOVEFAILED";
+		}
+		break;
+
+		case DBT_DEVICEREMOVECOMPLETE:   // 0x8004 A device or piece of media has been removed.
+		{
+			wstrOut = L"DBT_DEVICEREMOVECOMPLETE";
+		}
+		break;
+
+		case DBT_DEVICEREMOVEPENDING:   // 0x8003 A device or piece of media is about to be removed. Cannot be denied.
+		{
+			wstrOut = L"DBT_DEVICEREMOVEPENDING";
+		}
+		break;
+
+		case DBT_DEVICETYPESPECIFIC:   // 0x8005 A device-specific event has occurred.
+		{
+			wstrOut = L"DBT_DEVICETYPESPECIFIC";
+		}
+		break;
+
+		case DBT_DEVNODES_CHANGED:   // 0x0007 A device has been added to or removed from the system.
+		{
+			wstrOut = L"DBT_DEVNODES_CHANGED";
+				// Some hardware device has been added or removed. Check for LinnStrument MIDI USB connection
+				unsigned int nInputID = m_LinnStrument.GetUSBInPortID();
+			unsigned int nOutputID = m_LinnStrument.GetUSBOutPortID();
+
+			if ((nInputID != -1) && (nOutputID != -1))
+			{
+				// USB connection found, so make sure we're using it
+				m_LinnStrument.SetMIDIInID(nInputID);
+				m_LinnStrument.SetMIDIOutID(nOutputID);
+			}
+			else
+			{
+				// Check for LinnStrument serial port (i.e. O/S update mode
+				if (m_LinnStrument.IsUpdateMode())
+				{
+					m_LinnStrument.Speak(L"Firmware update mode");
+				}
+				else
+				{
+					m_LinnStrument.Speak(L"No USB connection to a LinnStrument");
+				}
+			}  // end if USB
+		}
+		break;
+
+		case DBT_QUERYCHANGECONFIG:   // 0x0017 Permission is requested to change the current configuration (dock or undock).
+		{
+			wstrOut = L"DBT_QUERYCHANGECONFIG";
+		}
+		break;
+
+		case DBT_USERDEFINED:   // 0xFFFF The meaning of this message is user-defined.
+		{
+			wstrOut = L"DBT_USERDEFINED";
+		}
+		break;
+
+		default:
+		{
+			wstrOut = L"Unknown";
+		}
+		break;
+				}   // end wparam switch
+			}  // end if wm_devicechange
 	return wxFrame::MSWWindowProc(nMsg, wParam, lParam);
 }
 
@@ -170,48 +266,48 @@ void LSAccessFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 
 void LSAccessFrame::OnLeftSplitSettings(wxCommandEvent& event)
 {
-	PerSplitFrame * pLeftSplit = new PerSplitFrame( L"Left Split", pLinnStrument, LSSplitType::LEFT);
+	PerSplitFrame * pLeftSplit = new PerSplitFrame( L"Left Split", &m_LinnStrument, LSSplitType::LEFT);
 	pLeftSplit->Show(true);
 	}
 
 void LSAccessFrame::OnRightSplitSettings(wxCommandEvent& event)
 {
-	PerSplitFrame * pRightSplit = new PerSplitFrame(L"Right Split", pLinnStrument, LSSplitType::RIGHT);
+	PerSplitFrame * pRightSplit = new PerSplitFrame(L"Right Split", &m_LinnStrument, LSSplitType::RIGHT);
 	pRightSplit->Show(true);
 }
 
 
 void LSAccessFrame::OnOctaveTransposeSettings(wxCommandEvent& event)
 {
-	OctaveTransposeFrame * pOctaveTransposeFrame = new OctaveTransposeFrame(L"Octave/Transpose", pLinnStrument);
+	OctaveTransposeFrame * pOctaveTransposeFrame = new OctaveTransposeFrame(L"Octave/Transpose", &m_LinnStrument);
 	pOctaveTransposeFrame->Show(true);
 	}
 
 
 void LSAccessFrame::OnPresetsVolumesSettings(wxCommandEvent& event)
 {
-	PresetsVolumesFrame * pPresetsVolumesFrame = new PresetsVolumesFrame(L"Presets/Volumes", pLinnStrument);
+	PresetsVolumesFrame * pPresetsVolumesFrame = new PresetsVolumesFrame(L"Presets/Volumes", &m_LinnStrument);
 	pPresetsVolumesFrame->Show(true);
 }
 
 
 void LSAccessFrame::OnSwitchSettings(wxCommandEvent& event)
 {
-	SwitchesFrame * pSwitchesFrame = new SwitchesFrame(L"Switches", pLinnStrument);
+	SwitchesFrame * pSwitchesFrame = new SwitchesFrame(L"Switches", &m_LinnStrument);
 	pSwitchesFrame->Show(true);
 }
 
 
 void LSAccessFrame::OnGlobalSettings(wxCommandEvent& event)
 {
-	GlobalsFrame * pGlobalsFrame = new GlobalsFrame(L"Globals", pLinnStrument);
+	GlobalsFrame * pGlobalsFrame = new GlobalsFrame(L"Globals", &m_LinnStrument);
 	pGlobalsFrame->Show(true);
 }
 
 
 void LSAccessFrame::OnStepSequencerSettings(wxCommandEvent& event)
 {
-	SequencerFrame * pSequencerFrame = new SequencerFrame(L"Step Sequencer", pLinnStrument);
+	SequencerFrame * pSequencerFrame = new SequencerFrame(L"Step Sequencer", &m_LinnStrument);
 	pSequencerFrame->Show(true);
 }
 
@@ -220,19 +316,19 @@ void LSAccessFrame::OnStepSequencerSettings(wxCommandEvent& event)
 
 void LSAccessFrame::OnSpeakMessages(wxCommandEvent& event)
 {
-		pLinnStrument->SetSpeakMessages(! pLinnStrument->GetSpeakMessages());
+		m_LinnStrument.SetSpeakMessages(! m_LinnStrument.GetSpeakMessages());
 	}
 
 
 void LSAccessFrame::OnSpeakNotes(wxCommandEvent& event)
 {
-		pLinnStrument->SetSpeakNotes(! pLinnStrument->GetSpeakNotes());
+		m_LinnStrument.SetSpeakNotes(! m_LinnStrument.GetSpeakNotes());
 		}
 
 
 void LSAccessFrame::OnRefreshAll(wxCommandEvent& event)
 {
-	pLinnStrument->QueryAll();
+	m_LinnStrument.QueryAll();
 	wxMessageBox(L"All editor parameters refreshed.", wstrAppName, wxOK | wxICON_INFORMATION, this);
 }
 
@@ -245,11 +341,12 @@ void LSAccessFrame::OnAbout(wxCommandEvent& event)
 
 void LSAccessFrame::onStatusUpdate(wxCommandEvent& event)
 {
-	StatusObject * pStatus = dynamic_cast <StatusObject*> (event.GetEventObject());
-	std::wstring wstrStatus = pStatus->GetText();
+		wxString wxstrStatus = event.GetString();
 	
-	SetStatusText(wstrStatus);
-}
+	SetStatusText(wxEmptyString);
+	SetStatusText(wxstrStatus);
+	this->Refresh();
+	}
 
 
 // event tables and other macros for wxWidgets
@@ -276,5 +373,5 @@ EVT_MENU(ID_About, LSAccessFrame::OnAbout)
 
 // Custom events
 // Update the status bar
-EVT_COMMAND(STATUS_UPDATE_ID, wxEVT_COMMAND_TEXT_UPDATED, LSAccessFrame::onStatusUpdate)
+EVT_COMMAND(STATUS_UPDATE_ID, NoteEvent, LSAccessFrame::onStatusUpdate)
 wxEND_EVENT_TABLE()

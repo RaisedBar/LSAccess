@@ -81,7 +81,7 @@ private:
 	wxMenu * FileMenu, *SettingsMenu, *OptionsMenu, *HelpMenu;
 	
 	// Internal storage
-	LinnStrument * pLinnStrument;
+	LinnStrument m_LinnStrument;
 	wxFileName m_IniFile;
 	wxFileConfig * m_Config;
 	wxNotebook * pNotebook;
