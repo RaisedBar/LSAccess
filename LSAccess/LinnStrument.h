@@ -453,7 +453,8 @@ public:
 	void SetMIDIInID(int nID);
 	int GetMIDIOutID();
 	void SetMIDIOutID(int nID);
-
+	bool IsDINWorking();
+	
 	// Options to use speech output
 	bool GetSpeakMessages();
 	void SetSpeakMessages(bool blnSpeakNotes);

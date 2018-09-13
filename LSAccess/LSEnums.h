@@ -547,7 +547,7 @@ const wxString MIDIDeviceConnections[] =
 {
 	L"DIN jacks",
 	L"USB"
-};
+	};
 
 enum class LSSplitType
 {

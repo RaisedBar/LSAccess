@@ -147,8 +147,6 @@ LinnStrument::LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool 
 			m_MIDIIn->setCallback(&LSCallback, (void*)this);
 			QueryLeftChannel();
 			QueryRightChannel();
-			m_Sent = 0;
-			m_Received = 0;
 			QueryAll();
 		}  // end if DIN ports selected
 	}  // end if 0 input and output ports
@@ -231,7 +229,9 @@ int LinnStrument::GetUSBOutPortID()
 
 void LinnStrument::SetLSParameter(unsigned int NRPNParameterIn, unsigned int NRPNValueIn)
 {
-	DBOUT( L"Parameter = " + std::to_wstring(NRPNParameterIn) + L"\n")
+	m_Received++;   // Update our count of received messages that matter to us
+
+	DBOUT(L"Parameter = " + std::to_wstring(NRPNParameterIn) + L"\n")
 			DBOUT( L"Value = " + std::to_wstring(NRPNValueIn) + L"\n")
 
 		// Update the appropriate member based on the provided NRPN parameter number
@@ -1932,6 +1932,8 @@ void LinnStrument::QuerySwitchSettings()
 
 void LinnStrument::QueryAll()
 {
+	m_Sent = 0;
+	m_Received = 0;
 	QueryPerSplitSettings();
 	QueryGlobalSettings();
 	QuerySwitchSettings();
@@ -2120,7 +2122,8 @@ bool LinnStrument::IsUpdateMode()
 	else
 		wxstrOut = wxstrOut + wxString::Format( "CEnumerateSerial::UsingGetCommPorts failed, Error:%u\n", GetLastError());
 #endif //#ifndef NO_CENUMERATESERIAL_USING_GETCOMMPORTS
-	wxMessageBox(wxstrOut);
+	
+	blnResult = wxstrOut.Contains( LSOSUpdateName);
 	return blnResult;
 }
 
@@ -2128,3 +2131,10 @@ void LinnStrument::Speak(std::wstring wstrIn)
 {
 	HRESULT hr = pSpeech->Speak((LPCWSTR)wstrIn.c_str(), 0, NULL);
 }
+
+
+bool LinnStrument::IsDINWorking()
+{
+	return ((m_GLOBAL_MIDI_DEVICE_IO == GetLS_MIDIDeviceIndex(LS_MIDIDevice::USB)) && (m_Received > 0));
+}
+
