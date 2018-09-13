@@ -14,27 +14,51 @@ pMyParent(parent)
 
 	// Controls
 	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+	wxStaticText * lblCC_FOR_FADER1 = new wxStaticText(myPanel, wxID_ANY, L"CC for Fader &1:");
 	wscCC_FOR_FADER1 = new wxSpinCtrl(myPanel, CC_FOR_FADER1_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_FADER_CC, MAX_FADER_CC, pMyLinnStrument->GetCC_FOR_FADER1(split), "CC for Fader &1");
+	hBox1->Add(lblCC_FOR_FADER1, 0, wxEXPAND);
 	hBox1->Add(wscCC_FOR_FADER1, 0, wxEXPAND);
+	
+	wxStaticText * lblCC_FOR_FADER2 = new wxStaticText(myPanel, wxID_ANY, L"CC for Fader &2:");
 	wscCC_FOR_FADER2 = new wxSpinCtrl(myPanel, CC_FOR_FADER2_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_FADER_CC, MAX_FADER_CC, pMyLinnStrument->GetCC_FOR_FADER2(split), "CC for Fader &2");
+	hBox1->Add(lblCC_FOR_FADER2, 0, wxEXPAND);
 	hBox1->Add(wscCC_FOR_FADER2, 0, wxEXPAND);
+	
+	wxStaticText * lblCC_FOR_FADER3 = new wxStaticText(myPanel, wxID_ANY, L"CC for Fader &3:");
 	wscCC_FOR_FADER3 = new wxSpinCtrl(myPanel, CC_FOR_FADER3_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_FADER_CC, MAX_FADER_CC, pMyLinnStrument->GetCC_FOR_FADER3(split), "CC for Fader &3");
+	hBox1->Add(lblCC_FOR_FADER3, 0, wxEXPAND);
 	hBox1->Add(wscCC_FOR_FADER3, 0, wxEXPAND);
+	
+	wxStaticText * lblCC_FOR_FADER4 = new wxStaticText(myPanel, wxID_ANY, L"CC for Fader &4:");
 	wscCC_FOR_FADER4 = new wxSpinCtrl(myPanel, CC_FOR_FADER4_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_FADER_CC, MAX_FADER_CC, pMyLinnStrument->GetCC_FOR_FADER4(split), "CC for Fader &4");
+	hBox1->Add(lblCC_FOR_FADER4, 0, wxEXPAND);
 	hBox1->Add(wscCC_FOR_FADER4, 0, wxEXPAND);
+	
+	wxStaticText * lblCC_FOR_FADER5 = new wxStaticText(myPanel, wxID_ANY, L"CC for Fader &5:");
 	wscCC_FOR_FADER5 = new wxSpinCtrl(myPanel, CC_FOR_FADER5_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_FADER_CC, MAX_FADER_CC, pMyLinnStrument->GetCC_FOR_FADER5(split), "CC for Fader &5");
+	hBox1->Add(lblCC_FOR_FADER5, 0, wxEXPAND);
 	hBox1->Add(wscCC_FOR_FADER5, 0, wxEXPAND);
+	
+	wxStaticText * lblCC_FOR_FADER6 = new wxStaticText(myPanel, wxID_ANY, L"CC for Fader &6:");
 	wscCC_FOR_FADER6 = new wxSpinCtrl(myPanel, CC_FOR_FADER6_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_FADER_CC, MAX_FADER_CC, pMyLinnStrument->GetCC_FOR_FADER6(split), "CC for Fader &6");
+	hBox1->Add(lblCC_FOR_FADER6, 0, wxEXPAND);
 	hBox1->Add(wscCC_FOR_FADER6, 0, wxEXPAND);
+	
+	wxStaticText * lblCC_FOR_FADER7 = new wxStaticText(myPanel, wxID_ANY, L"CC for Fader &7");
 	wscCC_FOR_FADER7 = new wxSpinCtrl(myPanel, CC_FOR_FADER7_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_FADER_CC, MAX_FADER_CC, pMyLinnStrument->GetCC_FOR_FADER7(split), "CC for Fader &7");
+	hBox1->Add(lblCC_FOR_FADER7, 0, wxEXPAND);
 	hBox1->Add(wscCC_FOR_FADER7, 0, wxEXPAND);
+	
+	wxStaticText * lblCC_FOR_FADER8 = new wxStaticText(myPanel, wxID_ANY, L"CC for Fader &8:");
 	wscCC_FOR_FADER8 = new wxSpinCtrl(myPanel, CC_FOR_FADER8_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_FADER_CC, MAX_FADER_CC, pMyLinnStrument->GetCC_FOR_FADER8(split), "CC for Fader &8");
+	hBox1->Add(lblCC_FOR_FADER8, 0, wxEXPAND);
 	hBox1->Add(wscCC_FOR_FADER8, 0, wxEXPAND);
 
 	myPanel->SetSizer(hBox1);
 	hBox1->SetSizeHints(this);
 	myPanel->Fit();
 	hBox1->Fit(myPanel);
+	wscCC_FOR_FADER1->SetFocus();
 }
 
 

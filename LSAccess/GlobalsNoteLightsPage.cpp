@@ -15,45 +15,57 @@ GlobalsNoteLightsPage::GlobalsNoteLightsPage(wxBookCtrlBase *parent, LinnStrumen
 
 		// controls
 // Value is constrained by MIN_LIGHTS_PRESET and MAX_LIGHTS_PRESET 
+	wxStaticText * lblGLOBAL_ACTIVE_LIGHTS_PRESET = new wxStaticText(myPanel, wxID_ANY, L"&Preset:");
 	wscGLOBAL_ACTIVE_LIGHTS_PRESET = new wxSpinCtrl(myPanel, GLOBAL_ACTIVE_LIGHTS_PRESET_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_LIGHTS_PRESET, MAX_LIGHTS_PRESET, pMyLinnStrument->GetGLOBAL_ACTIVE_LIGHTS_PRESET(), L"Preset");
-vBox1->Add(wscGLOBAL_ACTIVE_LIGHTS_PRESET, 0, wxEXPAND);
+	vBox1->Add(lblGLOBAL_ACTIVE_LIGHTS_PRESET, 0, wxEXPAND);
+	vBox1->Add(wscGLOBAL_ACTIVE_LIGHTS_PRESET, 0, wxEXPAND);
 	
 // Toggles:
 	chkGLOBAL_MAIN_NOTE_LIGHT_C = new wxCheckBox(myPanel, GLOBAL_MAIN_NOTE_LIGHT_C_ID, L"&C");
 	chkGLOBAL_MAIN_NOTE_LIGHT_C->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_MAIN_NOTE_LIGHT_C()));
 	hBox1->Add(chkGLOBAL_MAIN_NOTE_LIGHT_C, 0, wxEXPAND);
+	
 	chkGLOBAL_MAIN_NOTE_LIGHT_C_SHARP = new wxCheckBox(myPanel, GLOBAL_MAIN_NOTE_LIGHT_C_SHARP_ID, L"C#");
 	chkGLOBAL_MAIN_NOTE_LIGHT_C_SHARP->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_MAIN_NOTE_LIGHT_C_SHARP()));
 	hBox1->Add(chkGLOBAL_MAIN_NOTE_LIGHT_C_SHARP, 0, wxEXPAND);
-	chkGLOBAL_MAIN_NOTE_LIGHT_D = new wxCheckBox(myPanel, GLOBAL_MAIN_NOTE_LIGHT_D_ID, L"&D");
+
+	chkGLOBAL_MAIN_NOTE_LIGHT_D = new wxCheckBox(myPanel, GLOBAL_MAIN_NOTE_LIGHT_D_ID, L"&D ");
 	chkGLOBAL_MAIN_NOTE_LIGHT_D->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_MAIN_NOTE_LIGHT_D()));
 	hBox1->Add(chkGLOBAL_MAIN_NOTE_LIGHT_D, 0, wxEXPAND);
+
 	chkGLOBAL_MAIN_NOTE_LIGHT_D_SHARP = new wxCheckBox(myPanel, GLOBAL_MAIN_NOTE_LIGHT_D_SHARP_ID, L"D#");
 	chkGLOBAL_MAIN_NOTE_LIGHT_D_SHARP->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_MAIN_NOTE_LIGHT_D_SHARP()));
 	hBox1->Add(chkGLOBAL_MAIN_NOTE_LIGHT_D_SHARP, 0, wxEXPAND);
-	chkGLOBAL_MAIN_NOTE_LIGHT_E = new wxCheckBox(myPanel, GLOBAL_MAIN_NOTE_LIGHT_E_ID, L"&E");
+
+	chkGLOBAL_MAIN_NOTE_LIGHT_E = new wxCheckBox(myPanel, GLOBAL_MAIN_NOTE_LIGHT_E_ID, L"&E ");
 	chkGLOBAL_MAIN_NOTE_LIGHT_E->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_MAIN_NOTE_LIGHT_E()));
 	hBox1->Add(chkGLOBAL_MAIN_NOTE_LIGHT_E, 0, wxEXPAND);
-	chkGLOBAL_MAIN_NOTE_LIGHT_F = new wxCheckBox(myPanel, GLOBAL_MAIN_NOTE_LIGHT_F_ID, L"&F");
+
+	chkGLOBAL_MAIN_NOTE_LIGHT_F = new wxCheckBox(myPanel, GLOBAL_MAIN_NOTE_LIGHT_F_ID, L"&F ");
 	chkGLOBAL_MAIN_NOTE_LIGHT_F->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_MAIN_NOTE_LIGHT_F()));
 	hBox1->Add(chkGLOBAL_MAIN_NOTE_LIGHT_F, 0, wxEXPAND);
-	
-	chkGLOBAL_MAIN_NOTE_LIGHT_F_SHARP = new wxCheckBox(myPanel, GLOBAL_MAIN_NOTE_LIGHT_F_SHARP_ID, L"F#");
+
+		chkGLOBAL_MAIN_NOTE_LIGHT_F_SHARP = new wxCheckBox(myPanel, GLOBAL_MAIN_NOTE_LIGHT_F_SHARP_ID, L"F#");
 	chkGLOBAL_MAIN_NOTE_LIGHT_F_SHARP->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_MAIN_NOTE_LIGHT_F_SHARP()));
 	hBox2->Add(chkGLOBAL_MAIN_NOTE_LIGHT_F_SHARP, 0, wxEXPAND);
-	chkGLOBAL_MAIN_NOTE_LIGHT_G = new wxCheckBox(myPanel, GLOBAL_MAIN_NOTE_LIGHT_G_ID, L"&G");
+
+	chkGLOBAL_MAIN_NOTE_LIGHT_G = new wxCheckBox(myPanel, GLOBAL_MAIN_NOTE_LIGHT_G_ID, L"&G ");
 	chkGLOBAL_MAIN_NOTE_LIGHT_G->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_MAIN_NOTE_LIGHT_G()));
 	hBox2->Add(chkGLOBAL_MAIN_NOTE_LIGHT_G, 0, wxEXPAND);
+
 	chkGLOBAL_MAIN_NOTE_LIGHT_G_SHARP = new wxCheckBox(myPanel, GLOBAL_MAIN_NOTE_LIGHT_G_SHARP_ID, L"G#");
 	chkGLOBAL_MAIN_NOTE_LIGHT_G_SHARP->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_MAIN_NOTE_LIGHT_G_SHARP()));
 	hBox2->Add(chkGLOBAL_MAIN_NOTE_LIGHT_G_SHARP, 0, wxEXPAND);
-	chkGLOBAL_MAIN_NOTE_LIGHT_A = new wxCheckBox(myPanel, GLOBAL_MAIN_NOTE_LIGHT_A_ID, L"&A");
+
+	chkGLOBAL_MAIN_NOTE_LIGHT_A = new wxCheckBox(myPanel, GLOBAL_MAIN_NOTE_LIGHT_A_ID, L"&A ");
 	chkGLOBAL_MAIN_NOTE_LIGHT_A->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_MAIN_NOTE_LIGHT_A()));
 	hBox2->Add(chkGLOBAL_MAIN_NOTE_LIGHT_A, 0, wxEXPAND);
+
 	chkGLOBAL_MAIN_NOTE_LIGHT_A_SHARP = new wxCheckBox(myPanel, GLOBAL_MAIN_NOTE_LIGHT_A_SHARP_ID, L"A#");
 	chkGLOBAL_MAIN_NOTE_LIGHT_A_SHARP->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_MAIN_NOTE_LIGHT_A_SHARP()));
 	hBox2->Add(chkGLOBAL_MAIN_NOTE_LIGHT_A_SHARP, 0, wxEXPAND);
-	chkGLOBAL_MAIN_NOTE_LIGHT_B = new wxCheckBox(myPanel, GLOBAL_MAIN_NOTE_LIGHT_B_ID, L"&B");
+
+	chkGLOBAL_MAIN_NOTE_LIGHT_B = new wxCheckBox(myPanel, GLOBAL_MAIN_NOTE_LIGHT_B_ID, L"&B ");
 chkGLOBAL_MAIN_NOTE_LIGHT_B->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_MAIN_NOTE_LIGHT_B()));
 hBox2->Add(chkGLOBAL_MAIN_NOTE_LIGHT_B, 0, wxEXPAND);
 

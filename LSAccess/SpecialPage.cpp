@@ -14,8 +14,10 @@ SpecialPage::SpecialPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, c
 
 	// Controls
 	// Value is an LSSpecial:
+	wxStaticText * lblSPECIAL = new wxStaticText(myPanel, wxID_ANY, L"&Mode:");
 	wrbSPECIAL = new wxRadioBox(myPanel, SPECIAL_ID, L"Mode", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Specials), Specials, 0, wxRA_SPECIFY_ROWS);
-hBox1->Add(wrbSPECIAL, 0, wxEXPAND);
+	hBox1->Add(lblSPECIAL, 0, wxEXPAND);
+	hBox1->Add(wrbSPECIAL, 0, wxEXPAND);
 
 	myPanel->SetSizer(hBox1);
 	hBox1->SetSizeHints(this);

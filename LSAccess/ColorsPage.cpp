@@ -14,15 +14,29 @@ wxPanel * myPanel = new wxPanel(this, -1);
 	wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
 
 	// Controls
-		wrbCOLOR_MAIN = new wxRadioBox(myPanel, Color_MAIN_ID, L"Main color:", wxDefaultPosition, wxDefaultSize, WXSIZEOF( ColorNames), ColorNames, pMyLinnStrument->GetCOLOR_MAIN(split), wxRA_SPECIFY_ROWS);
-		hBox1->Add(wrbCOLOR_MAIN, 0, wxEXPAND);
-			wrbCOLOR_ACCENT = new wxRadioBox(myPanel, Color_ACCENT_ID, L"Accent color:", wxDefaultPosition, wxDefaultSize, WXSIZEOF( ColorNames), ColorNames, pMyLinnStrument->GetCOLOR_ACCENT(split), wxRA_SPECIFY_ROWS);
-	hBox1->Add(wrbCOLOR_ACCENT, 0, wxEXPAND);
+	wxStaticText * lblCOLOR_MAIN = new wxStaticText(myPanel, wxID_ANY, L"&Main color:");
+	wrbCOLOR_MAIN = new wxRadioBox(myPanel, Color_MAIN_ID, L"Main color:", wxDefaultPosition, wxDefaultSize, WXSIZEOF( ColorNames), ColorNames, pMyLinnStrument->GetCOLOR_MAIN(split), wxRA_SPECIFY_ROWS);
+	hBox1->Add(lblCOLOR_MAIN, 0, wxEXPAND);
+	hBox1->Add(wrbCOLOR_MAIN, 0, wxEXPAND);
+			
+		wxStaticText * lblCOLOR_ACCENT = new wxStaticText(myPanel, wxID_ANY, L"&Accent color:");
+		wrbCOLOR_ACCENT = new wxRadioBox(myPanel, Color_ACCENT_ID, L"Accent color:", wxDefaultPosition, wxDefaultSize, WXSIZEOF( ColorNames), ColorNames, pMyLinnStrument->GetCOLOR_ACCENT(split), wxRA_SPECIFY_ROWS);
+		hBox1->Add(lblCOLOR_ACCENT, 0, wxEXPAND);
+		hBox1->Add(wrbCOLOR_ACCENT, 0, wxEXPAND);
+		
+		wxStaticText * lblCOLOR_PLAYED = new wxStaticText(myPanel, wxID_ANY, L"&Played color:");
 		wrbCOLOR_PLAYED = new wxRadioBox(myPanel, Color_PLAYED_ID, L"Played color:", wxDefaultPosition, wxDefaultSize, WXSIZEOF( ColorNames), ColorNames, pMyLinnStrument->GetCOLOR_PLAYED(split), wxRA_SPECIFY_ROWS);
+		hBox1->Add(lblCOLOR_PLAYED, 0, wxEXPAND);
 		hBox1->Add(wrbCOLOR_PLAYED, 0, wxEXPAND);
+		
+		wxStaticText * lblCOLOR_LOWROW = new wxStaticText(myPanel, wxID_ANY, L"&Low-row color:");
 		wrbCOLOR_LOWROW = new wxRadioBox(myPanel, Color_LOWROW_ID, L"&Low row color:", wxDefaultPosition, wxDefaultSize, WXSIZEOF( ColorNames), ColorNames, pMyLinnStrument->GetCOLOR_LOWROW(split), wxRA_SPECIFY_ROWS);
+		hBox1->Add(lblCOLOR_LOWROW, 0, wxEXPAND);
 		hBox1->Add(wrbCOLOR_LOWROW, 0, wxEXPAND);
+
+		wxStaticText * lblAnimation = new wxStaticText(myPanel, wxID_ANY, L"&Animation:");
 		wrbAnimation = new wxRadioBox(myPanel, ANIMATION_ID, L"&Animation:", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Animations), Animations, pMyLinnStrument->GetTOUCH_ANIMATION(split), wxRA_SPECIFY_ROWS);
+		hBox1->Add(lblAnimation, 0, wxEXPAND);
 		hBox1->Add(wrbAnimation, 0, wxEXPAND);
 
 		myPanel->SetSizer(hBox1);

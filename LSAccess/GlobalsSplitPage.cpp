@@ -15,9 +15,14 @@ pMyParent(parent)
 	chkGLOBAL_SPLIT_ACTIVE = new wxCheckBox(myPanel, GLOBAL_SPLIT_ACTIVE_ID, L"&Split");
 	chkGLOBAL_SPLIT_ACTIVE->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_SPLIT_ACTIVE()));
 	hBox1->Add(chkGLOBAL_SPLIT_ACTIVE, 0, wxEXPAND);
+
 	// Value is constrained by MIN_SPLIT_COLUMN and MAX_SPLIT_COLUMN  
-wscGLOBAL_SPLIT_COLUMN = new wxSpinCtrl(myPanel, GLOBAL_SPLIT_COLUMN_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_SPLIT_COLUMN, MAX_SPLIT_COLUMN, pMyLinnStrument->GetGLOBAL_SPLIT_COLUMN(), "Split &column");
+	wxStaticText * lblGLOBAL_SPLIT_COLUMN = new wxStaticText(myPanel, wxID_ANY, L"&Split column:");
+	wscGLOBAL_SPLIT_COLUMN = new wxSpinCtrl(myPanel, GLOBAL_SPLIT_COLUMN_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_SPLIT_COLUMN, MAX_SPLIT_COLUMN, pMyLinnStrument->GetGLOBAL_SPLIT_COLUMN(), "Split &column");
+	hBox1->Add(lblGLOBAL_SPLIT_COLUMN, 0, wxEXPAND);
 	hBox1->Add(wscGLOBAL_SPLIT_COLUMN, 0, wxEXPAND);
+
+	// toggle
 	chkDEVICE_LEFT_HANDED = new wxCheckBox(myPanel, DEVICE_LEFT_HANDED_ID, L"&Left-handed");
 	chkDEVICE_LEFT_HANDED->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetDEVICE_LEFT_HANDED()));
 	hBox1->Add(chkDEVICE_LEFT_HANDED, 0, wxEXPAND);

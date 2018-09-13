@@ -15,41 +15,51 @@ GlobalsAccentNoteLightsPage::GlobalsAccentNoteLightsPage(wxBookCtrlBase *parent,
 
 	// controls
 // Toggles:
-	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_C = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_C_ID, L"&C");
+	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_C = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_C_ID, L"&C ");
 	chkGLOBAL_ACCENT_NOTE_LIGHT_C->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_ACCENT_NOTE_LIGHT_C()));
 	hBox1->Add(chkGLOBAL_ACCENT_NOTE_LIGHT_C, 0, wxEXPAND);
+	
 	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_C_SHARP = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_C_SHARP_ID, L"C#");
 	chkGLOBAL_ACCENT_NOTE_LIGHT_C_SHARP->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_ACCENT_NOTE_LIGHT_C_SHARP()));
 	hBox1->Add(chkGLOBAL_ACCENT_NOTE_LIGHT_C_SHARP, 0, wxEXPAND);
-	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_D = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_D_ID, L"&D");
+
+	wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_D = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_D_ID, L"&D ");
 		chkGLOBAL_ACCENT_NOTE_LIGHT_D->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_ACCENT_NOTE_LIGHT_D()));
 		hBox1->Add(chkGLOBAL_ACCENT_NOTE_LIGHT_D, 0, wxEXPAND);
+
 		wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_D_SHARP = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_D_SHARP_ID, L"D#");
 			chkGLOBAL_ACCENT_NOTE_LIGHT_D_SHARP->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_ACCENT_NOTE_LIGHT_D_SHARP()));
 			hBox1->Add(chkGLOBAL_ACCENT_NOTE_LIGHT_D_SHARP, 0, wxEXPAND);
-			wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_E = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_E_ID, L"&E");
+
+			wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_E = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_E_ID, L"&E ");
 			chkGLOBAL_ACCENT_NOTE_LIGHT_E->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_ACCENT_NOTE_LIGHT_E()));
 			hBox1->Add(chkGLOBAL_ACCENT_NOTE_LIGHT_E, 0, wxEXPAND);
-			wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_F = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_F_ID, L"&F");
+
+			wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_F = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_F_ID, L"&F ");
 				chkGLOBAL_ACCENT_NOTE_LIGHT_F->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_ACCENT_NOTE_LIGHT_F()));
 				hBox1->Add(chkGLOBAL_ACCENT_NOTE_LIGHT_F, 0, wxEXPAND);
-				
-				wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_F_SHARP = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_F_SHARP_ID, L"F#");
+
+								wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_F_SHARP = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_F_SHARP_ID, L"F#");
 				chkGLOBAL_ACCENT_NOTE_LIGHT_F_SHARP->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_ACCENT_NOTE_LIGHT_F_SHARP()));
 				hBox2->Add(chkGLOBAL_ACCENT_NOTE_LIGHT_F_SHARP, 0, wxEXPAND);
-				wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_G = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_G_ID, L"&G");
+
+				wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_G = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_G_ID, L"&G ");
 				chkGLOBAL_ACCENT_NOTE_LIGHT_G->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_ACCENT_NOTE_LIGHT_G()));
 				hBox2->Add(chkGLOBAL_ACCENT_NOTE_LIGHT_G, 0, wxEXPAND);
+
 				wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_G_SHARP = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_G_SHARP_ID, L"G#");
 					chkGLOBAL_ACCENT_NOTE_LIGHT_G_SHARP->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_ACCENT_NOTE_LIGHT_G_SHARP()));
 					hBox2->Add(chkGLOBAL_ACCENT_NOTE_LIGHT_G_SHARP, 0, wxEXPAND);
-					wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_A = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_A_ID, L"&A");
+
+					wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_A = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_A_ID, L"&A ");
 					chkGLOBAL_ACCENT_NOTE_LIGHT_A->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_ACCENT_NOTE_LIGHT_A()));
 					hBox2->Add(chkGLOBAL_ACCENT_NOTE_LIGHT_A, 0, wxEXPAND);
+
 					wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_A_SHARP = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_A_SHARP_ID, L"A#");
 					chkGLOBAL_ACCENT_NOTE_LIGHT_A_SHARP->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_ACCENT_NOTE_LIGHT_A_SHARP()));
 					hBox2->Add(chkGLOBAL_ACCENT_NOTE_LIGHT_A_SHARP, 0, wxEXPAND);
-					wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_B = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_B_ID, L"&B");
+
+					wxCheckBox * chkGLOBAL_ACCENT_NOTE_LIGHT_B = new wxCheckBox(myPanel, GLOBAL_ACCENT_NOTE_LIGHT_B_ID, L"&B ");
 					chkGLOBAL_ACCENT_NOTE_LIGHT_B->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_ACCENT_NOTE_LIGHT_B()));
 					hBox2->Add(chkGLOBAL_ACCENT_NOTE_LIGHT_B, 0, wxEXPAND);
 

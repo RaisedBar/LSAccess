@@ -14,18 +14,27 @@ PresetsVolumesPage::PresetsVolumesPage(wxBookCtrlBase *parent, LinnStrument * pL
 
 	// Controls
 		// Value is an LSPresetNumber
-	wrbGLOBAL_SETTINGS_PRESET_LOAD = new wxRadioBox(myPanel, GLOBAL_SETTINGS_PRESET_LOAD_ID, L"&LinnStrument Preset", wxDefaultPosition, wxDefaultSize, WXSIZEOF(PresetNumbers), PresetNumbers, pMyLinnStrument->GetLSPresetNumber(), wxRA_SPECIFY_ROWS);
-	hBox1->Add(wrbGLOBAL_SETTINGS_PRESET_LOAD, 0, wxEXPAND);
+	wxStaticText * lblGLOBAL_SETTINGS_PRESET_LOAD = new wxStaticText(myPanel, wxID_ANY, L"&LinnStrument preset:");
+		wrbGLOBAL_SETTINGS_PRESET_LOAD = new wxRadioBox(myPanel, GLOBAL_SETTINGS_PRESET_LOAD_ID, L"&LinnStrument Preset", wxDefaultPosition, wxDefaultSize, WXSIZEOF(PresetNumbers), PresetNumbers, pMyLinnStrument->GetLSPresetNumber(), wxRA_SPECIFY_ROWS);
+		hBox1->Add(lblGLOBAL_SETTINGS_PRESET_LOAD, 0, wxEXPAND);
+		hBox1->Add(wrbGLOBAL_SETTINGS_PRESET_LOAD, 0, wxEXPAND);
+	
 	// Values constrained by MIN_CC and MAX_CC
-wscProgramNumber = new wxSpinCtrl(myPanel, ProgramNumber_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetMIDIProgram(split), "&Program");
-hBox1->Add(wscProgramNumber, 0, wxEXPAND);
+		wxStaticText * lblProgramNumber = new wxStaticText(myPanel, wxID_ANY, L"&Program number:");
+		wscProgramNumber = new wxSpinCtrl(myPanel, ProgramNumber_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetMIDIProgram(split), "&Program");
+		hBox1->Add(lblProgramNumber, 0, wxEXPAND);
+		hBox1->Add(wscProgramNumber, 0, wxEXPAND);
+
+wxStaticText * lblVolume = new wxStaticText(myPanel, wxID_ANY, L"&Volume:");
 wscVolume = new wxSpinCtrl(myPanel, Volume_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetVolume(split), "&Volume");
-	hBox1->Add(wscVolume, 0, wxEXPAND);
+hBox1->Add(lblVolume, 0, wxEXPAND);
+hBox1->Add(wscVolume, 0, wxEXPAND);
 
 	myPanel->SetSizer(hBox1);
 	hBox1->SetSizeHints(this);
 	myPanel->Fit();
 	hBox1->Fit(myPanel);
+	wrbGLOBAL_SETTINGS_PRESET_LOAD->SetFocus();
 }
 
 

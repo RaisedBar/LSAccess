@@ -17,7 +17,6 @@ PresetsVolumesFrame::PresetsVolumesFrame(const wxString& title, LinnStrument * p
 	wxBoxSizer * vBox1 = new wxBoxSizer(wxVERTICAL);
 	pPanel->SetSizer(vBox1);
 	pPanel->Layout();
-
 	pNotebook = new wxNotebook(pPanel, ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, 0);
 	pLeftPresetsVolumesPage = new PresetsVolumesPage(pNotebook, pLinnStrument, LSSplitType::LEFT);
 	pRightPresetsVolumesPage = new PresetsVolumesPage(pNotebook, pLinnStrument, LSSplitType::RIGHT);

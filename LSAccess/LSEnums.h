@@ -451,12 +451,12 @@ enum class LSPresetNumber
 
 const wxString PresetNumbers[] =
 {
-	L"0",
-	L"1",
+		L"1",
 	L"2",
 	L"3",
 	L"4",
-	L"5"
+	L"5",
+	L"6"
 	};
 
 enum class LSCustomRowOffset

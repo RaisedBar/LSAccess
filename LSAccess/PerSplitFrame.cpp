@@ -30,6 +30,7 @@ PerSplitFrame::PerSplitFrame(const wxString& title, LinnStrument * pLinnStrument
 	pNotebook->AddPage(pAxesPage, L"Y-Z Axes", false);
 	pNotebook->AddPage(pColorsPage, L"Colors and Animations", false);
 	pNotebook->AddPage(pLowRowPage, L"Low Row", false);
+	pNotebook->AddPage(pFadersPage, L"Faders", false);
 	pNotebook->AddPage(pSpecialPage, L"Special", false);
 
 	vBox1->Insert(0, pNotebook, wxSizerFlags(6).Expand().Border());

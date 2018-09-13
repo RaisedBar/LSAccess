@@ -13,18 +13,28 @@ pMyParent(parent)
 
 	// Controls
 				// Value is an LSVelocityRange
+	wxStaticText * lblGLOBAL_VELOCITY_SENSITIVITY = new wxStaticText(myPanel, wxID_ANY, L"&Velocity sensitivity:");
 	wrbGLOBAL_VELOCITY_SENSITIVITY = new wxRadioBox(myPanel, GLOBAL_VELOCITY_SENSITIVITY_ID, L"&Velocity sensitivity", wxDefaultPosition, wxDefaultSize, WXSIZEOF(VelocityRanges), VelocityRanges, pMyLinnStrument->GetGLOBAL_VELOCITY_SENSITIVITY(), wxRA_SPECIFY_ROWS);
 	hBox1->Add(wrbGLOBAL_VELOCITY_SENSITIVITY, 0, wxEXPAND);
+
 	// Values are constrained by MIN_CC and MAX_CC
+	wxStaticText * lblGLOBAL_MIN_VELOCITY_VALUE = new wxStaticText(myPanel, wxID_ANY, L"Min. velocity:");
 	wscGLOBAL_MIN_VELOCITY_VALUE = new wxSpinCtrl(myPanel, GLOBAL_MIN_VELOCITY_VALUE_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetGLOBAL_MIN_VELOCITY_VALUE(), L"Min. velocity");
 	hBox1->Add(wscGLOBAL_MIN_VELOCITY_VALUE, 0, wxEXPAND);
+
+	wxStaticText * lblGLOBAL_MAX_VELOCITY_VALUE = new wxStaticText(myPanel, wxID_ANY, L"Max. velocity:");
 	wscGLOBAL_MAX_VELOCITY_VALUE = new wxSpinCtrl(myPanel, GLOBAL_MAX_VELOCITY_VALUE_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetGLOBAL_MAX_VELOCITY_VALUE(), L"Max. velocity");
 	hBox1->Add(wscGLOBAL_MAX_VELOCITY_VALUE, 0, wxEXPAND);
+
+	wxStaticText * lblGLOBAL_FIXED_VELOCITY_VALUE = new wxStaticText(myPanel, wxID_ANY, L"&Fixed velocity:");
 	wscGLOBAL_FIXED_VELOCITY_VALUE = new wxSpinCtrl(myPanel, GLOBAL_FIXED_VELOCITY_VALUE_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetGLOBAL_FIXED_VELOCITY_VALUE(), L"&Tempo");
 	hBox1->Add(wscGLOBAL_FIXED_VELOCITY_VALUE, 0, wxEXPAND);
+
 		// Value is an LSPressureRange
+	wxStaticText * lblGLOBAL_PRESSURE_SENSITIVITY = new wxStaticText(myPanel, wxID_ANY, L"&Pressure sensitivity:");
 	wrbGLOBAL_PRESSURE_SENSITIVITY = new wxRadioBox(myPanel, GLOBAL_PRESSURE_SENSITIVITY_ID, L"&Pressure sensitivity", wxDefaultPosition, wxDefaultSize, WXSIZEOF(PressureRanges), PressureRanges, pMyLinnStrument->GetGLOBAL_PRESSURE_SENSITIVITY(), wxRA_SPECIFY_ROWS);
 	hBox1->Add(wrbGLOBAL_PRESSURE_SENSITIVITY, 0, wxEXPAND);
+
 	// Toggle
 	chkGLOBAL_PRESSURE_AFTERTOUCH = new wxCheckBox(myPanel, GLOBAL_PRESSURE_AFTERTOUCH_ID, L"Pressure &aftertouch");
 	chkGLOBAL_PRESSURE_AFTERTOUCH->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_PRESSURE_AFTERTOUCH()));

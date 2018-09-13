@@ -16,13 +16,21 @@ wxBoxSizer * hBox2 = new wxBoxSizer(wxHORIZONTAL);
 
 // Controls
 // Value is an LS_MIDIMode
-			wrbSPLIT_MODE = new wxRadioBox(myPanel, SPLIT_MODE_ID, L"&Split mode", wxDefaultPosition, wxDefaultSize, WXSIZEOF(SplitModes), SplitModes, pMyLinnStrument->GetSPLIT_MODE(split), wxRA_SPECIFY_ROWS);
+wxStaticText * lblSPLIT_MODE = new wxStaticText(myPanel, wxID_ANY, L"&Split mode:");
+wrbSPLIT_MODE = new wxRadioBox(myPanel, SPLIT_MODE_ID, L"&Split mode", wxDefaultPosition, wxDefaultSize, WXSIZEOF(SplitModes), SplitModes, pMyLinnStrument->GetSPLIT_MODE(split), wxRA_SPECIFY_ROWS);
+vBox1->Add(lblSPLIT_MODE, 0, wxEXPAND);
 vBox1->Add(wrbSPLIT_MODE, 0, wxEXPAND);
+
 // Value is a MIDI channel number:
+wxStaticText * lblMIDI_MAIN_CHANNEL = new wxStaticText(myPanel, wxID_ANY, L"&Main channel:");
 wscMIDI_MAIN_CHANNEL = new wxSpinCtrl(myPanel, MIDI_MAIN_CHANNEL_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_MIDI_CHANNEL, MAX_MIDI_CHANNEL, pMyLinnStrument->GetMIDI_MAIN_CHANNEL(split), "Main MIDI channel");
+vBox1->Add(lblMIDI_MAIN_CHANNEL, 0, wxEXPAND);
 vBox1->Add(wscMIDI_MAIN_CHANNEL, 0, wxEXPAND);
+
 // Value is an LSChannelOrder
+wxStaticText * lblCHANNEL_PER_ROW_ORDER = new wxStaticText(myPanel, wxID_ANY, L"Channel per row &order:");
 wrbCHANNEL_PER_ROW_ORDER = new wxRadioBox(myPanel, CHANNEL_PER_ROW_ORDER_ID, L"Channel &Order", wxDefaultPosition, wxDefaultSize, WXSIZEOF(ChannelOrders), ChannelOrders, pMyLinnStrument->GetCHANNEL_PER_ROW_ORDER(split), wxRA_SPECIFY_ROWS);
+vBox1->Add(lblCHANNEL_PER_ROW_ORDER, 0, wxEXPAND);
 vBox1->Add(wrbCHANNEL_PER_ROW_ORDER, 0, wxEXPAND);
 
 chkCHANNEL_PER_NOTE_1 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_1_ID, L"Channel per note &1");
@@ -76,7 +84,9 @@ chkCHANNEL_PER_NOTE_16->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetCHAN
 hBox2->Add(chkCHANNEL_PER_NOTE_16, 0, wxEXPAND);
 
 // Value is a MIDI channel number:
+wxStaticText * lblMIDI_PER_ROW_LOWEST_CHANNEL = new wxStaticText(myPanel, wxID_ANY, L"MIDI per row &lowest channel:");
 wscMIDI_PER_ROW_LOWEST_CHANNEL = new wxSpinCtrl(myPanel, MIDI_PER_ROW_LOWEST_CHANNEL_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_MIDI_CHANNEL, MAX_MIDI_CHANNEL, pMyLinnStrument->GetMIDI_PER_ROW_LOWEST_CHANNEL(split), "MIDI per row lowest channel");
+vBox1->Add(lblMIDI_PER_ROW_LOWEST_CHANNEL, 0, wxEXPAND);
 vBox1->Add(wscMIDI_PER_ROW_LOWEST_CHANNEL, 0, wxEXPAND);
 
 vBox1->Add(hBox1, 0, wxEXPAND);
@@ -86,6 +96,7 @@ myPanel->SetSizer(vBox1);
 vBox1->SetSizeHints(this);
 myPanel->Fit();
 vBox1->Fit(myPanel);
+wrbSPLIT_MODE->SetFocus();
 }
 
 
