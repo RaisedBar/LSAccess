@@ -441,10 +441,8 @@ wxDECLARE_EVENT(NoteEvent, wxCommandEvent);
 class LinnStrument
 {
 public:
-	LinnStrument()
-	{};
-	
-	LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool blnSpeakMessages, bool blnSpeakNotes);
+	LinnStrument();
+		LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool blnSpeakMessages, bool blnSpeakNotes);
 	~LinnStrument();
 
 	wxWindow * GetParent();

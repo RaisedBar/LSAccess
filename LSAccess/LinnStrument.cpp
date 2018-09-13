@@ -26,6 +26,47 @@ void LSCallback(double deltatime, std::vector< unsigned char > *message, void *p
 	pMyLinnStrument->ProcessMessage(*message);
 }
 
+	LinnStrument::LinnStrument():
+		m_Parent(NULL),
+		m_InputID(-1),
+		m_OutputID(-1),
+		m_SpeakMessages(false),
+		m_SpeakNotes(false),
+		m_ReceivedNRPNValueMSB(false),
+		m_ReceivedNRPNValueLSB(false),
+		m_Waiting(false),
+		m_Sent(0),
+		m_Received(0),
+		m_CanDetectSerialPorts(true)
+	{
+		// Initialise note tracking
+		for (unsigned int i = 0; i < MAX_BYTE_VALUES; i++)
+		{
+			m_NotesHeld[i] = false;
+		}
+
+		// Initialise COM
+		HRESULT hr = CoInitialize(NULL);
+
+		// Declare the smart pointer for speech output.
+		// Use its member function CoCreateInstance to
+	// create the COM object and obtain the ISpVoice pointer.
+		hr = pSpeech.CoCreateInstance(CLSID_SpVoice);
+		if (FAILED(hr))
+		{			}
+
+		//Initialize COM security (Required by CEnumerateSerial::UsingWMI)
+		hr = CoInitializeSecurity(nullptr, -1, nullptr, nullptr, RPC_C_AUTHN_LEVEL_DEFAULT, RPC_C_IMP_LEVEL_IMPERSONATE, nullptr, EOAC_NONE, nullptr);
+		if (FAILED(hr))
+		{
+			m_CanDetectSerialPorts = false;
+		}
+
+		m_MIDIIn = new RtMidiIn();
+		m_MIDIOut = new RtMidiOut();
+			   }
+
+
 LinnStrument::LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool blnSpeakMessages, bool blnSpeakNotes) :
 	m_Parent(parent),
 	m_InputID(nInputID),
@@ -123,9 +164,9 @@ LinnStrument::LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool 
 	
 LinnStrument::~LinnStrument()
 {
-			if (m_MIDIIn->isPortOpen())
+		if (m_MIDIIn->isPortOpen())
 		{
-				m_MIDIIn->cancelCallback();
+			m_MIDIIn->cancelCallback();
 			m_MIDIIn->closePort();
 		}
 
@@ -133,12 +174,12 @@ LinnStrument::~LinnStrument()
 		{
 			m_MIDIOut->closePort();
 		}
-		
+
 		// Dereference the callback and tidy up
 		m_MIDIIn->setCallback(NULL);
 		delete m_MIDIIn;
 		delete m_MIDIOut;
-		
+	
 		// Tidy up SAPI
 // 		pVoice->Release();
 //pVoice = NULL;

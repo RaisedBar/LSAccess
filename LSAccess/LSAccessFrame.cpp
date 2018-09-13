@@ -79,7 +79,12 @@ LSAccessFrame::LSAccessFrame(const wxString& title)
 	// We now have enough information to create the LinnStrument
 	try
 	{
-		m_LinnStrument = LinnStrument::LinnStrument(this, nInputID, nOutputID, blnSpeakMessages, blnSpeakNotes);
+		// m_LinnStrument = LinnStrument::LinnStrument(this, nInputID, nOutputID, blnSpeakMessages, blnSpeakNotes);
+		m_LinnStrument.SetParent(this);
+		m_LinnStrument.SetMIDIInID(nInputID);
+		m_LinnStrument.SetMIDIOutID(nOutputID);
+		m_LinnStrument.SetSpeakMessages(blnSpeakMessages);
+		m_LinnStrument.SetSpeakNotes(blnSpeakNotes);
 	}
 catch (RtMidiError &error)
 {
