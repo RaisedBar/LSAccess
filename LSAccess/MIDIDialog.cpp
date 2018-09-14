@@ -259,8 +259,7 @@ vBox3->AddSpacer( 25);
 myPanel->SetSizer(vBox3);
 myPanel->Fit();
 	vBox3->Fit( myPanel);
-	this->Maximize();
-	Centre();
+		Centre();
 }
 
 

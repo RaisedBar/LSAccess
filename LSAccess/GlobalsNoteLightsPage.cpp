@@ -15,7 +15,7 @@ GlobalsNoteLightsPage::GlobalsNoteLightsPage(wxBookCtrlBase *parent, LinnStrumen
 
 		// controls
 // Value is constrained by MIN_LIGHTS_PRESET and MAX_LIGHTS_PRESET 
-	wxStaticText * lblGLOBAL_ACTIVE_LIGHTS_PRESET = new wxStaticText(myPanel, wxID_ANY, L"&Preset:");
+	wxStaticText * lblGLOBAL_ACTIVE_LIGHTS_PRESET = new wxStaticText(myPanel, wxID_ANY, L"Note lights &preset:");
 	wscGLOBAL_ACTIVE_LIGHTS_PRESET = new wxSpinCtrl(myPanel, GLOBAL_ACTIVE_LIGHTS_PRESET_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_LIGHTS_PRESET, MAX_LIGHTS_PRESET, pMyLinnStrument->GetGLOBAL_ACTIVE_LIGHTS_PRESET(), L"Preset");
 	vBox1->Add(lblGLOBAL_ACTIVE_LIGHTS_PRESET, 0, wxEXPAND);
 	vBox1->Add(wscGLOBAL_ACTIVE_LIGHTS_PRESET, 0, wxEXPAND);
@@ -71,11 +71,7 @@ hBox2->Add(chkGLOBAL_MAIN_NOTE_LIGHT_B, 0, wxEXPAND);
 
 vBox1->Add(hBox1, 0, wxEXPAND);
 vBox1->Add(hBox2, 0, wxEXPAND);
-
-	myPanel->SetSizer(vBox1);
-	vBox1->SetSizeHints(this);
-	myPanel->Fit();
-	vBox1->Fit(myPanel);
+	myPanel->SetSizerAndFit(vBox1);
 }
 
 

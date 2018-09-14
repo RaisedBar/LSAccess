@@ -29,13 +29,8 @@ wxStaticText * lblTRANSPOSE_LIGHTS = new wxStaticText(myPanel, wxID_ANY, L"Trans
 wrbTRANSPOSE_LIGHTS = new wxRadioBox(myPanel, TRANSPOSE_LIGHTS_ID, L"Transpose &lights", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Pitches), Pitches, pMyLinnStrument->GetTransposeLights(split), wxRA_SPECIFY_ROWS);
 hBox1->Add(lblTRANSPOSE_LIGHTS, 0, wxEXPAND);
 hBox1->Add(wrbTRANSPOSE_LIGHTS, 0, wxEXPAND);
-
-	myPanel->SetSizer(hBox1);
-	hBox1->SetSizeHints(this);
-	myPanel->Fit();
-	hBox1->Fit(myPanel);
-	wrbOctave->SetFocus();
-}
+	myPanel->SetSizerAndFit(hBox1);
+	}
 
 
 // event handlers

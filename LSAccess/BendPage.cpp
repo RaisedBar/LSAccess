@@ -14,7 +14,7 @@ wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
 
 // Controls
 // toggle
-chkBEND_TOGGLE = new wxCheckBox(myPanel, BEND_TOGGLE_ID, L"Bend pitch /&X");
+chkBEND_TOGGLE = new wxCheckBox(myPanel, BEND_TOGGLE_ID, L"&Send &X-axis pitch bend messages");
 chkBEND_TOGGLE->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetBEND_TOGGLE(split)));
 hBox1->Add(chkBEND_TOGGLE, 0, wxEXPAND);
 
@@ -39,12 +39,7 @@ hBox1->Add(wrbBendQuantize, 0, wxEXPAND);
 chkRESET_PITCH_ON_RELEASE = new wxCheckBox(myPanel, RESET_PITCH_ON_RELEASE_ID, L"&&Reset pitch &on release");
 chkRESET_PITCH_ON_RELEASE->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetRESET_PITCH_ON_RELEASE(split)));
 hBox1->Add(chkRESET_PITCH_ON_RELEASE, 0, wxEXPAND);
-
-myPanel->SetSizer(hBox1);
-hBox1->SetSizeHints(this);
-myPanel->Fit();
-hBox1->Fit(myPanel);
-chkBEND_TOGGLE->SetFocus();
+myPanel->SetSizerAndFit(hBox1);
 }
 
 

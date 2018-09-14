@@ -65,12 +65,8 @@ GlobalsAccentNoteLightsPage::GlobalsAccentNoteLightsPage(wxBookCtrlBase *parent,
 
 					vBox1->Add(hBox1, 0, wxEXPAND);
 					vBox1->Add(hBox2, 0, wxEXPAND);
-
-	myPanel->SetSizer(vBox1);
-	vBox1->SetSizeHints(this);
-	myPanel->Fit();
-	vBox1->Fit(myPanel);
-}
+						myPanel->SetSizerAndFit(vBox1);
+	}
 
 
 // Event handlers

@@ -13,8 +13,8 @@ pMyParent(parent)
 	
 	// Controls
 		// Value is an LSRowOffsetType
-	wxStaticText * lblGLOBAL_ROW_OFFSET = new wxStaticText(myPanel, wxID_ANY, L"&Row offset:");
-	wrbGLOBAL_ROW_OFFSET = new wxRadioBox(myPanel, GLOBAL_ROW_OFFSET_ID, L"Row offset &type", wxDefaultPosition, wxDefaultSize, WXSIZEOF(RowOffsetTypes), RowOffsetTypes, LinnStrument::LSRowOffsetTypeToInt( pMyLinnStrument->GetGLOBAL_ROW_OFFSET()), wxRA_SPECIFY_ROWS);
+	wxStaticText * lblGLOBAL_ROW_OFFSET = new wxStaticText(myPanel, wxID_ANY, L"&Row offset type:");
+	wrbGLOBAL_ROW_OFFSET = new wxRadioBox(myPanel, GLOBAL_ROW_OFFSET_ID, L"&Row offset type", wxDefaultPosition, wxDefaultSize, WXSIZEOF(RowOffsetTypes), RowOffsetTypes, LinnStrument::LSRowOffsetTypeToInt( pMyLinnStrument->GetGLOBAL_ROW_OFFSET()), wxRA_SPECIFY_ROWS);
 	hBox1->Add(lblGLOBAL_ROW_OFFSET, 0, wxEXPAND);
 	hBox1->Add(wrbGLOBAL_ROW_OFFSET, 0, wxEXPAND);
 
@@ -65,11 +65,8 @@ pMyParent(parent)
 	hBox1->Add(lblGLOBAL_GUITAR_NOTE_TUNING_ROW8, 0, wxEXPAND);
 	hBox1->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW8, 0, wxEXPAND);
 
-	myPanel->SetSizer(hBox1);
-	hBox1->SetSizeHints(this);
-	myPanel->Fit();
-	hBox1->Fit(myPanel);
-}
+	myPanel->SetSizerAndFit(hBox1);
+	}
 
 
 // event handlers

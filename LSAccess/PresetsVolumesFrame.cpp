@@ -14,9 +14,7 @@ PresetsVolumesFrame::PresetsVolumesFrame(const wxString& title, LinnStrument * p
 {
 		// Set up the multi-tab notebook
 	wxPanel * pPanel = new wxPanel(this);
-	wxBoxSizer * vBox1 = new wxBoxSizer(wxVERTICAL);
-	pPanel->SetSizer(vBox1);
-	pPanel->Layout();
+	wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
 	pNotebook = new wxNotebook(pPanel, ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, 0);
 	pLeftPresetsVolumesPage = new PresetsVolumesPage(pNotebook, pLinnStrument, LSSplitType::LEFT);
 	pRightPresetsVolumesPage = new PresetsVolumesPage(pNotebook, pLinnStrument, LSSplitType::RIGHT);
@@ -24,9 +22,9 @@ PresetsVolumesFrame::PresetsVolumesFrame(const wxString& title, LinnStrument * p
 	pNotebook->AddPage(pLeftPresetsVolumesPage, L"Left", true);
 	pNotebook->AddPage(pRightPresetsVolumesPage, L"Right", false);
 
-	vBox1->Insert(0, pNotebook, wxSizerFlags(5).Expand().Border());
-	pPanel->SetSizerAndFit(vBox1);
-	vBox1->Show(pNotebook);
+	hBox1->Insert(0, pNotebook, wxSizerFlags(2).Expand().Border());
+	pPanel->SetSizerAndFit(hBox1);
+	hBox1->Show(pNotebook);
 }
 
 

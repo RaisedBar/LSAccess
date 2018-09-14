@@ -14,7 +14,7 @@ PerSplitFrame::PerSplitFrame(const wxString& title, LinnStrument * pLinnStrument
 {
 		// Set up the multi-tab notebook
 	wxPanel * pPanel = new wxPanel(this);
-	wxBoxSizer * vBox1 = new wxBoxSizer(wxVERTICAL);
+	wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
 
 	pNotebook = new wxNotebook(pPanel, ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, 0);
 	pMIDISplitPage = new MIDISplitPage(pNotebook, pLinnStrument, split);
@@ -32,12 +32,9 @@ PerSplitFrame::PerSplitFrame(const wxString& title, LinnStrument * pLinnStrument
 	pNotebook->AddPage(pLowRowPage, L"Low Row", false);
 	pNotebook->AddPage(pFadersPage, L"Faders", false);
 	pNotebook->AddPage(pSpecialPage, L"Special", false);
-
-	vBox1->Insert(0, pNotebook, wxSizerFlags(6).Expand().Border());
-	pPanel->SetSizer(vBox1);
-	pPanel->Layout();
-	pPanel->SetSizerAndFit(vBox1);
-	vBox1->Show(pNotebook);
+	hBox1->Insert(0, pNotebook, wxSizerFlags(7).Expand().Border());
+	pPanel->SetSizerAndFit(hBox1);
+	hBox1->Show(pNotebook);
 }
 
 

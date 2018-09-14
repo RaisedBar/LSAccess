@@ -14,16 +14,12 @@ SpecialPage::SpecialPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, c
 
 	// Controls
 	// Value is an LSSpecial:
-	wxStaticText * lblSPECIAL = new wxStaticText(myPanel, wxID_ANY, L"&Mode:");
-	wrbSPECIAL = new wxRadioBox(myPanel, SPECIAL_ID, L"Mode", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Specials), Specials, 0, wxRA_SPECIFY_ROWS);
+	wxStaticText * lblSPECIAL = new wxStaticText(myPanel, wxID_ANY, L"Special &Mode:");
+	wrbSPECIAL = new wxRadioBox(myPanel, SPECIAL_ID, L"Special &Mode", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Specials), Specials, pMyLinnStrument->GetSPECIAL(m_Split), wxRA_SPECIFY_ROWS);
 	hBox1->Add(lblSPECIAL, 0, wxEXPAND);
 	hBox1->Add(wrbSPECIAL, 0, wxEXPAND);
-
-	myPanel->SetSizer(hBox1);
-	hBox1->SetSizeHints(this);
-	myPanel->Fit();
-	hBox1->Fit(myPanel);
-}
+		myPanel->SetSizerAndFit(hBox1);
+	}
 
 
 // event handlers

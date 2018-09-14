@@ -14,20 +14,17 @@ SequencerFrame::SequencerFrame(const wxString& title, LinnStrument * pLinnStrume
 {
 		// Set up the multi-tab notebook
 	wxPanel * pPanel = new wxPanel(this);
-	wxBoxSizer * vBox1 = new wxBoxSizer(wxVERTICAL);
-	pPanel->SetSizer(vBox1);
-	pPanel->Layout();
-
-	pNotebook = new wxNotebook(pPanel, ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, 0);
+	wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
+			pNotebook = new wxNotebook(pPanel, ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, 0);
 	pTrack1Page = new SequencerPage(pNotebook, pLinnStrument, LSSplitType::LEFT);
 	pTrack2Page = new SequencerPage(pNotebook, pLinnStrument, LSSplitType::RIGHT);
 	
 	pNotebook->AddPage(pTrack1Page, L"Track 1", true);
 	pNotebook->AddPage(pTrack2Page, L"Track 2", false);
 	
-	vBox1->Insert(0, pNotebook, wxSizerFlags(5).Expand().Border());
-	pPanel->SetSizerAndFit(vBox1);
-	vBox1->Show(pNotebook);
+	hBox1->Insert(0, pNotebook, wxSizerFlags(5).Expand().Border());
+	pPanel->SetSizerAndFit(hBox1);
+	hBox1->Show(pNotebook);
 }
 
 

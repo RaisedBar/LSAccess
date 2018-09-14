@@ -29,12 +29,7 @@ wxStaticText * lblVolume = new wxStaticText(myPanel, wxID_ANY, L"&Volume:");
 wscVolume = new wxSpinCtrl(myPanel, Volume_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetVolume(split), "&Volume");
 hBox1->Add(lblVolume, 0, wxEXPAND);
 hBox1->Add(wscVolume, 0, wxEXPAND);
-
-	myPanel->SetSizer(hBox1);
-	hBox1->SetSizeHints(this);
-	myPanel->Fit();
-	hBox1->Fit(myPanel);
-	wrbGLOBAL_SETTINGS_PRESET_LOAD->SetFocus();
+	myPanel->SetSizerAndFit(hBox1);
 }
 
 

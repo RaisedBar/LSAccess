@@ -95,11 +95,8 @@ AxesPage::AxesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const L
 
 		vBox1->Add(hBoxY, 0, wxEXPAND);
 		vBox1->Add(hBoxZ, 0, wxEXPAND);
-		myPanel->SetSizer(vBox1);
-	vBox1->SetSizeHints(this);
-			vBox1->Fit(myPanel);
-			chkSEND_Y->SetFocus();
-}
+				myPanel->SetSizerAndFit(vBox1);
+			}
 
 
 // Event handlers

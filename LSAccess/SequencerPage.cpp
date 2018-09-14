@@ -33,12 +33,8 @@ SequencerPage::SequencerPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrumen
 
 		btnSEQUENCER_NEXT_PATTERN = new wxButton(myPanel, SEQUENCER_NEXT_PATTERN_ID, L"&Next");
 		hBox1->Add(btnSEQUENCER_NEXT_PATTERN, 0, wxEXPAND);
-
-	myPanel->SetSizer(hBox1);
-	hBox1->SetSizeHints(this);
-	myPanel->Fit();
-	hBox1->Fit(myPanel);
-}
+			myPanel->SetSizerAndFit(hBox1);
+	}
 
 
 // event handlers

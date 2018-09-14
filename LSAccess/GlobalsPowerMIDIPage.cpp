@@ -33,12 +33,8 @@ GlobalsPowerMIDIPage::GlobalsPowerMIDIPage(wxBookCtrlBase *parent, LinnStrument 
 	chkDEVICE_USER_FIRMWARE_MODE = new wxCheckBox(myPanel, DEVICE_USER_FIRMWARE_MODE_ID, L"User firmware mode");
 	chkDEVICE_USER_FIRMWARE_MODE->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetDEVICE_USER_FIRMWARE_MODE()));
 	hBox1->Add(chkDEVICE_USER_FIRMWARE_MODE, 0, wxEXPAND);
-
-		myPanel->SetSizer(hBox1);
-	hBox1->SetSizeHints(this);
-	myPanel->Fit();
-	hBox1->Fit(myPanel);
-}
+			myPanel->SetSizerAndFit(hBox1);
+	}
 
 
 // Event handlers

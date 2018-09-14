@@ -38,12 +38,8 @@ wxPanel * myPanel = new wxPanel(this, -1);
 		wrbAnimation = new wxRadioBox(myPanel, ANIMATION_ID, L"&Animation:", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Animations), Animations, pMyLinnStrument->GetTOUCH_ANIMATION(split), wxRA_SPECIFY_ROWS);
 		hBox1->Add(lblAnimation, 0, wxEXPAND);
 		hBox1->Add(wrbAnimation, 0, wxEXPAND);
-
-		myPanel->SetSizer(hBox1);
-	hBox1->SetSizeHints(this);
-	myPanel->Fit();
-	hBox1->Fit(myPanel);
-}
+				myPanel->SetSizerAndFit(hBox1);
+	}
 
 
 // Event handlers

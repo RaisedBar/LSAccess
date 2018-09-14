@@ -12,7 +12,7 @@ pMyParent(parent)
 	wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
 
 	// Controls
-	chkGLOBAL_SPLIT_ACTIVE = new wxCheckBox(myPanel, GLOBAL_SPLIT_ACTIVE_ID, L"&Split");
+	chkGLOBAL_SPLIT_ACTIVE = new wxCheckBox(myPanel, GLOBAL_SPLIT_ACTIVE_ID, L"&Split active");
 	chkGLOBAL_SPLIT_ACTIVE->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_SPLIT_ACTIVE()));
 	hBox1->Add(chkGLOBAL_SPLIT_ACTIVE, 0, wxEXPAND);
 
@@ -27,11 +27,8 @@ pMyParent(parent)
 	chkDEVICE_LEFT_HANDED->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetDEVICE_LEFT_HANDED()));
 	hBox1->Add(chkDEVICE_LEFT_HANDED, 0, wxEXPAND);
 
-	myPanel->SetSizer(hBox1);
-	hBox1->SetSizeHints(this);
-	myPanel->Fit();
-	hBox1->Fit(myPanel);
-}
+	myPanel->SetSizerAndFit(hBox1);
+	}
 
 
 // Event handlers

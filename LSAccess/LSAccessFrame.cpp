@@ -4,14 +4,6 @@
 #include "stdafx.h"
 #include "LSAccessFrame.h"
 
-const std::string strMIDIOptions = "/MIDIOptions";
-const std::string strInPort = "InPort";
-const std::string strOutPort = "OutPort";
-
-const std::string strSpeechOptions = "/SpeechOptions";
-const std::string strSpeakMessages = "SpeakMessages";
-const std::string strSpeakNotes = "SpeakNotes";
-
 LSAccessFrame::LSAccessFrame(const wxString& title)
 	: wxFrame(NULL, wxID_ANY, title)
 {
@@ -79,8 +71,7 @@ LSAccessFrame::LSAccessFrame(const wxString& title)
 	// We now have enough information to create the LinnStrument
 	try
 	{
-		// m_LinnStrument = LinnStrument::LinnStrument(this, nInputID, nOutputID, blnSpeakMessages, blnSpeakNotes);
-		m_LinnStrument.SetParent(this);
+				m_LinnStrument.SetParent(this);
 		m_LinnStrument.SetMIDIInID(nInputID);
 		m_LinnStrument.SetMIDIOutID(nOutputID);
 		m_LinnStrument.SetSpeakMessages(blnSpeakMessages);
@@ -126,8 +117,7 @@ OptionsMenu->AppendCheckItem( ID_SpeakMessages, "&Speak messages\tF9", "Enable s
 	// create a status bar 
 	CreateStatusBar();
 		SetStatusText("Welcome to LSAccess!");
-	this->Maximize();
-}		
+			}		
 
 
 LSAccessFrame::~LSAccessFrame()
@@ -333,25 +323,28 @@ void LSAccessFrame::OnSpeakNotes(wxCommandEvent& event)
 
 void LSAccessFrame::OnRefreshAll(wxCommandEvent& event)
 {
+	std::wstring wstrMessage = L"All editor parameters refreshed.";
+		
 	m_LinnStrument.QueryAll();
-	wxMessageBox(L"All editor parameters refreshed.", wstrAppName, wxOK | wxICON_INFORMATION, this);
-}
+	SetStatusText( wstrMessage);
+
+	if (m_LinnStrument.GetSpeakMessages())
+	{
+		m_LinnStrument.Speak(wstrMessage);
+	}
+	}
 
 void LSAccessFrame::OnAbout(wxCommandEvent& event)
 {
-	std::wstring wstrAboutText = L"Author: Tim Burgess\n" + wstrVendor;
+	std::wstring wstrAboutText = L"Author: Tim Burgess\n" + wstrVendor + L"\n\nMIT License";
 			wxMessageBox(wstrAboutText, wstrAppName, wxOK | wxICON_INFORMATION);
 }
 
 
 void LSAccessFrame::onStatusUpdate(wxCommandEvent& event)
 {
-		wxString wxstrStatus = event.GetString();
-	
-	SetStatusText(wxEmptyString);
-	SetStatusText(wxstrStatus);
-	this->Refresh();
-	}
+SetStatusText(event.GetString());
+}
 
 
 // event tables and other macros for wxWidgets
@@ -377,6 +370,6 @@ EVT_MENU(ID_RefreshAll, LSAccessFrame::OnRefreshAll)
 EVT_MENU(ID_About, LSAccessFrame::OnAbout)
 
 // Custom events
-// Update the status bar
+// Update the status bar with note information from the LinnStrument
 EVT_COMMAND(STATUS_UPDATE_ID, NoteEvent, LSAccessFrame::onStatusUpdate)
 wxEND_EVENT_TABLE()

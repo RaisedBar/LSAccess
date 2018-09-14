@@ -15,9 +15,6 @@ GlobalsFrame::GlobalsFrame(const wxString& title, LinnStrument * pLinnStrument)
 		// Set up the multi-tab notebook
 	wxPanel * pPanel = new wxPanel(this);
 	wxBoxSizer * vBox1 = new wxBoxSizer(wxVERTICAL);
-	pPanel->SetSizer(vBox1);
-	pPanel->Layout();
-
 	wxNotebook * pNotebook = new wxNotebook(pPanel, ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, 0);
 
 	GlobalsSplitPage * pGlobalsSplitPage = new GlobalsSplitPage(pNotebook, pLinnStrument);
@@ -36,8 +33,7 @@ GlobalsFrame::GlobalsFrame(const wxString& title, LinnStrument * pLinnStrument)
 	pNotebook->AddPage(pGlobalsAccentNoteLightsPage, L"Accent Note Lights", false);
 		pNotebook->AddPage(pGlobalsTuningsPage, L"Row Tuning", false);
 		pNotebook->AddPage(pGlobalsPowerMIDIPage, L"Power/MIDI", FALSE);
-	
-		vBox1->Insert(0, pNotebook, wxSizerFlags(5).Expand().Border());
+			vBox1->Insert(0, pNotebook, wxSizerFlags(5).Expand().Border());
 		pPanel->SetSizerAndFit(vBox1);
 	vBox1->Show(pNotebook);
 }

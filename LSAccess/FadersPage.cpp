@@ -54,12 +54,8 @@ pMyParent(parent)
 	hBox1->Add(lblCC_FOR_FADER8, 0, wxEXPAND);
 	hBox1->Add(wscCC_FOR_FADER8, 0, wxEXPAND);
 
-	myPanel->SetSizer(hBox1);
-	hBox1->SetSizeHints(this);
-	myPanel->Fit();
-	hBox1->Fit(myPanel);
-	wscCC_FOR_FADER1->SetFocus();
-}
+	myPanel->SetSizerAndFit(hBox1);
+	}
 
 
 // Event handlers

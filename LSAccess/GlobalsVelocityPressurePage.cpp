@@ -40,11 +40,8 @@ pMyParent(parent)
 	chkGLOBAL_PRESSURE_AFTERTOUCH->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetGLOBAL_PRESSURE_AFTERTOUCH()));
 	hBox1->Add(chkGLOBAL_PRESSURE_AFTERTOUCH, 0, wxEXPAND);
 
-	myPanel->SetSizer(hBox1);
-	hBox1->SetSizeHints(this);
-	myPanel->Fit();
-	hBox1->Fit(myPanel);
-}
+	myPanel->SetSizerAndFit(hBox1);
+	}
 
 
 // Event handlers
