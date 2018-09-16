@@ -1,4 +1,4 @@
-// SequencerFrame.h
+// OctaveTransposeDialog.h
 // Author:  T A Burgess
 // Raised Bar Ltd.
 // http://www.raisedbar.net
@@ -20,20 +20,19 @@
 #include <wx/notebook.h>
 
 #include "LSEnums.h"
-#include "SequencerPage.h"
+#include "OctaveTransposePage.h"
 
-class SequencerFrame : public wxFrame
+class OctaveTransposeDialog : public wxDialog
 {
 public:
-	SequencerFrame(const wxString& title, LinnStrument * pLinnStrument);
+	OctaveTransposeDialog(const wxString& title, LinnStrument * pLinnStrument);
 
 private:
-	void OnTabChanged(wxNotebookEvent& event);
+	void OnOK(wxCommandEvent& event);
 
+	// data
 	LinnStrument * pMyLinnStrument;
 	wxNotebook * pNotebook;
-	SequencerPage * pTrack1Page;
-	SequencerPage * pTrack2Page;
 	
 	DECLARE_EVENT_TABLE()
 };

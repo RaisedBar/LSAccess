@@ -1,15 +1,15 @@
-// SwitchesFrame.cpp
+// SwitchesDialog.cpp
 // Author:  T A Burgess
 // Raised Bar Ltd.
 // http://www.raisedbar.net
 
 
 #include "stdafx.h"
-#include "SwitchesFrame.h"
+#include "SwitchesDialog.h"
 
 
-SwitchesFrame::SwitchesFrame(const wxString& title, LinnStrument * pLinnStrument)
-	: wxFrame(NULL, wxID_ANY, title),
+SwitchesDialog::SwitchesDialog(const wxString& title, LinnStrument * pLinnStrument)
+	: wxDialog(NULL, wxID_ANY, title),
 	pMyLinnStrument(pLinnStrument)
 {
 		// Set up the multi-tab notebook
@@ -22,12 +22,25 @@ SwitchesFrame::SwitchesFrame(const wxString& title, LinnStrument * pLinnStrument
 	pNotebook->AddPage(pPanelSwitchesPage, L"Panel", true);
 	pNotebook->AddPage(pFootSwitchesPage, L"Foot", false);
 hBox1->Insert(0, pNotebook, wxSizerFlags(5).Expand().Border());
-	pPanel->SetSizerAndFit(hBox1);
+
+wxButton * btnOK = new wxButton(this, wxID_OK);
+btnOK->SetDefault();
+hBox1->Add(btnOK, 0, wxEXPAND);
+
+pPanel->SetSizerAndFit(hBox1);
 	hBox1->Show(pNotebook);
 }
 
 
-BEGIN_EVENT_TABLE(SwitchesFrame, wxFrame)
-// Notebook tabs
-// EVT_NOTEBOOK_PAGE_CHANGED(ID_NOTEBOOK, SwitchesFrame::OnTabChanged)
+// Event handlers
+
+void SwitchesDialog::OnOK(wxCommandEvent& event)
+{
+	EndModal(true);
+}
+
+
+BEGIN_EVENT_TABLE(SwitchesDialog, wxDialog)
+// Buttons
+EVT_BUTTON(wxID_OK, SwitchesDialog::OnOK)
 END_EVENT_TABLE()

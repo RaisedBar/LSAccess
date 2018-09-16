@@ -36,9 +36,6 @@
     <ClInclude Include="ColorsPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PerSplitFrame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FadersPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -54,12 +51,6 @@
     <ClInclude Include="MIDISplitPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SequencerFrame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalsFrame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GlobalsNoteLightsPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -69,9 +60,6 @@
     <ClInclude Include="GlobalsTuningsPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OctaveTransposeFrame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="OctaveTransposePage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -79,9 +67,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GlobalsArpPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PresetsVolumesFrame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PresetsVolumesPage.h">
@@ -94,9 +79,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FootSwitchesPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SwitchesFrame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GlobalsVelocityPressurePage.h">
@@ -115,6 +97,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalsDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OctaveTransposeDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PresetsVolumesDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SequencerDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SwitchesDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PerSplitDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -137,9 +137,6 @@
     <ClCompile Include="ColorsPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PerSplitFrame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FadersPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -155,12 +152,6 @@
     <ClCompile Include="MIDISplitPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GlobalsFrame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SequencerFrame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GlobalsNoteLightsPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -173,12 +164,6 @@
     <ClCompile Include="OctaveTransposePage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OctaveTransposeFrame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PresetsVolumesFrame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PresetsVolumesPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -189,9 +174,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PanelSwitchesPage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SwitchesFrame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GlobalsArpPage.cpp">
@@ -213,6 +195,24 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalsDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OctaveTransposeDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PerSplitDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PresetsVolumesDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SequencerDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SwitchesDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

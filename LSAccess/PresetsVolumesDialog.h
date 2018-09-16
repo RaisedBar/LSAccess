@@ -1,4 +1,4 @@
-// SwitchesFrame.h
+// PresetsVolumesDialog.h
 // Author:  T A Burgess
 // Raised Bar Ltd.
 // http://www.raisedbar.net
@@ -20,16 +20,21 @@
 #include <wx/notebook.h>
 
 #include "LSEnums.h"
-#include "PanelSwitchesPage.h"
-#include "FootSwitchesPage.h"
+#include "PresetsVolumesPage.h"
 
-class SwitchesFrame : public wxFrame
+class PresetsVolumesDialog : public wxDialog
 {
 public:
-	SwitchesFrame(const wxString& title, LinnStrument * pLinnStrument);
+	PresetsVolumesDialog(const wxString& title, LinnStrument * pLinnStrument);
 
 private:
-		LinnStrument * pMyLinnStrument;
-		
+	void OnOK(wxCommandEvent& event);
+
+// data
+	LinnStrument * pMyLinnStrument;
+	wxNotebook * pNotebook;
+	PresetsVolumesPage * pLeftPresetsVolumesPage;
+	PresetsVolumesPage * pRightPresetsVolumesPage;
+
 	DECLARE_EVENT_TABLE()
 };

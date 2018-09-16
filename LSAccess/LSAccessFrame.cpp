@@ -9,7 +9,7 @@ LSAccessFrame::LSAccessFrame(const wxString& title)
 {
 		// set the frame icon
 	SetIcon(wxICON(sample));
-
+	
 	// Restore any saved settings
 		wxDir myDir;
 	std::wstring wstrConfigPath(wxStandardPaths::Get().GetUserConfigDir() + L"\\" + wstrVendor + L"\\" + wstrAppName);
@@ -72,10 +72,9 @@ LSAccessFrame::LSAccessFrame(const wxString& title)
 	try
 	{
 				m_LinnStrument.SetParent(this);
-		m_LinnStrument.SetMIDIInID(nInputID);
-		m_LinnStrument.SetMIDIOutID(nOutputID);
 		m_LinnStrument.SetSpeakMessages(blnSpeakMessages);
 		m_LinnStrument.SetSpeakNotes(blnSpeakNotes);
+		m_LinnStrument.InitMIDI(nInputID, nOutputID);
 	}
 catch (RtMidiError &error)
 {
@@ -261,49 +260,49 @@ void LSAccessFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 
 void LSAccessFrame::OnLeftSplitSettings(wxCommandEvent& event)
 {
-	PerSplitFrame * pLeftSplit = new PerSplitFrame( L"Left Split", &m_LinnStrument, LSSplitType::LEFT);
-	pLeftSplit->Show(true);
+	PerSplitDialog * pLeftSplit = new PerSplitDialog( L"Left Split", &m_LinnStrument, LSSplitType::LEFT);
+	pLeftSplit->ShowModal();
 	}
 
 void LSAccessFrame::OnRightSplitSettings(wxCommandEvent& event)
 {
-	PerSplitFrame * pRightSplit = new PerSplitFrame(L"Right Split", &m_LinnStrument, LSSplitType::RIGHT);
-	pRightSplit->Show(true);
+	PerSplitDialog * pRightSplit = new PerSplitDialog(L"Right Split", &m_LinnStrument, LSSplitType::RIGHT);
+	pRightSplit->ShowModal();
 }
 
 
 void LSAccessFrame::OnOctaveTransposeSettings(wxCommandEvent& event)
 {
-	OctaveTransposeFrame * pOctaveTransposeFrame = new OctaveTransposeFrame(L"Octave/Transpose", &m_LinnStrument);
-	pOctaveTransposeFrame->Show(true);
+	OctaveTransposeDialog * pOctaveTransposeDialog = new OctaveTransposeDialog(L"Octave/Transpose", &m_LinnStrument);
+	pOctaveTransposeDialog->ShowModal();
 	}
 
 
 void LSAccessFrame::OnPresetsVolumesSettings(wxCommandEvent& event)
 {
-	PresetsVolumesFrame * pPresetsVolumesFrame = new PresetsVolumesFrame(L"Presets/Volumes", &m_LinnStrument);
-	pPresetsVolumesFrame->Show(true);
+	PresetsVolumesDialog * pPresetsVolumesDialog = new PresetsVolumesDialog(L"Presets/Volumes", &m_LinnStrument);
+	pPresetsVolumesDialog->ShowModal();
 }
 
 
 void LSAccessFrame::OnSwitchSettings(wxCommandEvent& event)
 {
-	SwitchesFrame * pSwitchesFrame = new SwitchesFrame(L"Switches", &m_LinnStrument);
-	pSwitchesFrame->Show(true);
+	SwitchesDialog * pSwitchesDialog = new SwitchesDialog(L"Switches", &m_LinnStrument);
+	pSwitchesDialog->ShowModal();
 }
 
 
 void LSAccessFrame::OnGlobalSettings(wxCommandEvent& event)
 {
-	GlobalsFrame * pGlobalsFrame = new GlobalsFrame(L"Globals", &m_LinnStrument);
-	pGlobalsFrame->Show(true);
+	GlobalsDialog * pGlobalsDialog = new GlobalsDialog(L"Globals", &m_LinnStrument);
+	pGlobalsDialog->ShowModal();
 }
 
 
 void LSAccessFrame::OnStepSequencerSettings(wxCommandEvent& event)
 {
-	SequencerFrame * pSequencerFrame = new SequencerFrame(L"Step Sequencer", &m_LinnStrument);
-	pSequencerFrame->Show(true);
+	SequencerDialog * pSequencerDialog = new SequencerDialog(L"Step Sequencer", &m_LinnStrument);
+	pSequencerDialog->ShowModal();
 }
 
 
@@ -345,7 +344,6 @@ void LSAccessFrame::onStatusUpdate(wxCommandEvent& event)
 {
 SetStatusText(event.GetString());
 }
-
 
 // event tables and other macros for wxWidgets
 wxBEGIN_EVENT_TABLE(LSAccessFrame, wxFrame)

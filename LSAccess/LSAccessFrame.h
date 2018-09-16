@@ -5,12 +5,12 @@
 
 #include "LSEnums.h"
 #include "LinnStrument.h"
-#include "PerSplitFrame.h"
-#include "OctaveTransposeFrame.h"
-#include "PresetsVolumesFrame.h"
-#include "SwitchesFrame.h"
-#include "GlobalsFrame.h"
-#include "SequencerFrame.h"
+#include "PerSplitDialog.h"
+#include "OctaveTransposeDialog.h"
+#include "PresetsVolumesDialog.h"
+#include "SwitchesDialog.h"
+#include "GlobalsDialog.h"
+#include "SequencerDialog.h"
 
 // For compilers that support precompilation, includes "wx/wx.h".
 #include "wx/wxprec.h"
@@ -75,6 +75,8 @@ void OnRefreshAll(wxCommandEvent& event);
 	void OnAbout(wxCommandEvent& event);
 
 private:
+	void onOK(wxCommandEvent& event);
+	
 	// Event handlers for hardware changes
 		// Windows:
 // #ifdef __WINDOWS__
@@ -94,7 +96,7 @@ private:
 	wxFileConfig * m_Config;
 	wxNotebook * pNotebook;
 	
-	wxDECLARE_EVENT_TABLE();
+		wxDECLARE_EVENT_TABLE();
 };
 
 

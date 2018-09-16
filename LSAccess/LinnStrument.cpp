@@ -64,7 +64,7 @@ void LSCallback(double deltatime, std::vector< unsigned char > *message, void *p
 
 		m_MIDIIn = new RtMidiIn();
 		m_MIDIOut = new RtMidiOut();
-			   }
+					   }
 
 
 LinnStrument::LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool blnSpeakMessages, bool blnSpeakNotes) :
@@ -108,56 +108,8 @@ LinnStrument::LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool 
 	
 			m_MIDIIn = new RtMidiIn();
 	m_MIDIOut = new RtMidiOut();
-
-	if ((m_MIDIIn->getPortCount() == 0) || (m_MIDIOut->getPortCount() == 0))
-	{
-		m_InputID = -1;
-		m_OutputID = -1;
-	}
-	else
-	{
-		int nUSBInID = GetUSBInPortID();
-		int nUSBOutID = GetUSBOutPortID();
-
-		if ((nUSBInID != -1) && (nUSBOutID != -1))
-		{
-			// USB connection detected, so ignore any saved port ID values and override
-			m_GLOBAL_MIDI_DEVICE_IO = GetLS_MIDIDeviceIndex(LS_MIDIDevice::USB);
-			m_InputID = nUSBInID;
-			m_OutputID = nUSBOutID;
+	InitMIDI( m_InputID, m_OutputID);
 		}
-
-		if ((m_InputID == -1) || (m_OutputID == -1))
-		{
-			// No USB connection detected and no MIDI I/O ports saved, so get user to specify DIN connections
-			MIDIDialog * pMIDIDialog = new MIDIDialog(L"LinnStrument MIDI I/O jacks");
-			if (pMIDIDialog->ShowModal() == wxID_OK)
-			{
-				m_OutputID = pMIDIDialog->GetSelectedOutput();
-				m_InputID = pMIDIDialog->GetSelectedInput();
-				m_GLOBAL_MIDI_DEVICE_IO = GetLS_MIDIDeviceIndex(LS_MIDIDevice::USB);
-			}  // End of manual DIN selection
-		}
-
-		// Now we have valid port ID values, so open the ports and initialise parameter values
-		if ((m_OutputID != -1) && (m_InputID != -1))
-		{
-			m_MIDIOut->openPort(m_OutputID);
-			m_MIDIIn->openPort(m_InputID);
-			m_MIDIIn->setCallback(&LSCallback, (void*)this);
-			QueryLeftChannel();
-			QueryRightChannel();
-			QueryAll();
-		}  // end if DIN ports selected
-	}  // end if 0 input and output ports
-	
-		if ((m_SpeakMessages)
-			&& (m_InputID == -1)
-			&& (m_OutputID == -1))
-		{
-			Speak(L"LinnStrument not connected");
-			}
-	}
 
 	
 LinnStrument::~LinnStrument()
@@ -230,9 +182,6 @@ int LinnStrument::GetUSBOutPortID()
 void LinnStrument::SetLSParameter(unsigned int NRPNParameterIn, unsigned int NRPNValueIn)
 {
 	m_Received++;   // Update our count of received messages that matter to us
-
-	DBOUT(L"Parameter = " + std::to_wstring(NRPNParameterIn) + L"\n")
-			DBOUT( L"Value = " + std::to_wstring(NRPNValueIn) + L"\n")
 
 		// Update the appropriate member based on the provided NRPN parameter number
 			switch (NRPNParameterIn)
@@ -1542,6 +1491,7 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 			// We should now have enough information to change the value of a member
 			if (m_ReceivedNRPNValueMSB && m_ReceivedNRPNValueLSB)
 			{
+				DBOUT(L"Received on channel " + std::to_wstring(nChannel) + L"\n" + "Parameter = " + std::to_wstring(m_NRPNQueue.front()) + L"\n" + L"Value = " + std::to_wstring(m_NRPNValueIn) + L"\n")
 				SetLSParameter(m_NRPNQueue.front(), m_NRPNValueIn);
 				m_NRPNQueue.pop();
 				m_Received++;
@@ -1614,11 +1564,8 @@ void LinnStrument::SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumbe
 	{
 		std::vector<unsigned char> myMessage;
 
-		DBOUT(L"Sending channel = " + std::to_wstring(nChannelNibble) + L"\n")
-			DBOUT(L"Parameter = " + std::to_wstring(NRPNNumber) + L"\n")
-			DBOUT(L"Value = " + std::to_wstring(NRPNValue) + L"\n")
-
-			unsigned char myStatusByte = (MIDI_CMD_CONTROL_CHANGE * 16) + nChannelNibble;
+		DBOUT(L"Sending channel = " + std::to_wstring(nChannelNibble) + L"\n" + L"Parameter = " + std::to_wstring(NRPNNumber) + L"\n" + L"Value = " + std::to_wstring(NRPNValue) + L"\n")
+						unsigned char myStatusByte = (MIDI_CMD_CONTROL_CHANGE * 16) + nChannelNibble;
 		unsigned char myNRPNParameterLSB = NRPNNumber % 128;
 		unsigned char myNRPNParameterMSB = (NRPNNumber - myNRPNParameterLSB) / 128;
 		unsigned char myNRPNValueLSB = NRPNValue % 128;
@@ -1671,41 +1618,25 @@ void LinnStrument::SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumbe
 	}
 
 
-void LinnStrument::QueryLeftChannel()
-{
-	for ( unsigned char nChannel = (MIN_MIDI_CHANNEL - 1); nChannel < MAX_MIDI_CHANNEL; nChannel++)
-	{
-		SendNRPN(nChannel, REQUEST_VALUE_OF_NRPN, SPLIT_LEFT_MAIN_CHANNEL_NRPN);
-	}
-}
-
-
-void LinnStrument::QueryRightChannel()
-{
-	for (unsigned char nChannel = (MIN_MIDI_CHANNEL - 1); nChannel < MAX_MIDI_CHANNEL; nChannel++)
-	{
-		SendNRPN(nChannel, REQUEST_VALUE_OF_NRPN, SPLIT_RIGHT_MAIN_CHANNEL_NRPN);
-	}
-}
-
-
 void LinnStrument::QueryNRPN(unsigned int nParameterNumber)
 {
-	SendNRPN(GetMIDI_MAIN_CHANNEL(LSSplitType::LEFT), REQUEST_VALUE_OF_NRPN, nParameterNumber);
+	// SendNRPN(GetMIDI_MAIN_CHANNEL(LSSplitType::LEFT), REQUEST_VALUE_OF_NRPN, nParameterNumber);
+	SendNRPN(0, REQUEST_VALUE_OF_NRPN, nParameterNumber);
 	m_Waiting = true;
 
 	/*
 	while (m_Waiting)
 	{
-		Sleep(1);
+		Sleep(100);
 	}
 */
 }
 
 
-void LinnStrument::QueryPerSplitSettings()
+void LinnStrument::QueryLeftSplitSettings()
 {
 	// Left-hand split
+
 	QueryNRPN(SPLIT_LEFT_MAIN_MODE_NRPN);
 	QueryNRPN(SPLIT_LEFT_MAIN_CHANNEL_NRPN);
 	QueryNRPN(SPLIT_LEFT_CHANNEL_PER_NOTE_1_NRPN);
@@ -1770,8 +1701,12 @@ void LinnStrument::QueryPerSplitSettings()
 	QueryNRPN(SPLIT_LEFT_SEQUENCER_NEXT_PATTERN_NRPN);
 	QueryNRPN(SPLIT_LEFT_SEQUENCER_PATTERN_NRPN);
 	QueryNRPN(SPLIT_LEFT_SEQUENCER_TOGGLE_MUTE_NRPN);
+	Sleep(100);
+}
 
-	// Right-hand split
+	void LinnStrument::QueryRightSplitSettings()
+	{
+		// Right-hand split
 	QueryNRPN(SPLIT_RIGHT_MAIN_MODE_NRPN);
 	QueryNRPN(SPLIT_RIGHT_MAIN_CHANNEL_NRPN);
 	QueryNRPN(SPLIT_RIGHT_CHANNEL_PER_NOTE_1_NRPN);
@@ -1836,6 +1771,7 @@ void LinnStrument::QueryPerSplitSettings()
 	QueryNRPN(SPLIT_RIGHT_SEQUENCER_NEXT_PATTERN_NRPN);
 	QueryNRPN(SPLIT_RIGHT_SEQUENCER_PATTERN_NRPN);
 	QueryNRPN(SPLIT_RIGHT_SEQUENCER_TOGGLE_MUTE_NRPN);
+	Sleep(100);
 }
 
 void LinnStrument::QueryGlobalSettings()
@@ -1867,6 +1803,8 @@ void LinnStrument::QueryGlobalSettings()
 	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_A_NRPN);
 	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_A_SHARP_NRPN);
 	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_B_NRPN);
+	Sleep(100);
+	
 	QueryNRPN(GLOBAL_ROW_OFFSET_NRPN);
 	QueryNRPN(GLOBAL_VELOCITY_SENSITIVITY_NRPN);
 	QueryNRPN(GLOBAL_PRESSURE_SENSITIVITY_NRPN);
@@ -1883,6 +1821,8 @@ void LinnStrument::QueryGlobalSettings()
 	QueryNRPN(GLOBAL_MIN_VELOCITY_VALUE_NRPN);
 	QueryNRPN(GLOBAL_MAX_VELOCITY_VALUE_NRPN);
 	QueryNRPN(GLOBAL_FIXED_VELOCITY_VALUE_NRPN);
+	Sleep(100);
+
 	QueryNRPN(DEVICE_MIN_BYTE_INTERVAL_VALUE_NRPN);
 	QueryNRPN(GLOBAL_CUSTOM_ROW_OFFSET_NRPN);
 	QueryNRPN(DEVICE_MIDI_THRU_NRPN);
@@ -1894,6 +1834,7 @@ void LinnStrument::QueryGlobalSettings()
 	QueryNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW6_NRPN);
 	QueryNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW7_NRPN);
 	QueryNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW8_NRPN);
+	Sleep(100);
 }
 
 
@@ -1905,6 +1846,7 @@ void LinnStrument::QueryOctaveTransposeSettings()
 	QueryNRPN(SPLIT_RIGHT_OCTAVE_NRPN);
 	QueryNRPN(SPLIT_RIGHT_PITCH_TRANSPOSE_NRPN);
 	QueryNRPN(SPLIT_RIGHT_TRANSPOSE_LIGHTS_NRPN);
+	Sleep(100);
 }
 
 
@@ -1927,6 +1869,7 @@ void LinnStrument::QuerySwitchSettings()
 	QueryNRPN(CC_FOR_RIGHT_FOOT_SUSTAIN);
 	QueryNRPN(CC_FOR_SWITCH1_SUSTAIN);
 	QueryNRPN(CC_FOR_SWITCH2_SUSTAIN);
+	Sleep(100);
 }
 
 
@@ -1934,7 +1877,8 @@ void LinnStrument::QueryAll()
 {
 	m_Sent = 0;
 	m_Received = 0;
-	QueryPerSplitSettings();
+	QueryLeftSplitSettings();
+	QueryRightSplitSettings();
 	QueryGlobalSettings();
 	QuerySwitchSettings();
 	QueryOctaveTransposeSettings();
@@ -1948,13 +1892,7 @@ int LinnStrument::GetMIDIInID()
 void LinnStrument::SetMIDIInID(int nID)
 {
 	m_InputID = nID;
-	if (m_MIDIIn->isPortOpen())
-	{
-		m_MIDIIn->cancelCallback();
-		m_MIDIIn->closePort();
-		m_MIDIIn->openPort(m_InputID);
-		m_MIDIIn->setCallback(&LSCallback, (void*)this);
-	}
+	InitMIDI(m_InputID, m_OutputID);
 }
 
 int LinnStrument::GetMIDIOutID()
@@ -1965,12 +1903,8 @@ int LinnStrument::GetMIDIOutID()
 void LinnStrument::SetMIDIOutID(int nID)
 {
 	m_OutputID = nID;
-	if (m_MIDIOut->isPortOpen())
-	{
-		m_MIDIOut->closePort();
-		m_MIDIOut->openPort(m_OutputID);
+	InitMIDI(m_InputID, m_OutputID);
 	}
-}
 
 wxWindow * LinnStrument::GetParent()
 {
@@ -2138,3 +2072,66 @@ bool LinnStrument::IsDINWorking()
 	return ((m_GLOBAL_MIDI_DEVICE_IO == GetLS_MIDIDeviceIndex(LS_MIDIDevice::USB)) && (m_Received > 0));
 }
 
+
+void LinnStrument::InitMIDI( int nInputID, int nOutputID)
+{
+	if (m_MIDIIn->isPortOpen())
+	{
+		m_MIDIIn->cancelCallback();
+		m_MIDIIn->closePort();
+		m_MIDIIn->openPort(m_InputID);
+		m_MIDIIn->setCallback(&LSCallback, (void*)this);
+	}
+
+	if (m_MIDIOut->isPortOpen())
+	{
+		m_MIDIOut->closePort();
+	}
+	
+	if ((m_MIDIIn->getPortCount() == 0) || (m_MIDIOut->getPortCount() == 0))
+	{
+		m_InputID = -1;
+		m_OutputID = -1;
+	}
+	else
+	{
+				int nUSBInID = GetUSBInPortID();
+		int nUSBOutID = GetUSBOutPortID();
+
+		if ((nUSBInID != -1) && (nUSBOutID != -1))
+		{
+			// USB connection detected, so ignore any saved port ID values and override
+			m_GLOBAL_MIDI_DEVICE_IO = GetLS_MIDIDeviceIndex(LS_MIDIDevice::USB);
+			m_InputID = nUSBInID;
+			m_OutputID = nUSBOutID;
+		}
+
+		if ((m_InputID == -1) || (m_OutputID == -1))
+		{
+			// No USB connection detected and no MIDI I/O ports saved, so get user to specify DIN connections
+			MIDIDialog * pMIDIDialog = new MIDIDialog(L"LinnStrument MIDI I/O jacks");
+			if (pMIDIDialog->ShowModal() == wxID_OK)
+			{
+				m_OutputID = pMIDIDialog->GetSelectedOutput();
+				m_InputID = pMIDIDialog->GetSelectedInput();
+				m_GLOBAL_MIDI_DEVICE_IO = GetLS_MIDIDeviceIndex(LS_MIDIDevice::USB);
+			}  // End of manual DIN selection
+		}
+
+		// Now we have valid port ID values, so open the ports and initialise parameter values
+		if ((m_OutputID != -1) && (m_InputID != -1))
+		{
+			m_MIDIOut->openPort(m_OutputID);
+			m_MIDIIn->openPort(m_InputID);
+			m_MIDIIn->setCallback(&LSCallback, (void*)this);
+			QueryAll();
+		}  // end if DIN ports selected
+	}  // end if 0 input and output ports
+
+	if ((m_SpeakMessages)
+		&& (m_InputID == -1)
+		&& (m_OutputID == -1))
+	{
+		Speak(L"LinnStrument not connected");
+	}
+}

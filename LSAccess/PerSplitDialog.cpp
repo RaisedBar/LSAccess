@@ -1,15 +1,15 @@
-// PerSplitFrame.cpp
+// PerSplitDialog.cpp
 // Author:  T A Burgess
 // Raised Bar Ltd.
 // http://www.raisedbar.net
 
 
 #include "stdafx.h"
-#include "PerSplitFrame.h"
+#include "PerSplitDialog.h"
 
 
-PerSplitFrame::PerSplitFrame(const wxString& title, LinnStrument * pLinnStrument, const LSSplitType split)
-	: wxFrame(NULL, wxID_ANY, title),
+PerSplitDialog::PerSplitDialog(const wxString& title, LinnStrument * pLinnStrument, const LSSplitType split)
+	: wxDialog(NULL, wxID_ANY, title),
 	pMyLinnStrument(pLinnStrument)
 {
 		// Set up the multi-tab notebook
@@ -24,7 +24,7 @@ PerSplitFrame::PerSplitFrame(const wxString& title, LinnStrument * pLinnStrument
 	pLowRowPage = new LowRowPage(pNotebook, pLinnStrument, split);
 	pFadersPage = new FadersPage(pNotebook, pLinnStrument, split);
  	pSpecialPage = new SpecialPage(pNotebook, pLinnStrument, split);
-
+	
 	pNotebook->AddPage(pMIDISplitPage, L"MIDI", true);
 	pNotebook->AddPage(pBendPage, L"Bend (X-axis)", false);
 	pNotebook->AddPage(pAxesPage, L"Y-Z Axes", false);
@@ -33,6 +33,10 @@ PerSplitFrame::PerSplitFrame(const wxString& title, LinnStrument * pLinnStrument
 	pNotebook->AddPage(pFadersPage, L"Faders", false);
 	pNotebook->AddPage(pSpecialPage, L"Special", false);
 	hBox1->Insert(0, pNotebook, wxSizerFlags(7).Expand().Border());
+	
+	wxButton * btnOK = new wxButton(this, wxID_OK);
+	btnOK->SetDefault();
+	hBox1->Add(btnOK, 0, wxEXPAND);
 	pPanel->SetSizerAndFit(hBox1);
 	hBox1->Show(pNotebook);
 }
@@ -40,7 +44,7 @@ PerSplitFrame::PerSplitFrame(const wxString& title, LinnStrument * pLinnStrument
 
 // tabSet handlers...
 
-void PerSplitFrame::OnTabChanged(wxNotebookEvent& event)
+void PerSplitDialog::OnTabChanged(wxNotebookEvent& event)
 {
 	// contextualise the menus etc.
 	switch (pNotebook->GetSelection())
@@ -59,7 +63,16 @@ void PerSplitFrame::OnTabChanged(wxNotebookEvent& event)
 }
 
 
-BEGIN_EVENT_TABLE(PerSplitFrame, wxFrame)
+void PerSplitDialog::OnOK(wxCommandEvent& event)
+{
+	EndModal(true);
+}
+
+
+BEGIN_EVENT_TABLE(PerSplitDialog, wxDialog)
 // Notebook tabs
-EVT_NOTEBOOK_PAGE_CHANGED(ID_NOTEBOOK, PerSplitFrame::OnTabChanged)
+EVT_NOTEBOOK_PAGE_CHANGED(ID_NOTEBOOK, PerSplitDialog::OnTabChanged)
+
+// Buttons
+EVT_BUTTON( wxID_OK, PerSplitDialog::OnOK)
 END_EVENT_TABLE()

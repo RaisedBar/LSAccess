@@ -453,6 +453,7 @@ public:
 	void SetMIDIInID(int nID);
 	int GetMIDIOutID();
 	void SetMIDIOutID(int nID);
+	void InitMIDI( int nMIDIIn, int nMIDIOut);
 	bool IsDINWorking();
 	
 	// Options to use speech output
@@ -734,10 +735,9 @@ public:
 	bool IsUpdateMode();
 	void ProcessMessage(std::vector <unsigned char> vBytes);
 
-		void QueryLeftChannel();
-		void QueryRightChannel();
 				void QueryNRPN(unsigned int nParameterNumber);
-		void QueryPerSplitSettings();
+		void QueryLeftSplitSettings();
+		void QueryRightSplitSettings();
 		void QueryGlobalSettings();
 		void QuerySwitchSettings();
 		void QueryOctaveTransposeSettings();
@@ -3495,7 +3495,7 @@ void SendNRPN(unsigned int NRPNNumber, unsigned int NRPNValue);
 	void Speak(std::wstring wstrIn);
 
 	private:
-void SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned int NRPNValue);
+		void SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned int NRPNValue);
 	void SetLSParameter( unsigned int NRPNParameterIn, unsigned int NRPNValueIn);
 	void UpdateStatusBar();
 
@@ -3528,7 +3528,7 @@ void SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned in
 // Per-split settings
 // Left split
 		unsigned int m_LEFT_SPLIT_MODE;
-		unsigned int m_LEFT_MIDI_MAIN_CHANNEL;
+		unsigned int m_LEFT_MIDI_MAIN_CHANNEL = 0;
 		unsigned int m_LEFT_CHANNEL_PER_NOTE_1;
 		unsigned int m_LEFT_CHANNEL_PER_NOTE_2;
 		unsigned int m_LEFT_CHANNEL_PER_NOTE_3;
@@ -3623,7 +3623,7 @@ void SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned in
 
 		// Right split
 		unsigned int m_RIGHT_SPLIT_MODE;
-		unsigned int m_RIGHT_MIDI_MAIN_CHANNEL;
+		unsigned int m_RIGHT_MIDI_MAIN_CHANNEL = 0;
 		unsigned int m_RIGHT_SPLIT_RIGHT_MAIN_MODE;
 		unsigned int m_RIGHT_SPLIT_RIGHT_MAIN_CHANNEL;
 		unsigned int m_RIGHT_CHANNEL_PER_NOTE_1;

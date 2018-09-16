@@ -1,4 +1,4 @@
-// OctaveTransposeFrame.h
+// SwitchesDialog.h
 // Author:  T A Burgess
 // Raised Bar Ltd.
 // http://www.raisedbar.net
@@ -20,18 +20,19 @@
 #include <wx/notebook.h>
 
 #include "LSEnums.h"
-#include "OctaveTransposePage.h"
+#include "PanelSwitchesPage.h"
+#include "FootSwitchesPage.h"
 
-class OctaveTransposeFrame : public wxFrame
+class SwitchesDialog : public wxDialog
 {
 public:
-	OctaveTransposeFrame(const wxString& title, LinnStrument * pLinnStrument);
+	SwitchesDialog(const wxString& title, LinnStrument * pLinnStrument);
 
 private:
-	void OnTabChanged(wxNotebookEvent& event);
+	void OnOK(wxCommandEvent& event);
 
+// data
 	LinnStrument * pMyLinnStrument;
-	wxNotebook * pNotebook;
-	
+		
 	DECLARE_EVENT_TABLE()
 };

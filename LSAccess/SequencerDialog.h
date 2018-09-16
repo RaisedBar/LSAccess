@@ -1,4 +1,4 @@
-// GlobalsFrame.h
+// SequencerDialog.h
 // Author:  T A Burgess
 // Raised Bar Ltd.
 // http://www.raisedbar.net
@@ -20,23 +20,21 @@
 #include <wx/notebook.h>
 
 #include "LSEnums.h"
-#include "GlobalsSplitPage.h"
-#include "GlobalsArpPage.h"
-#include "GlobalsVelocityPressurePage.h"
-#include "GlobalsNoteLightsPage.h"
-#include "GlobalsAccentNoteLightsPage.h"
-#include "GlobalsPowerMIDIPage.h"
-#include "GlobalsTuningsPage.h"
+#include "SequencerPage.h"
 
-class GlobalsFrame : public wxFrame
+class SequencerDialog : public wxDialog
 {
 public:
-	GlobalsFrame(const wxString& title, LinnStrument * pLinnStrument);
+	SequencerDialog(const wxString& title, LinnStrument * pLinnStrument);
 
 private:
-	void OnTabChanged(wxNotebookEvent& event);
+	void OnOK(wxCommandEvent& event);
 
+	// data
 	LinnStrument * pMyLinnStrument;
-
+	wxNotebook * pNotebook;
+	SequencerPage * pTrack1Page;
+	SequencerPage * pTrack2Page;
+	
 	DECLARE_EVENT_TABLE()
 };

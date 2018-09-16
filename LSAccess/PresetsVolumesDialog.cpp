@@ -1,15 +1,15 @@
-// PresetsVolumesFrame.cpp
+// PresetsVolumesDialog.cpp
 // Author:  T A Burgess
 // Raised Bar Ltd.
 // http://www.raisedbar.net
 
 
 #include "stdafx.h"
-#include "PresetsVolumesFrame.h"
+#include "PresetsVolumesDialog.h"
 
 
-PresetsVolumesFrame::PresetsVolumesFrame(const wxString& title, LinnStrument * pLinnStrument)
-	: wxFrame(NULL, wxID_ANY, title),
+PresetsVolumesDialog::PresetsVolumesDialog(const wxString& title, LinnStrument * pLinnStrument)
+	: wxDialog(NULL, wxID_ANY, title),
 	pMyLinnStrument(pLinnStrument)
 {
 		// Set up the multi-tab notebook
@@ -23,33 +23,25 @@ PresetsVolumesFrame::PresetsVolumesFrame(const wxString& title, LinnStrument * p
 	pNotebook->AddPage(pRightPresetsVolumesPage, L"Right", false);
 
 	hBox1->Insert(0, pNotebook, wxSizerFlags(2).Expand().Border());
+	
+	wxButton * btnOK = new wxButton(this, wxID_OK);
+	btnOK->SetDefault();
+	hBox1->Add(btnOK, 0, wxEXPAND);
+
 	pPanel->SetSizerAndFit(hBox1);
 	hBox1->Show(pNotebook);
 }
 
 
-// tabSet handlers...
+// Event handlers
 
-void PresetsVolumesFrame::OnTabChanged(wxNotebookEvent& event)
+void PresetsVolumesDialog::OnOK(wxCommandEvent& event)
 {
-	// contextualise the menus etc.
-	switch (pNotebook->GetSelection())
-	{
-	case 0:
-	{
-		// Do something
-	}
-	break;
-
-	default:
-	{
-		std::cerr << "Oops - unexpected tab change signal";
-	}
-	}
+	EndModal(true);
 }
 
 
-BEGIN_EVENT_TABLE(PresetsVolumesFrame, wxFrame)
-// Notebook tabs
-EVT_NOTEBOOK_PAGE_CHANGED(ID_NOTEBOOK, PresetsVolumesFrame::OnTabChanged)
+BEGIN_EVENT_TABLE(PresetsVolumesDialog, wxDialog)
+// Buttons
+EVT_BUTTON(wxID_OK, PresetsVolumesDialog::OnOK)
 END_EVENT_TABLE()

@@ -1,4 +1,4 @@
-// PerSplitFrame.h
+// PerSplitDialog.h
 // Author:  T A Burgess
 // Raised Bar Ltd.
 // http://www.raisedbar.net
@@ -28,13 +28,14 @@
 #include "AxesPage.h"
 #include "SpecialPage.h"
 
-class PerSplitFrame : public wxFrame
+class PerSplitDialog : public wxDialog
 {
 public:
-	PerSplitFrame(const wxString& title, LinnStrument * pLinnStrument, const LSSplitType split);
+	PerSplitDialog(const wxString& title, LinnStrument * pLinnStrument, const LSSplitType split);
 
 private:
-	void OnTabChanged(wxNotebookEvent& event);
+	void OnOK(wxCommandEvent& event);
+			void OnTabChanged(wxNotebookEvent& event);
 	
 	LinnStrument * pMyLinnStrument;
 		wxNotebook * pNotebook;
@@ -45,6 +46,6 @@ private:
 		FadersPage * pFadersPage;
 	AxesPage * pAxesPage;
 	SpecialPage * pSpecialPage;
-
+	
 			DECLARE_EVENT_TABLE()
 };

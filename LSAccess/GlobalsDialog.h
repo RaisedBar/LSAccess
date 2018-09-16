@@ -1,4 +1,4 @@
-// PresetsVolumesFrame.h
+// GlobalsDialog.h
 // Author:  T A Burgess
 // Raised Bar Ltd.
 // http://www.raisedbar.net
@@ -20,20 +20,23 @@
 #include <wx/notebook.h>
 
 #include "LSEnums.h"
-#include "PresetsVolumesPage.h"
+#include "GlobalsSplitPage.h"
+#include "GlobalsArpPage.h"
+#include "GlobalsVelocityPressurePage.h"
+#include "GlobalsNoteLightsPage.h"
+#include "GlobalsAccentNoteLightsPage.h"
+#include "GlobalsPowerMIDIPage.h"
+#include "GlobalsTuningsPage.h"
 
-class PresetsVolumesFrame : public wxFrame
+class GlobalsDialog : public wxDialog
 {
 public:
-	PresetsVolumesFrame(const wxString& title, LinnStrument * pLinnStrument);
+	GlobalsDialog(const wxString& title, LinnStrument * pLinnStrument);
 
 private:
-	void OnTabChanged(wxNotebookEvent& event);
+	void OnOK(wxCommandEvent& event);
 
 	LinnStrument * pMyLinnStrument;
-	wxNotebook * pNotebook;
-	PresetsVolumesPage * pLeftPresetsVolumesPage;
-	PresetsVolumesPage * pRightPresetsVolumesPage;
 
 	DECLARE_EVENT_TABLE()
 };

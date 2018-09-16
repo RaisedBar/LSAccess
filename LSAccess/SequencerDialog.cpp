@@ -1,15 +1,15 @@
-// SequencerFrame.cpp
+// SequencerDialog.cpp
 // Author:  T A Burgess
 // Raised Bar Ltd.
 // http://www.raisedbar.net
 
 
 #include "stdafx.h"
-#include "SequencerFrame.h"
+#include "SequencerDialog.h"
 
 
-SequencerFrame::SequencerFrame(const wxString& title, LinnStrument * pLinnStrument)
-	: wxFrame(NULL, wxID_ANY, title),
+SequencerDialog::SequencerDialog(const wxString& title, LinnStrument * pLinnStrument)
+	: wxDialog(NULL, wxID_ANY, title),
 	pMyLinnStrument(pLinnStrument)
 {
 		// Set up the multi-tab notebook
@@ -21,35 +21,26 @@ SequencerFrame::SequencerFrame(const wxString& title, LinnStrument * pLinnStrume
 	
 	pNotebook->AddPage(pTrack1Page, L"Track 1", true);
 	pNotebook->AddPage(pTrack2Page, L"Track 2", false);
-	
-	hBox1->Insert(0, pNotebook, wxSizerFlags(5).Expand().Border());
-	pPanel->SetSizerAndFit(hBox1);
+		hBox1->Insert(0, pNotebook, wxSizerFlags(5).Expand().Border());
+
+		wxButton * btnOK = new wxButton(this, wxID_OK);
+		btnOK->SetDefault();
+		hBox1->Add(btnOK, 0, wxEXPAND);
+
+		pPanel->SetSizerAndFit(hBox1);
 	hBox1->Show(pNotebook);
 }
 
 
-// tabSet handlers...
+// Event handlers
 
-void SequencerFrame::OnTabChanged(wxNotebookEvent& event)
+void SequencerDialog::OnOK(wxCommandEvent& event)
 {
-	// contextualise the menus etc.
-	switch (pNotebook->GetSelection())
-	{
-	case 0:
-	{
-		// Do something
-	}
-	break;
-
-	default:
-	{
-		std::cerr << "Oops - unexpected tab change signal";
-	}
-	}
+	EndModal(true);
 }
 
 
-BEGIN_EVENT_TABLE(SequencerFrame, wxFrame)
-// Notebook tabs
-EVT_NOTEBOOK_PAGE_CHANGED(ID_NOTEBOOK, SequencerFrame::OnTabChanged)
+BEGIN_EVENT_TABLE(SequencerDialog, wxDialog)
+// Buttons
+EVT_BUTTON(wxID_OK, SequencerDialog::OnOK)
 END_EVENT_TABLE()
