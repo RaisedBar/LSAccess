@@ -13,9 +13,8 @@ GlobalsDialog::GlobalsDialog(const wxString& title, LinnStrument * pLinnStrument
 	pMyLinnStrument( pLinnStrument)
 {
 		// Set up the multi-tab notebook
-	wxPanel * pPanel = new wxPanel(this);
-	wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
-	wxNotebook * pNotebook = new wxNotebook(pPanel, ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, 0);
+		wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
+	wxNotebook * pNotebook = new wxNotebook(this, ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, 0);
 
 	GlobalsSplitPage * pGlobalsSplitPage = new GlobalsSplitPage(pNotebook, pLinnStrument);
 	GlobalsArpPage * pGlobalsArpPage = new GlobalsArpPage(pNotebook, pLinnStrument);
@@ -33,13 +32,13 @@ GlobalsDialog::GlobalsDialog(const wxString& title, LinnStrument * pLinnStrument
 	pNotebook->AddPage(pGlobalsAccentNoteLightsPage, L"Accent Note Lights", false);
 		pNotebook->AddPage(pGlobalsTuningsPage, L"Row Tuning", false);
 		pNotebook->AddPage(pGlobalsPowerMIDIPage, L"Power/MIDI", FALSE);
-				hBox1->Insert(0, pNotebook, wxSizerFlags(5).Expand().Border());
+		hBox1->Add(pNotebook, 0, wxEXPAND);
 
 				wxButton * btnOK = new wxButton(this, wxID_OK);
 				btnOK->SetDefault();
 				hBox1->Add(btnOK, 0, wxEXPAND);
 
-		pPanel->SetSizerAndFit(hBox1);
+		this->SetSizerAndFit(hBox1);
 	hBox1->Show(pNotebook);
 }
 

@@ -9,27 +9,26 @@ OctaveTransposePage::OctaveTransposePage(wxBookCtrlBase *parent, LinnStrument * 
 	pMyLinnStrument(pLinnStrument),
 		pMyParent(parent)
 	{
-	wxPanel * myPanel = new wxPanel(this, -1);
-	wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
+		wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
 
 	// Controls
 	// Value is an LSOctave
-	wxStaticText * lblOctave = new wxStaticText(myPanel, wxID_ANY, L"&Octave:");
-	wrbOctave = new wxRadioBox(myPanel, OCTAVE_ID, L"&Octave", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Octaves), Octaves, pMyLinnStrument->GetOctave(split), wxRA_SPECIFY_ROWS);
+	wxStaticText * lblOctave = new wxStaticText(this, wxID_ANY, L"&Octave:");
+	wrbOctave = new wxRadioBox(this, OCTAVE_ID, L"&Octave", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Octaves), Octaves, pMyLinnStrument->GetOctave(split), wxRA_SPECIFY_ROWS);
 	hBox1->Add(lblOctave, 0, wxEXPAND);
 	hBox1->Add(wrbOctave, 0, wxEXPAND);
 
 	// Values are from LSPitch
-	wxStaticText * lblPITCH_TRANSPOSE = new wxStaticText(myPanel, wxID_ANY, L"&Pitch transpose:");
-wrbPITCH_TRANSPOSE = new wxRadioBox(myPanel, TRANSPOSE_PITCH_ID, L"&Pitch transpose", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Pitches), Pitches, pMyLinnStrument->GetTransposePitch(split), wxRA_SPECIFY_ROWS);
+	wxStaticText * lblPITCH_TRANSPOSE = new wxStaticText(this, wxID_ANY, L"&Pitch transpose:");
+wrbPITCH_TRANSPOSE = new wxRadioBox(this, TRANSPOSE_PITCH_ID, L"&Pitch transpose", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Pitches), Pitches, pMyLinnStrument->GetTransposePitch(split), wxRA_SPECIFY_ROWS);
 hBox1->Add(lblPITCH_TRANSPOSE, 0, wxEXPAND);
 hBox1->Add(wrbPITCH_TRANSPOSE, 0, wxEXPAND);
 	
-wxStaticText * lblTRANSPOSE_LIGHTS = new wxStaticText(myPanel, wxID_ANY, L"Transpose &lights:");
-wrbTRANSPOSE_LIGHTS = new wxRadioBox(myPanel, TRANSPOSE_LIGHTS_ID, L"Transpose &lights", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Pitches), Pitches, pMyLinnStrument->GetTransposeLights(split), wxRA_SPECIFY_ROWS);
+wxStaticText * lblTRANSPOSE_LIGHTS = new wxStaticText(this, wxID_ANY, L"Transpose &lights:");
+wrbTRANSPOSE_LIGHTS = new wxRadioBox(this, TRANSPOSE_LIGHTS_ID, L"Transpose &lights", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Pitches), Pitches, pMyLinnStrument->GetTransposeLights(split), wxRA_SPECIFY_ROWS);
 hBox1->Add(lblTRANSPOSE_LIGHTS, 0, wxEXPAND);
 hBox1->Add(wrbTRANSPOSE_LIGHTS, 0, wxEXPAND);
-	myPanel->SetSizerAndFit(hBox1);
+	this->SetSizerAndFit(hBox1);
 	}
 
 

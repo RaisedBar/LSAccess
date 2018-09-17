@@ -1455,8 +1455,7 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 
 		case MIDI_CMD_NOTE_OFF:
 	{
-		unsigned char nNoteNumber = MIDI().ShortMsgData1(myMessage);
-		m_NotesHeld[nNoteNumber] = false;
+		m_NotesHeld[ MIDI().ShortMsgData1(myMessage)] = false;
 		UpdateStatusBar();
 	}
 	break;

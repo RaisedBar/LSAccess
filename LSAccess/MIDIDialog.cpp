@@ -30,21 +30,19 @@ error.printMessage();
 }
 */
 	
-wxPanel * myPanel = new wxPanel(this, -1);
-
 wxBoxSizer *hBox1 = new wxBoxSizer(wxHORIZONTAL);
 wxBoxSizer *hBox2 = new wxBoxSizer(wxHORIZONTAL);  
 
 wxBoxSizer *vBox3 = new wxBoxSizer(wxVERTICAL);
   
   // List of MIDI input ports
-  wxStaticBox *lblMIDIInPrompt = new wxStaticBox(myPanel, wxID_ANY, L"&Input:");
-lbxMIDIIn = new wxListBox(myPanel, ID_MIDI_IN_LIST_BOX);
+  wxStaticBox *lblMIDIInPrompt = new wxStaticBox(this, wxID_ANY, L"&Input:");
+lbxMIDIIn = new wxListBox(this, ID_MIDI_IN_LIST_BOX);
 ListMIDIInPorts();
  
 // List of MIDI output ports
-wxStaticBox *lblMIDIOutPrompt = new wxStaticBox(myPanel, wxID_ANY, L"&Output:");
-lbxMIDIOut = new wxListBox(myPanel, ID_MIDI_OUT_LIST_BOX);
+wxStaticBox *lblMIDIOutPrompt = new wxStaticBox(this, wxID_ANY, L"&Output:");
+lbxMIDIOut = new wxListBox(this, ID_MIDI_OUT_LIST_BOX);
 ListMIDIOutPorts();
 
 hBox1->Add(lblMIDIInPrompt, 0, wxEXPAND);  
@@ -59,18 +57,18 @@ int nMajor, nMinor;
 // wxString wstrOpSys = myPlatformInfo.GetOperatingSystemFamilyName( wxGetOsVersion( &nMajor, &nMinor));
 std::wstring wstrOpSys = myPlatformInfo.GetOperatingSystemFamilyName( wxGetOsVersion( &nMajor, &nMinor)).ToStdWstring();
 
-wxButton * okButton = new wxButton(myPanel, wxID_OK, L"&OK");
+wxButton * okButton = new wxButton(this, wxID_OK, L"&OK");
 okButton->SetDefault();
-	  wxButton *CancelButton = new wxButton(myPanel, wxID_CANCEL, L"&Cancel");
+	  wxButton *CancelButton = new wxButton(this, wxID_CANCEL, L"&Cancel");
 hBox2->Add(okButton, 0, wxEXPAND);
   hBox2->Add(CancelButton, 0, wxEXPAND);
 
   vBox3->Add( hBox1);
 vBox3->AddSpacer( 25);
   vBox3->Add(hBox2);
-myPanel->SetSizer(vBox3);
-myPanel->Fit();
-	vBox3->Fit( myPanel);
+this->SetSizer(vBox3);
+this->Fit();
+	vBox3->Fit( this);
 	Centre();
 }
 
@@ -94,7 +92,6 @@ catch ( RtMidiError &error )
  wxMessageBox( error.getMessage(), this->GetTitle(), wxOK | wxICON_ERROR, this);
 }
 */
-wxPanel * myPanel = new wxPanel(this, -1);
 
 wxBoxSizer *hBox1 = new wxBoxSizer(wxHORIZONTAL);
 wxBoxSizer *hBox2 = new wxBoxSizer(wxHORIZONTAL);  
@@ -102,17 +99,17 @@ wxBoxSizer *hBox2 = new wxBoxSizer(wxHORIZONTAL);
 wxBoxSizer *vBox3 = new wxBoxSizer(wxVERTICAL);
   
   // List of MIDI input ports
-  wxStaticBox *lblMIDIInPrompt = new wxStaticBox(myPanel, wxID_ANY, L"&Input:");
-lbxMIDIIn = new wxListBox(myPanel, ID_MIDI_IN_LIST_BOX);
+  wxStaticBox *lblMIDIInPrompt = new wxStaticBox(this, wxID_ANY, L"&Input:");
+lbxMIDIIn = new wxListBox(this, ID_MIDI_IN_LIST_BOX);
 ListMIDIInPorts( nSelectedInput);
  
 // List of MIDI output ports
-wxStaticBox *lblMIDIOutPrompt = new wxStaticBox(myPanel, wxID_ANY, L"&Output:");
-lbxMIDIOut = new wxListBox(myPanel, ID_MIDI_OUT_LIST_BOX);
+wxStaticBox *lblMIDIOutPrompt = new wxStaticBox(this, wxID_ANY, L"&Output:");
+lbxMIDIOut = new wxListBox(this, ID_MIDI_OUT_LIST_BOX);
 ListMIDIOutPorts( nSelectedOutput);
   
-wxButton *okButton = new wxButton(myPanel, wxID_OK, L"&OK");
-  wxButton *CancelButton = new wxButton(myPanel, wxID_CANCEL, L"&Cancel");
+wxButton *okButton = new wxButton(this, wxID_OK, L"&OK");
+  wxButton *CancelButton = new wxButton(this, wxID_CANCEL, L"&Cancel");
 
 hBox1->Add(lblMIDIInPrompt, 0, wxEXPAND);  
 hBox1->Add(lbxMIDIIn, 0, wxEXPAND);
@@ -127,9 +124,9 @@ hBox2->Add(okButton, 0, wxEXPAND);
 vBox3->AddSpacer( 25);
 	vBox3->Add(hBox2);
 
-	myPanel->SetSizer(vBox3);
-myPanel->Fit();
-	vBox3->Fit( myPanel);
+	this->SetSizer(vBox3);
+this->Fit();
+	vBox3->Fit( this);
 	Centre();
 }
 
@@ -154,8 +151,7 @@ myMIDIIn = new RtMidiIn();
 		wxMessageBox( error.getMessage(), this->GetTitle(), wxOK | wxICON_ERROR);
 	}
 	
-	  wxPanel * myPanel = new wxPanel(this, -1);
-wxBoxSizer *hBox1 = new wxBoxSizer(wxHORIZONTAL);
+	  wxBoxSizer *hBox1 = new wxBoxSizer(wxHORIZONTAL);
 wxBoxSizer *hBox2 = new wxBoxSizer(wxHORIZONTAL);  
 
 wxBoxSizer *vBox3 = new wxBoxSizer(wxVERTICAL);
@@ -164,8 +160,8 @@ wxBoxSizer *vBox3 = new wxBoxSizer(wxVERTICAL);
 // if ((myVP == OutOnly) || (myVP == None))
 if (myVirtualOut)
 	{
-		wxStaticBox *lblMIDIInPrompt = new wxStaticBox(myPanel, wxID_ANY, L"&Input:");
-lbxMIDIIn = new wxListBox(myPanel, ID_MIDI_IN_LIST_BOX);
+		wxStaticBox *lblMIDIInPrompt = new wxStaticBox(this, wxID_ANY, L"&Input:");
+lbxMIDIIn = new wxListBox(this, ID_MIDI_IN_LIST_BOX);
 ListMIDIInPorts();
 hBox1->Add(lblMIDIInPrompt, 0, wxEXPAND);  
 hBox1->Add(lbxMIDIIn, 0, wxEXPAND);
@@ -175,26 +171,26 @@ hBox1->Add(lbxMIDIIn, 0, wxEXPAND);
 // if ((myVP == InOnly) || (myVP == None))
 if (myVirtualIn)
 {
-wxStaticBox *lblMIDIOutPrompt = new wxStaticBox(myPanel, wxID_ANY, L"&Output:");
-lbxMIDIOut = new wxListBox(myPanel, ID_MIDI_OUT_LIST_BOX);
+wxStaticBox *lblMIDIOutPrompt = new wxStaticBox(this, wxID_ANY, L"&Output:");
+lbxMIDIOut = new wxListBox(this, ID_MIDI_OUT_LIST_BOX);
 ListMIDIOutPorts();
 
 hBox1->Add(lblMIDIOutPrompt, 0, wxEXPAND);
 hBox1->Add(lbxMIDIOut, 0, wxEXPAND);
 }
 
-wxButton * okButton = new wxButton(myPanel, wxID_OK, L"&OK");
+wxButton * okButton = new wxButton(this, wxID_OK, L"&OK");
 okButton->SetDefault();
-	  wxButton *CancelButton = new wxButton(myPanel, wxID_CANCEL, L"&Cancel");
+	  wxButton *CancelButton = new wxButton(this, wxID_CANCEL, L"&Cancel");
 hBox2->Add(okButton, 0, wxEXPAND);
   hBox2->Add(CancelButton, 0, wxEXPAND);
 
   vBox3->Add( hBox1);
 vBox3->AddSpacer( 25);
   vBox3->Add(hBox2);
-myPanel->SetSizer(vBox3);
-myPanel->Fit();
-	vBox3->Fit( myPanel);
+this->SetSizer(vBox3);
+this->Fit();
+	vBox3->Fit( this);
 	Centre();
 }
 
@@ -219,8 +215,7 @@ catch ( RtMidiError &error )
 	wxMessageBox( error.getMessage(), this->GetTitle(), wxOK | wxICON_ERROR);
 }
 	
-  wxPanel * myPanel = new wxPanel(this, -1);
-wxBoxSizer *hBox1 = new wxBoxSizer(wxHORIZONTAL);
+  wxBoxSizer *hBox1 = new wxBoxSizer(wxHORIZONTAL);
 wxBoxSizer *hBox2 = new wxBoxSizer(wxHORIZONTAL);  
 
 wxBoxSizer *vBox3 = new wxBoxSizer(wxVERTICAL);
@@ -229,8 +224,8 @@ wxBoxSizer *vBox3 = new wxBoxSizer(wxVERTICAL);
 // if ((myVP == OutOnly) || (myVP == None))
 if (myVirtualOut)
 {
-		wxStaticBox *lblMIDIInPrompt = new wxStaticBox(myPanel, wxID_ANY, L"&Input:");
-lbxMIDIIn = new wxListBox(myPanel, ID_MIDI_IN_LIST_BOX);
+		wxStaticBox *lblMIDIInPrompt = new wxStaticBox(this, wxID_ANY, L"&Input:");
+lbxMIDIIn = new wxListBox(this, ID_MIDI_IN_LIST_BOX);
 ListMIDIInPorts( nSelectedPort);
 hBox1->Add(lblMIDIInPrompt, 0, wxEXPAND);
 hBox1->Add(lbxMIDIIn, 0, wxEXPAND);
@@ -240,25 +235,25 @@ hBox1->Add(lbxMIDIIn, 0, wxEXPAND);
 // if ((myVP == InOnly) || (myVP == None))
 if (myVirtualIn)
 {
-wxStaticBox *lblMIDIOutPrompt = new wxStaticBox(myPanel, wxID_ANY, L"&Output:");
-lbxMIDIOut = new wxListBox(myPanel, ID_MIDI_OUT_LIST_BOX);
+wxStaticBox *lblMIDIOutPrompt = new wxStaticBox(this, wxID_ANY, L"&Output:");
+lbxMIDIOut = new wxListBox(this, ID_MIDI_OUT_LIST_BOX);
 ListMIDIOutPorts( nSelectedPort);
 hBox1->Add(lblMIDIOutPrompt, 0, wxEXPAND);  
 hBox1->Add(lbxMIDIOut, 0, wxEXPAND);
 }
 
-wxButton * okButton = new wxButton(myPanel, wxID_OK, L"&OK");
+wxButton * okButton = new wxButton(this, wxID_OK, L"&OK");
 okButton->SetDefault();
-	  wxButton *CancelButton = new wxButton(myPanel, wxID_CANCEL, L"&Cancel");
+	  wxButton *CancelButton = new wxButton(this, wxID_CANCEL, L"&Cancel");
 hBox2->Add(okButton, 0, wxEXPAND);
   hBox2->Add(CancelButton, 0, wxEXPAND);
 
   vBox3->Add( hBox1);
 vBox3->AddSpacer( 25);
   vBox3->Add(hBox2);
-myPanel->SetSizer(vBox3);
-myPanel->Fit();
-	vBox3->Fit( myPanel);
+this->SetSizer(vBox3);
+this->Fit();
+	vBox3->Fit( this);
 		Centre();
 }
 

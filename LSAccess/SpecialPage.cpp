@@ -9,16 +9,15 @@ SpecialPage::SpecialPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, c
 	pMyLinnStrument(pLinnStrument),
 	pMyParent(parent)
 {
-		wxPanel * myPanel = new wxPanel(this, -1);
-	wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
+		wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
 
 	// Controls
 	// Value is an LSSpecial:
-	wxStaticText * lblSPECIAL = new wxStaticText(myPanel, wxID_ANY, L"Special &Mode:");
-	wrbSPECIAL = new wxRadioBox(myPanel, SPECIAL_ID, L"Special &Mode", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Specials), Specials, pMyLinnStrument->GetSPECIAL(m_Split), wxRA_SPECIFY_ROWS);
+	wxStaticText * lblSPECIAL = new wxStaticText(this, wxID_ANY, L"Special &Mode:");
+	wrbSPECIAL = new wxRadioBox(this, SPECIAL_ID, L"Special &Mode", wxDefaultPosition, wxDefaultSize, WXSIZEOF(Specials), Specials, pMyLinnStrument->GetSPECIAL(m_Split), wxRA_SPECIFY_ROWS);
 	hBox1->Add(lblSPECIAL, 0, wxEXPAND);
 	hBox1->Add(wrbSPECIAL, 0, wxEXPAND);
-		myPanel->SetSizerAndFit(hBox1);
+		this->SetSizerAndFit(hBox1);
 	}
 
 

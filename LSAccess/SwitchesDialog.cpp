@@ -13,21 +13,20 @@ SwitchesDialog::SwitchesDialog(const wxString& title, LinnStrument * pLinnStrume
 	pMyLinnStrument(pLinnStrument)
 {
 		// Set up the multi-tab notebook
-	wxPanel * pPanel = new wxPanel(this);
-	wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
-			wxNotebook * pNotebook = new wxNotebook(pPanel, ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, 0);
-	PanelSwitchesPage * pPanelSwitchesPage = new PanelSwitchesPage(pNotebook, pLinnStrument);
+		wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
+			wxNotebook * pNotebook = new wxNotebook(this, ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, 0);
+	PanelSwitchesPage * thisSwitchesPage = new PanelSwitchesPage(pNotebook, pLinnStrument);
 	FootSwitchesPage * pFootSwitchesPage = new FootSwitchesPage(pNotebook, pLinnStrument);
 
-	pNotebook->AddPage(pPanelSwitchesPage, L"Panel", true);
+	pNotebook->AddPage(thisSwitchesPage, L"Panel", true);
 	pNotebook->AddPage(pFootSwitchesPage, L"Foot", false);
-hBox1->Insert(0, pNotebook, wxSizerFlags(5).Expand().Border());
+	hBox1->Add(pNotebook, 0, wxEXPAND);
 
 wxButton * btnOK = new wxButton(this, wxID_OK);
 btnOK->SetDefault();
 hBox1->Add(btnOK, 0, wxEXPAND);
 
-pPanel->SetSizerAndFit(hBox1);
+this->SetSizerAndFit(hBox1);
 	hBox1->Show(pNotebook);
 }
 

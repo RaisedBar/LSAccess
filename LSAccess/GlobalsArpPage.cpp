@@ -8,34 +8,33 @@ GlobalsArpPage::GlobalsArpPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrum
 	pMyLinnStrument(pLinnStrument),
 	pMyParent(parent)
 {
-	wxPanel * myPanel = new wxPanel(this, -1);
-	wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
+		wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
 
 	// Controls
 		// Value is constrained by MIN_TEMPO and MAX_TEMPO
-	wxStaticText * lblGLOBAL_CLOCK_BPM = new wxStaticText(myPanel, wxID_ANY, L"&Tempo:");
-	wscGLOBAL_CLOCK_BPM = new wxSpinCtrl(myPanel, GLOBAL_CLOCK_BPM_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_TEMPO, MAX_TEMPO, pMyLinnStrument->GetGLOBAL_CLOCK_BPM(), L"&Tempo");
+	wxStaticText * lblGLOBAL_CLOCK_BPM = new wxStaticText(this, wxID_ANY, L"&Tempo:");
+	wscGLOBAL_CLOCK_BPM = new wxSpinCtrl(this, GLOBAL_CLOCK_BPM_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_TEMPO, MAX_TEMPO, pMyLinnStrument->GetGLOBAL_CLOCK_BPM(), L"&Tempo");
 	hBox1->Add(lblGLOBAL_CLOCK_BPM, 0, wxEXPAND);
 	hBox1->Add(wscGLOBAL_CLOCK_BPM, 0, wxEXPAND);
 
 	// Value is an LSArpDirection
-	wxStaticText * lblGLOBAL_ARP_DIRECTION = new wxStaticText(myPanel, wxID_ANY, L"&Direction:");
-	wrbGLOBAL_ARP_DIRECTION = new wxRadioBox(myPanel, GLOBAL_ARP_DIRECTION_ID, L"&Direction", wxDefaultPosition, wxDefaultSize, WXSIZEOF(ArpDirections), ArpDirections, pMyLinnStrument->GetGLOBAL_ARP_DIRECTION(), wxRA_SPECIFY_ROWS);
+	wxStaticText * lblGLOBAL_ARP_DIRECTION = new wxStaticText(this, wxID_ANY, L"&Direction:");
+	wrbGLOBAL_ARP_DIRECTION = new wxRadioBox(this, GLOBAL_ARP_DIRECTION_ID, L"&Direction", wxDefaultPosition, wxDefaultSize, WXSIZEOF(ArpDirections), ArpDirections, pMyLinnStrument->GetGLOBAL_ARP_DIRECTION(), wxRA_SPECIFY_ROWS);
 	hBox1->Add(lblGLOBAL_ARP_DIRECTION, 0, wxEXPAND);
 	hBox1->Add(wrbGLOBAL_ARP_DIRECTION, 0, wxEXPAND);
 
 	// Value is an LSArpTempoNoteType
-	wxStaticText * lblGLOBAL_ARP_TEMPO_NOTE_VALUE = new wxStaticText(myPanel, wxID_ANY, L"&Note value:");
-	wrbGLOBAL_ARP_TEMPO_NOTE_VALUE = new wxRadioBox(myPanel, GLOBAL_ARP_TEMPO_NOTE_VALUE_ID, L"&Note value", wxDefaultPosition, wxDefaultSize, WXSIZEOF(ArpTempoNoteTypes), ArpTempoNoteTypes, LinnStrument::LSArpTempoNoteTypeToInt(pMyLinnStrument->GetGLOBAL_ARP_TEMPO_NOTE_VALUE()), wxRA_SPECIFY_ROWS);
+	wxStaticText * lblGLOBAL_ARP_TEMPO_NOTE_VALUE = new wxStaticText(this, wxID_ANY, L"&Note value:");
+	wrbGLOBAL_ARP_TEMPO_NOTE_VALUE = new wxRadioBox(this, GLOBAL_ARP_TEMPO_NOTE_VALUE_ID, L"&Note value", wxDefaultPosition, wxDefaultSize, WXSIZEOF(ArpTempoNoteTypes), ArpTempoNoteTypes, LinnStrument::LSArpTempoNoteTypeToInt(pMyLinnStrument->GetGLOBAL_ARP_TEMPO_NOTE_VALUE()), wxRA_SPECIFY_ROWS);
 	hBox1->Add(lblGLOBAL_ARP_TEMPO_NOTE_VALUE, 0, wxEXPAND);
 	hBox1->Add(wrbGLOBAL_ARP_TEMPO_NOTE_VALUE, 0, wxEXPAND);
 
 	// Value is an LSGlobalArpOctaveExtension
-	wxStaticText * lblGLOBAL_ARP_OCTAVE_EXTENSION = new wxStaticText(myPanel, wxID_ANY, L"&Octave extension:");
-	wrbGLOBAL_ARP_OCTAVE_EXTENSION = new wxRadioBox(myPanel, GLOBAL_ARP_OCTAVE_EXTENSION_ID, L"&Octave extension", wxDefaultPosition, wxDefaultSize, WXSIZEOF(ArpOctaveExtensions), ArpOctaveExtensions, pMyLinnStrument->GetGLOBAL_ARP_OCTAVE_EXTENSION(), wxRA_SPECIFY_ROWS);
+	wxStaticText * lblGLOBAL_ARP_OCTAVE_EXTENSION = new wxStaticText(this, wxID_ANY, L"&Octave extension:");
+	wrbGLOBAL_ARP_OCTAVE_EXTENSION = new wxRadioBox(this, GLOBAL_ARP_OCTAVE_EXTENSION_ID, L"&Octave extension", wxDefaultPosition, wxDefaultSize, WXSIZEOF(ArpOctaveExtensions), ArpOctaveExtensions, pMyLinnStrument->GetGLOBAL_ARP_OCTAVE_EXTENSION(), wxRA_SPECIFY_ROWS);
 	hBox1->Add(lblGLOBAL_ARP_OCTAVE_EXTENSION, 0, wxEXPAND);
 	hBox1->Add(wrbGLOBAL_ARP_OCTAVE_EXTENSION, 0, wxEXPAND);
-	myPanel->SetSizerAndFit(hBox1);
+	this->SetSizerAndFit(hBox1);
 }
 
 

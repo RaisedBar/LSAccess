@@ -9,105 +9,103 @@ MIDISplitPage::MIDISplitPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrumen
 	pMyLinnStrument(pLinnStrument),
 	pMyParent(parent)
 		{
-wxPanel * myPanel = new wxPanel(this, -1);
 wxBoxSizer * vBox1 = new wxBoxSizer(wxVERTICAL);
 wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
-wxBoxSizer * hBox2 = new wxBoxSizer(wxHORIZONTAL);
-wxBoxSizer * hBox3 = new wxBoxSizer(wxHORIZONTAL);
+wxFlexGridSizer * gSizer = new wxFlexGridSizer(8);
 
 // Controls
 // Value is an LS_MIDIMode
-wxStaticText * lblSPLIT_MODE = new wxStaticText(myPanel, wxID_ANY, L"&Split mode:");
-wrbSPLIT_MODE = new wxRadioBox(myPanel, SPLIT_MODE_ID, L"&Split mode", wxDefaultPosition, wxDefaultSize, WXSIZEOF(SplitModes), SplitModes, pMyLinnStrument->GetSPLIT_MODE(split), wxRA_SPECIFY_ROWS);
+wxStaticText * lblSPLIT_MODE = new wxStaticText(this, wxID_ANY, L"&Split mode:");
+wrbSPLIT_MODE = new wxRadioBox(this, SPLIT_MODE_ID, L"&Split mode", wxDefaultPosition, wxDefaultSize, WXSIZEOF(SplitModes), SplitModes, pMyLinnStrument->GetSPLIT_MODE(split), wxRA_SPECIFY_ROWS);
 hBox1->Add(lblSPLIT_MODE, 0, wxEXPAND);
 hBox1->Add(wrbSPLIT_MODE, 0, wxEXPAND);
 
 // Value is a MIDI channel number:
-wxStaticText * lblMIDI_MAIN_CHANNEL = new wxStaticText(myPanel, wxID_ANY, L"&Main channel:");
-wscMIDI_MAIN_CHANNEL = new wxSpinCtrl(myPanel, MIDI_MAIN_CHANNEL_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_MIDI_CHANNEL, MAX_MIDI_CHANNEL, pMyLinnStrument->GetMIDI_MAIN_CHANNEL(split), "Main MIDI channel");
+wxStaticText * lblMIDI_MAIN_CHANNEL = new wxStaticText(this, wxID_ANY, L"&Main channel:");
+wscMIDI_MAIN_CHANNEL = new wxSpinCtrl(this, MIDI_MAIN_CHANNEL_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_MIDI_CHANNEL, MAX_MIDI_CHANNEL, pMyLinnStrument->GetMIDI_MAIN_CHANNEL(split), "Main MIDI channel");
 hBox1->Add(lblMIDI_MAIN_CHANNEL, 0, wxEXPAND);
 hBox1->Add(wscMIDI_MAIN_CHANNEL, 0, wxEXPAND);
 
 // Value is an LSChannelOrder
-wxStaticText * lblCHANNEL_PER_ROW_ORDER = new wxStaticText(myPanel, wxID_ANY, L"Channel per row &order:");
-wrbCHANNEL_PER_ROW_ORDER = new wxRadioBox(myPanel, CHANNEL_PER_ROW_ORDER_ID, L"Channel &Order", wxDefaultPosition, wxDefaultSize, WXSIZEOF(ChannelOrders), ChannelOrders, pMyLinnStrument->GetCHANNEL_PER_ROW_ORDER(split), wxRA_SPECIFY_ROWS);
+wxStaticText * lblCHANNEL_PER_ROW_ORDER = new wxStaticText(this, wxID_ANY, L"Channel per row &order:");
+wrbCHANNEL_PER_ROW_ORDER = new wxRadioBox(this, CHANNEL_PER_ROW_ORDER_ID, L"Channel &Order", wxDefaultPosition, wxDefaultSize, WXSIZEOF(ChannelOrders), ChannelOrders, pMyLinnStrument->GetCHANNEL_PER_ROW_ORDER(split), wxRA_SPECIFY_ROWS);
 hBox1->Add(lblCHANNEL_PER_ROW_ORDER, 0, wxEXPAND);
 hBox1->Add(wrbCHANNEL_PER_ROW_ORDER, 0, wxEXPAND);
 
 // Value is a MIDI channel number:
-wxStaticText * lblMIDI_PER_ROW_LOWEST_CHANNEL = new wxStaticText(myPanel, wxID_ANY, L"MIDI per row &lowest channel:");
-wscMIDI_PER_ROW_LOWEST_CHANNEL = new wxSpinCtrl(myPanel, MIDI_PER_ROW_LOWEST_CHANNEL_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_MIDI_CHANNEL, MAX_MIDI_CHANNEL, pMyLinnStrument->GetMIDI_PER_ROW_LOWEST_CHANNEL(split), "MIDI per row lowest channel");
+wxStaticText * lblMIDI_PER_ROW_LOWEST_CHANNEL = new wxStaticText(this, wxID_ANY, L"MIDI per row &lowest channel:");
+wscMIDI_PER_ROW_LOWEST_CHANNEL = new wxSpinCtrl(this, MIDI_PER_ROW_LOWEST_CHANNEL_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_MIDI_CHANNEL, MAX_MIDI_CHANNEL, pMyLinnStrument->GetMIDI_PER_ROW_LOWEST_CHANNEL(split), "MIDI per row lowest channel");
 hBox1->Add(lblMIDI_PER_ROW_LOWEST_CHANNEL, 0, wxEXPAND);
 hBox1->Add(wscMIDI_PER_ROW_LOWEST_CHANNEL, 0, wxEXPAND);
 
-chkCHANNEL_PER_NOTE_1 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_1_ID, L"Channel per note &1");
+chkCHANNEL_PER_NOTE_1 = new wxCheckBox(this, CHANNEL_PER_NOTE_1_ID, L"Channel per note &1");
 chkCHANNEL_PER_NOTE_1->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetCHANNEL_PER_NOTE_1(split)));
-hBox2->Add(chkCHANNEL_PER_NOTE_1, 0, wxEXPAND);
+gSizer->Add(chkCHANNEL_PER_NOTE_1, 0, wxEXPAND);
 
-chkCHANNEL_PER_NOTE_2 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_2_ID, L"Channel per note &2");
+chkCHANNEL_PER_NOTE_2 = new wxCheckBox(this, CHANNEL_PER_NOTE_2_ID, L"Channel per note &2");
 chkCHANNEL_PER_NOTE_2->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetCHANNEL_PER_NOTE_2(split)));
-hBox2->Add(chkCHANNEL_PER_NOTE_2, 0, wxEXPAND);
+gSizer->Add(chkCHANNEL_PER_NOTE_2, 0, wxEXPAND);
 
-chkCHANNEL_PER_NOTE_3 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_3_ID, L"Channel per note &3");
+chkCHANNEL_PER_NOTE_3 = new wxCheckBox(this, CHANNEL_PER_NOTE_3_ID, L"Channel per note &3");
 chkCHANNEL_PER_NOTE_3->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetCHANNEL_PER_NOTE_3(split)));
-hBox2->Add(chkCHANNEL_PER_NOTE_3, 0, wxEXPAND);
+gSizer->Add(chkCHANNEL_PER_NOTE_3, 0, wxEXPAND);
 
-chkCHANNEL_PER_NOTE_4 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_4_ID, L"Channel per note &4");
+chkCHANNEL_PER_NOTE_4 = new wxCheckBox(this, CHANNEL_PER_NOTE_4_ID, L"Channel per note &4");
 chkCHANNEL_PER_NOTE_4->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetCHANNEL_PER_NOTE_4(split)));
-hBox2->Add(chkCHANNEL_PER_NOTE_4, 0, wxEXPAND);
+gSizer->Add(chkCHANNEL_PER_NOTE_4, 0, wxEXPAND);
 
-chkCHANNEL_PER_NOTE_5 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_5_ID, L"Channel per note &5");
+chkCHANNEL_PER_NOTE_5 = new wxCheckBox(this, CHANNEL_PER_NOTE_5_ID, L"Channel per note &5");
 chkCHANNEL_PER_NOTE_5->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetCHANNEL_PER_NOTE_5(split)));
-hBox2->Add(chkCHANNEL_PER_NOTE_5, 0, wxEXPAND);
+gSizer->Add(chkCHANNEL_PER_NOTE_5, 0, wxEXPAND);
 
-chkCHANNEL_PER_NOTE_6 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_6_ID, L"Channel per note &6");;
+chkCHANNEL_PER_NOTE_6 = new wxCheckBox(this, CHANNEL_PER_NOTE_6_ID, L"Channel per note &6");;
 chkCHANNEL_PER_NOTE_6->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetCHANNEL_PER_NOTE_6(split)));
-hBox2->Add(chkCHANNEL_PER_NOTE_6, 0, wxEXPAND);
+gSizer->Add(chkCHANNEL_PER_NOTE_6, 0, wxEXPAND);
 
-chkCHANNEL_PER_NOTE_7 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_7_ID, L"Channel per note &7");
+chkCHANNEL_PER_NOTE_7 = new wxCheckBox(this, CHANNEL_PER_NOTE_7_ID, L"Channel per note &7");
 chkCHANNEL_PER_NOTE_7->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetCHANNEL_PER_NOTE_7(split)));
-hBox2->Add(chkCHANNEL_PER_NOTE_7, 0, wxEXPAND);
+gSizer->Add(chkCHANNEL_PER_NOTE_7, 0, wxEXPAND);
 
-chkCHANNEL_PER_NOTE_8 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_8_ID, L"Channel per note &8");
+chkCHANNEL_PER_NOTE_8 = new wxCheckBox(this, CHANNEL_PER_NOTE_8_ID, L"Channel per note &8");
 chkCHANNEL_PER_NOTE_8->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetCHANNEL_PER_NOTE_8(split)));
-hBox2->Add(chkCHANNEL_PER_NOTE_8, 0, wxEXPAND);
+gSizer->Add(chkCHANNEL_PER_NOTE_8, 0, wxEXPAND);
 
-chkCHANNEL_PER_NOTE_9 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_9_ID, L"Channel per note &9");
+chkCHANNEL_PER_NOTE_9 = new wxCheckBox(this, CHANNEL_PER_NOTE_9_ID, L"Channel per note &9");
 chkCHANNEL_PER_NOTE_9->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetCHANNEL_PER_NOTE_9(split)));
-hBox3->Add(chkCHANNEL_PER_NOTE_9, 0, wxEXPAND);
+gSizer->Add(chkCHANNEL_PER_NOTE_9, 0, wxEXPAND);
 
-chkCHANNEL_PER_NOTE_10 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_10_ID, L"Channel per note 10");
+chkCHANNEL_PER_NOTE_10 = new wxCheckBox(this, CHANNEL_PER_NOTE_10_ID, L"Channel per note 10");
 chkCHANNEL_PER_NOTE_10->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetCHANNEL_PER_NOTE_10(split)));
-hBox3->Add(chkCHANNEL_PER_NOTE_10, 0, wxEXPAND);
+gSizer->Add(chkCHANNEL_PER_NOTE_10, 0, wxEXPAND);
 
-chkCHANNEL_PER_NOTE_11 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_11_ID, L"Channel per note &11");
+chkCHANNEL_PER_NOTE_11 = new wxCheckBox(this, CHANNEL_PER_NOTE_11_ID, L"Channel per note &11");
 chkCHANNEL_PER_NOTE_11->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetCHANNEL_PER_NOTE_11(split)));
-hBox3->Add(chkCHANNEL_PER_NOTE_11, 0, wxEXPAND);
+gSizer->Add(chkCHANNEL_PER_NOTE_11, 0, wxEXPAND);
 
-chkCHANNEL_PER_NOTE_12 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_12_ID, L"Channel per note &12");
+chkCHANNEL_PER_NOTE_12 = new wxCheckBox(this, CHANNEL_PER_NOTE_12_ID, L"Channel per note &12");
 chkCHANNEL_PER_NOTE_12->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetCHANNEL_PER_NOTE_12(split)));
-hBox3->Add(chkCHANNEL_PER_NOTE_12, 0, wxEXPAND);
+gSizer->Add(chkCHANNEL_PER_NOTE_12, 0, wxEXPAND);
 
-chkCHANNEL_PER_NOTE_13 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_13_ID, L"Channel per note 13");
+chkCHANNEL_PER_NOTE_13 = new wxCheckBox(this, CHANNEL_PER_NOTE_13_ID, L"Channel per note 13");
 chkCHANNEL_PER_NOTE_13->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetCHANNEL_PER_NOTE_13(split)));
-hBox3->Add(chkCHANNEL_PER_NOTE_13, 0, wxEXPAND);
+gSizer->Add(chkCHANNEL_PER_NOTE_13, 0, wxEXPAND);
 
-chkCHANNEL_PER_NOTE_14 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_14_ID, L"Channel per note 14");
+chkCHANNEL_PER_NOTE_14 = new wxCheckBox(this, CHANNEL_PER_NOTE_14_ID, L"Channel per note 14");
 chkCHANNEL_PER_NOTE_14->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetCHANNEL_PER_NOTE_14(split)));
-hBox3->Add(chkCHANNEL_PER_NOTE_14, 0, wxEXPAND);
+gSizer->Add(chkCHANNEL_PER_NOTE_14, 0, wxEXPAND);
 
-chkCHANNEL_PER_NOTE_15 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_15_ID, L"Channel per note 15");
+chkCHANNEL_PER_NOTE_15 = new wxCheckBox(this, CHANNEL_PER_NOTE_15_ID, L"Channel per note 15");
 chkCHANNEL_PER_NOTE_15->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetCHANNEL_PER_NOTE_15(split)));
-hBox3->Add(chkCHANNEL_PER_NOTE_15, 0, wxEXPAND);
+gSizer->Add(chkCHANNEL_PER_NOTE_15, 0, wxEXPAND);
 
-chkCHANNEL_PER_NOTE_16 = new wxCheckBox(myPanel, CHANNEL_PER_NOTE_16_ID, L"Channel per note 16");
+chkCHANNEL_PER_NOTE_16 = new wxCheckBox(this, CHANNEL_PER_NOTE_16_ID, L"Channel per note 16");
 chkCHANNEL_PER_NOTE_16->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetCHANNEL_PER_NOTE_16(split)));
-hBox3->Add(chkCHANNEL_PER_NOTE_16, 0, wxEXPAND);
+gSizer->Add(chkCHANNEL_PER_NOTE_16, 0, wxEXPAND);
 
 vBox1->Add(hBox1, 0, wxEXPAND);
-vBox1->Add(hBox2, 0, wxEXPAND);
-vBox1->Add(hBox3, 0, wxEXPAND);
-		myPanel->SetSizerAndFit(vBox1);
+vBox1->AddSpacer(20);
+vBox1->Add(gSizer, 0, wxEXPAND);
+		this->SetSizerAndFit(vBox1);
 }
 
 

@@ -9,37 +9,36 @@ BendPage::BendPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const L
 	pMyLinnStrument( pLinnStrument),
 	m_Split(split)
 {
-wxPanel * myPanel = new wxPanel(this, -1);
 wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
 
 // Controls
 // toggle
-chkBEND_TOGGLE = new wxCheckBox(myPanel, BEND_TOGGLE_ID, L"&Send &X-axis pitch bend messages");
+chkBEND_TOGGLE = new wxCheckBox(this, BEND_TOGGLE_ID, L"&Send &X-axis pitch bend messages");
 chkBEND_TOGGLE->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetBEND_TOGGLE(split)));
 hBox1->Add(chkBEND_TOGGLE, 0, wxEXPAND);
 
 // Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
-wxStaticText * lblBEND_RANGE = new wxStaticText(myPanel, wxID_ANY, L"Bend &Range:");
-wscBEND_RANGE = new wxSpinCtrl(myPanel, BEND_RANGE_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_BEND_RANGE, MAX_BEND_RANGE, pMyLinnStrument->GetBEND_RANGE(split), "&range");
+wxStaticText * lblBEND_RANGE = new wxStaticText(this, wxID_ANY, L"Bend &Range:");
+wscBEND_RANGE = new wxSpinCtrl(this, BEND_RANGE_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_BEND_RANGE, MAX_BEND_RANGE, pMyLinnStrument->GetBEND_RANGE(split), "&range");
 hBox1->Add(lblBEND_RANGE, 0, wxEXPAND);
 hBox1->Add(wscBEND_RANGE, 0, wxEXPAND);
 
 // toggle
-chkBEND_QUANTIZE_TOGGLE = new wxCheckBox(myPanel, BEND_QUANTIZE_TOGGLE_ID, L"&Quantize");
+chkBEND_QUANTIZE_TOGGLE = new wxCheckBox(this, BEND_QUANTIZE_TOGGLE_ID, L"&Quantize");
 chkBEND_QUANTIZE_TOGGLE->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetBEND_QUANTIZE_TOGGLE(split)));
 hBox1->Add(chkBEND_QUANTIZE_TOGGLE, 0, wxEXPAND);
 
 // Values are from LSPitchQuantize
-wxStaticText * lblBendQuantize = new wxStaticText(myPanel, wxID_ANY, L"Bend &Quantize:");
-wrbBendQuantize = new wxRadioBox(myPanel, BEND_QUANTIZE_ID, L"Quantization &type:", wxDefaultPosition, wxDefaultSize, WXSIZEOF( BendQuantizations), BendQuantizations, pMyLinnStrument->GetBEND_QUANTIZE(split), wxRA_SPECIFY_ROWS);
+wxStaticText * lblBendQuantize = new wxStaticText(this, wxID_ANY, L"Bend &Quantize:");
+wrbBendQuantize = new wxRadioBox(this, BEND_QUANTIZE_ID, L"Quantization &type:", wxDefaultPosition, wxDefaultSize, WXSIZEOF( BendQuantizations), BendQuantizations, pMyLinnStrument->GetBEND_QUANTIZE(split), wxRA_SPECIFY_ROWS);
 hBox1->Add(lblBendQuantize, 0, wxEXPAND);
 hBox1->Add(wrbBendQuantize, 0, wxEXPAND);
 			
 // Toggle
-chkRESET_PITCH_ON_RELEASE = new wxCheckBox(myPanel, RESET_PITCH_ON_RELEASE_ID, L"&&Reset pitch &on release");
+chkRESET_PITCH_ON_RELEASE = new wxCheckBox(this, RESET_PITCH_ON_RELEASE_ID, L"&&Reset pitch &on release");
 chkRESET_PITCH_ON_RELEASE->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetRESET_PITCH_ON_RELEASE(split)));
 hBox1->Add(chkRESET_PITCH_ON_RELEASE, 0, wxEXPAND);
-myPanel->SetSizerAndFit(hBox1);
+this->SetSizerAndFit(hBox1);
 }
 
 

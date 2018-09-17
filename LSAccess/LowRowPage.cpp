@@ -9,49 +9,48 @@ LowRowPage::LowRowPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, con
 	pMyLinnStrument(pLinnStrument),
 	pMyParent(parent)
 	{
-wxPanel * myPanel = new wxPanel(this, -1);
-	wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
+wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
 
 	// Controls
 			// Value is an LSLowRowMode
-	wxStaticText * lblLOWROW_MODE = new wxStaticText(myPanel, wxID_ANY, L"Low row &Mode:");
-	wrbLOWROW_MODE = new wxRadioBox(myPanel, LOWROW_MODE_ID, L"Low row &Mode", wxDefaultPosition, wxDefaultSize, WXSIZEOF(LowRowModes), LowRowModes, pMyLinnStrument->GetLOWROW_MODE(split), wxRA_SPECIFY_ROWS);
+	wxStaticText * lblLOWROW_MODE = new wxStaticText(this, wxID_ANY, L"Low row &Mode:");
+	wrbLOWROW_MODE = new wxRadioBox(this, LOWROW_MODE_ID, L"Low row &Mode", wxDefaultPosition, wxDefaultSize, WXSIZEOF(LowRowModes), LowRowModes, pMyLinnStrument->GetLOWROW_MODE(split), wxRA_SPECIFY_ROWS);
 	hBox1->Add(lblLOWROW_MODE, 0, wxEXPAND);
 	hBox1->Add(wrbLOWROW_MODE, 0, wxEXPAND);
 	
 	// Value is an LSLowRowBehaviour
-	wxStaticText * lblLOWROW_X_BEHAVIOUR = new wxStaticText(myPanel, wxID_ANY, L"&X-axis behaviour:");
-	wrbLOWROW_X_BEHAVIOUR = new wxRadioBox(myPanel, LOWROW_X_BEHAVIOUR_ID, L"&X-axis behaviour:", wxDefaultPosition, wxDefaultSize, WXSIZEOF(LowRowBehaviour), LowRowBehaviour, pMyLinnStrument->GetLOWROW_X_BEHAVIOUR(split), wxRA_SPECIFY_ROWS);
+	wxStaticText * lblLOWROW_X_BEHAVIOUR = new wxStaticText(this, wxID_ANY, L"&X-axis behaviour:");
+	wrbLOWROW_X_BEHAVIOUR = new wxRadioBox(this, LOWROW_X_BEHAVIOUR_ID, L"&X-axis behaviour:", wxDefaultPosition, wxDefaultSize, WXSIZEOF(LowRowBehaviour), LowRowBehaviour, pMyLinnStrument->GetLOWROW_X_BEHAVIOUR(split), wxRA_SPECIFY_ROWS);
 	hBox1->Add(lblLOWROW_X_BEHAVIOUR, 0, wxEXPAND);
 	hBox1->Add(wrbLOWROW_X_BEHAVIOUR, 0, wxEXPAND);
 		
 		// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-		wxStaticText * lblCC_FOR_LOWROW = new wxStaticText(myPanel, wxID_ANY, L"Low-row &CC:");
-		wscCC_FOR_LOWROW = new wxSpinCtrl(myPanel, CC_FOR_LOWROW_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_FADER_CC, MAX_FADER_CC, pMyLinnStrument->GetCC_FOR_LOWROW(split), L"CC message");
+		wxStaticText * lblCC_FOR_LOWROW = new wxStaticText(this, wxID_ANY, L"Low-row &CC:");
+		wscCC_FOR_LOWROW = new wxSpinCtrl(this, CC_FOR_LOWROW_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_FADER_CC, MAX_FADER_CC, pMyLinnStrument->GetCC_FOR_LOWROW(split), L"CC message");
 		hBox1->Add(lblCC_FOR_LOWROW, 0, wxEXPAND);
 		hBox1->Add(wscCC_FOR_LOWROW, 0, wxEXPAND);
 
-		wxStaticText * lblLOWROW_XYZ_BEHAVIOUR = new wxStaticText(myPanel, wxID_ANY, L"X,Y,Z &behaviour:");
-		wrbLOWROW_XYZ_BEHAVIOUR = new wxRadioBox(myPanel, LOWROW_XYZ_BEHAVIOUR_ID, L"X,Y,Z &behaviour", wxDefaultPosition, wxDefaultSize, WXSIZEOF(LowRowBehaviour), LowRowBehaviour, pMyLinnStrument->GetLOWROW_XYZ_BEHAVIOUR(split), wxRA_SPECIFY_ROWS);
+		wxStaticText * lblLOWROW_XYZ_BEHAVIOUR = new wxStaticText(this, wxID_ANY, L"X,Y,Z &behaviour:");
+		wrbLOWROW_XYZ_BEHAVIOUR = new wxRadioBox(this, LOWROW_XYZ_BEHAVIOUR_ID, L"X,Y,Z &behaviour", wxDefaultPosition, wxDefaultSize, WXSIZEOF(LowRowBehaviour), LowRowBehaviour, pMyLinnStrument->GetLOWROW_XYZ_BEHAVIOUR(split), wxRA_SPECIFY_ROWS);
 		hBox1->Add(lblLOWROW_XYZ_BEHAVIOUR, 0, wxEXPAND);
 		hBox1->Add(wrbLOWROW_XYZ_BEHAVIOUR, 0, wxEXPAND);
 		
 		// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-		wxStaticText * lblCC_FOR_LOWROW_XYZ = new wxStaticText(myPanel, wxID_ANY, L"CC for X,Y,Z:");
-		wscCC_FOR_LOWROW_XYZ = new wxSpinCtrl(myPanel, CC_FOR_LOWROW_XYZ_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_FADER_CC, MAX_FADER_CC, pMyLinnStrument->GetCC_FOR_LOWROW_XYZ(split), "CC for &Low Row X,Y,Z - X");
+		wxStaticText * lblCC_FOR_LOWROW_XYZ = new wxStaticText(this, wxID_ANY, L"CC for X,Y,Z:");
+		wscCC_FOR_LOWROW_XYZ = new wxSpinCtrl(this, CC_FOR_LOWROW_XYZ_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_FADER_CC, MAX_FADER_CC, pMyLinnStrument->GetCC_FOR_LOWROW_XYZ(split), "CC for &Low Row X,Y,Z - X");
 		hBox1->Add(lblCC_FOR_LOWROW_XYZ, 0, wxEXPAND);
 		hBox1->Add(wscCC_FOR_LOWROW_XYZ, 0, wxEXPAND);
 	
-	wxStaticText * lblCC_FOR_LOWROW_XYZ_Y = new wxStaticText(myPanel, wxID_ANY, L"CC for X,Y,Z-&Y:");
-	wscCC_FOR_LOWROW_XYZ_Y = new wxSpinCtrl(myPanel, CC_FOR_LOWROW_XYZ_Y_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_FADER_CC, MAX_FADER_CC, pMyLinnStrument->GetCC_FOR_LOWROW_XYZ_Y(split), "CC for X,Y,Z - Y");
+	wxStaticText * lblCC_FOR_LOWROW_XYZ_Y = new wxStaticText(this, wxID_ANY, L"CC for X,Y,Z-&Y:");
+	wscCC_FOR_LOWROW_XYZ_Y = new wxSpinCtrl(this, CC_FOR_LOWROW_XYZ_Y_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_FADER_CC, MAX_FADER_CC, pMyLinnStrument->GetCC_FOR_LOWROW_XYZ_Y(split), "CC for X,Y,Z - Y");
 	hBox1->Add(lblCC_FOR_LOWROW_XYZ_Y, 0, wxEXPAND);
 	hBox1->Add(wscCC_FOR_LOWROW_XYZ_Y, 0, wxEXPAND);
 	
-	wxStaticText * lblCC_FOR_LOWROW_XYZ_Z = new wxStaticText(myPanel, wxID_ANY, L"CC for X,Y,Z-&Z:");
-	wscCC_FOR_LOWROW_XYZ_Z = new wxSpinCtrl(myPanel, CC_FOR_LOWROW_XYZ_Z_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_FADER_CC, MAX_FADER_CC, pMyLinnStrument->GetCC_FOR_LOWROW_XYZ_Z(split), "CC for X,Y,Z - Z");
+	wxStaticText * lblCC_FOR_LOWROW_XYZ_Z = new wxStaticText(this, wxID_ANY, L"CC for X,Y,Z-&Z:");
+	wscCC_FOR_LOWROW_XYZ_Z = new wxSpinCtrl(this, CC_FOR_LOWROW_XYZ_Z_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_FADER_CC, MAX_FADER_CC, pMyLinnStrument->GetCC_FOR_LOWROW_XYZ_Z(split), "CC for X,Y,Z - Z");
 	hBox1->Add(lblCC_FOR_LOWROW_XYZ_Z, 0, wxEXPAND);
 	hBox1->Add(wscCC_FOR_LOWROW_XYZ_Z, 0, wxEXPAND);
-		myPanel->SetSizerAndFit(hBox1);
+		this->SetSizerAndFit(hBox1);
 	}
 
 

@@ -13,10 +13,9 @@ PerSplitDialog::PerSplitDialog(const wxString& title, LinnStrument * pLinnStrume
 	pMyLinnStrument(pLinnStrument)
 {
 		// Set up the multi-tab notebook
-	wxPanel * pPanel = new wxPanel(this);
-	wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
+		wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
 
-	pNotebook = new wxNotebook(pPanel, ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, 0);
+	pNotebook = new wxNotebook(this, ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, wxNB_TOP);
 	pMIDISplitPage = new MIDISplitPage(pNotebook, pLinnStrument, split);
 	pBendPage = new BendPage(pNotebook, pLinnStrument, split);
 	pAxesPage = new AxesPage(pNotebook, pLinnStrument, split);
@@ -32,12 +31,12 @@ PerSplitDialog::PerSplitDialog(const wxString& title, LinnStrument * pLinnStrume
 	pNotebook->AddPage(pLowRowPage, L"Low Row", false);
 	pNotebook->AddPage(pFadersPage, L"Faders", false);
 	pNotebook->AddPage(pSpecialPage, L"Special", false);
-	hBox1->Insert(0, pNotebook, wxSizerFlags(7).Expand().Border());
+	hBox1->Add(pNotebook, 0, wxEXPAND);
 	
 	wxButton * btnOK = new wxButton(this, wxID_OK);
 	btnOK->SetDefault();
 	hBox1->Add(btnOK, 0, wxEXPAND);
-	pPanel->SetSizerAndFit(hBox1);
+	this->SetSizerAndFit(hBox1);
 	hBox1->Show(pNotebook);
 }
 

@@ -9,27 +9,26 @@ PresetsVolumesPage::PresetsVolumesPage(wxBookCtrlBase *parent, LinnStrument * pL
 	pMyLinnStrument(pLinnStrument),
 	pMyParent(parent)
 {
-		wxPanel * myPanel = new wxPanel(this, -1);
-	wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
+		wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
 
 	// Controls
 		// Value is an LSPresetNumber
-	wxStaticText * lblGLOBAL_SETTINGS_PRESET_LOAD = new wxStaticText(myPanel, wxID_ANY, L"&LinnStrument preset:");
-		wrbGLOBAL_SETTINGS_PRESET_LOAD = new wxRadioBox(myPanel, GLOBAL_SETTINGS_PRESET_LOAD_ID, L"&LinnStrument Preset", wxDefaultPosition, wxDefaultSize, WXSIZEOF(PresetNumbers), PresetNumbers, pMyLinnStrument->GetLSPresetNumber(), wxRA_SPECIFY_ROWS);
+	wxStaticText * lblGLOBAL_SETTINGS_PRESET_LOAD = new wxStaticText(this, wxID_ANY, L"&LinnStrument preset:");
+		wrbGLOBAL_SETTINGS_PRESET_LOAD = new wxRadioBox(this, GLOBAL_SETTINGS_PRESET_LOAD_ID, L"&LinnStrument Preset", wxDefaultPosition, wxDefaultSize, WXSIZEOF(PresetNumbers), PresetNumbers, pMyLinnStrument->GetLSPresetNumber(), wxRA_SPECIFY_ROWS);
 		hBox1->Add(lblGLOBAL_SETTINGS_PRESET_LOAD, 0, wxEXPAND);
 		hBox1->Add(wrbGLOBAL_SETTINGS_PRESET_LOAD, 0, wxEXPAND);
 	
 	// Values constrained by MIN_CC and MAX_CC
-		wxStaticText * lblProgramNumber = new wxStaticText(myPanel, wxID_ANY, L"&Program number:");
-		wscProgramNumber = new wxSpinCtrl(myPanel, ProgramNumber_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetMIDIProgram(split), "&Program");
+		wxStaticText * lblProgramNumber = new wxStaticText(this, wxID_ANY, L"&Program number:");
+		wscProgramNumber = new wxSpinCtrl(this, ProgramNumber_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetMIDIProgram(split), "&Program");
 		hBox1->Add(lblProgramNumber, 0, wxEXPAND);
 		hBox1->Add(wscProgramNumber, 0, wxEXPAND);
 
-wxStaticText * lblVolume = new wxStaticText(myPanel, wxID_ANY, L"&Volume:");
-wscVolume = new wxSpinCtrl(myPanel, Volume_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetVolume(split), "&Volume");
+wxStaticText * lblVolume = new wxStaticText(this, wxID_ANY, L"&Volume:");
+wscVolume = new wxSpinCtrl(this, Volume_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetVolume(split), "&Volume");
 hBox1->Add(lblVolume, 0, wxEXPAND);
 hBox1->Add(wscVolume, 0, wxEXPAND);
-	myPanel->SetSizerAndFit(hBox1);
+	this->SetSizerAndFit(hBox1);
 }
 
 
