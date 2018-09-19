@@ -93,6 +93,7 @@ AxesPage::AxesPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const L
 		hBoxZ->Add(wsc14BIT_CC_VALUE_FOR_Z, 0, wxEXPAND);
 
 		vBox1->Add(hBoxY, 0, wxEXPAND);
+		vBox1->AddSpacer(20);
 		vBox1->Add(hBoxZ, 0, wxEXPAND);
 				this->SetSizerAndFit(vBox1);
 			}

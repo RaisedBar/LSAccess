@@ -117,6 +117,9 @@
     <ClInclude Include="PerSplitDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="xh_PerSplitDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LSAccess.cpp">

@@ -9,7 +9,8 @@ GlobalsTuningsPage::GlobalsTuningsPage(wxBookCtrlBase *parent, LinnStrument * pL
 pMyParent(parent)
 {
 		wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
-	
+wxFlexGridSizer * gSizer = new wxFlexGridSizer(8);
+
 	// Controls
 		// Value is an LSRowOffsetType
 	wxStaticText * lblGLOBAL_ROW_OFFSET = new wxStaticText(this, wxID_ANY, L"&Row offset type:");
@@ -26,44 +27,45 @@ pMyParent(parent)
 	// Values are constrained by MIN_CC and MAX_CC
 	wxStaticText * lblGLOBAL_GUITAR_NOTE_TUNING_ROW1 = new wxStaticText(this, wxID_ANY, L"Guitar tuning, row &1:");
 	wscGLOBAL_GUITAR_NOTE_TUNING_ROW1 = new wxSpinCtrl(this, GLOBAL_GUITAR_NOTE_TUNING_ROW1_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetGLOBAL_GUITAR_NOTE_TUNING_ROW1(), "Row &1 tuning");
-	hBox1->Add(lblGLOBAL_GUITAR_NOTE_TUNING_ROW1, 0, wxEXPAND);
-	hBox1->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW1, 0, wxEXPAND);
+	gSizer->Add(lblGLOBAL_GUITAR_NOTE_TUNING_ROW1, 0, wxEXPAND);
+	gSizer->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW1, 0, wxEXPAND);
 
 	wxStaticText * lblGLOBAL_GUITAR_NOTE_TUNING_ROW2 = new wxStaticText(this, wxID_ANY, L"Guitar tuning, row &2:");
 	wscGLOBAL_GUITAR_NOTE_TUNING_ROW2 = new wxSpinCtrl(this, GLOBAL_GUITAR_NOTE_TUNING_ROW2_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetGLOBAL_GUITAR_NOTE_TUNING_ROW2(), "Row &2 tuning");
-	hBox1->Add(lblGLOBAL_GUITAR_NOTE_TUNING_ROW2, 0, wxEXPAND);
-	hBox1->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW2, 0, wxEXPAND);
+	gSizer->Add(lblGLOBAL_GUITAR_NOTE_TUNING_ROW2, 0, wxEXPAND);
+	gSizer->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW2, 0, wxEXPAND);
 
 	wxStaticText * lblGLOBAL_GUITAR_NOTE_TUNING_ROW3 = new wxStaticText(this, wxID_ANY, L"Guitar tuning, row &3:");
 	wscGLOBAL_GUITAR_NOTE_TUNING_ROW3 = new wxSpinCtrl(this, GLOBAL_GUITAR_NOTE_TUNING_ROW3_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetGLOBAL_GUITAR_NOTE_TUNING_ROW3(), "Row &3 tuning");
-	hBox1->Add(lblGLOBAL_GUITAR_NOTE_TUNING_ROW3, 0, wxEXPAND);
-	hBox1->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW3, 0, wxEXPAND);
+	gSizer->Add(lblGLOBAL_GUITAR_NOTE_TUNING_ROW3, 0, wxEXPAND);
+	gSizer->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW3, 0, wxEXPAND);
 
 	wxStaticText * lblGLOBAL_GUITAR_NOTE_TUNING_ROW4 = new wxStaticText(this, wxID_ANY, L"Guitar tuning, row &4:");
 	wscGLOBAL_GUITAR_NOTE_TUNING_ROW4 = new wxSpinCtrl(this, GLOBAL_GUITAR_NOTE_TUNING_ROW4_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetGLOBAL_GUITAR_NOTE_TUNING_ROW4(), "Row &4 tuning");
-	hBox1->Add(lblGLOBAL_GUITAR_NOTE_TUNING_ROW4, 0, wxEXPAND);
-	hBox1->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW4, 0, wxEXPAND);
+	gSizer->Add(lblGLOBAL_GUITAR_NOTE_TUNING_ROW4, 0, wxEXPAND);
+	gSizer->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW4, 0, wxEXPAND);
 
 	wxStaticText * lblGLOBAL_GUITAR_NOTE_TUNING_ROW5 = new wxStaticText(this, wxID_ANY, L"Guitar tuning, row &5:");
 	wscGLOBAL_GUITAR_NOTE_TUNING_ROW5 = new wxSpinCtrl(this, GLOBAL_GUITAR_NOTE_TUNING_ROW5_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetGLOBAL_GUITAR_NOTE_TUNING_ROW5(), "Row &5 tuning");
-	hBox1->Add(lblGLOBAL_GUITAR_NOTE_TUNING_ROW5, 0, wxEXPAND);
-	hBox1->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW5, 0, wxEXPAND);
+	gSizer->Add(lblGLOBAL_GUITAR_NOTE_TUNING_ROW5, 0, wxEXPAND);
+	gSizer->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW5, 0, wxEXPAND);
 
 	wxStaticText * lblGLOBAL_GUITAR_NOTE_TUNING_ROW6 = new wxStaticText(this, wxID_ANY, L"Guitar tuning, row &6:");
 	wscGLOBAL_GUITAR_NOTE_TUNING_ROW6 = new wxSpinCtrl(this, GLOBAL_GUITAR_NOTE_TUNING_ROW6_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetGLOBAL_GUITAR_NOTE_TUNING_ROW6(), "Row &6 tuning");
-	hBox1->Add(lblGLOBAL_GUITAR_NOTE_TUNING_ROW6, 0, wxEXPAND);
-	hBox1->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW6, 0, wxEXPAND);
+	gSizer->Add(lblGLOBAL_GUITAR_NOTE_TUNING_ROW6, 0, wxEXPAND);
+	gSizer->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW6, 0, wxEXPAND);
 
 	wxStaticText * lblGLOBAL_GUITAR_NOTE_TUNING_ROW7 = new wxStaticText(this, wxID_ANY, L"Guitar tuning, row &7:");
 	wscGLOBAL_GUITAR_NOTE_TUNING_ROW7 = new wxSpinCtrl(this, GLOBAL_GUITAR_NOTE_TUNING_ROW7_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetGLOBAL_GUITAR_NOTE_TUNING_ROW7(), "Row &7 tuning");
-	hBox1->Add(lblGLOBAL_GUITAR_NOTE_TUNING_ROW7, 0, wxEXPAND);
-	hBox1->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW7, 0, wxEXPAND);
+	gSizer->Add(lblGLOBAL_GUITAR_NOTE_TUNING_ROW7, 0, wxEXPAND);
+	gSizer->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW7, 0, wxEXPAND);
 
 	wxStaticText * lblGLOBAL_GUITAR_NOTE_TUNING_ROW8 = new wxStaticText(this, wxID_ANY, L"Guitar tuning, row &8:");
 	wscGLOBAL_GUITAR_NOTE_TUNING_ROW8 = new wxSpinCtrl(this, GLOBAL_GUITAR_NOTE_TUNING_ROW8_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetGLOBAL_GUITAR_NOTE_TUNING_ROW8(), "Row &8 tuning");
-	hBox1->Add(lblGLOBAL_GUITAR_NOTE_TUNING_ROW8, 0, wxEXPAND);
-	hBox1->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW8, 0, wxEXPAND);
+	gSizer->Add(lblGLOBAL_GUITAR_NOTE_TUNING_ROW8, 0, wxEXPAND);
+	gSizer->Add(wscGLOBAL_GUITAR_NOTE_TUNING_ROW8, 0, wxEXPAND);
 
+	hBox1->Add(gSizer);
 	this->SetSizerAndFit(hBox1);
 	}
 

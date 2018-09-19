@@ -31,6 +31,7 @@
 #include <wx/fileconf.h>
 #include <wx/dir.h>
 #include <wx/string.h>
+#include "wx/xrc/xmlres.h"
 
 #include <Windows.h>
 #include <Dbt.h>

@@ -134,7 +134,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Rpcrt4.lib;comctl32.lib;sapi.lib;winmm.lib;rtmidi.lib;dutil.lib;wxmsw31u_adv.lib;wxzlib.lib;wxpng.lib;wxmsw31u_core.lib;wxbase31u.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>wxexpat.lib;wxbase31u_xml.lib;wxmsw31u_html.lib;wxmsw31u_xrc.lib;Rpcrt4.lib;comctl32.lib;sapi.lib;winmm.lib;rtmidi.lib;dutil.lib;wxmsw31u_adv.lib;wxzlib.lib;wxpng.lib;wxmsw31u_core.lib;wxbase31u.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -190,6 +190,7 @@
     <ClInclude Include="SwitchesDialog.h" />
     <ClInclude Include="PanelSwitchesPage.h" />
     <ClInclude Include="VelocityPressurePage.h" />
+    <ClInclude Include="xh_PerSplitDialog.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AxesPage.cpp" />
