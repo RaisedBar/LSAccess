@@ -260,29 +260,17 @@ void LSAccessFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 
 void LSAccessFrame::OnLeftSplitSettings(wxCommandEvent& event)
 {
-	PerSplitDialog * pLeftSplit = new PerSplitDialog();
+	// PerSplitDialog * pLeftSplit = new PerSplitDialog();
 	
-	if (wxXmlResource::Get()->LoadDialog( pLeftSplit, NULL, "PerSplitDialog"))
-	{
-				pLeftSplit = new PerSplitDialog(L"Left Split", &m_LinnStrument, LSSplitType::LEFT);
-						pLeftSplit->ShowModal();
-	}
-	}
+	PerSplitDialog * pLeftSplit = new PerSplitDialog( this, L"Left Split", &m_LinnStrument, LSSplitType::LEFT);
+										pLeftSplit->ShowModal();
+		}
 
 void LSAccessFrame::OnRightSplitSettings(wxCommandEvent& event)
 {
-	PerSplitDialog * pRightSplit = new PerSplitDialog();
-
-	if (wxXmlResource::Get()->LoadDialog(pRightSplit, NULL, "PerSplitDialog"))
-	{
-		pRightSplit = new PerSplitDialog(L"Right Split", &m_LinnStrument, LSSplitType::RIGHT);
+	PerSplitDialog * pRightSplit = new PerSplitDialog( this, L"Right Split", &m_LinnStrument, LSSplitType::RIGHT);
 		pRightSplit->ShowModal();
 	}
-	/*
-	PerSplitDialog * pRightSplit = new PerSplitDialog(L"Right Split", &m_LinnStrument, LSSplitType::RIGHT);
-	pRightSplit->ShowModal();
-*/
-}
 
 
 void LSAccessFrame::OnOctaveTransposeSettings(wxCommandEvent& event)

@@ -4,6 +4,7 @@
 #pragma once
 
 #include "LSEnums.h"
+#include "LSConsts.h"
 #include "LinnStrument.h"
 #include "PerSplitDialog.h"
 #include "OctaveTransposeDialog.h"
@@ -36,17 +37,6 @@
 #include <Windows.h>
 #include <Dbt.h>
 #include <wx/msw/winundef.h> 
-
-// Strings for the configuration file
-const std::wstring wstrVendor = L"Raised Bar";
-const 	std::wstring wstrAppName = L"LSAccess";
-const std::string strMIDIOptions = "/MIDIOptions";
-const std::string strInPort = "InPort";
-const std::string strOutPort = "OutPort";
-const std::string strSpeechOptions = "/SpeechOptions";
-const std::string strSpeakMessages = "SpeakMessages";
-const std::string strSpeakNotes = "SpeakNotes";
-
 
 class LSAccessFrame : public wxFrame
 {

@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resource version="2.3.0.1">
-    <object class="wxDialog" name="PerSplitDialog">
-        <style>wxDEFAULT_DIALOG_STYLE</style>
-        <title>Per-Split Settings</title>
-        <object class="wxBoxSizer">
-            <orient>wxHORIZONTAL</orient>
-            <object class="sizeritem">
-                <option>1</option>
-                <flag>wxEXPAND</flag>
-                <object class="wxNotebook" name="notebook_1">
-                    <usenotebooksizer>1</usenotebooksizer>
-                    <object class="notebookpage">
+                    <object class="notebookpage" name="MIDIPage">
                     <label>MIDI</label>
-                    <object class="wxPanel" name="MIDISplitPage">
+                    <object class="wxPanel" name="MIDIPage">
                         <style>wxTAB_TRAVERSAL</style>
                         <object class="wxBoxSizer">
                         <orient>wxHORIZONTAL</orient>
@@ -48,8 +38,4 @@
                         </object>
                     </object>
                     </object>
-                </object>
-            </object>
-        </object>
-    </object>
 </resource>

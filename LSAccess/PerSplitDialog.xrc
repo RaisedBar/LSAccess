@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<resource xmlns="http://www.wxwidgets.org/wxxrc" version="2.5.3.0">
+
+      <object class="wxDialog" name="per_split_dialog">
+        <style>wxDEFAULT_DIALOG_STYLE</style>
+        <title>Per-Split Settings</title>
+                <object class="wxNotebook" name="notebook_1">
+                    <object class="notebookpage">
+                    <label>MIDI</label>
+                    <object class="wxPanel" name="midi_panel">
+                        <style>wxTAB_TRAVERSAL</style>
+        <object class="wxBoxSizer" name="v_box_1">
+            <orient>wxVERTICAL</orient>
+            <object class="sizeritem">
+                        <object class="wxBoxSizer">
+                        <orient>wxHORIZONTAL</orient>
+                            <object class="sizeritem">
+                                <flag>wxEXPAND</flag>
+                                <object class="wxRadioBox" name="wrb_split_mode">
+                                    <content>
+                                        <item>One Channel</item>
+                                        <item>Channel per node (MPE)</item>
+                                        <item>Channel per row</item>
+                                    </content>
+                                    <dimension>3</dimension>
+                                    <label>&amp;Split Mode:</label>
+                                    <selection>0</selection>
+                                    <style>wxRA_SPECIFY_ROWS</style>
+</object>
+                            </object>
+                            <object class="sizeritem">
+                                <flag>wxALIGN_CENTER_VERTICAL</flag>
+                                <object class="wxStaticText" name="main_channel_label">
+                                    <label>Main Channel:</label>
+                                    <style>wxALIGN_RIGHT</style>
+                                </object>
+                            </object>
+                            <object class="sizeritem">
+                                <flag>wxALIGN_CENTER_VERTICAL</flag>
+                                <object class="wxSpinCtrl" name="wsc_main_channel">
+                                    <min>1</min>
+                                    <max> 16</max>
+                                    <value>1</value>
+                                </object>
+                            </object>
+                            <object class="sizeritem">
+                                <flag>wxEXPAND</flag>
+                                <object class="wxRadioBox" name="wrb_channel_per_row_order">
+                                    <content>
+<item>Normal</item>
+<item>Reversed</item>
+                                  </content>
+                                    <dimension>2</dimension>
+                                    <label>Channel per row &amp;order:</label>
+                                    <selection>0</selection>
+                                    <style>wxRA_SPECIFY_ROWS</style>
+</object>
+                            </object>
+</object>
+</object>
+            <object class="sizeritem">
+<object class="wxFlexGridSizer">
+<cols>8</cols>
+<vgap>0</vgap>
+<hgap>0</hgap>
+                            <object class="sizeritem">
+                                <object class="wxCheckBox" name="chk_1">
+<label>Channel per note 1</label>
+                                </object>
+                            </object>
+                            <object class="sizeritem">
+                                <flag>wxALIGN_CENTER_VERTICAL</flag>
+                                <object class="wxCheckBox" name="chk_2">
+<label>Channel per note 2</label>
+                                </object>
+                            </object>
+                            <object class="sizeritem">
+                                <flag>wxALIGN_CENTER_VERTICAL</flag>
+                                <object class="wxCheckBox" name="chk_3">
+<label>Channel per note 3</label>
+                                </object>
+                            </object>
+                            <object class="sizeritem">
+                                <flag>wxALIGN_CENTER_VERTICAL</flag>
+                                <object class="wxCheckBox" name="chk_4">
+<label>Channel per note 4</label>
+                                </object>
+                            </object>
+                            <object class="sizeritem">
+                                <flag>wxALIGN_CENTER_VERTICAL</flag>
+                                <object class="wxCheckBox" name="chk_5">
+<label>Channel per note 5</label>
+                                </object>
+                            </object>
+                            <object class="sizeritem">
+                                <flag>wxALIGN_CENTER_VERTICAL</flag>
+                                <object class="wxCheckBox" name="chk_6">
+<label>Channel per note 6</label>
+                                </object>
+                            </object>
+                            <object class="sizeritem">
+                                <flag>wxALIGN_CENTER_VERTICAL</flag>
+                                <object class="wxCheckBox" name="chk_7">
+<label>Channel per note 7</label>
+                                </object>
+                            </object>
+                            <object class="sizeritem">
+                                <flag>wxALIGN_CENTER_VERTICAL</flag>
+                                <object class="wxCheckBox" name="chk_8">
+<label>Channel per note 8</label>
+                                </object>
+                            </object>
+                            <object class="sizeritem">
+                                <flag>wxALIGN_CENTER_VERTICAL</flag>
+                                <object class="wxCheckBox" name="chk_9">
+<label>Channel per note 9</label>
+                                </object>
+                            </object>
+                            <object class="sizeritem">
+                                <flag>wxALIGN_CENTER_VERTICAL</flag>
+                                <object class="wxCheckBox" name="chk_10">
+<label>Channel per note 10</label>
+                                </object>
+                            </object>
+                            <object class="sizeritem">
+                                <flag>wxALIGN_CENTER_VERTICAL</flag>
+                                <object class="wxCheckBox" name="chk_11">
+<label>Channel per note 11</label>
+                                </object>
+                            </object>
+                            <object class="sizeritem">
+                                <flag>wxALIGN_CENTER_VERTICAL</flag>
+                                <object class="wxCheckBox" name="chk_12">
+<label>Channel per note 12</label>
+                                </object>
+                            </object>
+                            <object class="sizeritem">
+                                <flag>wxALIGN_CENTER_VERTICAL</flag>
+                                <object class="wxCheckBox" name="chk_13">
+<label>Channel per note 13</label>
+                                </object>
+                            </object>
+                            <object class="sizeritem">
+                                <flag>wxALIGN_CENTER_VERTICAL</flag>
+                                <object class="wxCheckBox" name="chk_14">
+<label>Channel per note 14</label>
+                                </object>
+                            </object>
+                            <object class="sizeritem">
+                                <flag>wxALIGN_CENTER_VERTICAL</flag>
+                                <object class="wxCheckBox" name="chk_15">
+<label>Channel per note 15</label>
+                                </object>
+                            </object>
+                            <object class="sizeritem">
+                                <flag>wxALIGN_CENTER_VERTICAL</flag>
+                                <object class="wxCheckBox" name="chk_16">
+<label>Channel per note 16</label>
+                   </object>
+                                </object>
+         </object>
+</object>
+</object>
+</object>
+</object>
+</object>
+</object>
+</resource>

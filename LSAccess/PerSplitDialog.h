@@ -21,7 +21,8 @@
 #include "wx/xrc/xmlres.h"
 
 #include "LSEnums.h"
-#include "MIDISplitPage.h"
+#include "LSConsts.h"
+#include "MIDIPage.h"
 #include "BendPage.h"
 #include "ColorsPage.h"
 #include "LowRowPage.h"
@@ -32,47 +33,29 @@
 class PerSplitDialog : public wxDialog
 {
 public:
-	PerSplitDialog();
-	PerSplitDialog(const wxString& title, LinnStrument * pLinnStrument, const LSSplitType split);
+	PerSplitDialog() {};
+	PerSplitDialog(wxWindow* parent, const wxString& title, LinnStrument * pLinnStrument, const LSSplitType split);
 	bool Create(const wxString& title, LinnStrument * pLinnStrument, const LSSplitType split);
 
-	private:
-	void InitWidgetsFromXRC() 
-	{ 
-		wxXmlResource::Get()->LoadObject(this, NULL, "PerSplitDialog", "wxDialog");        
-		}
-	
-// Event handlers
-	void OnOK(wxCommandEvent& event);
-			void OnTabChanged(wxNotebookEvent& event);
-	
-	LinnStrument * pMyLinnStrument;
+protected:
 		wxNotebook * pNotebook;
-		MIDISplitPage * pMIDISplitPage;
+	MIDIPage * pMIDIPage;
 	BendPage * pBendPage;
 	ColorsPage * pColorsPage;
 	LowRowPage * pLowRowPage;
-		FadersPage * pFadersPage;
+	FadersPage * pFadersPage;
 	AxesPage * pAxesPage;
-	SpecialPage * pSpecialPage;
+SpecialPage * pSpecialPage; 
+
+private:
+	void InitWidgetsFromXRC();
+
+	// Event handlers
+	void OnOK(wxCommandEvent& event);
+			void OnTabChanged(wxNotebookEvent& event);
 	
+	// data
+			LinnStrument * pMyLinnStrument;
+		
 			DECLARE_EVENT_TABLE()
-};
-
-class PerSplitDialogXmlHandler : public wxXmlResourceHandler 
-{
-public:    
-	// Constructor.    
-	PerSplitDialogXmlHandler();    
-	
-	// Creates the control and returns a pointer to it.    
-		virtual wxObject *DoCreateResource();    
-				// Returns true if we know how to create a control for the given node.    
-		bool CanHandle(wxXmlNode *node)
-		{
-			return true;
-		}
-
-	// Register with wxWidgets' dynamic class subsystem.    
-	wxDECLARE_DYNAMIC_CLASS(PerSplitDialogXmlHandler);
 };
