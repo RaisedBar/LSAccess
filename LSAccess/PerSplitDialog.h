@@ -48,11 +48,7 @@ protected:
 SpecialPage * pSpecialPage; 
 
 private:
-	void InitWidgetsFromXRC();
-
 	// Event handlers
-	void OnOK(wxCommandEvent& event);
-			void OnTabChanged(wxNotebookEvent& event);
 	
 	// data
 			LinnStrument * pMyLinnStrument;

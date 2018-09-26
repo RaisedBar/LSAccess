@@ -1,169 +1,748 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-
 <resource xmlns="http://www.wxwidgets.org/wxxrc" version="2.5.3.0">
+  <object class="wxDialog" name="per_split_dialog">
+    <style>wxDEFAULT_DIALOG_STYLE</style>
+    <title>Per-Split Settings</title>
+    <object class="wxNotebook" name="notebook_1">
 
-      <object class="wxDialog" name="per_split_dialog">
-        <style>wxDEFAULT_DIALOG_STYLE</style>
-        <title>Per-Split Settings</title>
-                <object class="wxNotebook" name="notebook_1">
-                    <object class="notebookpage">
-                    <label>MIDI</label>
-                    <object class="wxPanel" name="midi_panel">
-                        <style>wxTAB_TRAVERSAL</style>
-        <object class="wxBoxSizer" name="v_box_1">
+      <object class="notebookpage">
+        <label>MIDI</label>
+        <object class="wxPanel" name="midi_panel">
+          <style>wxTAB_TRAVERSAL</style>
+          <object class="wxBoxSizer" name="v_box_1">
             <orient>wxVERTICAL</orient>
             <object class="sizeritem">
-                        <object class="wxBoxSizer">
-                        <orient>wxHORIZONTAL</orient>
-                            <object class="sizeritem">
-                                <flag>wxEXPAND</flag>
-                                <object class="wxRadioBox" name="wrb_split_mode">
-                                    <content>
-                                        <item>One Channel</item>
-                                        <item>Channel per node (MPE)</item>
-                                        <item>Channel per row</item>
-                                    </content>
-                                    <dimension>3</dimension>
-                                    <label>&amp;Split Mode:</label>
-                                    <selection>0</selection>
-                                    <style>wxRA_SPECIFY_ROWS</style>
-</object>
-                            </object>
-                            <object class="sizeritem">
-                                <flag>wxALIGN_CENTER_VERTICAL</flag>
-                                <object class="wxStaticText" name="main_channel_label">
-                                    <label>Main Channel:</label>
-                                    <style>wxALIGN_RIGHT</style>
-                                </object>
-                            </object>
-                            <object class="sizeritem">
-                                <flag>wxALIGN_CENTER_VERTICAL</flag>
-                                <object class="wxSpinCtrl" name="wsc_main_channel">
-                                    <min>1</min>
-                                    <max> 16</max>
-                                    <value>1</value>
-                                </object>
-                            </object>
-                            <object class="sizeritem">
-                                <flag>wxEXPAND</flag>
-                                <object class="wxRadioBox" name="wrb_channel_per_row_order">
-                                    <content>
-<item>Normal</item>
-<item>Reversed</item>
-                                  </content>
-                                    <dimension>2</dimension>
-                                    <label>Channel per row &amp;order:</label>
-                                    <selection>0</selection>
-                                    <style>wxRA_SPECIFY_ROWS</style>
-</object>
-                            </object>
-</object>
-</object>
+              <object class="wxBoxSizer">
+                <orient>wxHORIZONTAL</orient>
+                <object class="sizeritem">
+                  <flag>wxEXPAND</flag>
+                  <object class="wxRadioBox" name="wrb_split_mode">
+                    <label>&amp;Split Mode:</label>
+                    <style>wxRA_SPECIFY_ROWS</style>
+                    <dimension>3</dimension>
+                    <content>
+                      <item>One Channel</item>
+                      <item>Channel per node (MPE)</item>
+                      <item>Channel per row</item>
+                    </content>
+                    <selection>0</selection>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxStaticText" name="main_channel_label">
+                    <label>Main Channel:</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxSpinCtrl" name="wsc_main_channel">
+                    <min>1</min>
+                    <max> 16</max>
+                    <value>1</value>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxEXPAND</flag>
+                  <object class="wxRadioBox" name="wrb_channel_per_row_order">
+                    <label>Channel per row &amp;order:</label>
+                    <style>wxRA_SPECIFY_ROWS</style>
+                    <dimension>2</dimension>
+                    <content>
+                      <item>Normal</item>
+                      <item>Reversed</item>
+                    </content>
+                    <selection>0</selection>
+                  </object>
+                </object>
+              </object>
+            </object>
             <object class="sizeritem">
-<object class="wxFlexGridSizer">
-<cols>8</cols>
-<vgap>0</vgap>
-<hgap>0</hgap>
-                            <object class="sizeritem">
-                                <object class="wxCheckBox" name="chk_1">
-<label>Channel per note 1</label>
-                                </object>
-                            </object>
-                            <object class="sizeritem">
-                                <flag>wxALIGN_CENTER_VERTICAL</flag>
-                                <object class="wxCheckBox" name="chk_2">
-<label>Channel per note 2</label>
-                                </object>
-                            </object>
-                            <object class="sizeritem">
-                                <flag>wxALIGN_CENTER_VERTICAL</flag>
-                                <object class="wxCheckBox" name="chk_3">
-<label>Channel per note 3</label>
-                                </object>
-                            </object>
-                            <object class="sizeritem">
-                                <flag>wxALIGN_CENTER_VERTICAL</flag>
-                                <object class="wxCheckBox" name="chk_4">
-<label>Channel per note 4</label>
-                                </object>
-                            </object>
-                            <object class="sizeritem">
-                                <flag>wxALIGN_CENTER_VERTICAL</flag>
-                                <object class="wxCheckBox" name="chk_5">
-<label>Channel per note 5</label>
-                                </object>
-                            </object>
-                            <object class="sizeritem">
-                                <flag>wxALIGN_CENTER_VERTICAL</flag>
-                                <object class="wxCheckBox" name="chk_6">
-<label>Channel per note 6</label>
-                                </object>
-                            </object>
-                            <object class="sizeritem">
-                                <flag>wxALIGN_CENTER_VERTICAL</flag>
-                                <object class="wxCheckBox" name="chk_7">
-<label>Channel per note 7</label>
-                                </object>
-                            </object>
-                            <object class="sizeritem">
-                                <flag>wxALIGN_CENTER_VERTICAL</flag>
-                                <object class="wxCheckBox" name="chk_8">
-<label>Channel per note 8</label>
-                                </object>
-                            </object>
-                            <object class="sizeritem">
-                                <flag>wxALIGN_CENTER_VERTICAL</flag>
-                                <object class="wxCheckBox" name="chk_9">
-<label>Channel per note 9</label>
-                                </object>
-                            </object>
-                            <object class="sizeritem">
-                                <flag>wxALIGN_CENTER_VERTICAL</flag>
-                                <object class="wxCheckBox" name="chk_10">
-<label>Channel per note 10</label>
-                                </object>
-                            </object>
-                            <object class="sizeritem">
-                                <flag>wxALIGN_CENTER_VERTICAL</flag>
-                                <object class="wxCheckBox" name="chk_11">
-<label>Channel per note 11</label>
-                                </object>
-                            </object>
-                            <object class="sizeritem">
-                                <flag>wxALIGN_CENTER_VERTICAL</flag>
-                                <object class="wxCheckBox" name="chk_12">
-<label>Channel per note 12</label>
-                                </object>
-                            </object>
-                            <object class="sizeritem">
-                                <flag>wxALIGN_CENTER_VERTICAL</flag>
-                                <object class="wxCheckBox" name="chk_13">
-<label>Channel per note 13</label>
-                                </object>
-                            </object>
-                            <object class="sizeritem">
-                                <flag>wxALIGN_CENTER_VERTICAL</flag>
-                                <object class="wxCheckBox" name="chk_14">
-<label>Channel per note 14</label>
-                                </object>
-                            </object>
-                            <object class="sizeritem">
-                                <flag>wxALIGN_CENTER_VERTICAL</flag>
-                                <object class="wxCheckBox" name="chk_15">
-<label>Channel per note 15</label>
-                                </object>
-                            </object>
-                            <object class="sizeritem">
-                                <flag>wxALIGN_CENTER_VERTICAL</flag>
-                                <object class="wxCheckBox" name="chk_16">
-<label>Channel per note 16</label>
-                   </object>
-                                </object>
-         </object>
+              <object class="wxFlexGridSizer">
+                <cols>8</cols>
+                <vgap>0</vgap>
+                <hgap>0</hgap>
+                <object class="sizeritem">
+                  <object class="wxCheckBox" name="chk_1">
+                    <label>Channel per note 1</label>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxCheckBox" name="chk_2">
+                    <label>Channel per note 2</label>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxCheckBox" name="chk_3">
+                    <label>Channel per note 3</label>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxCheckBox" name="chk_4">
+                    <label>Channel per note 4</label>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxCheckBox" name="chk_5">
+                    <label>Channel per note 5</label>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxCheckBox" name="chk_6">
+                    <label>Channel per note 6</label>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxCheckBox" name="chk_7">
+                    <label>Channel per note 7</label>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxCheckBox" name="chk_8">
+                    <label>Channel per note 8</label>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxCheckBox" name="chk_9">
+                    <label>Channel per note 9</label>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxCheckBox" name="chk_10">
+                    <label>Channel per note 10</label>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxCheckBox" name="chk_11">
+                    <label>Channel per note 11</label>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxCheckBox" name="chk_12">
+                    <label>Channel per note 12</label>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxCheckBox" name="chk_13">
+                    <label>Channel per note 13</label>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxCheckBox" name="chk_14">
+                    <label>Channel per note 14</label>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxCheckBox" name="chk_15">
+                    <label>Channel per note 15</label>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxCheckBox" name="chk_16">
+                    <label>Channel per note 16</label>
+                  </object>
+                </object>
+              </object>
+            </object>
+          </object>
+        </object>
+      </object>
+
+      <object class="notebookpage">
+        <label>Bend (X-axis)</label>
+        <object class="wxPanel" name="bend_panel">
+          <style>wxTAB_TRAVERSAL</style>
+          <object class="wxBoxSizer" name="h_box_1">
+            <orient>wxHORIZONTAL</orient>
+            <object class="sizeritem">
+              <object class="wxCheckBox" name="chk_send_bend">
+                <label>&amp;Send pitch bend on X-axis</label>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <flag>wxALIGN_CENTER_VERTICAL</flag>
+              <object class="wxStaticText" name="bend_range_label">
+                <label>Bend &amp;range:</label>
+                <style>wxALIGN_RIGHT</style>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <flag>wxALIGN_CENTER_VERTICAL</flag>
+              <object class="wxSpinCtrl" name="wsc_bend_range">
+              </object>
+            </object>
+            <object class="sizeritem">
+              <object class="wxCheckBox" name="chk_bend_quantize">
+                <label>&amp;Quantize</label>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <flag>wxEXPAND</flag>
+              <object class="wxRadioBox" name="wrb_bend_quantize">
+                <label>Quantization type:</label>
+                <style>wxRA_SPECIFY_ROWS</style>
+                <dimension>4</dimension>
+                <content>
+                  <item>Off</item>
+                  <item>Medium</item>
+                  <item>Fast</item>
+                  <item>Slow</item>
+                </content>
+                <selection>0</selection>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <object class="wxCheckBox" name="chk_reset_pitch_on_release">
+                <label>&amp;Reset pitch on release</label>
+              </object>
+            </object>
+          </object>
+        </object>
+      </object>
+
+      <object class="notebookpage">
+        <label>Y, Z axis</label>
+        <object class="wxPanel" name="axes_panel">
+          <style>wxTAB_TRAVERSAL</style>
+          <object class="wxBoxSizer" name="h_box_y">
+            <orient>wxVERTICAL</orient>
+            <object class="sizeritem">
+              <object class="wxBoxSizer" name="h_box_y">
+                <orient>wxHORIZONTAL</orient>
+                <object class="sizeritem">
+                  <object class="wxCheckBox" name="chk_send_y">
+                    <label>&amp;Send Y-axis timbre messages</label>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxStaticText" name="cc_for_y_label">
+                    <label>CC for &amp;Y:</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxSpinCtrl" name="wsc_cc_for_y">
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxStaticText" name="min_value_for_y_label">
+                    <label>&amp;Min. Y value:</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxSpinCtrl" name="wsc_min_cc_for_y">
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxStaticText" name="max_value_for_y_label">
+                    <label>Max. Y value:</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxSpinCtrl" name="wsc_max_cc_for_y">
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <object class="wxCheckBox" name="chk_relative_y">
+                    <label>Relative &amp;Y</label>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxEXPAND</flag>
+                  <object class="wxRadioBox" name="wrb_expression_for_y">
+                    <label>MIDI Expression for Y:</label>
+                    <style>wxRA_SPECIFY_ROWS</style>
+                    <dimension>3</dimension>
+                    <content>
+                      <item>Poly Aftertouch</item>
+                      <item>Channel Aftertouch</item>
+                      <item>CC defined in 25</item>
+                    </content>
+                    <selection>0</selection>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxStaticText" name="initial_relative_value_for_y_label">
+                    <label>Initial relative value for Y:</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxSpinCtrl" name="wsc_initial_relative_value_for_y">
+                  </object>
+                </object>
+
+                <object class="sizeritem">
+                  <object class="wxBoxSizer" name="h_box_z">
+                    <orient>wxHORIZONTAL</orient>
+                    <object class="sizeritem">
+                      <object class="wxCheckBox" name="chk_send_z">
+                        <label>&amp;Send Z-axis loudness messages</label>
+                      </object>
+                    </object>
+                    <object class="sizeritem">
+                      <flag>wxALIGN_CENTER_VERTICAL</flag>
+                      <object class="wxStaticText" name="cc_for_z_label">
+                        <label>CC for &amp;Z:</label>
+                        <style>wxALIGN_RIGHT</style>
+                      </object>
+                    </object>
+                    <object class="sizeritem">
+                      <flag>wxALIGN_CENTER_VERTICAL</flag>
+                      <object class="wxSpinCtrl" name="wsc_cc_for_z">
+                      </object>
+                    </object>
+                    <object class="sizeritem">
+                      <flag>wxALIGN_CENTER_VERTICAL</flag>
+                      <object class="wxStaticText" name="min_value_for_z_label">
+                        <label>&amp;Min. Z value:</label>
+                        <style>wxALIGN_RIGHT</style>
+                      </object>
+                    </object>
+                    <object class="sizeritem">
+                      <flag>wxALIGN_CENTER_VERTICAL</flag>
+                      <object class="wxSpinCtrl" name="wsc_min_cc_for_z">
+                      </object>
+                    </object>
+                    <object class="sizeritem">
+                      <flag>wxALIGN_CENTER_VERTICAL</flag>
+                      <object class="wxStaticText" name="max_value_for_z_label">
+                        <label>Max. Z value:</label>
+                        <style>wxALIGN_RIGHT</style>
+                      </object>
+                    </object>
+                    <object class="sizeritem">
+                      <flag>wxALIGN_CENTER_VERTICAL</flag>
+                      <object class="wxSpinCtrl" name="wsc_max_cc_for_z">
+                      </object>
+                    </object>
+                    <object class="sizeritem">
+                      <flag>wxEXPAND</flag>
+                      <object class="wxRadioBox" name="wrb_expression_for_z">
+                        <label>MIDI Expression for Z:</label>
+                        <style>wxRA_SPECIFY_ROWS</style>
+                        <dimension>3</dimension>
+                        <content>
+                          <item>Poly Aftertouch</item>
+                          <item>Channel Aftertouch</item>
+                          <item>CC defined in 29</item>
+                        </content>
+                        <selection>0</selection>
+                      </object>
+                    </object>
+                    <object class="sizeritem">
+                      <flag>wxALIGN_CENTER_VERTICAL</flag>
+                      <object class="wxStaticText" name="14bit_cc_value_for_z_label">
+                        <label>14-bit CC value for Z:</label>
+                        <style>wxALIGN_RIGHT</style>
+                      </object>
+                    </object>
+                    <object class="sizeritem">
+                      <flag>wxALIGN_CENTER_VERTICAL</flag>
+                      <object class="wxSpinCtrl" name="wsc_initial_relative_value_for_y">
+                      </object>
+                    </object>
+                  </object>
+                </object>
+              </object>
+            </object>
+          </object>
+        </object>
+      </object>
+
+      <object class="notebookpage">
+        <label>Colors</label>
+        <object class="wxPanel" name="colors_panel">
+          <style>wxTAB_TRAVERSAL</style>
+          <object class="wxBoxSizer" name="h_box_1">
+            <orient>wxHORIZONTAL</orient>
+            <object class="sizeritem">
+              <flag>wxEXPAND</flag>
+              <object class="wxRadioBox" name="wrb_color_main">
+                <label>&amp;Main:</label>
+                <style>wxRA_SPECIFY_ROWS</style>
+                <dimension>13</dimension>
+                <content>
+                  <item>Off</item>
+                  <item>RED</item>
+                  <item>YELLOW</item>
+                  <item>GREEN</item>
+                  <item>CYAN</item>
+                  <item>BLUE</item>
+                  <item>MAGENTA</item>
+                  <item>BLACK</item>
+                  <item>WHITE</item>
+                  <item>ORANGE</item>
+                  <item>LIME</item>
+                  <item>PINK</item>
+                  <item>DEFAULT</item>
+                </content>
+                <selection>0</selection>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <flag>wxEXPAND</flag>
+              <object class="wxRadioBox" name="wrb_color_accent">
+                <label>&amp;Accent:</label>
+                <style>wxRA_SPECIFY_ROWS</style>
+                <dimension>13</dimension>
+                <content>
+                  <item>Off</item>
+                  <item>RED</item>
+                  <item>YELLOW</item>
+                  <item>GREEN</item>
+                  <item>CYAN</item>
+                  <item>BLUE</item>
+                  <item>MAGENTA</item>
+                  <item>BLACK</item>
+                  <item>WHITE</item>
+                  <item>ORANGE</item>
+                  <item>LIME</item>
+                  <item>PINK</item>
+                  <item>DEFAULT</item>
+                </content>
+                <selection>0</selection>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <flag>wxEXPAND</flag>
+              <object class="wxRadioBox" name="wrb_color_played">
+                <label>&amp;Played:</label>
+                <style>wxRA_SPECIFY_ROWS</style>
+                <dimension>13</dimension>
+                <content>
+                  <item>Off</item>
+                  <item>RED</item>
+                  <item>YELLOW</item>
+                  <item>GREEN</item>
+                  <item>CYAN</item>
+                  <item>BLUE</item>
+                  <item>MAGENTA</item>
+                  <item>BLACK</item>
+                  <item>WHITE</item>
+                  <item>ORANGE</item>
+                  <item>LIME</item>
+                  <item>PINK</item>
+                  <item>DEFAULT</item>
+                </content>
+                <selection>0</selection>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <flag>wxEXPAND</flag>
+              <object class="wxRadioBox" name="wrb_color_low_row">
+                <label>&amp;Low-row:</label>
+                <style>wxRA_SPECIFY_ROWS</style>
+                <dimension>13</dimension>
+                <content>
+                  <item>Off</item>
+                  <item>RED</item>
+                  <item>YELLOW</item>
+                  <item>GREEN</item>
+                  <item>CYAN</item>
+                  <item>BLUE</item>
+                  <item>MAGENTA</item>
+                  <item>BLACK</item>
+                  <item>WHITE</item>
+                  <item>ORANGE</item>
+                  <item>LIME</item>
+                  <item>PINK</item>
+                  <item>DEFAULT</item>
+                </content>
+                <selection>0</selection>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <flag>wxEXPAND</flag>
+              <object class="wxRadioBox" name="wrb_touch_animation">
+                <label>&amp;Animation:</label>
+                <style>wxRA_SPECIFY_ROWS</style>
+                <dimension>15</dimension>
+                <content>
+                  <item>SAME</item>
+                  <item>CROSSES</item>
+                  <item>CIRCLES</item>
+                  <item>SQUARES</item>
+                  <item>DIAMONDS</item>
+                  <item>STARS</item>
+                  <item>SPARKLES</item>
+                  <item>CURTAINS</item>
+                  <item>BLINDS</item>
+                  <item>TARGETS</item>
+                  <item>UP</item>
+                  <item>DOWN</item>
+                  <item>LEFT</item>
+                  <item>RIGHT</item>
+                  <item>ORBITS</item>
+                </content>
+                <selection>0</selection>
+              </object>
+            </object>
+          </object>
+        </object>
+      </object>
+
+      <object class="notebookpage">
+        <label>Low Row</label>
+        <object class="wxPanel" name="low_row_panel">
+          <style>wxTAB_TRAVERSAL</style>
+              <object class="wxBoxSizer" name="h_box_1">
+                <orient>wxHORIZONTAL</orient>
+                <object class="sizeritem">
+                  <flag>wxEXPAND</flag>
+                  <object class="wxRadioBox" name="wrb_low_row_mode">
+                    <label>&amp;Mode:</label>
+                    <style>wxRA_SPECIFY_ROWS</style>
+                    <dimension>8</dimension>
+                    <content>
+<item>Normal</item>
+<item>Sustain</item>
+<item>Restrike</item>
+<item>Strum</item>
+<item>Arp</item>
+<item>Bend</item>
+<item>CC1</item>
+<item>X,Y,Z=16-18</item>
+                    </content>
+                    <selection>0</selection>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxEXPAND</flag>
+                  <object class="wxRadioBox" name="wrb_low_row_x_behaviour">
+                    <label>&amp;X-axis behaviour:</label>
+                    <style>wxRA_SPECIFY_ROWS</style>
+                    <dimension>2</dimension>
+                    <content>
+<item>Hold</item>
+<item>Fader</item>
+                    </content>
+                    <selection>0</selection>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxStaticText" name="cc_for_low_row_label">
+                    <label>&amp;CC for low row:</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxSpinCtrl" name="wsc_cc_for_y">
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxEXPAND</flag>
+                  <object class="wxRadioBox" name="wrb_low_row_x_y_z_behaviour">
+                    <label>X,Y,Z &amp;behaviour:</label>
+                    <style>wxRA_SPECIFY_ROWS</style>
+                    <dimension>2</dimension>
+                    <content>
+<item>Hold</item>
+<item>Fader</item>
+                    </content>
+                    <selection>0</selection>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxStaticText" name="cc_for_low_row_x_y_z_label">
+                    <label>CC for x, y, z:</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxSpinCtrl" name="wsc_cc_for_x_y_z">
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxStaticText" name="cc_for_low_row_x_y_z_y_label">
+                    <label>CC for X,Y,Z-Y:</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxSpinCtrl" name="wsc_low_row_cc_for_x_y_z_y">
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxStaticText" name="cc_for_low_row_x_y_z_z_label">
+                    <label>CC for X,Y,Z-Z:</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxSpinCtrl" name="wsc_cc_for_low_row_x_y_z_z">
+                  </object>
+                </object>
+          </object>
+        </object>
+      </object>
+
+      <object class="notebookpage">
+        <label>Faders</label>
+        <object class="wxPanel" name="faders_panel">
+          <style>wxTAB_TRAVERSAL</style>
+              <object class="wxBoxSizer" name="h_box_1">
+                <orient>wxHORIZONTAL</orient>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxStaticText" name="cc_for_fader_1_label">
+                    <label>CC for fader &amp;1:</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxSpinCtrl" name="wsc_cc_for_fader_1">
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxStaticText" name="cc_for_fader_2_label">
+                    <label>CC for fader &amp;2:</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxSpinCtrl" name="wsc_cc_for_fader_2">
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxStaticText" name="cc_for_fader_3_label">
+                    <label>CC for fader &amp;3:</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxSpinCtrl" name="wsc_cc_for_fader_3">
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxStaticText" name="cc_for_fader_4_label">
+                    <label>CC for fader &amp;4:</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxSpinCtrl" name="wsc_cc_for_fader_4">
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxStaticText" name="cc_for_fader_5_label">
+                    <label>CC for fader &amp;5:</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxSpinCtrl" name="wsc_cc_for_fader_5">
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxStaticText" name="cc_for_fader_6_label">
+                    <label>CC for fader &amp;6:</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxSpinCtrl" name="wsc_cc_for_fader_6">
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxStaticText" name="cc_for_fader_7_label">
+                    <label>CC for fader &amp;7:</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxSpinCtrl" name="wsc_cc_for_fader_7">
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxStaticText" name="cc_for_fader_8_label">
+                    <label>CC for fader &amp;8:</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxSpinCtrl" name="wsc_cc_for_fader_8">
+                  </object>
+                </object>
+        </object>
+      </object>
 </object>
-</object>
-</object>
-</object>
-</object>
-</object>
-</resource>
+
+      <object class="notebookpage">
+        <label>Special</label>
+        <object class="wxPanel" name="special_panel">
+          <style>wxTAB_TRAVERSAL</style>
+              <object class="wxBoxSizer" name="h_box_1">
+                <orient>wxHORIZONTAL</orient>
+                <object class="sizeritem">
+                  <flag>wxEXPAND</flag>
+                  <object class="wxRadioBox" name="wrb_split_mode">
+                    <label>&amp;Split Mode:</label>
+                    <style>wxRA_SPECIFY_ROWS</style>
+                    <dimension>5</dimension>
+                    <content>
+<item>Off</item>
+<item>Arp</item>
+<item>CC Faders</item>
+<item>Strum</item>
+<item>Sequencer</item>
+                    </content>
+                    <selection>0</selection>
+                  </object>
+                </object>
+                </object>
+        </object>
+      </object>
+
+    </object>
+  </object>
+  </resource>

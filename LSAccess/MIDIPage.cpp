@@ -8,9 +8,7 @@ MIDIPage::MIDIPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const L
 	m_Split(split),
 	pMyLinnStrument(pLinnStrument),
 	pMyParent(parent)
-		{
-		// this->SetSizerAndFit(vBox1);
-}
+		{}
 
 
 // Event handlers

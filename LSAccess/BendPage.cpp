@@ -9,6 +9,7 @@ BendPage::BendPage(wxBookCtrlBase *parent, LinnStrument * pLinnStrument, const L
 	pMyLinnStrument( pLinnStrument),
 	m_Split(split)
 {
+		/*
 wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
 
 // Controls
@@ -39,6 +40,7 @@ chkRESET_PITCH_ON_RELEASE = new wxCheckBox(this, RESET_PITCH_ON_RELEASE_ID, L"&&
 chkRESET_PITCH_ON_RELEASE->SetValue(LinnStrument::LSToggle(pMyLinnStrument->GetRESET_PITCH_ON_RELEASE(split)));
 hBox1->Add(chkRESET_PITCH_ON_RELEASE, 0, wxEXPAND);
 this->SetSizerAndFit(hBox1);
+*/
 }
 
 
