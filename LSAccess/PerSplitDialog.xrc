@@ -44,6 +44,21 @@
                   </object>
                 </object>
                 <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxStaticText" name="midi_per_row_lowest_channel_label">
+                    <label>MIDI per row &amp;lowest channel:</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALIGN_CENTER_VERTICAL</flag>
+                  <object class="wxSpinCtrl" name="wsc_midi_per_row_lowest_channel">
+                    <min>1</min>
+                    <max> 16</max>
+                    <value>1</value>
+                  </object>
+                </object>
+                <object class="sizeritem">
                   <flag>wxEXPAND</flag>
                   <object class="wxRadioBox" name="wrb_channel_per_row_order">
                     <label>Channel per row &amp;order:</label>

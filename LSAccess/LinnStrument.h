@@ -88,10 +88,6 @@ const std::string LSUSBName = "LinnStrument MIDI";
 // Name of LinnStrument when in O/S update mode
 const std::string LSOSUpdateName = "LinnStrument Programming Port (Com";
 
-// Valid MIDI channel number range:
-// const unsigned int MIN_MIDI_CHANNEL = 1;
-// const unsigned int MAX_MIDI_CHANNEL = 16;
-
 const unsigned int MIN_BEND_RANGE = 0;
 const unsigned int MAX_BEND_RANGE = 96;
 
