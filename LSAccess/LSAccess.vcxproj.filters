@@ -30,24 +30,6 @@
     <ClInclude Include="SequencerPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BendPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ColorsPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FadersPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AxesPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LowRowPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SpecialPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GlobalsNoteLightsPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -117,9 +99,6 @@
     <ClInclude Include="xh_PerSplitDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MIDIPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="LSConsts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -135,24 +114,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SequencerPage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BendPage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ColorsPage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FadersPage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AxesPage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LowRowPage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SpecialPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GlobalsNoteLightsPage.cpp">
@@ -216,9 +177,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SwitchesDialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MIDIPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

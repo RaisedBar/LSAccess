@@ -156,7 +156,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AxesPage.h" />
     <ClInclude Include="enumser.h" />
     <ClInclude Include="GlobalsAccentNoteLightsPage.h" />
     <ClInclude Include="GlobalsArpPage.h" />
@@ -170,10 +169,6 @@
     <ClInclude Include="LSConsts.h" />
     <ClInclude Include="MIDI.h" />
     <ClInclude Include="MIDIDialog.h" />
-    <ClInclude Include="MIDIPage.h" />
-    <ClInclude Include="ColorsPage.h" />
-    <ClInclude Include="FadersPage.h" />
-    <ClInclude Include="LowRowPage.h" />
     <ClInclude Include="LSEnums.h" />
     <ClInclude Include="OctaveTransposeDialog.h" />
     <ClInclude Include="OctaveTransposePage.h" />
@@ -181,12 +176,10 @@
     <ClInclude Include="LSAccessFrame.h" />
     <ClInclude Include="LinnStrument.h" />
     <ClInclude Include="LSAccess.h" />
-    <ClInclude Include="BendPage.h" />
     <ClInclude Include="PresetsVolumesPage.h" />
     <ClInclude Include="PresetsVolumesDialog.h" />
     <ClInclude Include="SequencerDialog.h" />
     <ClInclude Include="SequencerPage.h" />
-    <ClInclude Include="SpecialPage.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SwitchesDialog.h" />
     <ClInclude Include="PanelSwitchesPage.h" />
@@ -194,7 +187,6 @@
     <ClInclude Include="xh_PerSplitDialog.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AxesPage.cpp" />
     <ClCompile Include="enumser.cpp" />
     <ClCompile Include="GlobalsAccentNoteLightsPage.cpp" />
     <ClCompile Include="FootSwitchesPage.cpp" />
@@ -207,22 +199,16 @@
     <ClCompile Include="GlobalsVelocityPressurePage.cpp" />
     <ClCompile Include="MIDI.cpp" />
     <ClCompile Include="MIDIDialog.cpp" />
-    <ClCompile Include="MIDIPage.cpp" />
-    <ClCompile Include="ColorsPage.cpp" />
-    <ClCompile Include="FadersPage.cpp" />
-    <ClCompile Include="LowRowPage.cpp" />
     <ClCompile Include="OctaveTransposeDialog.cpp" />
     <ClCompile Include="OctaveTransposePage.cpp" />
     <ClCompile Include="PerSplitDialog.cpp" />
     <ClCompile Include="LSAccess.cpp" />
     <ClCompile Include="LSAccessFrame.cpp" />
     <ClCompile Include="LinnStrument.cpp" />
-    <ClCompile Include="BendPage.cpp" />
     <ClCompile Include="PresetsVolumesPage.cpp" />
     <ClCompile Include="PresetsVolumesDialog.cpp" />
     <ClCompile Include="SequencerDialog.cpp" />
     <ClCompile Include="SequencerPage.cpp" />
-    <ClCompile Include="SpecialPage.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

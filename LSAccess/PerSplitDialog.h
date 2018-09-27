@@ -19,16 +19,13 @@
 
 #include <wx/notebook.h>
 #include "wx/xrc/xmlres.h"
+#include <wx/spinctrl.h>
+
 
 #include "LSEnums.h"
 #include "LSConsts.h"
-#include "MIDIPage.h"
-#include "BendPage.h"
-#include "ColorsPage.h"
-#include "LowRowPage.h"
-#include "FadersPage.h"
-#include "AxesPage.h"
-#include "SpecialPage.h"
+#include "LinnStrument.h"
+
 
 class PerSplitDialog : public wxDialog
 {
@@ -39,13 +36,6 @@ public:
 
 protected:
 		wxNotebook * pNotebook;
-	MIDIPage * pMIDIPage;
-	BendPage * pBendPage;
-	ColorsPage * pColorsPage;
-	LowRowPage * pLowRowPage;
-	FadersPage * pFadersPage;
-	AxesPage * pAxesPage;
-SpecialPage * pSpecialPage; 
 
 private:
 	void InitMIDIPage();
