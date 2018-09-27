@@ -48,6 +48,14 @@ protected:
 SpecialPage * pSpecialPage; 
 
 private:
+	void InitMIDIPage();
+	void InitBendPage();
+	void InitAxesPage();
+	void InitColorsPage();
+	void InitLowRowPage();
+	void InitFadersPage();
+void 	InitSpecialPage();
+	
 	// Event handlers
 	
 	// MIDI page
@@ -71,6 +79,58 @@ private:
 	void OnCHANNEL_PER_NOTE_16(wxCommandEvent& event);
 	void OnSPLIT_MODE(wxCommandEvent& event);
 	void OnCHANNEL_PER_ROW_ORDER(wxCommandEvent& event);
+
+// Bend page
+	void OnBEND_RANGE(wxSpinEvent& event);
+	void OnBEND_TOGGLE(wxCommandEvent& event);
+	void OnBEND_QUANTIZE_TOGGLE(wxCommandEvent& event);
+	void OnBendQuantize(wxCommandEvent& event);
+	void OnRESET_PITCH_ON_RELEASE(wxCommandEvent& event);
+
+	// Axes page
+	void OnSEND_Y(wxCommandEvent& event);
+	void OnMIN_CC_FOR_Y(wxSpinEvent& event);
+	void OnMAX_CC_FOR_Y(wxSpinEvent& event);
+	void OnCC_FOR_Y(wxSpinEvent& event);
+	void OnRELATIVE_Y(wxCommandEvent& event);
+	void OnEXPRESSION_FOR_Y(wxCommandEvent& event);
+	void OnINITIAL_RELATIVE_VALUE_FOR_Y(wxSpinEvent& event);
+	void OnSEND_Z(wxCommandEvent& event);
+	void OnMIN_CC_FOR_Z(wxSpinEvent& event);
+	void OnMAX_CC_FOR_Z(wxSpinEvent& event);
+	void OnCC_FOR_Z(wxSpinEvent& event);
+	void OnRELATIVE_Z(wxCommandEvent& event);
+	void OnEXPRESSION_FOR_Z(wxCommandEvent& event);
+	void On14BIT_CC_VALUE_FOR_Z(wxSpinEvent& event);
+
+// Colors page
+	void OnCOLOR_MAIN(wxCommandEvent& event);
+	void OnCOLOR_ACCENT(wxCommandEvent& event);
+	void OnCOLOR_PLAYED(wxCommandEvent& event);
+	void OnCOLOR_LOWROW(wxCommandEvent& event);
+	void OnAnimation(wxCommandEvent& event);
+
+	// Low Row page
+	void OnCC_FOR_LOWROW(wxSpinEvent& event);
+	void OnCC_FOR_LOWROW_XYZ(wxSpinEvent& event);
+	void OnCC_FOR_LOWROW_XYZ_Y(wxSpinEvent& event);
+	void OnCC_FOR_LOWROW_XYZ_Z(wxSpinEvent& event);
+		void OnLOWROW_X_BEHAVIOUR(wxCommandEvent& event);
+	void OnLOWROW_XYZ_BEHAVIOUR(wxCommandEvent& event);
+	void OnLOWROW_MODE(wxCommandEvent& event);
+
+// Faders page
+	void OnCC_FOR_FADER1(wxSpinEvent& event);
+	void OnCC_FOR_FADER2(wxSpinEvent& event);
+	void OnCC_FOR_FADER3(wxSpinEvent& event);
+	void OnCC_FOR_FADER4(wxSpinEvent& event);
+	void OnCC_FOR_FADER5(wxSpinEvent& event);
+	void OnCC_FOR_FADER6(wxSpinEvent& event);
+	void OnCC_FOR_FADER7(wxSpinEvent& event);
+	void OnCC_FOR_FADER8(wxSpinEvent& event);
+
+// Special page
+	void OnSpecial(wxCommandEvent& event);
 
 	// data
 			LinnStrument * pMyLinnStrument;

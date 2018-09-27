@@ -260,8 +260,6 @@ void LSAccessFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 
 void LSAccessFrame::OnLeftSplitSettings(wxCommandEvent& event)
 {
-	// PerSplitDialog * pLeftSplit = new PerSplitDialog();
-	
 	PerSplitDialog * pLeftSplit = new PerSplitDialog( this, L"Left Split", &m_LinnStrument, LSSplitType::LEFT);
 										pLeftSplit->ShowModal();
 		}
