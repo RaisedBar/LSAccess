@@ -294,7 +294,7 @@ void LSAccessFrame::OnSwitchSettings(wxCommandEvent& event)
 
 void LSAccessFrame::OnGlobalSettings(wxCommandEvent& event)
 {
-	GlobalsDialog * pGlobalsDialog = new GlobalsDialog(L"Globals", &m_LinnStrument);
+	GlobalsDialog * pGlobalsDialog = new GlobalsDialog( this, L"Globals", &m_LinnStrument);
 	pGlobalsDialog->ShowModal();
 }
 

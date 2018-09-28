@@ -18,6 +18,7 @@
 #endif
 
 #include <wx/notebook.h>
+#include "wx/xrc/xmlres.h"
 
 #include "LSEnums.h"
 #include "GlobalsSplitPage.h"
@@ -31,7 +32,7 @@
 class GlobalsDialog : public wxDialog
 {
 public:
-	GlobalsDialog(const wxString& title, LinnStrument * pLinnStrument);
+	GlobalsDialog(wxWindow* parent, const wxString& title, LinnStrument * pLinnStrument);
 
 private:
 	void OnOK(wxCommandEvent& event);

@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<resource xmlns="http://www.wxwidgets.org/wxxrc" version="2.5.3.0">
+<object class="wxDialog" name="globals_dialog">
+<pos>-1,-1</pos>
+<size>1250,400</size>
+<style>wxDEFAULT_DIALOG_STYLE</style>
+<title>Global Settings</title>
+<object class="wxNotebook" name="notebook_1">
+
+<object class="notebookpage">
+ <label>Split</label>
+ <object class="wxPanel" name="split_panel">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+   <style>wxTAB_TRAVERSAL</style>
+       <object class="wxBoxSizer">
+         <orient>wxHORIZONTAL</orient>
+         <object class="sizeritem">
+           <flag>wxEXPAND</flag>
+           <object class="wxCheckBox" name="chk_global_split_active">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;Split active</label>
+           </object>
+</object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="global_split_column_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>Split &amp;column:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_global_split_column">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxEXPAND</flag>
+           <object class="wxCheckBox" name="chk_device_left_handed">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;Left-handed</label>
+           </object>
+</object>
+     </object>
+   </object>
+ </object>
+
+<object class="notebookpage">
+ <label>Arp</label>
+ <object class="wxPanel" name="arp_panel">
+   <style>wxTAB_TRAVERSAL</style>
+   <object class="wxBoxSizer" name="h_box_1">
+     <orient>wxHORIZONTAL</orient>
+     <object class="sizeritem">
+       <flag>wxALIGN_CENTER_VERTICAL</flag>
+       <object class="wxStaticText" name="global_clock_bpm_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+         <label>&amp;Tempo:</label>
+         <style>wxALIGN_RIGHT</style>
+       </object>
+     </object>
+     <object class="sizeritem">
+       <flag>wxALIGN_CENTER_VERTICAL</flag>
+       <object class="wxSpinCtrl" name="wsc_global_clock_bpm">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+       </object>
+     </object>
+     <object class="sizeritem">
+       <flag>wxEXPAND</flag>
+       <object class="wxRadioBox" name="wrb_global_arp_direction">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+         <label>&amp;Direction:</label>
+         <style>wxRA_SPECIFY_ROWS</style>
+         <dimension>5</dimension>
+         <content>
+<item>Up</item>
+<item>Down</item>
+<item>Up/Down</item>
+<item>Random</item>
+<item>Replay all</item>
+         </content>
+         <selection>0</selection>
+       </object>
+     </object>
+         <object class="sizeritem">
+           <flag>wxEXPAND</flag>
+           <object class="wxRadioBox" name="wrb_global_arp_tempo_note_value">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;Note value:</label>
+             <style>wxRA_SPECIFY_ROWS</style>
+             <dimension>7</dimension>
+             <content>
+<item>8th</item>
+<item>8th triplet</item>
+<item>16th</item>
+<item>16th swing</item>
+<item>16th triplet</item>
+<item>32nd</item>
+<item>32nd triplet</item>
+             </content>
+             <selection>0</selection>
+           </object>
+         </object>
+             <object class="sizeritem">
+               <flag>wxEXPAND</flag>
+               <object class="wxRadioBox" name="wrb_global_arp_octave_extension">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+                 <label>&amp;Octave extension:</label>
+                 <style>wxRA_SPECIFY_ROWS</style>
+                 <dimension>3</dimension>
+                 <content>
+<item>None</item>
+<item>+1</item>
+<item>+2</item>
+                </content>
+                 <selection>0</selection>
+               </object>
+             </object>
+   </object>
+ </object>
+</object>
+
+<object class="notebookpage">
+ <label>Velocity/Pressure</label>
+ <object class="wxPanel" name="velocity_pressure_panel">
+   <style>wxTAB_TRAVERSAL</style>
+       <object class="wxBoxSizer" name="h_box_1">
+         <orient>wxHORIZONTAL</orient>
+     <object class="sizeritem">
+       <flag>wxEXPAND</flag>
+       <object class="wxRadioBox" name="wrb_global_velocity_sensitivity">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+         <label>&amp;Velocity sensitivity:</label>
+         <style>wxRA_SPECIFY_ROWS</style>
+         <dimension>4</dimension>
+         <content>
+<item>Low</item>
+<item>Medium</item>
+<item>High</item>
+<item>Fixed</item>
+         </content>
+         <selection>0</selection>
+       </object>
+     </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="global_min_velocity_value_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>Min. velocity:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_global_min_velocity_value">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="global_max_velocity_value_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>Mx. velocity:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_global_max_velocity_value">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="global_fixed_velocity_value_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;Fixed velocity:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_global_fixed_velocity_value">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+           </object>
+         </object>
+     <object class="sizeritem">
+       <flag>wxEXPAND</flag>
+       <object class="wxRadioBox" name="wrb_global_pressure_sensitivity">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+         <label>&amp;Pressure sensitivity:</label>
+         <style>wxRA_SPECIFY_ROWS</style>
+         <dimension>3</dimension>
+         <content>
+<item>Low</item>
+<item>Medium</item>
+<item>High</item>
+         </content>
+         <selection>0</selection>
+       </object>
+     </object>
+         <object class="sizeritem">
+           <object class="wxCheckBox" name="chk_global_pressure_aftertouch">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>Pressure &amp;aftertouch</label>
+           </object>
+         </object>
+</object>
+</object>
+</object>
+
+<object class="notebookpage">
+ <label>Note Lights</label>
+ <object class="wxPanel" name="note_lights_panel">
+   <style>wxTAB_TRAVERSAL</style>
+   <object class="wxBoxSizer" name="h_box_1">
+     <orient>wxHORIZONTAL</orient>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="global_active_note_lights_preset_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;Preset:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_global_active_note_lights_preset">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+           </object>
+         </object>
+     <object class="sizeritem">
+       <object class="wxFlexGridSizer">
+         <cols>6</cols>
+         <vgap>0</vgap>
+         <hgap>0</hgap>
+         <object class="sizeritem">
+           <object class="wxCheckBox" name="chk_global_main_note_light_c">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;C</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxCheckBox" name="chk_global_main_note_light_c_sharp">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>C#</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxCheckBox" name="chk_global_main_note_light_d">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;>D</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxCheckBox" name="chk_global_main_note_light_d_sharp">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>D#</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxCheckBox" name="chk_global_main_note_light_e">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;E</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxCheckBox" name="chk_global_main_note_light_f">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;F</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxCheckBox" name="chk_global_main_note_light_f_sharp">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>F#</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxCheckBox" name="chk_global_main_note_light_g">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;G</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxCheckBox" name="chk_global_main_note_light_g_sharp">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>G#</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxCheckBox" name="chk_global_main_note_light_a">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;A0</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxCheckBox" name="chk_global_main_note_light_a_sharp">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>A#1</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxCheckBox" name="chk_global_main_note_light_b">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;B2</label>
+           </object>
+         </object>
+       </object>
+</object>
+ </object>
+</object>
+</object>
+
+<object class="notebookpage">
+ <label>Accent Note Lights</label>
+ <object class="wxPanel" name="accent_note_lights_panel">
+   <style>wxTAB_TRAVERSAL</style>
+       <object class="wxFlexGridSizer">
+         <cols>6</cols>
+         <vgap>0</vgap>
+         <hgap>0</hgap>
+         <object class="sizeritem">
+           <object class="wxCheckBox" name="chk_global_accent_note_light_c">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;C</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxCheckBox" name="chk_global_accent_note_light_c_sharp">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>C#</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxCheckBox" name="chk_global_accent_note_light_d">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;>D</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxCheckBox" name="chk_global_accent_note_light_d_sharp">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>D#</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxCheckBox" name="chk_global_accent_note_light_e">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;E</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxCheckBox" name="chk_global_accent_note_light_f">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;F</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxCheckBox" name="chk_global_accent_note_light_f_sharp">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>F#</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxCheckBox" name="chk_global_accent_note_light_g">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;G</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxCheckBox" name="chk_global_accent_note_light_g_sharp">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>G#</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxCheckBox" name="chk_global_accent_note_light_a">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;A0</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxCheckBox" name="chk_global_accent_note_light_a_sharp">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>A#1</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxCheckBox" name="chk_global_accent_note_light_b">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;B2</label>
+           </object>
+         </object>
+       </object>
+</object>
+ </object>
+
+<object class="notebookpage">
+ <label>Row Tunings</label>
+ <object class="wxPanel" name="row_tunings_panel">
+   <style>wxTAB_TRAVERSAL</style>
+   <object class="wxBoxSizer" name="h_box_1">
+     <orient>wxHORIZONTAL</orient>
+     <object class="sizeritem">
+       <flag>wxEXPAND</flag>
+       <object class="wxRadioBox" name="wrb_global_row_offset">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+         <label>&amp;Row offset:</label>
+         <style>wxRA_SPECIFY_ROWS</style>
+         <dimension>9</dimension>
+         <content>
+<item>No overlap</item>
+<item>3rd</item>
+<item>4th</item>
+<item>5th</item>
+<item>6th</item>
+<item>7th</item>
+<item>Octave</item>
+<item>Guitar</item>
+<item>No offset</item>
+        </content>
+         <selection>0</selection>
+       </object>
+     </object>
+     <object class="sizeritem">
+       <flag>wxEXPAND</flag>
+       <object class="wxRadioBox" name="wrb_global_custom_row_offset">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+         <label>&amp;Custom row offset:</label>
+         <style>wxRA_SPECIFY_ROWS</style>
+         <dimension>34</dimension>
+         <content>
+<item>-16</item>
+<item>-15</item>
+<item>-14</item>
+<item>-13</item>
+<item>-12</item>
+<item>-11</item>
+<item>-10</item>
+<item>-9</item>
+<item>-8</item>
+<item>-7</item>
+<item>-6</item>
+<item>-5</item>
+<item>-4</item>
+<item>-3</item>
+<item>-2</item>
+<item>-1</item>
+<item>0</item>
+<item>+1</item>
+<item>+2</item>
+<item>+3</item>
+<item>+4</item>
+<item>+5</item>
+<item>+6</item>
+<item>+7</item>
+<item>+8</item>
+<item>+9</item>
+<item>+10</item>
+<item>+11</item>
+<item>+12</item>
+<item>+13</item>
+<item>+14</item>
+<item>+15</item>
+<item>+16</item>
+<item>Inverted guitar</item>
+        </content>
+         <selection>0</selection>
+       </object>
+     </object>
+     <object class="sizeritem">
+       <object class="wxFlexGridSizer">
+         <cols>8</cols>
+         <vgap>0</vgap>
+         <hgap>0</hgap>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="global_guitar_note_tuning_row_1_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>Guitar tuning, row &amp;1:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_global_guitar_note_tuning_row_1">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="global_guitar_note_tuning_row_2_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>Guitar tuning, row &amp;2:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_global_guitar_note_tuning_row_2">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="global_guitar_note_tuning_row_3_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>Guitar tuning, row &amp;3:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_global_guitar_note_tuning_row_3">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="global_guitar_note_tuning_row_4_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>Guitar tuning, row &amp;4:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_global_guitar_note_tuning_row_4">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="global_guitar_note_tuning_row_5_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>Guitar tuning, row &amp;5:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_global_guitar_note_tuning_row_5">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="global_guitar_note_tuning_row_6_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>Guitar tuning, row &amp;6:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_global_guitar_note_tuning_row_6">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="global_guitar_note_tuning_row_7_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>Guitar tuning, row &amp;7:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_global_guitar_note_tuning_row_7">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="global_guitar_note_tuning_row_8_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>Guitar tuning, row &amp;8:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_global_guitar_note_tuning_row_8">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+           </object>
+         </object>
+       </object>
+</object>
+ </object>
+</object>
+</object>
+
+<object class="notebookpage">
+ <label>Power/MIDI</label>
+ <object class="wxPanel" name="power_midi_panel">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+   <style>wxTAB_TRAVERSAL</style>
+       <object class="wxBoxSizer">
+         <orient>wxHORIZONTAL</orient>
+     <object class="sizeritem">
+       <flag>wxEXPAND</flag>
+       <object class="wxRadioBox" name="wrb_global_midi_device_io">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+         <label>&amp;Connection:</label>
+         <style>wxRA_SPECIFY_ROWS</style>
+         <dimension>2</dimension>
+         <content>
+<item>DIN jacks</item>
+<item>USB</item>
+	         </content>
+         <selection>0</selection>
+       </object>
+     </object>
+         <object class="sizeritem">
+           <flag>wxEXPAND</flag>
+           <object class="wxCheckBox" name="chk_device_midi_thru">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>MIDI &amp;Thru</label>
+           </object>
+</object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="device_min_byte_interval_value_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;Min. interval between bytes:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_device_min_byte_interval_value">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxEXPAND</flag>
+           <object class="wxCheckBox" name="chk_device_user_firmware_mode">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;User firmware mode</label>
+           </object>
+</object>
+     </object>
+   </object>
+ </object>
+
+</object>
+</object>
+</resource>
