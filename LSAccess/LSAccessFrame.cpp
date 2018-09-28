@@ -273,7 +273,7 @@ void LSAccessFrame::OnRightSplitSettings(wxCommandEvent& event)
 
 void LSAccessFrame::OnOctaveTransposeSettings(wxCommandEvent& event)
 {
-	OctaveTransposeDialog * pOctaveTransposeDialog = new OctaveTransposeDialog(L"Octave/Transpose", &m_LinnStrument);
+	OctaveTransposeDialog * pOctaveTransposeDialog = new OctaveTransposeDialog(this, &m_LinnStrument);
 	pOctaveTransposeDialog->ShowModal();
 	}
 

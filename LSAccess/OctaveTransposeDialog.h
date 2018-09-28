@@ -18,6 +18,7 @@
 #endif
 
 #include <wx/notebook.h>
+#include "wx/xrc/xmlres.h"
 
 #include "LSEnums.h"
 #include "OctaveTransposePage.h"
@@ -25,11 +26,9 @@
 class OctaveTransposeDialog : public wxDialog
 {
 public:
-	OctaveTransposeDialog(const wxString& title, LinnStrument * pLinnStrument);
+	OctaveTransposeDialog(wxWindow* parent, LinnStrument * pLinnStrument);
 
 private:
-	void OnOK(wxCommandEvent& event);
-
 	// data
 	LinnStrument * pMyLinnStrument;
 	wxNotebook * pNotebook;
