@@ -18,6 +18,7 @@
 #endif
 
 #include <wx/notebook.h>
+#include "wx/xrc/xmlres.h"
 
 #include "LSEnums.h"
 #include "PresetsVolumesPage.h"
@@ -25,10 +26,18 @@
 class PresetsVolumesDialog : public wxDialog
 {
 public:
-	PresetsVolumesDialog(const wxString& title, LinnStrument * pLinnStrument);
+	PresetsVolumesDialog(wxWindow* parent, LinnStrument * pLinnStrument);
 
 private:
-	void OnOK(wxCommandEvent& event);
+	void InitLeft();
+	void InitRight();
+
+// Event handlers
+	void OnGLOBAL_SETTINGS_PRESET_LOAD(wxCommandEvent& event);
+	void OnLeftProgramNumber(wxSpinEvent& event);
+	void OnLeftVolume(wxSpinEvent& event);
+	void OnRightProgramNumber(wxSpinEvent& event);
+	void OnRightVolume(wxSpinEvent& event);
 
 // data
 	LinnStrument * pMyLinnStrument;

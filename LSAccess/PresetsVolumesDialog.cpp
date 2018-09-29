@@ -8,38 +8,61 @@
 #include "PresetsVolumesDialog.h"
 
 
-PresetsVolumesDialog::PresetsVolumesDialog(const wxString& title, LinnStrument * pLinnStrument)
-	: wxDialog(NULL, wxID_ANY, title),
+PresetsVolumesDialog::PresetsVolumesDialog(wxWindow* parent, LinnStrument * pLinnStrument)
+	: wxDialog(NULL, wxID_ANY, L""),
 	pMyLinnStrument(pLinnStrument)
 {
-		// Set up the multi-tab notebook
-		wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
-	pNotebook = new wxNotebook(this, ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, 0);
-	pLeftPresetsVolumesPage = new PresetsVolumesPage(pNotebook, pLinnStrument, LSSplitType::LEFT);
-	pRightPresetsVolumesPage = new PresetsVolumesPage(pNotebook, pLinnStrument, LSSplitType::RIGHT);
+	wxXmlResource::Get()->LoadDialog(this, parent, wxT("presets_volumes_dialog"));
+	InitLeft();
+	InitRight();
 
-	pNotebook->AddPage(pLeftPresetsVolumesPage, L"Left", true);
-	pNotebook->AddPage(pRightPresetsVolumesPage, L"Right", false);
-	hBox1->Add(pNotebook, 0, wxEXPAND);
+}
 
-	wxButton * btnOK = new wxButton(this, wxID_OK);
-	btnOK->SetDefault();
-	hBox1->Add(btnOK, 0, wxEXPAND);
 
-	this->SetSizerAndFit(hBox1);
-	hBox1->Show(pNotebook);
+void PresetsVolumesDialog::InitLeft()
+{
+}
+
+
+void PresetsVolumesDialog::InitRight()
+{
 }
 
 
 // Event handlers
 
-void PresetsVolumesDialog::OnOK(wxCommandEvent& event)
+void PresetsVolumesDialog::OnGLOBAL_SETTINGS_PRESET_LOAD(wxCommandEvent& event)
 {
-	EndModal(true);
+}
+
+
+void PresetsVolumesDialog::OnLeftProgramNumber(wxSpinEvent& event)
+{
+}
+
+
+void PresetsVolumesDialog::OnLeftVolume(wxSpinEvent& event)
+{
+}
+
+
+void PresetsVolumesDialog::OnRightProgramNumber(wxSpinEvent& event)
+{
+}
+
+
+void PresetsVolumesDialog::OnRightVolume(wxSpinEvent& event)
+{
 }
 
 
 BEGIN_EVENT_TABLE(PresetsVolumesDialog, wxDialog)
-// Buttons
-EVT_BUTTON(wxID_OK, PresetsVolumesDialog::OnOK)
+// global
+EVT_RADIOBOX(GLOBAL_SETTINGS_PRESET_LOAD_ID, PresetsVolumesDialog::OnGLOBAL_SETTINGS_PRESET_LOAD)
+//left
+EVT_SPIN(ProgramNumber_ID, PresetsVolumesDialog::OnLeftProgramNumber)
+EVT_SPIN(Volume_ID, PresetsVolumesDialog::OnLeftVolume)
+//right
+EVT_SPIN(ProgramNumber_ID, PresetsVolumesDialog::OnRightProgramNumber)
+EVT_SPIN(Volume_ID, PresetsVolumesDialog::OnRightVolume)
 END_EVENT_TABLE()

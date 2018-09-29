@@ -280,7 +280,7 @@ void LSAccessFrame::OnOctaveTransposeSettings(wxCommandEvent& event)
 
 void LSAccessFrame::OnPresetsVolumesSettings(wxCommandEvent& event)
 {
-	PresetsVolumesDialog * pPresetsVolumesDialog = new PresetsVolumesDialog(L"Presets/Volumes", &m_LinnStrument);
+	PresetsVolumesDialog * pPresetsVolumesDialog = new PresetsVolumesDialog(this, &m_LinnStrument);
 	pPresetsVolumesDialog->ShowModal();
 }
 

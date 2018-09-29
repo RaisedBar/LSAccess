@@ -17,7 +17,7 @@
          <orient>wxHORIZONTAL</orient>
      <object class="sizeritem">
        <flag>wxEXPAND</flag>
-       <object class="wxRadioBox" name="wrb_left_octave">
+       <object class="wxRadioBox" name="wrb_octave">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
          <label>&amp;Octave:</label>
@@ -41,7 +41,7 @@
      </object>
      <object class="sizeritem">
        <flag>wxEXPAND</flag>
-       <object class="wxRadioBox" name="wrb_left_pitch_transpose">
+       <object class="wxRadioBox" name="wrb_pitch_transpose">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
          <label>&amp;Pitch transpose:</label>
@@ -69,7 +69,7 @@
      </object>
      <object class="sizeritem">
        <flag>wxEXPAND</flag>
-       <object class="wxRadioBox" name="wrb_left_transpose_lights">
+       <object class="wxRadioBox" name="wrb_transpose_lights">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
          <label>Transpose &amp;lights:</label>
@@ -101,7 +101,7 @@
 
 <object class="notebookpage">
  <label>Right</label>
- <object class="wxPanel" name="right_panel">
+ <object class="wxPanel" name="left_panel">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
    <style>wxTAB_TRAVERSAL</style>
@@ -109,7 +109,7 @@
          <orient>wxHORIZONTAL</orient>
      <object class="sizeritem">
        <flag>wxEXPAND</flag>
-       <object class="wxRadioBox" name="wrb_right_octave">
+       <object class="wxRadioBox" name="wrb_octave">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
          <label>&amp;Octave:</label>
@@ -133,7 +133,7 @@
      </object>
      <object class="sizeritem">
        <flag>wxEXPAND</flag>
-       <object class="wxRadioBox" name="wrb_right_pitch_transpose">
+       <object class="wxRadioBox" name="wrb_pitch_transpose">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
          <label>&amp;Pitch transpose:</label>
@@ -161,7 +161,7 @@
      </object>
      <object class="sizeritem">
        <flag>wxEXPAND</flag>
-       <object class="wxRadioBox" name="wrb_right_transpose_lights">
+       <object class="wxRadioBox" name="wrb_transpose_lights">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
          <label>Transpose &amp;lights:</label>

@@ -29,7 +29,18 @@ public:
 	OctaveTransposeDialog(wxWindow* parent, LinnStrument * pLinnStrument);
 
 private:
-	// data
+	void InitLeft();
+	void InitRight();
+	
+// Event handlers
+	void OnLeftOctave(wxCommandEvent& event);
+	void OnLeftPITCH_TRANSPOSE(wxCommandEvent& event);
+	void OnLeftTRANSPOSE_LIGHTS(wxCommandEvent& event);
+	void OnRightOctave(wxCommandEvent& event);
+	void OnRightPITCH_TRANSPOSE(wxCommandEvent& event);
+	void OnRightTRANSPOSE_LIGHTS(wxCommandEvent& event);
+
+// data
 	LinnStrument * pMyLinnStrument;
 	wxNotebook * pNotebook;
 	
