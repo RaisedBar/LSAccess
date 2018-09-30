@@ -171,12 +171,10 @@
     <ClInclude Include="MIDIDialog.h" />
     <ClInclude Include="LSEnums.h" />
     <ClInclude Include="OctaveTransposeDialog.h" />
-    <ClInclude Include="OctaveTransposePage.h" />
     <ClInclude Include="PerSplitDialog.h" />
     <ClInclude Include="LSAccessFrame.h" />
     <ClInclude Include="LinnStrument.h" />
     <ClInclude Include="LSAccess.h" />
-    <ClInclude Include="PresetsVolumesPage.h" />
     <ClInclude Include="PresetsVolumesDialog.h" />
     <ClInclude Include="SequencerDialog.h" />
     <ClInclude Include="SequencerPage.h" />
@@ -200,12 +198,10 @@
     <ClCompile Include="MIDI.cpp" />
     <ClCompile Include="MIDIDialog.cpp" />
     <ClCompile Include="OctaveTransposeDialog.cpp" />
-    <ClCompile Include="OctaveTransposePage.cpp" />
     <ClCompile Include="PerSplitDialog.cpp" />
     <ClCompile Include="LSAccess.cpp" />
     <ClCompile Include="LSAccessFrame.cpp" />
     <ClCompile Include="LinnStrument.cpp" />
-    <ClCompile Include="PresetsVolumesPage.cpp" />
     <ClCompile Include="PresetsVolumesDialog.cpp" />
     <ClCompile Include="SequencerDialog.cpp" />
     <ClCompile Include="SequencerPage.cpp" />

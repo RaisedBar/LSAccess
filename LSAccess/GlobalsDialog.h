@@ -17,17 +17,8 @@
 #include "wx/wx.h"
 #endif
 
-#include <wx/notebook.h>
 #include "wx/xrc/xmlres.h"
-
-#include "LSEnums.h"
-#include "GlobalsSplitPage.h"
-#include "GlobalsArpPage.h"
-#include "GlobalsVelocityPressurePage.h"
-#include "GlobalsNoteLightsPage.h"
-#include "GlobalsAccentNoteLightsPage.h"
-#include "GlobalsPowerMIDIPage.h"
-#include "GlobalsTuningsPage.h"
+#include "LinnStrument.h"
 
 class GlobalsDialog : public wxDialog
 {
@@ -35,9 +26,8 @@ public:
 	GlobalsDialog(wxWindow* parent, const wxString& title, LinnStrument * pLinnStrument);
 
 private:
-	void OnOK(wxCommandEvent& event);
-
-	LinnStrument * pMyLinnStrument;
-
 	DECLARE_EVENT_TABLE()
-};
+
+	// data
+	LinnStrument * pMyLinnStrument;
+		};

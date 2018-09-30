@@ -39,16 +39,10 @@
     <ClInclude Include="GlobalsTuningsPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OctaveTransposePage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="VelocityPressurePage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GlobalsArpPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PresetsVolumesPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GlobalsPowerMIDIPage.h">
@@ -123,12 +117,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GlobalsTuningsPage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OctaveTransposePage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PresetsVolumesPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GlobalsPowerMIDIPage.cpp">

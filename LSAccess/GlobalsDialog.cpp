@@ -28,15 +28,5 @@ GlobalsSplitPage * pGlobalsSplitPage = new GlobalsSplitPage(pNotebook, pLinnStru
 
 // Event handlers
 
-void GlobalsDialog::OnOK(wxCommandEvent& event)
-{
-	EndModal(true);
-}
-
-
 BEGIN_EVENT_TABLE(GlobalsDialog, wxDialog)
-// Notebook tabs
-// EVT_NOTEBOOK_PAGE_CHANGED(ID_NOTEBOOK, GlobalsDialog::OnTabChanged)
-// Buttons
-EVT_BUTTON(wxID_OK, GlobalsDialog::OnOK)
 END_EVENT_TABLE()

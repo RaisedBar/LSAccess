@@ -17,11 +17,8 @@
 #include "wx/wx.h"
 #endif
 
-#include <wx/notebook.h>
 #include "wx/xrc/xmlres.h"
-
-#include "LSEnums.h"
-#include "OctaveTransposePage.h"
+#include "LinnStrument.h"
 
 class OctaveTransposeDialog : public wxDialog
 {
@@ -33,6 +30,8 @@ private:
 	void InitRight();
 	
 // Event handlers
+	DECLARE_EVENT_TABLE()
+
 	void OnLeftOctave(wxCommandEvent& event);
 	void OnLeftPITCH_TRANSPOSE(wxCommandEvent& event);
 	void OnLeftTRANSPOSE_LIGHTS(wxCommandEvent& event);
@@ -42,7 +41,4 @@ private:
 
 // data
 	LinnStrument * pMyLinnStrument;
-	wxNotebook * pNotebook;
-	
-	DECLARE_EVENT_TABLE()
-};
+		};

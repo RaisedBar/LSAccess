@@ -17,13 +17,10 @@
 #include "wx/wx.h"
 #endif
 
-#include <wx/notebook.h>
 #include "wx/xrc/xmlres.h"
 #include <wx/spinctrl.h>
 
 
-#include "LSEnums.h"
-#include "LSConsts.h"
 #include "LinnStrument.h"
 
 
@@ -33,9 +30,6 @@ public:
 	PerSplitDialog() {};
 	PerSplitDialog(wxWindow* parent, const wxString& title, LinnStrument * pLinnStrument, const LSSplitType split);
 	bool Create(const wxString& title, LinnStrument * pLinnStrument, const LSSplitType split);
-
-protected:
-		wxNotebook * pNotebook;
 
 private:
 	void InitMIDIPage();
@@ -47,7 +41,8 @@ private:
 void 	InitSpecialPage();
 	
 	// Event handlers
-	
+DECLARE_EVENT_TABLE()
+
 	// MIDI page
 	void OnMIDI_MAIN_CHANNEL(wxSpinEvent& event);
 	void OnMIDI_PER_ROW_LOWEST_CHANNEL(wxSpinEvent& event);
@@ -125,6 +120,5 @@ void 	InitSpecialPage();
 	// data
 			LinnStrument * pMyLinnStrument;
 			LSSplitType m_Split;
-			
-			DECLARE_EVENT_TABLE()
-};
+		
+			};

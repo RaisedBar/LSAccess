@@ -17,11 +17,10 @@
 #include "wx/wx.h"
 #endif
 
-#include <wx/notebook.h>
 #include "wx/xrc/xmlres.h"
+#include <wx/spinctrl.h>
 
-#include "LSEnums.h"
-#include "PresetsVolumesPage.h"
+#include "LinnStrument.h"
 
 class PresetsVolumesDialog : public wxDialog
 {
@@ -33,6 +32,8 @@ private:
 	void InitRight();
 
 // Event handlers
+	DECLARE_EVENT_TABLE()
+
 	void OnLeftGLOBAL_SETTINGS_PRESET_LOAD(wxCommandEvent& event);
 	void OnLeftProgramNumber(wxSpinEvent& event);
 	void OnLeftVolume(wxSpinEvent& event);
@@ -42,9 +43,4 @@ private:
 
 // data
 	LinnStrument * pMyLinnStrument;
-	wxNotebook * pNotebook;
-	PresetsVolumesPage * pLeftPresetsVolumesPage;
-	PresetsVolumesPage * pRightPresetsVolumesPage;
-
-	DECLARE_EVENT_TABLE()
 };
