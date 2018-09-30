@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <resource xmlns="http://www.wxwidgets.org/wxxrc" version="2.5.3.0">
-<object class="wxDialog" name="octave_transpose_dialog">
+<object class="wxDialog" name="presets_volumes_dialog">
 <pos>-1,-1</pos>
 <size>1250,400</size>
 <style>wxDEFAULT_DIALOG_STYLE</style>
-<title>Octave/Transpose Settings</title>
+<title>Preset/Volume Settings</title>
 <object class="wxNotebook" name="notebook_1">
 
 <object class="notebookpage">
@@ -17,84 +17,57 @@
          <orient>wxHORIZONTAL</orient>
      <object class="sizeritem">
        <flag>wxEXPAND</flag>
-       <object class="wxRadioBox" name="wrb_octave">
+       <object class="wxRadioBox" name="wrb_left_global_settings_preset_load">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
-         <label>&amp;Octave:</label>
+         <label>&amp;LinnStrument preset:</label>
          <style>wxRA_SPECIFY_ROWS</style>
-         <dimension>11</dimension>
+         <dimension>6</dimension>
          <content>
-<item>-5</item>
-<item>-4</item>
-<item>-3</item>
-<item>-2</item>
-<item>-1</item>
-<item>0</item>
-<item>+1</item>
-<item>+2</item>
-<item>+3</item>
-<item>+4</item>
-<item>+5</item>
+<item>1</item>
+<item>2</item>
+<item>3</item>
+<item>4</item>
+<item>5</item>
+<item>6</item>
          </content>
          <selection>0</selection>
        </object>
      </object>
-     <object class="sizeritem">
-       <flag>wxEXPAND</flag>
-       <object class="wxRadioBox" name="wrb_pitch_transpose">
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="left_midi_program_label">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
-         <label>&amp;Pitch transpose:</label>
-         <style>wxRA_SPECIFY_ROWS</style>
-         <dimension>15</dimension>
-         <content>
-<item>-7</item>
-<item>-6</item>
-<item>-5</item>
-<item>-4</item>
-<item>-3</item>
-<item>-2</item>
-<item>-1</item>
-<item>0</item>
-<item>+1</item>
-<item>+2</item>
-<item>+3</item>
-<item>+4</item>
-<item>+5</item>
-<item>+6</item>
-<item>+7</item>
-         </content>
-         <selection>0</selection>
-       </object>
-     </object>
-     <object class="sizeritem">
-       <flag>wxEXPAND</flag>
-       <object class="wxRadioBox" name="wrb_transpose_lights">
+             <label>MIDI &amp;program:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_left_program_number">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
-         <label>Transpose &amp;lights:</label>
-         <style>wxRA_SPECIFY_ROWS</style>
-         <dimension>15</dimension>
-         <content>
-<item>-7</item>
-           <item>-6</item>
-<item>-5</item>
-<item>-4</item>
-<item>-3</item>
-<item>-2</item>
-<item>-1</item>
-<item>0</item>
-<item>+1</item>
-<item>+2</item>
-<item>+3</item>
-<item>+4</item>
-<item>+5</item>
-<item>+6</item>
-<item>+7</item>
-         </content>
-         <selection>0</selection>
-       </object>
-     </object>
+             <value>1</value>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="right_midi_program_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>MIDI &amp;program:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_right_program_number">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <value>1</value>
+           </object>
+         </object>
      </object>
    </object>
  </object>
@@ -109,85 +82,58 @@
          <orient>wxHORIZONTAL</orient>
      <object class="sizeritem">
        <flag>wxEXPAND</flag>
-       <object class="wxRadioBox" name="wrb_octave">
+       <object class="wxRadioBox" name="right_wrb_global_settings_preset_load">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
-         <label>&amp;Octave:</label>
+         <label>&amp;LinnStrument preset:</label>
          <style>wxRA_SPECIFY_ROWS</style>
-         <dimension>11</dimension>
+         <dimension>6</dimension>
          <content>
-<item>-5</item>
-<item>-4</item>
-<item>-3</item>
-<item>-2</item>
-<item>-1</item>
-<item>0</item>
-<item>+1</item>
-<item>+2</item>
-<item>+3</item>
-<item>+4</item>
-<item>+5</item>
+<item>1</item>
+<item>2</item>
+<item>3</item>
+<item>4</item>
+<item>5</item>
+<item>6</item>
          </content>
          <selection>0</selection>
        </object>
      </object>
-     <object class="sizeritem">
-       <flag>wxEXPAND</flag>
-       <object class="wxRadioBox" name="wrb_pitch_transpose">
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="right_midi_program_label">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
-         <label>&amp;Pitch transpose:</label>
-         <style>wxRA_SPECIFY_ROWS</style>
-         <dimension>15</dimension>
-         <content>
-<item>-7</item>
-<item>-6</item>
-<item>-5</item>
-<item>-4</item>
-<item>-3</item>
-<item>-2</item>
-<item>-1</item>
-<item>0</item>
-<item>+1</item>
-<item>+2</item>
-<item>+3</item>
-<item>+4</item>
-<item>+5</item>
-<item>+6</item>
-<item>+7</item>
-         </content>
-         <selection>0</selection>
-       </object>
-     </object>
-     <object class="sizeritem">
-       <flag>wxEXPAND</flag>
-       <object class="wxRadioBox" name="wrb_transpose_lights">
+             <label>MIDI &amp;program:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_right_program_number">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
-         <label>Transpose &amp;lights:</label>
-         <style>wxRA_SPECIFY_ROWS</style>
-         <dimension>15</dimension>
-         <content>
-<item>-7</item>
-<item>-6</item>
-<item>-5</item>
-<item>-4</item>
-<item>-3</item>
-<item>-2</item>
-<item>-1</item>
-<item>0</item>
-<item>+1</item>
-<item>+2</item>
-<item>+3</item>
-<item>+4</item>
-<item>+5</item>
-<item>+6</item>
-<item>+7</item>
-         </content>
-         <selection>0</selection>
-       </object>
-     </object>
-     </object>
+             <value>1</value>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="right_midi_program_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>MIDI &amp;program:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_right_program_number">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <value>1</value>
+           </object>
+         </object>
+ </object>
    </object>
  </object>
 

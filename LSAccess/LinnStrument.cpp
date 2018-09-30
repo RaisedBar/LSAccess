@@ -37,7 +37,306 @@ void LSCallback(double deltatime, std::vector< unsigned char > *message, void *p
 		m_Waiting(false),
 		m_Sent(0),
 		m_Received(0),
-		m_CanDetectSerialPorts(true)
+		m_CanDetectSerialPorts(true),
+		// left split
+		m_LEFT_SPLIT_MODE(0),
+				m_LEFT_MIDI_MAIN_CHANNEL(0),
+		m_LEFT_CHANNEL_PER_NOTE_1(0),
+		m_LEFT_CHANNEL_PER_NOTE_2(0),
+		m_LEFT_CHANNEL_PER_NOTE_3(0),
+		m_LEFT_CHANNEL_PER_NOTE_4(0),
+		m_LEFT_CHANNEL_PER_NOTE_5(0),
+		m_LEFT_CHANNEL_PER_NOTE_6(0),
+		m_LEFT_CHANNEL_PER_NOTE_7(0),
+		m_LEFT_CHANNEL_PER_NOTE_8(0),
+		m_LEFT_CHANNEL_PER_NOTE_9(0),
+		m_LEFT_CHANNEL_PER_NOTE_10(0),
+		m_LEFT_CHANNEL_PER_NOTE_11(0),
+		m_LEFT_CHANNEL_PER_NOTE_12(0),
+		m_LEFT_CHANNEL_PER_NOTE_13(0),
+		m_LEFT_CHANNEL_PER_NOTE_14(0),
+		m_LEFT_CHANNEL_PER_NOTE_15(0),
+		m_LEFT_CHANNEL_PER_NOTE_16(0),
+		// Value is a MIDI channel number:
+		m_LEFT_MIDI_PER_ROW_LOWEST_CHANNEL(0),
+		// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
+		m_LEFT_BEND_RANGE(0),
+		// Toggles:
+		m_LEFT_BEND_TOGGLE(0),
+		m_LEFT_BEND_QUANTIZE_TOGGLE(0),
+		// Value is from LSPitchQuantize
+		m_LEFT_PITCH_QUANTIZE(0),
+		// Toggles:
+		m_LEFT_RESET_PITCH_ON_RELEASE(0),
+		// Values are constrained by MIN_CC and MAX_CC
+		// CC 1 or CC 74 are recommended, any CC is possible though
+		m_LEFT_CC_FOR_Y(0),
+		// Toggle:
+		m_LEFT_RELATIVE_Y(0),
+		m_LEFT_RELATIVE_Z(0),
+		// Value is an LSExpressionZ
+		m_LEFT_EXPRESSION_FOR_Z(0),
+		// Values are constrained by MIN_CC and MAX_CC
+		// CC 11 is recommended, any CC is possible though
+		m_LEFT_CC_FOR_Z(0),
+		// Values are defined in LSColor
+		m_LEFT_COLOR_MAIN(0),
+		m_LEFT_COLOR_ACCENT(0),
+		m_LEFT_COLOR_PLAYED(0),
+		m_LEFT_COLOR_LOWROW(0),
+		// Value is an LSLowRowMode
+		m_LEFT_LOWROW_MODE(0),
+		// Value is an LSSpecial:
+		m_LEFT_SPECIAL(0),
+		// Value is an LSOctave
+		m_LEFT_OCTAVE(0),
+		// Values are from LSPitch
+		m_LEFT_PITCH_TRANSPOSE(0),
+		m_LEFT_TRANSPOSE_LIGHTS(0),
+		// Value is an LSExpressionY
+		m_LEFT_EXPRESSION_FOR_Y(0),
+		// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+		m_LEFT_CC_FOR_FADER1(0),
+		m_LEFT_CC_FOR_FADER2(0),
+		m_LEFT_CC_FOR_FADER3(0),
+		m_LEFT_CC_FOR_FADER4(0),
+		m_LEFT_CC_FOR_FADER5(0),
+		m_LEFT_CC_FOR_FADER6(0),
+		m_LEFT_CC_FOR_FADER7(0),
+		m_LEFT_CC_FOR_FADER8(0),
+		// Value is an LSLowRowBehaviour
+		m_LEFT_LOWROW_X_BEHAVIOUR(0),
+		// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+		m_LEFT_CC_FOR_LOWROW(0),
+		// Value is an LSLowRowBehaviour
+		m_LEFT_LOWROW_XYZ_BEHAVIOUR(0),
+		// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+		m_LEFT_CC_FOR_LOWROW_XYZ(0),
+		m_LEFT_CC_FOR_LOWROW_XYZ_Y(0),
+		m_LEFT_CC_FOR_LOWROW_XYZ_Z(0),
+		// Values are constrained by MIN_CC and MAX_CC
+		m_LEFT_MIN_CC_FOR_Y(0),
+		m_LEFT_MAX_CC_FOR_Y(0),
+		m_LEFT_MIN_CC_FOR_Z(0),
+		m_LEFT_MAX_CC_FOR_Z(0),
+		m_LEFT_14BIT_CC_VALUE_FOR_Z(0),
+		m_LEFT_INITIAL_RELATIVE_VALUE_FOR_Y(0),
+		// Value is an LSChannelOrder
+		m_LEFT_CHANNEL_PER_ROW_ORDER(0),
+		// Value is an LSAnimation
+		m_LEFT_TOUCH_ANIMATION(0),
+		// Toggle:
+		m_LEFT_SEQUENCER_TOGGLE_PLAY(0),
+		m_LEFT_SEQUENCER_PREVIOUS_PATTERN(0),
+		m_LEFT_SEQUENCER_NEXT_PATTERN(0),
+		// Value is an LSPatternNumber
+		m_LEFT_SEQUENCER_PATTERN(0),
+		m_LEFT_SEQUENCER_TOGGLE_MUTE(0),
+		// Right split
+		m_RIGHT_SPLIT_MODE(0),
+		m_RIGHT_MIDI_MAIN_CHANNEL(0),
+		m_RIGHT_SPLIT_RIGHT_MAIN_MODE(0),
+		m_RIGHT_SPLIT_RIGHT_MAIN_CHANNEL(0),
+		m_RIGHT_CHANNEL_PER_NOTE_1(0),
+		m_RIGHT_CHANNEL_PER_NOTE_2(0),
+		m_RIGHT_CHANNEL_PER_NOTE_3(0),
+		m_RIGHT_CHANNEL_PER_NOTE_4(0),
+		m_RIGHT_CHANNEL_PER_NOTE_5(0),
+		m_RIGHT_CHANNEL_PER_NOTE_6(0),
+		m_RIGHT_CHANNEL_PER_NOTE_7(0),
+		m_RIGHT_CHANNEL_PER_NOTE_8(0),
+		m_RIGHT_CHANNEL_PER_NOTE_9(0),
+		m_RIGHT_CHANNEL_PER_NOTE_10(0),
+		m_RIGHT_CHANNEL_PER_NOTE_11(0),
+		m_RIGHT_CHANNEL_PER_NOTE_12(0),
+		m_RIGHT_CHANNEL_PER_NOTE_13(0),
+		m_RIGHT_CHANNEL_PER_NOTE_14(0),
+		m_RIGHT_CHANNEL_PER_NOTE_15(0),
+		m_RIGHT_CHANNEL_PER_NOTE_16(0),
+		// Value is a MIDI channel number:
+		m_RIGHT_MIDI_PER_ROW_LOWEST_CHANNEL(0),
+		// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
+		m_RIGHT_BEND_RANGE(0),
+		// Toggles:
+		m_RIGHT_BEND_TOGGLE(0),
+		m_RIGHT_BEND_QUANTIZE_TOGGLE(0),
+		// Value is from LSPitchQuantize
+		m_RIGHT_PITCH_QUANTIZE(0),
+		// Toggles:
+		m_RIGHT_RESET_PITCH_ON_RELEASE(0),
+		m_LEFT_SEND_Y(0),
+			m_RIGHT_SEND_Y(0),
+		// Values are constrained by MIN_CC and MAX_CC
+		// CC 1 or CC 74 are recommended, any CC is possible though
+		m_RIGHT_CC_FOR_Y(0),
+		// Toggle:
+		m_RIGHT_RELATIVE_Y(0),
+		m_RIGHT_RELATIVE_Z(0),
+		// Value is an LSExpressionZ
+		m_RIGHT_EXPRESSION_FOR_Z(0),
+		// Values are constrained by MIN_CC and MAX_CC
+		// CC 11 is recommended, any CC is possible though
+		m_RIGHT_CC_FOR_Z(0),
+		// Values are defined in LSColor
+		m_RIGHT_COLOR_MAIN(0),
+		m_RIGHT_COLOR_ACCENT(0),
+		m_RIGHT_COLOR_PLAYED(0),
+		m_RIGHT_COLOR_LOWROW(0),
+		// Value is an LSLowRowMode
+		m_RIGHT_LOWROW_MODE(0),
+		// Value is an LSSpecial:
+		m_RIGHT_SPECIAL(0),
+		// Value is an LSOctave
+		m_RIGHT_OCTAVE(0),
+		// Values are from LSPitch
+		m_RIGHT_PITCH_TRANSPOSE(0),
+		m_RIGHT_TRANSPOSE_LIGHTS(0),
+		// Value is an LSExpressionY
+		m_RIGHT_EXPRESSION_FOR_Y(0),
+		// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+		m_RIGHT_CC_FOR_FADER1(0),
+		m_RIGHT_CC_FOR_FADER2(0),
+		m_RIGHT_CC_FOR_FADER3(0),
+		m_RIGHT_CC_FOR_FADER4(0),
+		m_RIGHT_CC_FOR_FADER5(0),
+		m_RIGHT_CC_FOR_FADER6(0),
+		m_RIGHT_CC_FOR_FADER7(0),
+		m_RIGHT_CC_FOR_FADER8(0),
+		// Value is an LSLowRowBehaviour
+		m_RIGHT_LOWROW_X_BEHAVIOUR(0),
+		// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+		m_RIGHT_CC_FOR_LOWROW(0),
+		// Value is an LSLowRowBehaviour
+		m_RIGHT_LOWROW_XYZ_BEHAVIOUR(0),
+		// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+		m_RIGHT_CC_FOR_LOWROW_XYZ(0),
+		m_RIGHT_CC_FOR_LOWROW_XYZ_Y(0),
+		m_RIGHT_CC_FOR_LOWROW_XYZ_Z(0),
+		// Values are constrained by MIN_CC and MAX_CC
+		m_RIGHT_MIN_CC_FOR_Y(0),
+		m_RIGHT_MAX_CC_FOR_Y(0),
+		m_RIGHT_MIN_CC_FOR_Z(0),
+		m_RIGHT_MAX_CC_FOR_Z(0),
+		m_RIGHT_14BIT_CC_VALUE_FOR_Z(0),
+		m_RIGHT_INITIAL_RELATIVE_VALUE_FOR_Y(0),
+		// Value is an LSChannelOrder
+		m_RIGHT_CHANNEL_PER_ROW_ORDER(0),
+		// Value is an LSAnimation
+		m_RIGHT_TOUCH_ANIMATION(0),
+		// Toggle:
+		m_RIGHT_SEQUENCER_TOGGLE_PLAY(0),
+		m_RIGHT_SEQUENCER_PREVIOUS_PATTERN(0),
+		m_RIGHT_SEQUENCER_NEXT_PATTERN(0),
+		// Value is an LSPatternNumber
+		m_RIGHT_SEQUENCER_PATTERN(0),
+		m_RIGHT_SEQUENCER_TOGGLE_MUTE(0),
+		m_LEFT_SEND_Z(0),
+			m_RIGHT_SEND_Z(0),
+					// Foot and panel switches
+		// Value is LSSwitchAssignment
+		m_SWITCH1_ASSIGN(0),
+		m_SWITCH2_ASSIGN(0),
+		m_FOOT_LEFT_ASSIGN(0),
+		m_FOOT_RIGHT_ASSIGN(0),
+		// Toggle:
+		m_SWITCH1_BOTH_SPLITS(0),
+		m_SWITCH2_BOTH_SPLITS(0),
+		m_FOOT_LEFT_BOTH_SPLITS(0),
+		m_FOOT_RIGHT_BOTH_SPLITS(0),
+		// Values are constrained by MIN_CC and MAX_CC
+		m_CC_FOR_LEFT_FOOT_CC65(0),
+		m_CC_FOR_RIGHT_FOOT_CC65(0),
+		m_CC_FOR_SWITCH1_CC65(0),
+		m_CC_FOR_SWITCH2_CC65(0),
+		m_CC_FOR_LEFT_FOOT_SUSTAIN(0),
+		m_CC_FOR_RIGHT_FOOT_SUSTAIN(0),
+		m_CC_FOR_SWITCH1_SUSTAIN(0),
+		m_CC_FOR_SWITCH2_SUSTAIN(0),
+
+		// Octave/transpose settings
+		m_LeftOctave(0),m_LeftTransposePitch(0),
+			m_LeftTransposeLights(0),
+		m_RightOctave(0),
+			m_RightTransposePitch(0),
+			m_RightTransposeLights(0),
+					// Global settings
+		m_GLOBAL_SPLIT_ACTIVE(0),
+		// Value is LSSplitType
+		m_GLOBAL_SELECTED_SPLIT(0),
+		// Value is constrained by MIN_SPLIT_COLUMN and MAX_SPLIT_COLUMN  
+		m_GLOBAL_SPLIT_COLUMN(0),
+		// Toggles:
+		m_GLOBAL_MAIN_NOTE_LIGHT_C(0),
+		m_GLOBAL_MAIN_NOTE_LIGHT_C_SHARP(0),
+		m_GLOBAL_MAIN_NOTE_LIGHT_D(0),
+		m_GLOBAL_MAIN_NOTE_LIGHT_D_SHARP(0),
+		m_GLOBAL_MAIN_NOTE_LIGHT_E(0),
+		m_GLOBAL_MAIN_NOTE_LIGHT_F(0),
+		m_GLOBAL_MAIN_NOTE_LIGHT_F_SHARP(0),
+		m_GLOBAL_MAIN_NOTE_LIGHT_G(0),
+		m_GLOBAL_MAIN_NOTE_LIGHT_G_SHARP(0),
+		m_GLOBAL_MAIN_NOTE_LIGHT_A(0),
+		m_GLOBAL_MAIN_NOTE_LIGHT_A_SHARP(0),
+		m_GLOBAL_MAIN_NOTE_LIGHT_B(0),
+		m_GLOBAL_ACCENT_NOTE_LIGHT_C(0),
+		m_GLOBAL_ACCENT_NOTE_LIGHT_C_SHARP(0),
+		m_GLOBAL_ACCENT_NOTE_LIGHT_D(0),
+		m_GLOBAL_ACCENT_NOTE_LIGHT_D_SHARP(0),
+		m_GLOBAL_ACCENT_NOTE_LIGHT_E(0),
+		m_GLOBAL_ACCENT_NOTE_LIGHT_F(0),
+		m_GLOBAL_ACCENT_NOTE_LIGHT_F_SHARP(0),
+		m_GLOBAL_ACCENT_NOTE_LIGHT_G(0),
+		m_GLOBAL_ACCENT_NOTE_LIGHT_G_SHARP(0),
+		m_GLOBAL_ACCENT_NOTE_LIGHT_A(0),
+		m_GLOBAL_ACCENT_NOTE_LIGHT_A_SHARP(0),
+		m_GLOBAL_ACCENT_NOTE_LIGHT_B(0),
+		// Value is LSRowOffsetType
+		m_GLOBAL_ROW_OFFSET(0),
+		// Value is LSVelocityRange
+		m_GLOBAL_VELOCITY_SENSITIVITY(0),
+		// Value is LSPressureRange
+		m_GLOBAL_PRESSURE_SENSITIVITY(0),
+		// Value is LSMIDIDevice
+		m_GLOBAL_MIDI_DEVICE_IO(0),
+		// Value is LSArpDirection
+		m_GLOBAL_ARP_DIRECTION(0),
+		// Value is LSArpTempoNoteType
+		m_GLOBAL_ARP_TEMPO_NOTE_VALUE(0),
+		// Value is LSGlobalArpOctaveExtension
+		m_GLOBAL_ARP_OCTAVE_EXTENSION(0),
+		// Value = 1 - 360  (applies when receiving no MIDI clock)
+		m_GLOBAL_CLOCK_BPM(1),
+		// Value is LSPresetNumber
+		m_GLOBAL_SETTINGS_PRESET_LOAD(0),
+		// Toggles:
+		m_GLOBAL_PRESSURE_AFTERTOUCH(0),
+		m_DEVICE_USER_FIRMWARE_MODE(0),
+		m_DEVICE_LEFT_HANDED(0),
+		// Value is constrained by MIN_LIGHTS_PRESET and MAX_LIGHTS_PRESET 
+		m_GLOBAL_ACTIVE_LIGHTS_PRESET(0),
+		// Values are constrained by MIN_CC and MAX_CC
+		m_GLOBAL_MIN_VELOCITY_VALUE(0),
+		m_GLOBAL_MAX_VELOCITY_VALUE(0),
+		m_GLOBAL_FIXED_VELOCITY_VALUE(0),
+		// Value range =     0 - 512  
+		m_DEVICE_MIN_BYTE_INTERVAL_VALUE(0),
+		// Value is LSCustomRowOffset
+		m_GLOBAL_CUSTOM_ROW_OFFSET(0),
+		// Toggle:
+		m_DEVICE_MIDI_THRU(0),
+		m_GLOBAL_GUITAR_NOTE_TUNING_ROW1(0),
+		m_GLOBAL_GUITAR_NOTE_TUNING_ROW2(0),
+		m_GLOBAL_GUITAR_NOTE_TUNING_ROW3(0),
+		m_GLOBAL_GUITAR_NOTE_TUNING_ROW4(0),
+		m_GLOBAL_GUITAR_NOTE_TUNING_ROW5(0),
+		m_GLOBAL_GUITAR_NOTE_TUNING_ROW6(0),
+		m_GLOBAL_GUITAR_NOTE_TUNING_ROW7(0),
+		m_GLOBAL_GUITAR_NOTE_TUNING_ROW8(0),
+		m_LSPresetNumber(1),
+		m_LEFT_PROGRAM(0),
+		m_RIGHT_PROGRAM(0),
+		m_LEFT_VOLUME(0),
+			m_RIGHT_VOLUME(0)
 	{
 		// Initialise note tracking
 		for (unsigned int i = 0; i < MAX_BYTE_VALUES; i++)
@@ -78,7 +377,307 @@ LinnStrument::LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool 
 	m_Waiting(false),
 	m_Sent(0),
 	m_Received(0),
-	m_CanDetectSerialPorts( true)
+	m_CanDetectSerialPorts( true),
+	// left split
+	m_LEFT_SPLIT_MODE(0),
+	m_LEFT_MIDI_MAIN_CHANNEL(0),
+	m_LEFT_CHANNEL_PER_NOTE_1(0),
+	m_LEFT_CHANNEL_PER_NOTE_2(0),
+	m_LEFT_CHANNEL_PER_NOTE_3(0),
+	m_LEFT_CHANNEL_PER_NOTE_4(0),
+	m_LEFT_CHANNEL_PER_NOTE_5(0),
+	m_LEFT_CHANNEL_PER_NOTE_6(0),
+	m_LEFT_CHANNEL_PER_NOTE_7(0),
+	m_LEFT_CHANNEL_PER_NOTE_8(0),
+	m_LEFT_CHANNEL_PER_NOTE_9(0),
+	m_LEFT_CHANNEL_PER_NOTE_10(0),
+	m_LEFT_CHANNEL_PER_NOTE_11(0),
+	m_LEFT_CHANNEL_PER_NOTE_12(0),
+	m_LEFT_CHANNEL_PER_NOTE_13(0),
+	m_LEFT_CHANNEL_PER_NOTE_14(0),
+	m_LEFT_CHANNEL_PER_NOTE_15(0),
+	m_LEFT_CHANNEL_PER_NOTE_16(0),
+	// Value is a MIDI channel number:
+	m_LEFT_MIDI_PER_ROW_LOWEST_CHANNEL(0),
+	// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
+	m_LEFT_BEND_RANGE(0),
+	// Toggles:
+	m_LEFT_BEND_TOGGLE(0),
+	m_LEFT_BEND_QUANTIZE_TOGGLE(0),
+	// Value is from LSPitchQuantize
+	m_LEFT_PITCH_QUANTIZE(0),
+	// Toggles:
+	m_LEFT_RESET_PITCH_ON_RELEASE(0),
+	// Values are constrained by MIN_CC and MAX_CC
+	// CC 1 or CC 74 are recommended, any CC is possible though
+	m_LEFT_CC_FOR_Y(0),
+	// Toggle:
+	m_LEFT_RELATIVE_Y(0),
+	m_LEFT_RELATIVE_Z(0),
+	// Value is an LSExpressionZ
+	m_LEFT_EXPRESSION_FOR_Z(0),
+	// Values are constrained by MIN_CC and MAX_CC
+	// CC 11 is recommended, any CC is possible though
+	m_LEFT_CC_FOR_Z(0),
+	// Values are defined in LSColor
+	m_LEFT_COLOR_MAIN(0),
+	m_LEFT_COLOR_ACCENT(0),
+	m_LEFT_COLOR_PLAYED(0),
+	m_LEFT_COLOR_LOWROW(0),
+	// Value is an LSLowRowMode
+	m_LEFT_LOWROW_MODE(0),
+	// Value is an LSSpecial:
+	m_LEFT_SPECIAL(0),
+	// Value is an LSOctave
+	m_LEFT_OCTAVE(0),
+	// Values are from LSPitch
+	m_LEFT_PITCH_TRANSPOSE(0),
+	m_LEFT_TRANSPOSE_LIGHTS(0),
+	// Value is an LSExpressionY
+	m_LEFT_EXPRESSION_FOR_Y(0),
+	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+	m_LEFT_CC_FOR_FADER1(0),
+	m_LEFT_CC_FOR_FADER2(0),
+	m_LEFT_CC_FOR_FADER3(0),
+	m_LEFT_CC_FOR_FADER4(0),
+	m_LEFT_CC_FOR_FADER5(0),
+	m_LEFT_CC_FOR_FADER6(0),
+	m_LEFT_CC_FOR_FADER7(0),
+	m_LEFT_CC_FOR_FADER8(0),
+	// Value is an LSLowRowBehaviour
+	m_LEFT_LOWROW_X_BEHAVIOUR(0),
+	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+	m_LEFT_CC_FOR_LOWROW(0),
+	// Value is an LSLowRowBehaviour
+	m_LEFT_LOWROW_XYZ_BEHAVIOUR(0),
+	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+	m_LEFT_CC_FOR_LOWROW_XYZ(0),
+	m_LEFT_CC_FOR_LOWROW_XYZ_Y(0),
+	m_LEFT_CC_FOR_LOWROW_XYZ_Z(0),
+	// Values are constrained by MIN_CC and MAX_CC
+	m_LEFT_MIN_CC_FOR_Y(0),
+	m_LEFT_MAX_CC_FOR_Y(0),
+	m_LEFT_MIN_CC_FOR_Z(0),
+	m_LEFT_MAX_CC_FOR_Z(0),
+	m_LEFT_14BIT_CC_VALUE_FOR_Z(0),
+	m_LEFT_INITIAL_RELATIVE_VALUE_FOR_Y(0),
+	// Value is an LSChannelOrder
+	m_LEFT_CHANNEL_PER_ROW_ORDER(0),
+	// Value is an LSAnimation
+	m_LEFT_TOUCH_ANIMATION(0),
+	// Toggle:
+	m_LEFT_SEQUENCER_TOGGLE_PLAY(0),
+	m_LEFT_SEQUENCER_PREVIOUS_PATTERN(0),
+	m_LEFT_SEQUENCER_NEXT_PATTERN(0),
+	// Value is an LSPatternNumber
+	m_LEFT_SEQUENCER_PATTERN(0),
+	m_LEFT_SEQUENCER_TOGGLE_MUTE(0),
+	// Right split
+	m_RIGHT_SPLIT_MODE(0),
+	m_RIGHT_MIDI_MAIN_CHANNEL(0),
+	m_RIGHT_SPLIT_RIGHT_MAIN_MODE(0),
+	m_RIGHT_SPLIT_RIGHT_MAIN_CHANNEL(0),
+	m_RIGHT_CHANNEL_PER_NOTE_1(0),
+	m_RIGHT_CHANNEL_PER_NOTE_2(0),
+	m_RIGHT_CHANNEL_PER_NOTE_3(0),
+	m_RIGHT_CHANNEL_PER_NOTE_4(0),
+	m_RIGHT_CHANNEL_PER_NOTE_5(0),
+	m_RIGHT_CHANNEL_PER_NOTE_6(0),
+	m_RIGHT_CHANNEL_PER_NOTE_7(0),
+	m_RIGHT_CHANNEL_PER_NOTE_8(0),
+	m_RIGHT_CHANNEL_PER_NOTE_9(0),
+	m_RIGHT_CHANNEL_PER_NOTE_10(0),
+	m_RIGHT_CHANNEL_PER_NOTE_11(0),
+	m_RIGHT_CHANNEL_PER_NOTE_12(0),
+	m_RIGHT_CHANNEL_PER_NOTE_13(0),
+	m_RIGHT_CHANNEL_PER_NOTE_14(0),
+	m_RIGHT_CHANNEL_PER_NOTE_15(0),
+	m_RIGHT_CHANNEL_PER_NOTE_16(0),
+	// Value is a MIDI channel number:
+	m_RIGHT_MIDI_PER_ROW_LOWEST_CHANNEL(0),
+	// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
+	m_RIGHT_BEND_RANGE(0),
+	// Toggles:
+	m_RIGHT_BEND_TOGGLE(0),
+	m_RIGHT_BEND_QUANTIZE_TOGGLE(0),
+	// Value is from LSPitchQuantize
+	m_RIGHT_PITCH_QUANTIZE(0),
+	// Toggles:
+	m_RIGHT_RESET_PITCH_ON_RELEASE(0),
+	m_LEFT_SEND_Y(0),
+		m_RIGHT_SEND_Y(0),
+	// Values are constrained by MIN_CC and MAX_CC
+	// CC 1 or CC 74 are recommended, any CC is possible though
+	m_RIGHT_CC_FOR_Y(0),
+	// Toggle:
+	m_RIGHT_RELATIVE_Y(0),
+	m_RIGHT_RELATIVE_Z(0),
+	// Value is an LSExpressionZ
+	m_RIGHT_EXPRESSION_FOR_Z(0),
+	// Values are constrained by MIN_CC and MAX_CC
+	// CC 11 is recommended, any CC is possible though
+	m_RIGHT_CC_FOR_Z(0),
+	// Values are defined in LSColor
+	m_RIGHT_COLOR_MAIN(0),
+	m_RIGHT_COLOR_ACCENT(0),
+	m_RIGHT_COLOR_PLAYED(0),
+	m_RIGHT_COLOR_LOWROW(0),
+	// Value is an LSLowRowMode
+	m_RIGHT_LOWROW_MODE(0),
+	// Value is an LSSpecial:
+	m_RIGHT_SPECIAL(0),
+	// Value is an LSOctave
+	m_RIGHT_OCTAVE(0),
+	// Values are from LSPitch
+	m_RIGHT_PITCH_TRANSPOSE(0),
+	m_RIGHT_TRANSPOSE_LIGHTS(0),
+	// Value is an LSExpressionY
+	m_RIGHT_EXPRESSION_FOR_Y(0),
+	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+	m_RIGHT_CC_FOR_FADER1(0),
+	m_RIGHT_CC_FOR_FADER2(0),
+	m_RIGHT_CC_FOR_FADER3(0),
+	m_RIGHT_CC_FOR_FADER4(0),
+	m_RIGHT_CC_FOR_FADER5(0),
+	m_RIGHT_CC_FOR_FADER6(0),
+	m_RIGHT_CC_FOR_FADER7(0),
+	m_RIGHT_CC_FOR_FADER8(0),
+	// Value is an LSLowRowBehaviour
+	m_RIGHT_LOWROW_X_BEHAVIOUR(0),
+	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+	m_RIGHT_CC_FOR_LOWROW(0),
+	// Value is an LSLowRowBehaviour
+	m_RIGHT_LOWROW_XYZ_BEHAVIOUR(0),
+	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
+	m_RIGHT_CC_FOR_LOWROW_XYZ(0),
+	m_RIGHT_CC_FOR_LOWROW_XYZ_Y(0),
+	m_RIGHT_CC_FOR_LOWROW_XYZ_Z(0),
+	// Values are constrained by MIN_CC and MAX_CC
+	m_RIGHT_MIN_CC_FOR_Y(0),
+	m_RIGHT_MAX_CC_FOR_Y(0),
+	m_RIGHT_MIN_CC_FOR_Z(0),
+	m_RIGHT_MAX_CC_FOR_Z(0),
+	m_RIGHT_14BIT_CC_VALUE_FOR_Z(0),
+	m_RIGHT_INITIAL_RELATIVE_VALUE_FOR_Y(0),
+	// Value is an LSChannelOrder
+	m_RIGHT_CHANNEL_PER_ROW_ORDER(0),
+	// Value is an LSAnimation
+	m_RIGHT_TOUCH_ANIMATION(0),
+	// Toggle:
+	m_RIGHT_SEQUENCER_TOGGLE_PLAY(0),
+	m_RIGHT_SEQUENCER_PREVIOUS_PATTERN(0),
+	m_RIGHT_SEQUENCER_NEXT_PATTERN(0),
+	// Value is an LSPatternNumber
+	m_RIGHT_SEQUENCER_PATTERN(0),
+	m_RIGHT_SEQUENCER_TOGGLE_MUTE(0),
+	m_LEFT_SEND_Z(0),
+		m_RIGHT_SEND_Z(0),
+			// Foot and panel switches
+	// Value is LSSwitchAssignment
+	m_SWITCH1_ASSIGN(0),
+	m_SWITCH2_ASSIGN(0),
+	m_FOOT_LEFT_ASSIGN(0),
+	m_FOOT_RIGHT_ASSIGN(0),
+	// Toggle:
+	m_SWITCH1_BOTH_SPLITS(0),
+	m_SWITCH2_BOTH_SPLITS(0),
+	m_FOOT_LEFT_BOTH_SPLITS(0),
+	m_FOOT_RIGHT_BOTH_SPLITS(0),
+	// Values are constrained by MIN_CC and MAX_CC
+	m_CC_FOR_LEFT_FOOT_CC65(0),
+	m_CC_FOR_RIGHT_FOOT_CC65(0),
+	m_CC_FOR_SWITCH1_CC65(0),
+	m_CC_FOR_SWITCH2_CC65(0),
+	m_CC_FOR_LEFT_FOOT_SUSTAIN(0),
+	m_CC_FOR_RIGHT_FOOT_SUSTAIN(0),
+	m_CC_FOR_SWITCH1_SUSTAIN(0),
+	m_CC_FOR_SWITCH2_SUSTAIN(0),
+
+	// Octave/transpose settings
+	m_LeftOctave(0),
+		m_LeftTransposePitch(0),
+		m_LeftTransposeLights(0),
+	m_RightOctave(0),
+		m_RightTransposePitch(0),
+		m_RightTransposeLights(0),
+			// Global settings
+	m_GLOBAL_SPLIT_ACTIVE(0),
+	// Value is LSSplitType
+	m_GLOBAL_SELECTED_SPLIT(0),
+	// Value is constrained by MIN_SPLIT_COLUMN and MAX_SPLIT_COLUMN  
+	m_GLOBAL_SPLIT_COLUMN(0),
+	// Toggles:
+	m_GLOBAL_MAIN_NOTE_LIGHT_C(0),
+	m_GLOBAL_MAIN_NOTE_LIGHT_C_SHARP(0),
+	m_GLOBAL_MAIN_NOTE_LIGHT_D(0),
+	m_GLOBAL_MAIN_NOTE_LIGHT_D_SHARP(0),
+	m_GLOBAL_MAIN_NOTE_LIGHT_E(0),
+	m_GLOBAL_MAIN_NOTE_LIGHT_F(0),
+	m_GLOBAL_MAIN_NOTE_LIGHT_F_SHARP(0),
+	m_GLOBAL_MAIN_NOTE_LIGHT_G(0),
+	m_GLOBAL_MAIN_NOTE_LIGHT_G_SHARP(0),
+	m_GLOBAL_MAIN_NOTE_LIGHT_A(0),
+	m_GLOBAL_MAIN_NOTE_LIGHT_A_SHARP(0),
+	m_GLOBAL_MAIN_NOTE_LIGHT_B(0),
+	m_GLOBAL_ACCENT_NOTE_LIGHT_C(0),
+	m_GLOBAL_ACCENT_NOTE_LIGHT_C_SHARP(0),
+	m_GLOBAL_ACCENT_NOTE_LIGHT_D(0),
+	m_GLOBAL_ACCENT_NOTE_LIGHT_D_SHARP(0),
+	m_GLOBAL_ACCENT_NOTE_LIGHT_E(0),
+	m_GLOBAL_ACCENT_NOTE_LIGHT_F(0),
+	m_GLOBAL_ACCENT_NOTE_LIGHT_F_SHARP(0),
+	m_GLOBAL_ACCENT_NOTE_LIGHT_G(0),
+	m_GLOBAL_ACCENT_NOTE_LIGHT_G_SHARP(0),
+	m_GLOBAL_ACCENT_NOTE_LIGHT_A(0),
+	m_GLOBAL_ACCENT_NOTE_LIGHT_A_SHARP(0),
+	m_GLOBAL_ACCENT_NOTE_LIGHT_B(0),
+	// Value is LSRowOffsetType
+	m_GLOBAL_ROW_OFFSET(0),
+	// Value is LSVelocityRange
+	m_GLOBAL_VELOCITY_SENSITIVITY(0),
+	// Value is LSPressureRange
+	m_GLOBAL_PRESSURE_SENSITIVITY(0),
+	// Value is LSMIDIDevice
+	m_GLOBAL_MIDI_DEVICE_IO(0),
+	// Value is LSArpDirection
+	m_GLOBAL_ARP_DIRECTION(0),
+	// Value is LSArpTempoNoteType
+	m_GLOBAL_ARP_TEMPO_NOTE_VALUE(0),
+	// Value is LSGlobalArpOctaveExtension
+	m_GLOBAL_ARP_OCTAVE_EXTENSION(0),
+	// Value = 1 - 360  (applies when receiving no MIDI clock)
+	m_GLOBAL_CLOCK_BPM(1),
+	// Value is LSPresetNumber
+	m_GLOBAL_SETTINGS_PRESET_LOAD(0),
+	// Toggles:
+	m_GLOBAL_PRESSURE_AFTERTOUCH(0),
+	m_DEVICE_USER_FIRMWARE_MODE(0),
+	m_DEVICE_LEFT_HANDED(0),
+	// Value is constrained by MIN_LIGHTS_PRESET and MAX_LIGHTS_PRESET 
+	m_GLOBAL_ACTIVE_LIGHTS_PRESET(0),
+	// Values are constrained by MIN_CC and MAX_CC
+	m_GLOBAL_MIN_VELOCITY_VALUE(0),
+	m_GLOBAL_MAX_VELOCITY_VALUE(0),
+	m_GLOBAL_FIXED_VELOCITY_VALUE(0),
+	// Value range =     0 - 512  
+	m_DEVICE_MIN_BYTE_INTERVAL_VALUE(0),
+	// Value is LSCustomRowOffset
+	m_GLOBAL_CUSTOM_ROW_OFFSET(0),
+	// Toggle:
+	m_DEVICE_MIDI_THRU(0),
+	m_GLOBAL_GUITAR_NOTE_TUNING_ROW1(0),
+	m_GLOBAL_GUITAR_NOTE_TUNING_ROW2(0),
+	m_GLOBAL_GUITAR_NOTE_TUNING_ROW3(0),
+	m_GLOBAL_GUITAR_NOTE_TUNING_ROW4(0),
+	m_GLOBAL_GUITAR_NOTE_TUNING_ROW5(0),
+	m_GLOBAL_GUITAR_NOTE_TUNING_ROW6(0),
+	m_GLOBAL_GUITAR_NOTE_TUNING_ROW7(0),
+	m_GLOBAL_GUITAR_NOTE_TUNING_ROW8(0),
+	m_LSPresetNumber(1),
+	m_LEFT_PROGRAM(0),
+	m_RIGHT_PROGRAM(0),
+	m_LEFT_VOLUME(0),
+		m_RIGHT_VOLUME(0)
 {
 	// Initialise note tracking
 	for (unsigned int i= 0; i < MAX_BYTE_VALUES; i++)

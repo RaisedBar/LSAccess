@@ -25,7 +25,7 @@ PresetsVolumesPage::PresetsVolumesPage(wxBookCtrlBase *parent, LinnStrument * pL
 		hBox1->Add(wscProgramNumber, 0, wxEXPAND);
 
 wxStaticText * lblVolume = new wxStaticText(this, wxID_ANY, L"&Volume:");
-wscVolume = new wxSpinCtrl(this, Volume_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetVolume(split), "&Volume");
+wscVolume = new wxSpinCtrl(this, Volume_ID, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS | wxSP_WRAP, MIN_CC, MAX_CC, pMyLinnStrument->GetMIDIVolume(split), "&Volume");
 hBox1->Add(lblVolume, 0, wxEXPAND);
 hBox1->Add(wscVolume, 0, wxEXPAND);
 	this->SetSizerAndFit(hBox1);
@@ -50,7 +50,7 @@ void PresetsVolumesPage::OnProgramNumber(wxSpinEvent& event)
 
 void PresetsVolumesPage::OnVolume(wxSpinEvent& event)
 {
-	pMyLinnStrument->SetVolume(wscVolume->GetValue(), m_Split);
+	pMyLinnStrument->SetMIDIVolume(wscVolume->GetValue(), m_Split);
 // Not sure what should happen here
 }
 

@@ -57,10 +57,10 @@ void PerSplitDialog::InitMIDIPage()
 void PerSplitDialog::InitBendPage()
 {
 	XRCCTRL(*this, "chk_send_bend", wxCheckBox)->SetValue(pMyLinnStrument->GetBEND_TOGGLE(m_Split));
+	XRCCTRL(*this, "wsc_bend_range", wxSpinCtrl)->SetValue(pMyLinnStrument->GetBEND_RANGE(m_Split));
 	XRCCTRL(*this, "wsc_bend_range", wxSpinCtrl)->SetMin(MIN_BEND_RANGE);
 	XRCCTRL(*this, "wsc_bend_range", wxSpinCtrl)->SetMax(MAX_BEND_RANGE);
-	XRCCTRL(*this, "wsc_bend_range", wxSpinCtrl)->SetValue(pMyLinnStrument->GetBEND_RANGE(m_Split));
-	XRCCTRL(*this, "chk_bend_quantize", wxCheckBox)->SetValue(pMyLinnStrument->GetBEND_QUANTIZE_TOGGLE(m_Split));
+		XRCCTRL(*this, "chk_bend_quantize", wxCheckBox)->SetValue(pMyLinnStrument->GetBEND_QUANTIZE_TOGGLE(m_Split));
 	XRCCTRL(*this, "wrb_bend_quantize", wxRadioBox)->SetSelection(pMyLinnStrument->GetBEND_QUANTIZE(m_Split));
 	XRCCTRL(*this, "chk_reset_pitch_on_release", wxCheckBox)->SetValue(pMyLinnStrument->GetRESET_PITCH_ON_RELEASE(m_Split));
 	}

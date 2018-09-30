@@ -33,9 +33,10 @@ private:
 	void InitRight();
 
 // Event handlers
-	void OnGLOBAL_SETTINGS_PRESET_LOAD(wxCommandEvent& event);
+	void OnLeftGLOBAL_SETTINGS_PRESET_LOAD(wxCommandEvent& event);
 	void OnLeftProgramNumber(wxSpinEvent& event);
 	void OnLeftVolume(wxSpinEvent& event);
+	void OnRightGLOBAL_SETTINGS_PRESET_LOAD(wxCommandEvent& event);
 	void OnRightProgramNumber(wxSpinEvent& event);
 	void OnRightVolume(wxSpinEvent& event);
 

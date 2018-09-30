@@ -2899,7 +2899,7 @@ public:
 	};
 
 	// Values are constrained by MIN_CC and MAX_CC
-	unsigned int GetVolume(LSSplitType split)
+	unsigned int GetMIDIVolume(LSSplitType split)
 	{
 		if (split == LSSplitType::LEFT)
 		{
@@ -2911,7 +2911,7 @@ public:
 		}
 	}
 
-	void SetVolume(unsigned int nValue, LSSplitType split)
+	void SetMIDIVolume(unsigned int nValue, LSSplitType split)
 	{
 		if (split == LSSplitType::LEFT)
 		{
