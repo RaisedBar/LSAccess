@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<resource xmlns="http://www.wxwidgets.org/wxxrc" version="2.5.3.0">
+<object class="wxDialog" name="step_sequencer_dialog">
+<pos>-1,-1</pos>
+<size>1250,400</size>
+<style>wxDEFAULT_DIALOG_STYLE</style>
+<title>Step Sequencer Settings</title>
+<object class="wxNotebook" name="notebook_1">
+
+<object class="notebookpage">
+ <label>Track 1</label>
+ <object class="wxPanel" name="track_1_panel">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+   <style>wxTAB_TRAVERSAL</style>
+       <object class="wxBoxSizer">
+         <orient>wxHORIZONTAL</orient>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="track_1_pattern_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;Sequencer pattern:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_track_1_pattern">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <value>1</value>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <object class="wxCheckBox" name="chk_play_track_1">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;Play</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <object class="wxCheckBox" name="chk_mute_track_1">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;Mute</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <object class="wxButton" name="last_track_1_pattern_button">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;Last</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <object class="wxButton" name="next_track_1_pattern_button">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;Next</label>
+           </object>
+         </object>
+     </object>
+   </object>
+ </object>
+
+<object class="notebookpage">
+ <label>Track 2</label>
+ <object class="wxPanel" name="track_2_panel">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+   <style>wxTAB_TRAVERSAL</style>
+       <object class="wxBoxSizer">
+         <orient>wxHORIZONTAL</orient>
+
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="track_2_pattern_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;Sequencer pattern:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_track_2_pattern">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <value>1</value>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <object class="wxCheckBox" name="chk_play_track_2">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;Play</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <object class="wxCheckBox" name="chk_mute_track_2">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;Mute</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <object class="wxButton" name="last_track_2_pattern_button">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;Last</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <object class="wxButton" name="next_track_2_pattern_button">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>&amp;Next</label>
+           </object>
+         </object>
+
+     </object>
+   </object>
+ </object>
+
+</object>
+</object>
+</resource>

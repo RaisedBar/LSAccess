@@ -301,7 +301,7 @@ void LSAccessFrame::OnGlobalSettings(wxCommandEvent& event)
 
 void LSAccessFrame::OnStepSequencerSettings(wxCommandEvent& event)
 {
-	SequencerDialog * pSequencerDialog = new SequencerDialog(L"Step Sequencer", &m_LinnStrument);
+	SequencerDialog * pSequencerDialog = new SequencerDialog( this, &m_LinnStrument);
 	pSequencerDialog->ShowModal();
 }
 

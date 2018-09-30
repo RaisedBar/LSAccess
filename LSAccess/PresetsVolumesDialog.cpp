@@ -13,8 +13,8 @@ PresetsVolumesDialog::PresetsVolumesDialog(wxWindow* parent, LinnStrument * pLin
 	pMyLinnStrument(pLinnStrument)
 {
 	wxXmlResource::Get()->LoadDialog(this, parent, wxT( "presets_volumes_dialog"));
-	// InitLeft();
-	// InitRight();
+	InitLeft();
+InitRight();
 }
 
 

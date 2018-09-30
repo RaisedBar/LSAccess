@@ -17,24 +17,33 @@
 #include "wx/wx.h"
 #endif
 
-#include <wx/notebook.h>
-
-#include "LSEnums.h"
-#include "SequencerPage.h"
+#include "wx/xrc/xmlres.h"
+#include <wx/spinctrl.h>
+#include "LinnStrument.h"
 
 class SequencerDialog : public wxDialog
 {
 public:
-	SequencerDialog(const wxString& title, LinnStrument * pLinnStrument);
+	SequencerDialog(wxWindow* parent, LinnStrument * pLinnStrument);
 
 private:
-	void OnOK(wxCommandEvent& event);
+	void InitTrack1();
+	void InitTrack2();
 
+// event handlers
+	DECLARE_EVENT_TABLE()
+
+	void OnTrack1SEQUENCER_PATTERN(wxSpinEvent& event);
+		void OnTrack1SEQUENCER_TOGGLE_PLAY(wxCommandEvent& event);
+	void OnTrack1SEQUENCER_TOGGLE_MUTE(wxCommandEvent& event);
+	void OnTrack1SEQUENCER_PREVIOUS_PATTERN(wxCommandEvent& event);
+	void OnTrack1SEQUENCER_NEXT_PATTERN(wxCommandEvent& event);
+	void OnTrack2SEQUENCER_PATTERN(wxSpinEvent& event);
+	void OnTrack2SEQUENCER_TOGGLE_PLAY(wxCommandEvent& event);
+	void OnTrack2SEQUENCER_TOGGLE_MUTE(wxCommandEvent& event);
+	void OnTrack2SEQUENCER_PREVIOUS_PATTERN(wxCommandEvent& event);
+	void OnTrack2SEQUENCER_NEXT_PATTERN(wxCommandEvent& event);
+	
 	// data
 	LinnStrument * pMyLinnStrument;
-	wxNotebook * pNotebook;
-	SequencerPage * pTrack1Page;
-	SequencerPage * pTrack2Page;
-	
-	DECLARE_EVENT_TABLE()
-};
+	};

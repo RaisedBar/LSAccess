@@ -177,7 +177,6 @@
     <ClInclude Include="LSAccess.h" />
     <ClInclude Include="PresetsVolumesDialog.h" />
     <ClInclude Include="SequencerDialog.h" />
-    <ClInclude Include="SequencerPage.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SwitchesDialog.h" />
     <ClInclude Include="PanelSwitchesPage.h" />
@@ -204,7 +203,6 @@
     <ClCompile Include="LinnStrument.cpp" />
     <ClCompile Include="PresetsVolumesDialog.cpp" />
     <ClCompile Include="SequencerDialog.cpp" />
-    <ClCompile Include="SequencerPage.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

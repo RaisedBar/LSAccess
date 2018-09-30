@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<resource xmlns="http://www.wxwidgets.org/wxxrc" version="2.5.3.0">
+<object class="wxDialog" name="octave_transpose_dialog">
+<pos>-1,-1</pos>
+<size>1250,400</size>
+<style>wxDEFAULT_DIALOG_STYLE</style>
+<title>Octave/Transpose Settings</title>
+<object class="wxNotebook" name="notebook_1">
+
+<object class="notebookpage">
+ <label>Left</label>
+ <object class="wxPanel" name="left_panel">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+   <style>wxTAB_TRAVERSAL</style>
+       <object class="wxBoxSizer">
+         <orient>wxHORIZONTAL</orient>
+     <object class="sizeritem">
+       <flag>wxEXPAND</flag>
+       <object class="wxRadioBox" name="wrb_left_octave">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+         <label>&amp;Octave:</label>
+         <style>wxRA_SPECIFY_ROWS</style>
+         <dimension>11</dimension>
+         <content>
+<item>-5</item>
+<item>-4</item>
+<item>-3</item>
+<item>-2</item>
+<item>-1</item>
+<item>0</item>
+<item>+1</item>
+<item>+2</item>
+<item>+3</item>
+<item>+4</item>
+<item>+5</item>
+         </content>
+         <selection>0</selection>
+       </object>
+     </object>
+     <object class="sizeritem">
+       <flag>wxEXPAND</flag>
+       <object class="wxRadioBox" name="wrb_left_pitch_transpose">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+         <label>&amp;Pitch transpose:</label>
+         <style>wxRA_SPECIFY_ROWS</style>
+         <dimension>15</dimension>
+         <content>
+<item>-7</item>
+<item>-6</item>
+<item>-5</item>
+<item>-4</item>
+<item>-3</item>
+<item>-2</item>
+<item>-1</item>
+<item>0</item>
+<item>+1</item>
+<item>+2</item>
+<item>+3</item>
+<item>+4</item>
+<item>+5</item>
+<item>+6</item>
+<item>+7</item>
+         </content>
+         <selection>0</selection>
+       </object>
+     </object>
+     <object class="sizeritem">
+       <flag>wxEXPAND</flag>
+       <object class="wxRadioBox" name="wrb_left_transpose_lights">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+         <label>Transpose &amp;lights:</label>
+         <style>wxRA_SPECIFY_ROWS</style>
+         <dimension>15</dimension>
+         <content>
+<item>-7</item>
+           <item>-6</item>
+<item>-5</item>
+<item>-4</item>
+<item>-3</item>
+<item>-2</item>
+<item>-1</item>
+<item>0</item>
+<item>+1</item>
+<item>+2</item>
+<item>+3</item>
+<item>+4</item>
+<item>+5</item>
+<item>+6</item>
+<item>+7</item>
+         </content>
+         <selection>0</selection>
+       </object>
+     </object>
+     </object>
+   </object>
+ </object>
+
+<object class="notebookpage">
+ <label>Right</label>
+ <object class="wxPanel" name="right_panel">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+   <style>wxTAB_TRAVERSAL</style>
+       <object class="wxBoxSizer">
+         <orient>wxHORIZONTAL</orient>
+     <object class="sizeritem">
+       <flag>wxEXPAND</flag>
+       <object class="wxRadioBox" name="wrb_right_octave">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+         <label>&amp;Octave:</label>
+         <style>wxRA_SPECIFY_ROWS</style>
+         <dimension>11</dimension>
+         <content>
+<item>-5</item>
+<item>-4</item>
+<item>-3</item>
+<item>-2</item>
+<item>-1</item>
+<item>0</item>
+<item>+1</item>
+<item>+2</item>
+<item>+3</item>
+<item>+4</item>
+<item>+5</item>
+         </content>
+         <selection>0</selection>
+       </object>
+     </object>
+     <object class="sizeritem">
+       <flag>wxEXPAND</flag>
+       <object class="wxRadioBox" name="wrb_right_pitch_transpose">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+         <label>&amp;Pitch transpose:</label>
+         <style>wxRA_SPECIFY_ROWS</style>
+         <dimension>15</dimension>
+         <content>
+<item>-7</item>
+<item>-6</item>
+<item>-5</item>
+<item>-4</item>
+<item>-3</item>
+<item>-2</item>
+<item>-1</item>
+<item>0</item>
+<item>+1</item>
+<item>+2</item>
+<item>+3</item>
+<item>+4</item>
+<item>+5</item>
+<item>+6</item>
+<item>+7</item>
+         </content>
+         <selection>0</selection>
+       </object>
+     </object>
+     <object class="sizeritem">
+       <flag>wxEXPAND</flag>
+       <object class="wxRadioBox" name="wrb_right_transpose_lights">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+         <label>Transpose &amp;lights:</label>
+         <style>wxRA_SPECIFY_ROWS</style>
+         <dimension>15</dimension>
+         <content>
+<item>-7</item>
+<item>-6</item>
+<item>-5</item>
+<item>-4</item>
+<item>-3</item>
+<item>-2</item>
+<item>-1</item>
+<item>0</item>
+<item>+1</item>
+<item>+2</item>
+<item>+3</item>
+<item>+4</item>
+<item>+5</item>
+<item>+6</item>
+<item>+7</item>
+         </content>
+         <selection>0</selection>
+       </object>
+     </object>
+     </object>
+   </object>
+ </object>
+
+</object>
+</object>
+</resource>

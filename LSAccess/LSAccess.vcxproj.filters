@@ -27,9 +27,6 @@
     <ClInclude Include="LSEnums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SequencerPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GlobalsNoteLightsPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -105,9 +102,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LinnStrument.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SequencerPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GlobalsNoteLightsPage.cpp">
