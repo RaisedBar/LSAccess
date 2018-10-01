@@ -12,10 +12,17 @@ PresetsVolumesDialog::PresetsVolumesDialog(wxWindow* parent, LinnStrument * pLin
 	: wxDialog(NULL, wxID_ANY, L""),
 	pMyLinnStrument(pLinnStrument)
 {
-	wxXmlResource::Get()->LoadDialog(this, parent, wxT( "presets_volumes_dialog"));
+	if (wxXmlResource::Get()->LoadDialog(this, parent, wxT( "presets_volumes_dialog")))
+	{
 	InitLeft();
 InitRight();
 }
+	else
+	{
+		wxMessageBox("Could not load Presets/Volume Settings dialog from XRC", wstrErrorTitle, wxOK | wxICON_ERROR);
+		EndModal(false);
+	}
+	}
 
 
 void PresetsVolumesDialog::InitLeft()

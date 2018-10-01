@@ -12,10 +12,18 @@ OctaveTransposeDialog::OctaveTransposeDialog(wxWindow* parent, LinnStrument * pL
 	: wxDialog(NULL, wxID_ANY, L""),
 	pMyLinnStrument(pLinnStrument)
 {
-	wxXmlResource::Get()->LoadDialog(this, parent, wxT("octave_transpose_dialog"));
-	InitLeft();
-	InitRight();
+	if (wxXmlResource::Get()->LoadDialog(this, parent, wxT("octave_transpose_dialog")))
+		{
+		InitLeft();
+		InitRight();
+
 	}
+	else
+	{
+		wxMessageBox("Could not load Octave/Transpose Settings dialog from XRC", wstrErrorTitle, wxOK | wxICON_ERROR);
+		EndModal(false);
+	}
+}
 
 
 void OctaveTransposeDialog::InitLeft()

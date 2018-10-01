@@ -4,6 +4,7 @@
 #pragma once
 
 const 	std::wstring wstrAppName = L"LSAccess";
+const std::wstring wstrErrorTitle = L"LSAccess Error";
 
 // Strings for the configuration file
 const std::wstring wstrVendor = L"Raised Bar";

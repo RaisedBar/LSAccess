@@ -19,7 +19,9 @@
 
 #include "wx/xrc/xmlres.h"
 #include <wx/spinctrl.h>
+
 #include "LinnStrument.h"
+#include "LSConsts.h"
 
 class SequencerDialog : public wxDialog
 {

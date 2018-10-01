@@ -17,22 +17,20 @@
 #include "wx/wx.h"
 #endif
 
-#include <wx/notebook.h>
+#include "wx/xrc/xmlres.h"
 
-#include "LSEnums.h"
-#include "PanelSwitchesPage.h"
-#include "FootSwitchesPage.h"
+#include "LinnStrument.h"
+#include "LSConsts.h"
 
 class SwitchesDialog : public wxDialog
 {
 public:
-	SwitchesDialog(const wxString& title, LinnStrument * pLinnStrument);
+	SwitchesDialog(wxWindow* parent, LinnStrument * pLinnStrument);
 
 private:
-	void OnOK(wxCommandEvent& event);
+	// Event handlers
+	DECLARE_EVENT_TABLE()
 
 // data
 	LinnStrument * pMyLinnStrument;
-		
-	DECLARE_EVENT_TABLE()
-};
+		};

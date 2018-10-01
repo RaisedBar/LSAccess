@@ -18,7 +18,9 @@
 #endif
 
 #include "wx/xrc/xmlres.h"
+
 #include "LinnStrument.h"
+#include "LSConsts.h"
 
 class OctaveTransposeDialog : public wxDialog
 {

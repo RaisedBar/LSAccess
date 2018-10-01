@@ -78,7 +78,7 @@ LSAccessFrame::LSAccessFrame(const wxString& title)
 	}
 catch (RtMidiError &error)
 {
-	wxMessageBox(error.getMessage(), wstrAppName + L" error", wxOK | wxICON_ERROR);
+	wxMessageBox(error.getMessage(), wstrErrorTitle, wxOK | wxICON_ERROR);
 }
 
 			// create a menu bar
@@ -287,7 +287,7 @@ void LSAccessFrame::OnPresetsVolumesSettings(wxCommandEvent& event)
 
 void LSAccessFrame::OnSwitchSettings(wxCommandEvent& event)
 {
-	SwitchesDialog * pSwitchesDialog = new SwitchesDialog(L"Switches", &m_LinnStrument);
+	SwitchesDialog * pSwitchesDialog = new SwitchesDialog( this, &m_LinnStrument);
 	pSwitchesDialog->ShowModal();
 }
 

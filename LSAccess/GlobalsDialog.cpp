@@ -12,17 +12,14 @@ GlobalsDialog::GlobalsDialog(wxWindow* parent, const wxString& title, LinnStrume
 	: wxDialog(NULL, wxID_ANY, title),
 	pMyLinnStrument( pLinnStrument)
 {
-	wxXmlResource::Get()->LoadDialog(this, parent, wxT("globals_dialog"));
-	
-/*
-GlobalsSplitPage * pGlobalsSplitPage = new GlobalsSplitPage(pNotebook, pLinnStrument);
-	GlobalsArpPage * pGlobalsArpPage = new GlobalsArpPage(pNotebook, pLinnStrument);
-	GlobalsVelocityPressurePage * pGlobalsVelocityPressurePage = new GlobalsVelocityPressurePage(pNotebook, pLinnStrument);
-	GlobalsNoteLightsPage * pGlobalsNoteLightsPage = new GlobalsNoteLightsPage(pNotebook, pLinnStrument);
-	GlobalsAccentNoteLightsPage * pGlobalsAccentNoteLightsPage = new GlobalsAccentNoteLightsPage(pNotebook, pLinnStrument);
-	GlobalsTuningsPage * pGlobalsTuningsPage = new GlobalsTuningsPage(pNotebook, pLinnStrument);
-	GlobalsPowerMIDIPage * pGlobalsPowerMIDIPage = new 
-*/
+	if (wxXmlResource::Get()->LoadDialog(this, parent, wxT("globals_dialog")))
+	{
+	}
+else
+	{
+	wxMessageBox("Could not load Global Settings dialog from XRC", wstrErrorTitle + L" error", wxOK | wxICON_ERROR);
+	EndModal(false);
+	}
 }
 
 

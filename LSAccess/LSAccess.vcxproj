@@ -181,7 +181,6 @@
     <ClInclude Include="SwitchesDialog.h" />
     <ClInclude Include="PanelSwitchesPage.h" />
     <ClInclude Include="VelocityPressurePage.h" />
-    <ClInclude Include="xh_PerSplitDialog.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="enumser.cpp" />

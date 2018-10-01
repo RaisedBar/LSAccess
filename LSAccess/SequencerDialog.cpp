@@ -12,9 +12,17 @@ SequencerDialog::SequencerDialog(wxWindow* parent, LinnStrument * pLinnStrument)
 	: wxDialog(NULL, wxID_ANY, L""),
 	pMyLinnStrument(pLinnStrument)
 {
-	wxXmlResource::Get()->LoadDialog(this, parent, wxT("step_sequencer_dialog"));
-	InitTrack1();
-	InitTrack2();
+	if (wxXmlResource::Get()->LoadDialog(this, parent, wxT("step_sequencer_dialog")))
+	{
+		InitTrack1();
+		InitTrack2();
+	}
+	else
+	{
+		wxMessageBox("Could not load Step Sequencer dialog from XRC", wstrErrorTitle, wxOK | wxICON_ERROR);
+		EndModal(false);
+	}
+
 }
 
 
@@ -25,9 +33,7 @@ XRCCTRL(*this, "wsc_track_1_pattern", wxSpinCtrl)->SetValue(pMyLinnStrument->Get
 	XRCCTRL(*this, "wsc_track_1_pattern", wxSpinCtrl)->SetMax(MAX_SEQUENCER_PATTERN);
 	XRCCTRL(*this, "chk_play_track_1", wxCheckBox)->SetValue( LinnStrument::LSToggle( pMyLinnStrument->GetSEQUENCER_TOGGLE_PLAY(LSSplitType::LEFT)));
 	XRCCTRL(*this, "chk_mute_track_1", wxCheckBox)->SetValue(LinnStrument::LSToggle( pMyLinnStrument->GetSEQUENCER_TOGGLE_MUTE(LSSplitType::LEFT)));
-			// XRCCTRL(*this, "last_track_1_pattern_button", wxButton)->SetValue(pMyLinnStrument->GetSEQUENCER_PREVIOUS_PATTERN(LSSplitType::LEFT));
-	// XRCCTRL(*this, "next_track_1_pattern_button", wxButton)->SetValue(pMyLinnStrument->GetSEQUENCER_NEXT_PATTERN);
-	   }
+			}
 
 
 void SequencerDialog::InitTrack2()
@@ -37,9 +43,7 @@ void SequencerDialog::InitTrack2()
 	XRCCTRL(*this, "wsc_track_2_pattern", wxSpinCtrl)->SetMax(MAX_SEQUENCER_PATTERN);
 	XRCCTRL(*this, "chk_play_track_2", wxCheckBox)->SetValue(LinnStrument::LSToggle( pMyLinnStrument->GetSEQUENCER_TOGGLE_PLAY(LSSplitType::RIGHT)));
 	XRCCTRL(*this, "chk_mute_track_2", wxCheckBox)->SetValue(LinnStrument::LSToggle( pMyLinnStrument->GetSEQUENCER_TOGGLE_MUTE( LSSplitType::RIGHT)));
-	// XRCCTRL(*this, "last_track_2_pattern_button", wxButton)->SetValue(pMyLinnStrument->GetSEQUENCER_PREVIOUS_PATTERN(LSSplitType::RIGHT));
-	// XRCCTRL(*this, "next_track_2_pattern_button", wxButton)->SetValue(pMyLinnStrument->GetSEQUENCER_NEXT_PATTERN);
-}
+	}
 
 
 // Event handlers

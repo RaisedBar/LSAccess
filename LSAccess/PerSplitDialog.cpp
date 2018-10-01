@@ -13,10 +13,10 @@ PerSplitDialog::PerSplitDialog(wxWindow* parent, const wxString& title, LinnStru
 pMyLinnStrument(pLinnStrument),
 m_Split( split)
 {
-	wxXmlResource::Get()->LoadDialog(this, parent, wxT("per_split_dialog"));
-	SetTitle(title);
-	
-	// Set controls to initial values and ranges
+	if (wxXmlResource::Get()->LoadDialog(this, parent, wxT("per_split_dialog")))
+	{
+		SetTitle(title);
+		// Set controls to initial values and ranges
 	InitMIDIPage();
 	InitBendPage();
 	InitAxesPage();
@@ -24,6 +24,12 @@ InitColorsPage();
 	InitLowRowPage();
 InitFadersPage();
 	InitSpecialPage();
+		}
+	else
+	{
+		wxMessageBox("Could not load Per-Split Settings dialog from XRC", wstrErrorTitle, wxOK | wxICON_ERROR);
+		EndModal(false);
+	}
 }
 
 

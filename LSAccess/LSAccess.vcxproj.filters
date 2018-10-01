@@ -87,9 +87,6 @@
     <ClInclude Include="PerSplitDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="xh_PerSplitDialog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="LSConsts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
