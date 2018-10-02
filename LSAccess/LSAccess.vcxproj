@@ -157,14 +157,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="enumser.h" />
-    <ClInclude Include="GlobalsAccentNoteLightsPage.h" />
-    <ClInclude Include="GlobalsArpPage.h" />
-    <ClInclude Include="GlobalsNoteLightsPage.h" />
     <ClInclude Include="GlobalsDialog.h" />
-    <ClInclude Include="GlobalsPowerMIDIPage.h" />
-    <ClInclude Include="GlobalsSplitPage.h" />
-    <ClInclude Include="GlobalsTuningsPage.h" />
-    <ClInclude Include="GlobalsVelocityPressurePage.h" />
     <ClInclude Include="LSConsts.h" />
     <ClInclude Include="MIDI.h" />
     <ClInclude Include="MIDIDialog.h" />

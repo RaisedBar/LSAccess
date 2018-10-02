@@ -203,7 +203,7 @@
            </object>
          </object>
      <object class="sizeritem">
-       <flag>wxEXPAND</flag>
+       <flag>wxEXP\AND</flag>
        <object class="wxRadioBox" name="wrb_global_pressure_sensitivity">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
@@ -441,7 +441,7 @@
            <object class="wxCheckBox" name="chk_global_accent_note_light_a">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
-             <label>&amp;A0</label>
+             <label>&amp;A</label>
            </object>
          </object>
          <object class="sizeritem">
@@ -449,7 +449,7 @@
            <object class="wxCheckBox" name="chk_global_accent_note_light_a_sharp">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
-             <label>A#1</label>
+             <label>A#</label>
            </object>
          </object>
          <object class="sizeritem">
@@ -457,7 +457,7 @@
            <object class="wxCheckBox" name="chk_global_accent_note_light_b">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
-             <label>&amp;B2</label>
+             <label>&amp;B</label>
            </object>
          </object>
        </object>

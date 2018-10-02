@@ -27,28 +27,7 @@
     <ClInclude Include="LSEnums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalsNoteLightsPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalsAccentNoteLightsPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalsTuningsPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="VelocityPressurePage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalsArpPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalsPowerMIDIPage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalsVelocityPressurePage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalsSplitPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MIDIDialog.h">
