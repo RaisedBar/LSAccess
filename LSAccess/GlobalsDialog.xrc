@@ -175,7 +175,7 @@
            <object class="wxStaticText" name="global_max_velocity_value_label">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
-             <label>Mx. velocity:</label>
+             <label>Max. velocity:</label>
              <style>wxALIGN_RIGHT</style>
            </object>
          </object>
@@ -203,7 +203,7 @@
            </object>
          </object>
      <object class="sizeritem">
-       <flag>wxEXP\AND</flag>
+       <flag>wxEXPAND</flag>
        <object class="wxRadioBox" name="wrb_global_pressure_sensitivity">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
@@ -276,7 +276,7 @@
            <object class="wxCheckBox" name="chk_global_main_note_light_d">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
-             <label>&amp;>D</label>
+             <label>&amp;D</label>
            </object>
          </object>
          <object class="sizeritem">
@@ -332,7 +332,7 @@
            <object class="wxCheckBox" name="chk_global_main_note_light_a">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
-             <label>&amp;A0</label>
+             <label>&amp;A</label>
            </object>
          </object>
          <object class="sizeritem">
@@ -340,7 +340,7 @@
            <object class="wxCheckBox" name="chk_global_main_note_light_a_sharp">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
-             <label>A#1</label>
+             <label>A#</label>
            </object>
          </object>
          <object class="sizeritem">
@@ -348,7 +348,7 @@
            <object class="wxCheckBox" name="chk_global_main_note_light_b">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
-             <label>&amp;B2</label>
+             <label>&amp;B</label>
            </object>
          </object>
        </object>
@@ -385,7 +385,7 @@
            <object class="wxCheckBox" name="chk_global_accent_note_light_d">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
-             <label>&amp;>D</label>
+             <label>&amp;D</label>
            </object>
          </object>
          <object class="sizeritem">

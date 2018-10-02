@@ -175,14 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="enumser.cpp" />
-    <ClCompile Include="GlobalsAccentNoteLightsPage.cpp" />
-    <ClCompile Include="GlobalsArpPage.cpp" />
     <ClCompile Include="GlobalsDialog.cpp" />
-    <ClCompile Include="GlobalsPowerMIDIPage.cpp" />
-    <ClCompile Include="GlobalsSplitPage.cpp" />
-    <ClCompile Include="GlobalsTuningsPage.cpp" />
-    <ClCompile Include="GlobalsNoteLightsPage.cpp" />
-    <ClCompile Include="GlobalsVelocityPressurePage.cpp" />
     <ClCompile Include="MIDI.cpp" />
     <ClCompile Include="MIDIDialog.cpp" />
     <ClCompile Include="OctaveTransposeDialog.cpp" />

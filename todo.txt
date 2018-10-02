@@ -1,7 +1,21 @@
-maximise width for multi-tab pages
-check labels for radio box and spinner controls
+all:
+check announcement of radio box labels
+Presets/Volumes:
+Preset value defaults to 2 instead of 1
+Switches:
+Focus not set to the tab at load
+Label for switch assigment not announced
+dialog does not close with alt+f4
+
+sequencer:
+focus does not land on the tab
+dialog does not close with alt+f4
+
+globals:
+focus does not land on the tab
+dialog does not close with alt+f4
 debug f9/f10 not changing checked state of Options menu items
-Add detection of O/S update state
+Test detection of O/S update state
 Add licence to Help|About
 Add credits for serial detection to Help|About
 code beautify
