@@ -26,7 +26,7 @@ AboutDialog::AboutDialog(wxWindow* parent)
 	{
 	if (wxXmlResource::Get()->LoadDialog(this, parent, wxT("help_about_dialog")))
 	{
-		XRCCTRL(*this, "txt_credits", wxTextCtrl)->SetValue( L"Author: Tim Burgess\n" + wstrVendor + L"");
+		XRCCTRL(*this, "txt_credits", wxTextCtrl)->SetValue(wstrRBCredit + wstrSerialCodeCopyright);
 		XRCCTRL(*this, "txt_credits", wxTextCtrl)->SetEditable(false);
 		}
 	else
@@ -45,7 +45,7 @@ void AboutDialog::OnOK(wxCommandEvent& event)
 }
 
 
-void AboutDialog::OnLicense( wxCommandEvent& event)
+void AboutDialog::OnLSLicense( wxCommandEvent& event)
 {
 	wxString        wxstrFile( AppDataPath() + L"\\" + L"LICENSE");
 		wxString        strLicense;
@@ -69,11 +69,17 @@ void AboutDialog::OnLicense( wxCommandEvent& event)
 		tFile.Close();
 				wxMessageBox(strLicense, wstrAppName);
 	}
+	}
 
+
+void AboutDialog::OnSerialLicense(wxCommandEvent& event)
+{
+	wxMessageBox(wstrSerialCodeCopyright + wstrSerialCopyrightTerms, wstrAppName);
 }
 
 
 BEGIN_EVENT_TABLE(AboutDialog, wxDialog)
 EVT_BUTTON(wxID_OK, AboutDialog::OnOK)
-EVT_BUTTON(XRCID("btn_license"), AboutDialog::OnLicense)
+EVT_BUTTON(XRCID("btn_ls_license"), AboutDialog::OnLSLicense)
+EVT_BUTTON(XRCID("btn_serial_license"), AboutDialog::OnSerialLicense)
 END_EVENT_TABLE()

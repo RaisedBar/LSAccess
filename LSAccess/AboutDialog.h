@@ -34,5 +34,6 @@ private:
 	DECLARE_EVENT_TABLE()
 
 	void OnOK(wxCommandEvent& event);
-	void OnLicense(wxCommandEvent& event);
+	void OnLSLicense(wxCommandEvent& event);
+	void OnSerialLicense(wxCommandEvent& event);
 };

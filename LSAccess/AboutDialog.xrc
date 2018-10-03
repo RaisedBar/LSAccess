@@ -22,13 +22,18 @@
        <flag>wxEXPAND</flag>
        <object class="wxStdDialogButtonSizer">
      <object class="button">
-       <object class="wxButton" name="wxID_OK">
-<label>&amp;OK</label>
+       <object class="wxButton" name="btn_ls_license">
+<label>&amp;LSAccess license...</label>
        </object>
 </object>
      <object class="button">
-       <object class="wxButton" name="btn_license">
-<label>&amp;License...</label>
+       <object class="wxButton" name="btn_serial_license">
+<label>&amp;Serial port library license...</label>
+       </object>
+</object>
+     <object class="button">
+       <object class="wxButton" name="wxID_OK">
+<label>&amp;OK</label>
        </object>
 </object>
 </object>

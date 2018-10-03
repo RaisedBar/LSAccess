@@ -12,5 +12,4 @@ focus does not land on the tab
 dialog does not close with alt+f4
 debug f9/f10 not changing checked state of Options menu items
 Test detection of O/S update state
-Add credits for serial detection to Help|About
 code beautify
