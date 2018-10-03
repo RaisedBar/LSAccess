@@ -14,6 +14,7 @@ GlobalsDialog::GlobalsDialog(wxWindow* parent, const wxString& title, LinnStrume
 {
 	if (wxXmlResource::Get()->LoadDialog(this, parent, wxT("globals_dialog")))
 	{
+		this->SetWindowStyle(wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX | wxMAXIMIZE_BOX | wxMINIMIZE_BOX);
 		InitSplitPage();
 		InitNoteLightsPage();
 		InitAccentNoteLightsPage();
@@ -24,7 +25,7 @@ GlobalsDialog::GlobalsDialog(wxWindow* parent, const wxString& title, LinnStrume
 			}
 else
 	{
-	wxMessageBox("Could not load Global Settings dialog from XRC", wstrErrorTitle + L" error", wxOK | wxICON_ERROR);
+	wxMessageBox("Could not load Global Settings dialog from XRC", wstrErrorTitle, wxOK | wxICON_ERROR);
 	EndModal(false);
 	}
 }

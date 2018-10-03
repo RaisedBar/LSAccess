@@ -12,6 +12,7 @@
 #include "SwitchesDialog.h"
 #include "GlobalsDialog.h"
 #include "SequencerDialog.h"
+#include "AboutDialog.h"
 
 // For compilers that support precompilation, includes "wx/wx.h".
 #include "wx/wxprec.h"

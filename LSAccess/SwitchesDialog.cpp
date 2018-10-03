@@ -22,25 +22,7 @@ else
 	wxMessageBox("Could not load Switche Settings dialog from XRC", wstrErrorTitle, wxOK | wxICON_ERROR);
 	EndModal(false);
 	}
-	/*
-		// Set up the multi-tab notebook
-		wxBoxSizer * hBox1 = new wxBoxSizer(wxHORIZONTAL);
-			wxNotebook * pNotebook = new wxNotebook(this, ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, 0);
-	SwitchesDialog * thisSwitchesPage = new SwitchesDialog(pNotebook, pLinnStrument);
-	SwitchesDialog * pSwitchesDialog = new SwitchesDialog(pNotebook, pLinnStrument);
-
-	pNotebook->AddPage(thisSwitchesPage, L"Panel", true);
-	pNotebook->AddPage(pSwitchesDialog, L"Foot", false);
-	hBox1->Add(pNotebook, 0, wxEXPAND);
-
-wxButton * btnOK = new wxButton(this, wxID_OK);
-btnOK->SetDefault();
-hBox1->Add(btnOK, 0, wxEXPAND);
-
-this->SetSizerAndFit(hBox1);
-	hBox1->Show(pNotebook);
-*/
-}
+	}
 
 
 void SwitchesDialog::InitPanelSwitches()

@@ -335,9 +335,9 @@ void LSAccessFrame::OnRefreshAll(wxCommandEvent& event)
 
 void LSAccessFrame::OnAbout(wxCommandEvent& event)
 {
-	std::wstring wstrAboutText = L"Author: Tim Burgess\n" + wstrVendor + L"\n\nMIT License";
-			wxMessageBox(wstrAboutText, wstrAppName, wxOK | wxICON_INFORMATION);
-}
+AboutDialog * pAbout = new AboutDialog(this);
+	pAbout->ShowModal();
+	}
 
 
 void LSAccessFrame::onStatusUpdate(wxCommandEvent& event)

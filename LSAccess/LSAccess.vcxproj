@@ -156,6 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AboutDialog.h" />
     <ClInclude Include="enumser.h" />
     <ClInclude Include="GlobalsDialog.h" />
     <ClInclude Include="LSConsts.h" />
@@ -174,6 +175,7 @@
     <ClInclude Include="VelocityPressurePage.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AboutDialog.cpp" />
     <ClCompile Include="enumser.cpp" />
     <ClCompile Include="GlobalsDialog.cpp" />
     <ClCompile Include="MIDI.cpp" />

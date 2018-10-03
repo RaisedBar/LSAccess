@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<resource xmlns="http://www.wxwidgets.org/wxxrc" version="2.5.3.0">
+<object class="wxDialog" name="help_about_dialog">
+<pos>-1,-1</pos>
+<size>1250,400</size>
+<style>wxDEFAULT_DIALOG_STYLE</style>
+<title>About LSAccess</title>
+ <object class="wxPanel">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+       <object class="wxBoxSizer">
+         <orient>wxVERTICAL</orient>
+     <object class="sizeritem">
+       <flag>wxEXPAND</flag>
+       <object class="wxTextCtrl" name="txt_credits">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+       </object>
+</object>
+
+     <object class="sizeritem">
+       <flag>wxEXPAND</flag>
+       <object class="wxStdDialogButtonSizer">
+     <object class="button">
+       <object class="wxButton" name="wxID_OK">
+<label>&amp;OK</label>
+       </object>
+</object>
+     <object class="button">
+       <object class="wxButton" name="btn_license">
+<label>&amp;License...</label>
+       </object>
+</object>
+</object>
+     </object>
+</object>
+</object>
+</object>
+</resource>
