@@ -7,20 +7,6 @@
 #include "AboutDialog.h"
 
 
-wxString AppDataPath()
-{
-	#ifdef __WINDOWS__
-	wxString wxstrAppPath = wxStandardPaths::Get().GetConfigDir();
-	wxstrAppPath = wxstrAppPath.substr(0, wxstrAppPath.Find(wstrAppName));
-	wxstrAppPath = wxstrAppPath + wstrVendor + L"\\" + wstrAppName;
-#else
-	wxDir myPath = wxStandardPaths::Get().GetExecutablePath();
-#endif
-
-	return wxstrAppPath;
-}
-
-
 AboutDialog::AboutDialog(wxWindow* parent)
 	: wxDialog(NULL, wxID_ANY, L"")
 	{

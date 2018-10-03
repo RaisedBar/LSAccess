@@ -20,8 +20,8 @@
 #include "wx/xrc/xmlres.h"
 #include <wx/dir.h>
 #include <wx/textfile.h>
-#include <wx/stdpaths.h>
 
+#include "LSAccess.h"
 #include "LSConsts.h"
 
 class AboutDialog : public wxDialog
