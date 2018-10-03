@@ -64,7 +64,7 @@ LSAccessFrame::LSAccessFrame(const wxString& title)
 
 		if (m_Config->HasEntry(strSpeakNotes))
 		{
-			blnSpeakNotes = m_Config->ReadBool(strSpeakMessages, true);
+			blnSpeakNotes = m_Config->ReadBool(strSpeakNotes, true);
 		}
 	}
 
@@ -98,6 +98,10 @@ catch (RtMidiError &error)
 OptionsMenu->AppendCheckItem( ID_SpeakMessages, "&Speak messages\tF9", "Enable speech output of status information");
 	OptionsMenu->AppendCheckItem(ID_SpeakNotes, "Speak &note names\tF10", "Announce the names of notes when LinnStrument pads are played");
 	OptionsMenu->Append(ID_RefreshAll, "&Refresh all parameters\tF11", "Request all parameters from the LinnStrument to update the editor");
+	
+	// Initialise checkable items
+	OptionsMenu->Check( ID_SpeakMessages, blnSpeakMessages);
+	OptionsMenu->Check(ID_SpeakNotes, blnSpeakNotes);
 
 	// the "About" item should be in the help menu
 	wxMenu *helpMenu = new wxMenu;
@@ -310,13 +314,13 @@ void LSAccessFrame::OnStepSequencerSettings(wxCommandEvent& event)
 
 void LSAccessFrame::OnSpeakMessages(wxCommandEvent& event)
 {
-		m_LinnStrument.SetSpeakMessages(! m_LinnStrument.GetSpeakMessages());
+		m_LinnStrument.SetSpeakMessages( event.IsChecked());
 	}
 
 
 void LSAccessFrame::OnSpeakNotes(wxCommandEvent& event)
 {
-		m_LinnStrument.SetSpeakNotes(! m_LinnStrument.GetSpeakNotes());
+		m_LinnStrument.SetSpeakNotes(event.IsChecked());
 		}
 
 
