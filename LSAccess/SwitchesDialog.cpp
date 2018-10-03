@@ -93,7 +93,7 @@ void SwitchesDialog::OnSWITCH2_ASSIGN(wxCommandEvent& event)
 void SwitchesDialog::OnSWITCH2_BOTH_SPLITS(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetSWITCH2_BOTH_SPLITS(LinnStrument::LSToggle(XRCCTRL(*this, "chk_switch_1_both_splits", wxCheckBox)->GetValue()));
-	pMyLinnStrument->SendNRPN(SWITCH2_BOTH_SPLITS_ID, pMyLinnStrument->GetSWITCH2_BOTH_SPLITS());
+	pMyLinnStrument->SendNRPN(SWITCH2_BOTH_SPLITS_NRPN, pMyLinnStrument->GetSWITCH2_BOTH_SPLITS());
 }
 
 

@@ -480,7 +480,7 @@ void GlobalsDialog::OnGLOBAL_ROW_OFFSET(wxCommandEvent& event)
 void GlobalsDialog::OnGLOBAL_CUSTOM_ROW_OFFSET(wxCommandEvent& event)
 {
 	pMyLinnStrument->SetGLOBAL_CUSTOM_ROW_OFFSET(XRCCTRL(*this, "wrb_global_custom_row_offset", wxRadioBox)->GetSelection());
-	pMyLinnStrument->SendNRPN(GLOBAL_CUSTOM_ROW_OFFSET_ID, pMyLinnStrument->GetGLOBAL_CUSTOM_ROW_OFFSET());
+	pMyLinnStrument->SendNRPN(GLOBAL_CUSTOM_ROW_OFFSET_NRPN, pMyLinnStrument->GetGLOBAL_CUSTOM_ROW_OFFSET());
 }
 
 
