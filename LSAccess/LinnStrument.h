@@ -8,6 +8,9 @@
 #include <iostream>
 #include <sstream>
 #include <queue>
+#include <functional>
+#include <future>
+#include <thread>
 
 #ifdef __WINDOWS__
 #define _ATL_APARTMENT_THREADED
@@ -434,7 +437,7 @@ const unsigned int GLOBAL_GUITAR_NOTE_TUNING_ROW8_NRPN = 270;
 wxDECLARE_EVENT(NoteEvent, wxCommandEvent);
 
 
-class LinnStrument
+class LinnStrument final
 {
 public:
 	LinnStrument();
@@ -3491,9 +3494,14 @@ void SendNRPN(unsigned int NRPNNumber, unsigned int NRPNValue);
 	void Speak(std::wstring wstrIn);
 
 	private:
+		void InitParameter(unsigned int nParameterNumber);
 		void SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned int NRPNValue);
 	void SetLSParameter( unsigned int NRPNParameterIn, unsigned int NRPNValueIn);
 	void UpdateStatusBar();
+	bool IsResponseReceived()
+	{
+		return m_ResponseReceived;
+	}
 
 	// data
 	// Parent window
@@ -3503,10 +3511,14 @@ void SendNRPN(unsigned int NRPNNumber, unsigned int NRPNValue);
 	std::queue <unsigned int> m_NRPNQueue;
 		unsigned int m_NRPNParameterIn, m_NRPNValueIn;
 	bool m_ReceivedNRPNValueMSB, m_ReceivedNRPNValueLSB;
-	bool m_Waiting;
-	unsigned int m_Sent, m_Received;
 
-// Track note information;
+// Query/response synchronization
+std::thread m_thread;
+std::future<unsigned int> m_future;
+std::promise <unsigned int> m_promise;
+	bool m_ResponseReceived;
+	
+	// Track note information;
 	bool m_NotesHeld[MAX_BYTE_VALUES];
 
 // Application options

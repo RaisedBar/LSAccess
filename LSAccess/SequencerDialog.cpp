@@ -22,8 +22,7 @@ SequencerDialog::SequencerDialog(wxWindow* parent, LinnStrument * pLinnStrument)
 		wxMessageBox("Could not load Step Sequencer dialog from XRC", wstrErrorTitle, wxOK | wxICON_ERROR);
 		EndModal(false);
 	}
-
-}
+	}
 
 
 void SequencerDialog::InitTrack1()

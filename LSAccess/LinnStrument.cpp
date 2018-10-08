@@ -26,18 +26,18 @@ void LSCallback(double deltatime, std::vector< unsigned char > *message, void *p
 	pMyLinnStrument->ProcessMessage(*message);
 }
 
+
 	LinnStrument::LinnStrument():
 		m_Parent(NULL),
+		m_thread(),
+		m_ResponseReceived(false),
 		m_InputID(-1),
 		m_OutputID(-1),
 		m_SpeakMessages(false),
 		m_SpeakNotes(false),
 		m_ReceivedNRPNValueMSB(false),
 		m_ReceivedNRPNValueLSB(false),
-		m_Waiting(false),
-		m_Sent(0),
-		m_Received(0),
-		m_CanDetectSerialPorts(true),
+								m_CanDetectSerialPorts(true),
 		// left split
 		m_LEFT_SPLIT_MODE(0),
 				m_LEFT_MIDI_MAIN_CHANNEL(0),
@@ -368,16 +368,15 @@ void LSCallback(double deltatime, std::vector< unsigned char > *message, void *p
 
 LinnStrument::LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool blnSpeakMessages, bool blnSpeakNotes) :
 	m_Parent(parent),
+	// m_thread(),
+		m_ResponseReceived(false),
 	m_InputID(nInputID),
 	m_OutputID(nOutputID),
 	m_SpeakMessages(blnSpeakMessages),
 	m_SpeakNotes(blnSpeakNotes),
 	m_ReceivedNRPNValueMSB(false),
 	m_ReceivedNRPNValueLSB(false),
-	m_Waiting(false),
-	m_Sent(0),
-	m_Received(0),
-	m_CanDetectSerialPorts( true),
+				m_CanDetectSerialPorts( true),
 	// left split
 	m_LEFT_SPLIT_MODE(0),
 	m_LEFT_MIDI_MAIN_CHANNEL(0),
@@ -780,9 +779,13 @@ int LinnStrument::GetUSBOutPortID()
 
 void LinnStrument::SetLSParameter(unsigned int NRPNParameterIn, unsigned int NRPNValueIn)
 {
-	m_Received++;   // Update our count of received messages that matter to us
+	// Set the flag to true, means response was received
+	m_ResponseReceived = true;
+	m_promise.set_value(10);                         // fulfill promise
+										 // (synchronizes with getting the future)
+	m_thread.join();
 
-		// Update the appropriate member based on the provided NRPN parameter number
+	// Update the appropriate member based on the provided NRPN parameter number
 			switch (NRPNParameterIn)
 	{
 		// Per-split parameters
@@ -2026,7 +2029,7 @@ void LinnStrument::SetLSParameter(unsigned int NRPNParameterIn, unsigned int NRP
 	{}
 	break;
 		} // end switch
-}
+		}
 
 
 void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
@@ -2092,8 +2095,6 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 				DBOUT(L"Received on channel " + std::to_wstring(nChannel) + L"\n" + "Parameter = " + std::to_wstring(m_NRPNQueue.front()) + L"\n" + L"Value = " + std::to_wstring(m_NRPNValueIn) + L"\n")
 				SetLSParameter(m_NRPNQueue.front(), m_NRPNValueIn);
 				m_NRPNQueue.pop();
-				m_Received++;
-				m_Waiting = false;
 								m_ReceivedNRPNValueMSB = false;
 				m_ReceivedNRPNValueLSB = false;
 			}
@@ -2173,8 +2174,7 @@ void LinnStrument::SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumbe
 		{
 			// Record the NRPN parameter we're querying
 			m_NRPNQueue.push(NRPNValue);
-			m_Sent++;
-		}
+			}
 
 		myMessage.push_back(myStatusByte);
 		myMessage.push_back(SET_NRPN_CC_MSB);
@@ -2216,18 +2216,28 @@ void LinnStrument::SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumbe
 	}
 
 
+void LinnStrument::InitParameter(unsigned int nParameterNumber)
+{
+		m_future = m_promise.get_future();    // engagement with future
+		// send future to new thread and start it
+		m_thread = std::thread( &LinnStrument::QueryNRPN, nParameterNumber, m_future);  
+					}
+
+
 void LinnStrument::QueryNRPN(unsigned int nParameterNumber)
 {
-	// SendNRPN(GetMIDI_MAIN_CHANNEL(LSSplitType::LEFT), REQUEST_VALUE_OF_NRPN, nParameterNumber);
 	SendNRPN(0, REQUEST_VALUE_OF_NRPN, nParameterNumber);
-	m_Waiting = true;
 
 	/*
-	while (m_Waiting)
-	{
-		Sleep(100);
-	}
-*/
+	// Acquire the lock
+		std::unique_lock<std::mutex> mlock(m_mutex);
+		// Start waiting for the Condition Variable to get signaled
+		// Wait() will internally release the lock and make the thread to block
+		// As soon as condition variable get signaled, resume the thread and
+		// again acquire the lock. Then check if condition is met or not
+		// If condition is met then continue else again go in wait.
+		m_cv.wait(mlock, std::bind( &LinnStrument::IsResponseReceived, this));
+	*/
 }
 
 
@@ -2473,9 +2483,7 @@ void LinnStrument::QuerySwitchSettings()
 
 void LinnStrument::QueryAll()
 {
-	m_Sent = 0;
-	m_Received = 0;
-	QueryLeftSplitSettings();
+QueryLeftSplitSettings();
 	QueryRightSplitSettings();
 	QueryGlobalSettings();
 	QuerySwitchSettings();
@@ -2667,7 +2675,7 @@ void LinnStrument::Speak(std::wstring wstrIn)
 
 bool LinnStrument::IsDINWorking()
 {
-	return ((m_GLOBAL_MIDI_DEVICE_IO == GetLS_MIDIDeviceIndex(LS_MIDIDevice::USB)) && (m_Received > 0));
+	return ((m_GLOBAL_MIDI_DEVICE_IO == GetLS_MIDIDeviceIndex(LS_MIDIDevice::USB)) && (m_ResponseReceived));
 }
 
 
