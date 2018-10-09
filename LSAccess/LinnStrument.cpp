@@ -338,7 +338,8 @@ void LSCallback(double deltatime, std::vector< unsigned char > *message, void *p
 		m_LEFT_VOLUME(0),
 			m_RIGHT_VOLUME(0)
 	{
-		// Initialise note tracking
+			m_future = m_promise.get_future();    // engagement with future
+			// Initialise note tracking
 		for (unsigned int i = 0; i < MAX_BYTE_VALUES; i++)
 		{
 			m_NotesHeld[i] = false;
@@ -369,8 +370,7 @@ void LSCallback(double deltatime, std::vector< unsigned char > *message, void *p
 LinnStrument::LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool blnSpeakMessages, bool blnSpeakNotes) :
 	m_Parent(parent),
 	// m_thread(),
-		m_ResponseReceived(false),
-	m_InputID(nInputID),
+		m_InputID(nInputID),
 	m_OutputID(nOutputID),
 	m_SpeakMessages(blnSpeakMessages),
 	m_SpeakNotes(blnSpeakNotes),
@@ -779,13 +779,8 @@ int LinnStrument::GetUSBOutPortID()
 
 void LinnStrument::SetLSParameter(unsigned int NRPNParameterIn, unsigned int NRPNValueIn)
 {
-	// Set the flag to true, means response was received
-	m_ResponseReceived = true;
-	m_promise.set_value(10);                         // fulfill promise
-										 // (synchronizes with getting the future)
-	m_thread.join();
-
-	// Update the appropriate member based on the provided NRPN parameter number
+	DBOUT( L"Parameter = " + std::to_wstring(NRPNParameterIn) + L"\nValue = " + std::to_wstring(NRPNValueIn) + L"\n")
+// Update the appropriate member based on the provided NRPN parameter number
 			switch (NRPNParameterIn)
 	{
 		// Per-split parameters
@@ -2029,7 +2024,7 @@ void LinnStrument::SetLSParameter(unsigned int NRPNParameterIn, unsigned int NRP
 	{}
 	break;
 		} // end switch
-		}
+}
 
 
 void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
@@ -2092,12 +2087,17 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 			// We should now have enough information to change the value of a member
 			if (m_ReceivedNRPNValueMSB && m_ReceivedNRPNValueLSB)
 			{
-				DBOUT(L"Received on channel " + std::to_wstring(nChannel) + L"\n" + "Parameter = " + std::to_wstring(m_NRPNQueue.front()) + L"\n" + L"Value = " + std::to_wstring(m_NRPNValueIn) + L"\n")
-				SetLSParameter(m_NRPNQueue.front(), m_NRPNValueIn);
-				m_NRPNQueue.pop();
-								m_ReceivedNRPNValueMSB = false;
+				// DBOUT(L"Received on channel " + std::to_wstring(nChannel) + L"\n" + "Parameter = " + std::to_wstring(m_NRPNQueue.front()) + L"\n" + L"Value = " + std::to_wstring(m_NRPNValueIn) + L"\n")
+				// SetLSParameter(m_NRPNQueue.front(), m_NRPNValueIn);
+				// m_NRPNQueue.pop();
+								// fulfill promise
+					m_promise.set_value(m_NRPNValueIn);
+				// Synchronizes with getting the future
+				// m_thread.join();
+// Resets
+				m_ReceivedNRPNValueMSB = false;
 				m_ReceivedNRPNValueLSB = false;
-			}
+							}
 		}
 		break;
 
@@ -2173,7 +2173,7 @@ void LinnStrument::SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumbe
 		if (NRPNNumber == REQUEST_VALUE_OF_NRPN)
 		{
 			// Record the NRPN parameter we're querying
-			m_NRPNQueue.push(NRPNValue);
+			// m_NRPNQueue.push(NRPNValue);
 			}
 
 		myMessage.push_back(myStatusByte);
@@ -2216,274 +2216,30 @@ void LinnStrument::SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumbe
 	}
 
 
-void LinnStrument::InitParameter(unsigned int nParameterNumber)
+void LinnStrument::InitParameter( unsigned int nParameterNumber)
 {
-		m_future = m_promise.get_future();    // engagement with future
-		// send future to new thread and start it
-		m_thread = std::thread( &LinnStrument::QueryNRPN, nParameterNumber, m_future);  
-					}
+		m_thread = std::thread(&LinnStrument::QueryNRPN, this, nParameterNumber, &m_future);
+	
+	std::future_status myQueryStatus = m_future.wait_for(std::chrono::milliseconds(1));
+	
+if (myQueryStatus == std::future_status::ready)
+	{
+		SetLSParameter(nParameterNumber, m_future.get());
+	}
+m_thread.detach();
+}
 
 
-void LinnStrument::QueryNRPN(unsigned int nParameterNumber)
+void LinnStrument::QueryNRPN(unsigned int nParameterNumber, std::future <unsigned int> * pFuture)
 {
 	SendNRPN(0, REQUEST_VALUE_OF_NRPN, nParameterNumber);
-
-	/*
-	// Acquire the lock
-		std::unique_lock<std::mutex> mlock(m_mutex);
-		// Start waiting for the Condition Variable to get signaled
-		// Wait() will internally release the lock and make the thread to block
-		// As soon as condition variable get signaled, resume the thread and
-		// again acquire the lock. Then check if condition is met or not
-		// If condition is met then continue else again go in wait.
-		m_cv.wait(mlock, std::bind( &LinnStrument::IsResponseReceived, this));
-	*/
-}
-
-
-void LinnStrument::QueryLeftSplitSettings()
-{
-	// Left-hand split
-
-	QueryNRPN(SPLIT_LEFT_MAIN_MODE_NRPN);
-	QueryNRPN(SPLIT_LEFT_MAIN_CHANNEL_NRPN);
-	QueryNRPN(SPLIT_LEFT_CHANNEL_PER_NOTE_1_NRPN);
-	QueryNRPN(SPLIT_LEFT_CHANNEL_PER_NOTE_2_NRPN);
-	QueryNRPN(SPLIT_LEFT_CHANNEL_PER_NOTE_3_NRPN);
-	QueryNRPN(SPLIT_LEFT_CHANNEL_PER_NOTE_4_NRPN);
-	QueryNRPN(SPLIT_LEFT_CHANNEL_PER_NOTE_5_NRPN);
-	QueryNRPN(SPLIT_LEFT_CHANNEL_PER_NOTE_6_NRPN);
-	QueryNRPN(SPLIT_LEFT_CHANNEL_PER_NOTE_7_NRPN);
-	QueryNRPN(SPLIT_LEFT_CHANNEL_PER_NOTE_8_NRPN);
-	QueryNRPN(SPLIT_LEFT_CHANNEL_PER_NOTE_9_NRPN);
-	QueryNRPN(SPLIT_LEFT_CHANNEL_PER_NOTE_10_NRPN);
-	QueryNRPN(SPLIT_LEFT_CHANNEL_PER_NOTE_11_NRPN);
-	QueryNRPN(SPLIT_LEFT_CHANNEL_PER_NOTE_12_NRPN);
-	QueryNRPN(SPLIT_LEFT_CHANNEL_PER_NOTE_13_NRPN);
-	QueryNRPN(SPLIT_LEFT_CHANNEL_PER_NOTE_14_NRPN);
-	QueryNRPN(SPLIT_LEFT_CHANNEL_PER_NOTE_15_NRPN);
-	QueryNRPN(SPLIT_LEFT_CHANNEL_PER_NOTE_16_NRPN);
-	QueryNRPN(SPLIT_LEFT_MIDI_PER_ROW_LOWEST_CHANNEL_NRPN);
-	QueryNRPN(SPLIT_LEFT_BEND_RANGE_NRPN);
-	QueryNRPN(SPLIT_LEFT_BEND_TOGGLE_NRPN);
-	QueryNRPN(SPLIT_LEFT_BEND_QUANTIZE_TOGGLE_NRPN);
-	QueryNRPN(SPLIT_LEFT_PITCH_QUANTIZE_NRPN);
-	QueryNRPN(SPLIT_LEFT_RESET_PITCH_ON_RELEASE_NRPN);
-	QueryNRPN(SPLIT_LEFT_SEND_Y_NRPN);
-	QueryNRPN(SPLIT_LEFT_CC_FOR_Y_NRPN);
-	QueryNRPN(SPLIT_LEFT_RELATIVE_Y_NRPN);
-	QueryNRPN(SPLIT_LEFT_SEND_Z_NRPN);
-	QueryNRPN(SPLIT_LEFT_MIDI_EXPRESSION_FOR_Z_NRPN);
-	QueryNRPN(SPLIT_LEFT_CC_FOR_Z_NRPN);
-	QueryNRPN(SPLIT_LEFT_COLOR_MAIN_NRPN);
-	QueryNRPN(SPLIT_LEFT_COLOR_ACCENT_NRPN);
-	QueryNRPN(SPLIT_LEFT_COLOR_PLAYED_NRPN);
-	QueryNRPN(SPLIT_LEFT_COLOR_LOWROW_NRPN);
-	QueryNRPN(SPLIT_LEFT_LOWROW_MODE_NRPN);
-	QueryNRPN(SPLIT_LEFT_SPECIAL_NRPN);
-	QueryNRPN(SPLIT_LEFT_EXPRESSION_FOR_Y_NRPN);
-	QueryNRPN(SPLIT_LEFT_CC_FOR_FADER1_NRPN);
-	QueryNRPN(SPLIT_LEFT_CC_FOR_FADER2_NRPN);
-	QueryNRPN(SPLIT_LEFT_CC_FOR_FADER3_NRPN);
-	QueryNRPN(SPLIT_LEFT_CC_FOR_FADER4_NRPN);
-	QueryNRPN(SPLIT_LEFT_CC_FOR_FADER5_NRPN);
-	QueryNRPN(SPLIT_LEFT_CC_FOR_FADER6_NRPN);
-	QueryNRPN(SPLIT_LEFT_CC_FOR_FADER7_NRPN);
-	QueryNRPN(SPLIT_LEFT_CC_FOR_FADER8_NRPN);
-	QueryNRPN(SPLIT_LEFT_LOWROW_X_BEHAVIOUR_NRPN);
-	QueryNRPN(SPLIT_LEFT_CC_FOR_LOWROW_NRPN);
-	QueryNRPN(SPLIT_LEFT_LOWROW_XYZ_BEHAVIOUR_NRPN);
-	QueryNRPN(SPLIT_LEFT_CC_FOR_LOWROW_XYZ_NRPN);
-	QueryNRPN(SPLIT_LEFT_CC_FOR_LOWROW_XYZ_Y_NRPN);
-	QueryNRPN(SPLIT_LEFT_CC_FOR_LOWROW_XYZ_Z_NRPN);
-	QueryNRPN(SPLIT_LEFT_MIN_CC_FOR_Y_NRPN);
-	QueryNRPN(SPLIT_LEFT_MAX_CC_FOR_Y_NRPN);
-	QueryNRPN(SPLIT_LEFT_MIN_CC_FOR_Z_NRPN);
-	QueryNRPN(SPLIT_LEFT_MAX_CC_FOR_Z_NRPN);
-	QueryNRPN(SPLIT_LEFT_14BIT_CC_VALUE_FOR_Z_NRPN);
-	QueryNRPN(SPLIT_LEFT_INITIAL_RELATIVE_VALUE_FOR_Y_NRPN);
-	QueryNRPN(SPLIT_LEFT_CHANNEL_PER_ROW_ORDER_NRPN);
-	QueryNRPN(SPLIT_LEFT_TOUCH_ANIMATION_NRPN);
-	QueryNRPN(SPLIT_LEFT_SEQUENCER_TOGGLE_PLAY_NRPN);
-	QueryNRPN(SPLIT_LEFT_SEQUENCER_PREVIOUS_PATTERN_NRPN);
-	QueryNRPN(SPLIT_LEFT_SEQUENCER_NEXT_PATTERN_NRPN);
-	QueryNRPN(SPLIT_LEFT_SEQUENCER_PATTERN_NRPN);
-	QueryNRPN(SPLIT_LEFT_SEQUENCER_TOGGLE_MUTE_NRPN);
-	Sleep(100);
-}
-
-	void LinnStrument::QueryRightSplitSettings()
-	{
-		// Right-hand split
-	QueryNRPN(SPLIT_RIGHT_MAIN_MODE_NRPN);
-	QueryNRPN(SPLIT_RIGHT_MAIN_CHANNEL_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CHANNEL_PER_NOTE_1_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CHANNEL_PER_NOTE_2_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CHANNEL_PER_NOTE_3_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CHANNEL_PER_NOTE_4_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CHANNEL_PER_NOTE_5_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CHANNEL_PER_NOTE_6_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CHANNEL_PER_NOTE_7_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CHANNEL_PER_NOTE_8_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CHANNEL_PER_NOTE_9_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CHANNEL_PER_NOTE_10_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CHANNEL_PER_NOTE_11_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CHANNEL_PER_NOTE_12_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CHANNEL_PER_NOTE_13_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CHANNEL_PER_NOTE_14_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CHANNEL_PER_NOTE_15_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CHANNEL_PER_NOTE_16_NRPN);
-	QueryNRPN(SPLIT_RIGHT_MIDI_PER_ROW_LOWEST_CHANNEL_NRPN);
-	QueryNRPN(SPLIT_RIGHT_BEND_RANGE_NRPN);
-	QueryNRPN(SPLIT_RIGHT_BEND_TOGGLE_NRPN);
-	QueryNRPN(SPLIT_RIGHT_BEND_QUANTIZE_TOGGLE_NRPN);
-	QueryNRPN(SPLIT_RIGHT_PITCH_QUANTIZE_NRPN);
-	QueryNRPN(SPLIT_RIGHT_RESET_PITCH_ON_RELEASE_NRPN);
-	QueryNRPN(SPLIT_RIGHT_SEND_Y_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CC_FOR_Y_NRPN);
-	QueryNRPN(SPLIT_RIGHT_RELATIVE_Y_NRPN);
-	QueryNRPN(SPLIT_RIGHT_SEND_Z_NRPN);
-	QueryNRPN(SPLIT_RIGHT_MIDI_EXPRESSION_FOR_Z_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CC_FOR_Z_NRPN);
-	QueryNRPN(SPLIT_RIGHT_COLOR_MAIN_NRPN);
-	QueryNRPN(SPLIT_RIGHT_COLOR_ACCENT_NRPN);
-	QueryNRPN(SPLIT_RIGHT_COLOR_PLAYED_NRPN);
-	QueryNRPN(SPLIT_RIGHT_COLOR_LOWROW_NRPN);
-	QueryNRPN(SPLIT_RIGHT_LOWROW_MODE_NRPN);
-	QueryNRPN(SPLIT_RIGHT_SPECIAL_NRPN);
-	QueryNRPN(SPLIT_RIGHT_EXPRESSION_FOR_Y_NRPN);
-		QueryNRPN(SPLIT_RIGHT_CC_FOR_FADER1_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CC_FOR_FADER2_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CC_FOR_FADER3_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CC_FOR_FADER4_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CC_FOR_FADER5_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CC_FOR_FADER6_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CC_FOR_FADER7_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CC_FOR_FADER8_NRPN);
-	QueryNRPN(SPLIT_RIGHT_LOWROW_X_BEHAVIOUR_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CC_FOR_LOWROW_NRPN);
-	QueryNRPN(SPLIT_RIGHT_LOWROW_XYZ_BEHAVIOUR_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CC_FOR_LOWROW_XYZ_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CC_FOR_LOWROW_XYZ_Y_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CC_FOR_LOWROW_XYZ_Z_NRPN);
-	QueryNRPN(SPLIT_RIGHT_MIN_CC_FOR_Y_NRPN);
-	QueryNRPN(SPLIT_RIGHT_MAX_CC_FOR_Y_NRPN);
-	QueryNRPN(SPLIT_RIGHT_MIN_CC_FOR_Z_NRPN);
-	QueryNRPN(SPLIT_RIGHT_MAX_CC_FOR_Z_NRPN);
-	QueryNRPN(SPLIT_RIGHT_14BIT_CC_VALUE_FOR_Z_NRPN);
-	QueryNRPN(SPLIT_RIGHT_INITIAL_RELATIVE_VALUE_FOR_Y_NRPN);
-	QueryNRPN(SPLIT_RIGHT_CHANNEL_PER_ROW_ORDER_NRPN);
-	QueryNRPN(SPLIT_RIGHT_TOUCH_ANIMATION_NRPN);
-	QueryNRPN(SPLIT_RIGHT_SEQUENCER_TOGGLE_PLAY_NRPN);
-	QueryNRPN(SPLIT_RIGHT_SEQUENCER_PREVIOUS_PATTERN_NRPN);
-	QueryNRPN(SPLIT_RIGHT_SEQUENCER_NEXT_PATTERN_NRPN);
-	QueryNRPN(SPLIT_RIGHT_SEQUENCER_PATTERN_NRPN);
-	QueryNRPN(SPLIT_RIGHT_SEQUENCER_TOGGLE_MUTE_NRPN);
-	Sleep(100);
-}
-
-void LinnStrument::QueryGlobalSettings()
-{
-	QueryNRPN(GLOBAL_SPLIT_ACTIVE_NRPN);
-	QueryNRPN(GLOBAL_SELECTED_SPLIT_NRPN);
-	QueryNRPN(GLOBAL_SPLIT_COLUMN_NRPN);
-	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_C_NRPN);
-	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_C_SHARP_NRPN);
-	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_D_NRPN);
-	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_D_SHARP_NRPN);
-	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_E_NRPN);
-	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_F_NRPN);
-	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_F_SHARP_NRPN);
-	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_G_NRPN);
-	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_G_SHARP_NRPN);
-	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_A_NRPN);
-	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_A_SHARP_NRPN);
-	QueryNRPN(GLOBAL_MAIN_NOTE_LIGHT_B_NRPN);
-	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_C_NRPN);
-	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_C_SHARP_NRPN);
-	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_D_NRPN);
-	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_D_SHARP_NRPN);
-	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_E_NRPN);
-	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_F_NRPN);
-	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_F_SHARP_NRPN);
-	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_G_NRPN);
-	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_G_SHARP_NRPN);
-	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_A_NRPN);
-	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_A_SHARP_NRPN);
-	QueryNRPN(GLOBAL_ACCENT_NOTE_LIGHT_B_NRPN);
-	Sleep(100);
-	
-	QueryNRPN(GLOBAL_ROW_OFFSET_NRPN);
-	QueryNRPN(GLOBAL_VELOCITY_SENSITIVITY_NRPN);
-	QueryNRPN(GLOBAL_PRESSURE_SENSITIVITY_NRPN);
-	QueryNRPN(GLOBAL_MIDI_DEVICE_IO_NRPN);
-	QueryNRPN(GLOBAL_ARP_DIRECTION_NRPN);
-	QueryNRPN(GLOBAL_ARP_TEMPO_NOTE_VALUE_NRPN);
-	QueryNRPN(GLOBAL_ARP_OCTAVE_EXTENSION_NRPN);
-	QueryNRPN(GLOBAL_CLOCK_BPM_NRPN);
-	QueryNRPN(GLOBAL_SETTINGS_PRESET_LOAD_NRPN);
-	QueryNRPN(GLOBAL_PRESSURE_AFTERTOUCH_NRPN);
-	QueryNRPN(DEVICE_USER_FIRMWARE_MODE_NRPN);
-	QueryNRPN(DEVICE_LEFT_HANDED_NRPN);
-	QueryNRPN(GLOBAL_ACTIVE_LIGHTS_PRESET_NRPN);
-	QueryNRPN(GLOBAL_MIN_VELOCITY_VALUE_NRPN);
-	QueryNRPN(GLOBAL_MAX_VELOCITY_VALUE_NRPN);
-	QueryNRPN(GLOBAL_FIXED_VELOCITY_VALUE_NRPN);
-	Sleep(100);
-
-	QueryNRPN(DEVICE_MIN_BYTE_INTERVAL_VALUE_NRPN);
-	QueryNRPN(GLOBAL_CUSTOM_ROW_OFFSET_NRPN);
-	QueryNRPN(DEVICE_MIDI_THRU_NRPN);
-	QueryNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW1_NRPN);
-	QueryNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW2_NRPN);
-	QueryNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW3_NRPN);
-	QueryNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW4_NRPN);
-	QueryNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW5_NRPN);
-	QueryNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW6_NRPN);
-	QueryNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW7_NRPN);
-	QueryNRPN(GLOBAL_GUITAR_NOTE_TUNING_ROW8_NRPN);
-	Sleep(100);
-}
-
-
-void LinnStrument::QueryOctaveTransposeSettings()
-{
-	QueryNRPN(SPLIT_LEFT_OCTAVE_NRPN);
-	QueryNRPN(SPLIT_LEFT_PITCH_TRANSPOSE_NRPN);
-	QueryNRPN(SPLIT_LEFT_TRANSPOSE_LIGHTS_NRPN);
-	QueryNRPN(SPLIT_RIGHT_OCTAVE_NRPN);
-	QueryNRPN(SPLIT_RIGHT_PITCH_TRANSPOSE_NRPN);
-	QueryNRPN(SPLIT_RIGHT_TRANSPOSE_LIGHTS_NRPN);
-	Sleep(100);
-}
-
-
-void LinnStrument::QuerySwitchSettings()
-{
-	QueryNRPN(SWITCH1_ASSIGN_NRPN);
-	QueryNRPN(SWITCH2_ASSIGN_NRPN);
-	QueryNRPN(FOOT_LEFT_ASSIGN_NRPN);
-	QueryNRPN(FOOT_RIGHT_ASSIGN_NRPN);
-	QueryNRPN(SWITCH1_BOTH_SPLITS_NRPN);
-	QueryNRPN(SWITCH2_BOTH_SPLITS_NRPN);
-	QueryNRPN(FOOT_LEFT_BOTH_SPLITS_NRPN);
-	QueryNRPN(FOOT_RIGHT_BOTH_SPLITS_NRPN);
-	// QueryNRPN( CC_FOR_CC65);  // Changes the CC for all switches - Legacy option, see NRPN 255 - 258
-	QueryNRPN(CC_FOR_LEFT_FOOT_CC65);
-	QueryNRPN(CC_FOR_RIGHT_FOOT_CC65);
-	QueryNRPN(CC_FOR_SWITCH1_CC65);
-	QueryNRPN(CC_FOR_SWITCH2_CC65);
-	QueryNRPN(CC_FOR_LEFT_FOOT_SUSTAIN);
-	QueryNRPN(CC_FOR_RIGHT_FOOT_SUSTAIN);
-	QueryNRPN(CC_FOR_SWITCH1_SUSTAIN);
-	QueryNRPN(CC_FOR_SWITCH2_SUSTAIN);
-	Sleep(100);
-}
+	pFuture->get();
+					}
 
 
 void LinnStrument::QueryAll()
 {
-QueryLeftSplitSettings();
+	QueryLeftSplitSettings();
 	QueryRightSplitSettings();
 	QueryGlobalSettings();
 	QuerySwitchSettings();
@@ -2510,7 +2266,7 @@ void LinnStrument::SetMIDIOutID(int nID)
 {
 	m_OutputID = nID;
 	InitMIDI(m_InputID, m_OutputID);
-	}
+}
 
 wxWindow * LinnStrument::GetParent()
 {
@@ -2535,10 +2291,10 @@ void LinnStrument::UpdateStatusBar()
 		}
 	}
 
-		wxCommandEvent myNoteEvent(NoteEvent, STATUS_UPDATE_ID);
+	wxCommandEvent myNoteEvent(NoteEvent, STATUS_UPDATE_ID);
 	myNoteEvent.SetString(wstrText);
-					m_Parent->GetEventHandler()->ProcessEvent(myNoteEvent);
-		}
+	m_Parent->GetEventHandler()->ProcessEvent(myNoteEvent);
+}
 
 
 bool LinnStrument::IsUpdateMode()
@@ -2553,22 +2309,22 @@ bool LinnStrument::IsUpdateMode()
 	wxString wxstrOut;
 
 #ifndef NO_CENUMERATESERIAL_USING_CREATEFILE
-		wxstrOut = "CreateFile method reports\n";
+	wxstrOut = "CreateFile method reports\n";
 	if (CEnumerateSerial::UsingCreateFile(ports))
 	{
 		for (const auto& port : ports)
-			wxstrOut = wxstrOut + wxString::Format( "COM%u\n", port);
+			wxstrOut = wxstrOut + wxString::Format("COM%u\n", port);
 	}
 	else
 		wxstrOut = wxstrOut + wxString::Format("CEnumerateSerial::UsingCreateFile failed, Error:%u\n"), GetLastError();
 #endif //#ifndef NO_CENUMERATESERIAL_USING_CREATEFILE
 
 #ifndef NO_CENUMERATESERIAL_USING_QUERYDOSDEVICE
-		wxstrOut = wxstrOut + wxString::Format( "QueryDosDevice method reports\n");
+	wxstrOut = wxstrOut + wxString::Format("QueryDosDevice method reports\n");
 	if (CEnumerateSerial::UsingQueryDosDevice(ports))
 	{
 		for (const auto& port : ports)
-			wxstrOut = wxstrOut + wxString::Format( "COM%u\n", port);
+			wxstrOut = wxstrOut + wxString::Format("COM%u\n", port);
 	}
 	else
 		wxstrOut = wxstrOut + wxString::Format("CEnumerateSerial::UsingQueryDosDevice failed, Error:%u\n"), GetLastError();
@@ -2582,88 +2338,88 @@ bool LinnStrument::IsUpdateMode()
 			wxstrOut = wxstrOut + wxString::Format("COM%u\n", port);
 	}
 	else
-		wxstrOut = wxstrOut + wxString::Format( "CEnumerateSerial::UsingGetDefaultCommConfig failed, Error:%u\n", GetLastError());
+		wxstrOut = wxstrOut + wxString::Format("CEnumerateSerial::UsingGetDefaultCommConfig failed, Error:%u\n", GetLastError());
 #endif //#ifndef NO_CENUMERATESERIAL_USING_GETDEFAULTCOMMCONFIG
 
 #ifndef NO_CENUMERATESERIAL_USING_SETUPAPI1
-	wxstrOut = wxstrOut + wxString::Format( "Device Manager (SetupAPI - GUID_DEVINTERFACE_COMPORT) reports\n");
+	wxstrOut = wxstrOut + wxString::Format("Device Manager (SetupAPI - GUID_DEVINTERFACE_COMPORT) reports\n");
 	if (CEnumerateSerial::UsingSetupAPI1(portAndNames))
 	{
 		for (const auto& port : portAndNames)
-			wxstrOut = wxstrOut + wxString::Format( "COM%u <%s>\n", port.first, port.second.c_str());
+			wxstrOut = wxstrOut + wxString::Format("COM%u <%s>\n", port.first, port.second.c_str());
 	}
 	else
-		wxstrOut = wxstrOut + wxString::Format( "CEnumerateSerial::UsingSetupAPI1 failed, Error:%u\n", GetLastError());
+		wxstrOut = wxstrOut + wxString::Format("CEnumerateSerial::UsingSetupAPI1 failed, Error:%u\n", GetLastError());
 #endif //#ifndef NO_CENUMERATESERIAL_USING_SETUPAPI1
 
 #ifndef NO_CENUMERATESERIAL_USING_SETUPAPI2
-	wxstrOut = wxstrOut + wxString::Format( "Device Manager (SetupAPI - Ports Device information set) reports\n");
+	wxstrOut = wxstrOut + wxString::Format("Device Manager (SetupAPI - Ports Device information set) reports\n");
 	if (CEnumerateSerial::UsingSetupAPI2(portAndNames))
 	{
 		for (const auto& port : portAndNames)
-			wxstrOut = wxstrOut + wxString::Format( "COM%u <%s>\n", port.first, port.second.c_str());
+			wxstrOut = wxstrOut + wxString::Format("COM%u <%s>\n", port.first, port.second.c_str());
 	}
 	else
-		wxstrOut = wxstrOut + wxString::Format( "CEnumerateSerial::UsingSetupAPI2 failed, Error:%u\n", GetLastError());
+		wxstrOut = wxstrOut + wxString::Format("CEnumerateSerial::UsingSetupAPI2 failed, Error:%u\n", GetLastError());
 #endif //#ifndef NO_CENUMERATESERIAL_USING_SETUPAPI2
 
 #ifndef NO_CENUMERATESERIAL_USING_ENUMPORTS
-	wxstrOut = wxstrOut + wxString::Format( "EnumPorts method reports\n");
+	wxstrOut = wxstrOut + wxString::Format("EnumPorts method reports\n");
 	if (CEnumerateSerial::UsingEnumPorts(portAndNames))
 	{
 		for (const auto& port : portAndNames)
-			wxstrOut = wxstrOut + wxString::Format( "COM%u <%s>\n", port.first, port.second.c_str());
+			wxstrOut = wxstrOut + wxString::Format("COM%u <%s>\n", port.first, port.second.c_str());
 	}
 	else
-		wxstrOut = wxstrOut + wxString::Format( "CEnumerateSerial::UsingEnumPorts failed, Error:%u\n", GetLastError());
+		wxstrOut = wxstrOut + wxString::Format("CEnumerateSerial::UsingEnumPorts failed, Error:%u\n", GetLastError());
 #endif //#ifndef NO_CENUMERATESERIAL_USING_ENUMPORTS
 
 #ifndef NO_CENUMERATESERIAL_USING_WMI
-	wxstrOut = wxstrOut + wxString::Format( "WMI method reports\n");
+	wxstrOut = wxstrOut + wxString::Format("WMI method reports\n");
 	HRESULT hr = CEnumerateSerial::UsingWMI(portAndNames);
 	if (SUCCEEDED(hr))
 	{
 		for (const auto& port : portAndNames)
-			wxstrOut = wxstrOut + wxString::Format( "COM%u <%s>\n", port.first, port.second.c_str());
+			wxstrOut = wxstrOut + wxString::Format("COM%u <%s>\n", port.first, port.second.c_str());
 	}
 	else
-		wxstrOut = wxstrOut + wxString::Format( "CEnumerateSerial::UsingWMI failed, Error:%08X\n", hr);
+		wxstrOut = wxstrOut + wxString::Format("CEnumerateSerial::UsingWMI failed, Error:%08X\n", hr);
 #endif //#ifndef NO_CENUMERATESERIAL_USING_WMI
 
 #ifndef NO_CENUMERATESERIAL_USING_COMDB
-	wxstrOut = wxstrOut + wxString::Format( "ComDB method reports\n");
+	wxstrOut = wxstrOut + wxString::Format("ComDB method reports\n");
 	if (CEnumerateSerial::UsingComDB(ports))
 	{
 		for (const auto& port : ports)
-			wxstrOut = wxstrOut + wxString::Format( "COM%u\n", port);
+			wxstrOut = wxstrOut + wxString::Format("COM%u\n", port);
 	}
 	else
-		wxstrOut = wxstrOut + wxString::Format( "CEnumerateSerial::UsingComDB failed, Error:%u\n", GetLastError());
+		wxstrOut = wxstrOut + wxString::Format("CEnumerateSerial::UsingComDB failed, Error:%u\n", GetLastError());
 #endif //#ifndef NO_CENUMERATESERIAL_USING_COMDB
 
 #ifndef NO_CENUMERATESERIAL_USING_REGISTRY
-	wxstrOut = wxstrOut + wxString::Format( "Registry method reports\n");
+	wxstrOut = wxstrOut + wxString::Format("Registry method reports\n");
 	if (CEnumerateSerial::UsingRegistry(names))
 	{
 		for (const auto& name : names)
-			wxstrOut = wxstrOut + wxString::Format( "%s\n", name.c_str());
+			wxstrOut = wxstrOut + wxString::Format("%s\n", name.c_str());
 	}
 	else
-		wxstrOut = wxstrOut + wxString::Format( "CEnumerateSerial::UsingRegistry failed, Error:%u\n", GetLastError());
+		wxstrOut = wxstrOut + wxString::Format("CEnumerateSerial::UsingRegistry failed, Error:%u\n", GetLastError());
 #endif //#ifndef NO_CENUMERATESERIAL_USING_REGISTRY
 
 #ifndef NO_CENUMERATESERIAL_USING_GETCOMMPORTS
-	wxstrOut = wxstrOut + wxString::Format( "UsingGetCommPorts method reports\n");
+	wxstrOut = wxstrOut + wxString::Format("UsingGetCommPorts method reports\n");
 	if (CEnumerateSerial::UsingGetCommPorts(ports))
 	{
 		for (const auto& port : ports)
-			wxstrOut = wxstrOut + wxString::Format( "COM%u\n", port);
+			wxstrOut = wxstrOut + wxString::Format("COM%u\n", port);
 	}
 	else
-		wxstrOut = wxstrOut + wxString::Format( "CEnumerateSerial::UsingGetCommPorts failed, Error:%u\n", GetLastError());
+		wxstrOut = wxstrOut + wxString::Format("CEnumerateSerial::UsingGetCommPorts failed, Error:%u\n", GetLastError());
 #endif //#ifndef NO_CENUMERATESERIAL_USING_GETCOMMPORTS
-	
-	blnResult = wxstrOut.Contains( LSOSUpdateName);
+
+	blnResult = wxstrOut.Contains(LSOSUpdateName);
 	return blnResult;
 }
 
@@ -2679,7 +2435,7 @@ bool LinnStrument::IsDINWorking()
 }
 
 
-void LinnStrument::InitMIDI( int nInputID, int nOutputID)
+void LinnStrument::InitMIDI(int nInputID, int nOutputID)
 {
 	if (m_MIDIIn->isPortOpen())
 	{
@@ -2693,7 +2449,7 @@ void LinnStrument::InitMIDI( int nInputID, int nOutputID)
 	{
 		m_MIDIOut->closePort();
 	}
-	
+
 	if ((m_MIDIIn->getPortCount() == 0) || (m_MIDIOut->getPortCount() == 0))
 	{
 		m_InputID = -1;
@@ -2701,7 +2457,7 @@ void LinnStrument::InitMIDI( int nInputID, int nOutputID)
 	}
 	else
 	{
-				int nUSBInID = GetUSBInPortID();
+		int nUSBInID = GetUSBInPortID();
 		int nUSBOutID = GetUSBOutPortID();
 
 		if ((nUSBInID != -1) && (nUSBOutID != -1))
@@ -2741,3 +2497,233 @@ void LinnStrument::InitMIDI( int nInputID, int nOutputID)
 		Speak(L"LinnStrument not connected");
 	}
 }
+void LinnStrument::QueryLeftSplitSettings()
+{
+	// Left-hand split
+	InitParameter(SPLIT_LEFT_MAIN_MODE_NRPN);
+	InitParameter(SPLIT_LEFT_MAIN_CHANNEL_NRPN);
+	InitParameter(SPLIT_LEFT_CHANNEL_PER_NOTE_1_NRPN);
+	InitParameter(SPLIT_LEFT_CHANNEL_PER_NOTE_2_NRPN);
+	InitParameter(SPLIT_LEFT_CHANNEL_PER_NOTE_3_NRPN);
+	InitParameter(SPLIT_LEFT_CHANNEL_PER_NOTE_4_NRPN);
+	InitParameter(SPLIT_LEFT_CHANNEL_PER_NOTE_5_NRPN);
+	InitParameter(SPLIT_LEFT_CHANNEL_PER_NOTE_6_NRPN);
+	InitParameter(SPLIT_LEFT_CHANNEL_PER_NOTE_7_NRPN);
+	InitParameter(SPLIT_LEFT_CHANNEL_PER_NOTE_8_NRPN);
+	InitParameter(SPLIT_LEFT_CHANNEL_PER_NOTE_9_NRPN);
+	InitParameter(SPLIT_LEFT_CHANNEL_PER_NOTE_10_NRPN);
+	InitParameter(SPLIT_LEFT_CHANNEL_PER_NOTE_11_NRPN);
+	InitParameter(SPLIT_LEFT_CHANNEL_PER_NOTE_12_NRPN);
+	InitParameter(SPLIT_LEFT_CHANNEL_PER_NOTE_13_NRPN);
+	InitParameter(SPLIT_LEFT_CHANNEL_PER_NOTE_14_NRPN);
+	InitParameter(SPLIT_LEFT_CHANNEL_PER_NOTE_15_NRPN);
+	InitParameter(SPLIT_LEFT_CHANNEL_PER_NOTE_16_NRPN);
+	InitParameter(SPLIT_LEFT_MIDI_PER_ROW_LOWEST_CHANNEL_NRPN);
+	InitParameter(SPLIT_LEFT_BEND_RANGE_NRPN);
+	InitParameter(SPLIT_LEFT_BEND_TOGGLE_NRPN);
+	InitParameter(SPLIT_LEFT_BEND_QUANTIZE_TOGGLE_NRPN);
+	InitParameter(SPLIT_LEFT_PITCH_QUANTIZE_NRPN);
+	InitParameter(SPLIT_LEFT_RESET_PITCH_ON_RELEASE_NRPN);
+	InitParameter(SPLIT_LEFT_SEND_Y_NRPN);
+	InitParameter(SPLIT_LEFT_CC_FOR_Y_NRPN);
+	InitParameter(SPLIT_LEFT_RELATIVE_Y_NRPN);
+	InitParameter(SPLIT_LEFT_SEND_Z_NRPN);
+	InitParameter(SPLIT_LEFT_MIDI_EXPRESSION_FOR_Z_NRPN);
+	InitParameter(SPLIT_LEFT_CC_FOR_Z_NRPN);
+	InitParameter(SPLIT_LEFT_COLOR_MAIN_NRPN);
+	InitParameter(SPLIT_LEFT_COLOR_ACCENT_NRPN);
+	InitParameter(SPLIT_LEFT_COLOR_PLAYED_NRPN);
+	InitParameter(SPLIT_LEFT_COLOR_LOWROW_NRPN);
+	InitParameter(SPLIT_LEFT_LOWROW_MODE_NRPN);
+	InitParameter(SPLIT_LEFT_SPECIAL_NRPN);
+	InitParameter(SPLIT_LEFT_EXPRESSION_FOR_Y_NRPN);
+	InitParameter(SPLIT_LEFT_CC_FOR_FADER1_NRPN);
+	InitParameter(SPLIT_LEFT_CC_FOR_FADER2_NRPN);
+	InitParameter(SPLIT_LEFT_CC_FOR_FADER3_NRPN);
+	InitParameter(SPLIT_LEFT_CC_FOR_FADER4_NRPN);
+	InitParameter(SPLIT_LEFT_CC_FOR_FADER5_NRPN);
+	InitParameter(SPLIT_LEFT_CC_FOR_FADER6_NRPN);
+	InitParameter(SPLIT_LEFT_CC_FOR_FADER7_NRPN);
+	InitParameter(SPLIT_LEFT_CC_FOR_FADER8_NRPN);
+	InitParameter(SPLIT_LEFT_LOWROW_X_BEHAVIOUR_NRPN);
+	InitParameter(SPLIT_LEFT_CC_FOR_LOWROW_NRPN);
+	InitParameter(SPLIT_LEFT_LOWROW_XYZ_BEHAVIOUR_NRPN);
+	InitParameter(SPLIT_LEFT_CC_FOR_LOWROW_XYZ_NRPN);
+	InitParameter(SPLIT_LEFT_CC_FOR_LOWROW_XYZ_Y_NRPN);
+	InitParameter(SPLIT_LEFT_CC_FOR_LOWROW_XYZ_Z_NRPN);
+	InitParameter(SPLIT_LEFT_MIN_CC_FOR_Y_NRPN);
+	InitParameter(SPLIT_LEFT_MAX_CC_FOR_Y_NRPN);
+	InitParameter(SPLIT_LEFT_MIN_CC_FOR_Z_NRPN);
+	InitParameter(SPLIT_LEFT_MAX_CC_FOR_Z_NRPN);
+	InitParameter(SPLIT_LEFT_14BIT_CC_VALUE_FOR_Z_NRPN);
+	InitParameter(SPLIT_LEFT_INITIAL_RELATIVE_VALUE_FOR_Y_NRPN);
+	InitParameter(SPLIT_LEFT_CHANNEL_PER_ROW_ORDER_NRPN);
+	InitParameter(SPLIT_LEFT_TOUCH_ANIMATION_NRPN);
+	InitParameter(SPLIT_LEFT_SEQUENCER_TOGGLE_PLAY_NRPN);
+	InitParameter(SPLIT_LEFT_SEQUENCER_PREVIOUS_PATTERN_NRPN);
+	InitParameter(SPLIT_LEFT_SEQUENCER_NEXT_PATTERN_NRPN);
+	InitParameter(SPLIT_LEFT_SEQUENCER_PATTERN_NRPN);
+	InitParameter(SPLIT_LEFT_SEQUENCER_TOGGLE_MUTE_NRPN);
+}
+
+void LinnStrument::QueryRightSplitSettings()
+{
+	// Right-hand split
+	InitParameter(SPLIT_RIGHT_MAIN_MODE_NRPN);
+	InitParameter(SPLIT_RIGHT_MAIN_CHANNEL_NRPN);
+	InitParameter(SPLIT_RIGHT_CHANNEL_PER_NOTE_1_NRPN);
+	InitParameter(SPLIT_RIGHT_CHANNEL_PER_NOTE_2_NRPN);
+	InitParameter(SPLIT_RIGHT_CHANNEL_PER_NOTE_3_NRPN);
+	InitParameter(SPLIT_RIGHT_CHANNEL_PER_NOTE_4_NRPN);
+	InitParameter(SPLIT_RIGHT_CHANNEL_PER_NOTE_5_NRPN);
+	InitParameter(SPLIT_RIGHT_CHANNEL_PER_NOTE_6_NRPN);
+	InitParameter(SPLIT_RIGHT_CHANNEL_PER_NOTE_7_NRPN);
+	InitParameter(SPLIT_RIGHT_CHANNEL_PER_NOTE_8_NRPN);
+	InitParameter(SPLIT_RIGHT_CHANNEL_PER_NOTE_9_NRPN);
+	InitParameter(SPLIT_RIGHT_CHANNEL_PER_NOTE_10_NRPN);
+	InitParameter(SPLIT_RIGHT_CHANNEL_PER_NOTE_11_NRPN);
+	InitParameter(SPLIT_RIGHT_CHANNEL_PER_NOTE_12_NRPN);
+	InitParameter(SPLIT_RIGHT_CHANNEL_PER_NOTE_13_NRPN);
+	InitParameter(SPLIT_RIGHT_CHANNEL_PER_NOTE_14_NRPN);
+	InitParameter(SPLIT_RIGHT_CHANNEL_PER_NOTE_15_NRPN);
+	InitParameter(SPLIT_RIGHT_CHANNEL_PER_NOTE_16_NRPN);
+	InitParameter(SPLIT_RIGHT_MIDI_PER_ROW_LOWEST_CHANNEL_NRPN);
+	InitParameter(SPLIT_RIGHT_BEND_RANGE_NRPN);
+	InitParameter(SPLIT_RIGHT_BEND_TOGGLE_NRPN);
+	InitParameter(SPLIT_RIGHT_BEND_QUANTIZE_TOGGLE_NRPN);
+	InitParameter(SPLIT_RIGHT_PITCH_QUANTIZE_NRPN);
+	InitParameter(SPLIT_RIGHT_RESET_PITCH_ON_RELEASE_NRPN);
+	InitParameter(SPLIT_RIGHT_SEND_Y_NRPN);
+	InitParameter(SPLIT_RIGHT_CC_FOR_Y_NRPN);
+	InitParameter(SPLIT_RIGHT_RELATIVE_Y_NRPN);
+	InitParameter(SPLIT_RIGHT_SEND_Z_NRPN);
+	InitParameter(SPLIT_RIGHT_MIDI_EXPRESSION_FOR_Z_NRPN);
+	InitParameter(SPLIT_RIGHT_CC_FOR_Z_NRPN);
+	InitParameter(SPLIT_RIGHT_COLOR_MAIN_NRPN);
+	InitParameter(SPLIT_RIGHT_COLOR_ACCENT_NRPN);
+	InitParameter(SPLIT_RIGHT_COLOR_PLAYED_NRPN);
+	InitParameter(SPLIT_RIGHT_COLOR_LOWROW_NRPN);
+	InitParameter(SPLIT_RIGHT_LOWROW_MODE_NRPN);
+	InitParameter(SPLIT_RIGHT_SPECIAL_NRPN);
+	InitParameter(SPLIT_RIGHT_EXPRESSION_FOR_Y_NRPN);
+	InitParameter(SPLIT_RIGHT_CC_FOR_FADER1_NRPN);
+	InitParameter(SPLIT_RIGHT_CC_FOR_FADER2_NRPN);
+	InitParameter(SPLIT_RIGHT_CC_FOR_FADER3_NRPN);
+	InitParameter(SPLIT_RIGHT_CC_FOR_FADER4_NRPN);
+	InitParameter(SPLIT_RIGHT_CC_FOR_FADER5_NRPN);
+	InitParameter(SPLIT_RIGHT_CC_FOR_FADER6_NRPN);
+	InitParameter(SPLIT_RIGHT_CC_FOR_FADER7_NRPN);
+	InitParameter(SPLIT_RIGHT_CC_FOR_FADER8_NRPN);
+	InitParameter(SPLIT_RIGHT_LOWROW_X_BEHAVIOUR_NRPN);
+	InitParameter(SPLIT_RIGHT_CC_FOR_LOWROW_NRPN);
+	InitParameter(SPLIT_RIGHT_LOWROW_XYZ_BEHAVIOUR_NRPN);
+	InitParameter(SPLIT_RIGHT_CC_FOR_LOWROW_XYZ_NRPN);
+	InitParameter(SPLIT_RIGHT_CC_FOR_LOWROW_XYZ_Y_NRPN);
+	InitParameter(SPLIT_RIGHT_CC_FOR_LOWROW_XYZ_Z_NRPN);
+	InitParameter(SPLIT_RIGHT_MIN_CC_FOR_Y_NRPN);
+	InitParameter(SPLIT_RIGHT_MAX_CC_FOR_Y_NRPN);
+	InitParameter(SPLIT_RIGHT_MIN_CC_FOR_Z_NRPN);
+	InitParameter(SPLIT_RIGHT_MAX_CC_FOR_Z_NRPN);
+	InitParameter(SPLIT_RIGHT_14BIT_CC_VALUE_FOR_Z_NRPN);
+	InitParameter(SPLIT_RIGHT_INITIAL_RELATIVE_VALUE_FOR_Y_NRPN);
+	InitParameter(SPLIT_RIGHT_CHANNEL_PER_ROW_ORDER_NRPN);
+	InitParameter(SPLIT_RIGHT_TOUCH_ANIMATION_NRPN);
+	InitParameter(SPLIT_RIGHT_SEQUENCER_TOGGLE_PLAY_NRPN);
+	InitParameter(SPLIT_RIGHT_SEQUENCER_PREVIOUS_PATTERN_NRPN);
+	InitParameter(SPLIT_RIGHT_SEQUENCER_NEXT_PATTERN_NRPN);
+	InitParameter(SPLIT_RIGHT_SEQUENCER_PATTERN_NRPN);
+	InitParameter(SPLIT_RIGHT_SEQUENCER_TOGGLE_MUTE_NRPN);
+}
+
+void LinnStrument::QueryGlobalSettings()
+{
+	InitParameter(GLOBAL_SPLIT_ACTIVE_NRPN);
+	InitParameter(GLOBAL_SELECTED_SPLIT_NRPN);
+	InitParameter(GLOBAL_SPLIT_COLUMN_NRPN);
+	InitParameter(GLOBAL_MAIN_NOTE_LIGHT_C_NRPN);
+	InitParameter(GLOBAL_MAIN_NOTE_LIGHT_C_SHARP_NRPN);
+	InitParameter(GLOBAL_MAIN_NOTE_LIGHT_D_NRPN);
+	InitParameter(GLOBAL_MAIN_NOTE_LIGHT_D_SHARP_NRPN);
+	InitParameter(GLOBAL_MAIN_NOTE_LIGHT_E_NRPN);
+	InitParameter(GLOBAL_MAIN_NOTE_LIGHT_F_NRPN);
+	InitParameter(GLOBAL_MAIN_NOTE_LIGHT_F_SHARP_NRPN);
+	InitParameter(GLOBAL_MAIN_NOTE_LIGHT_G_NRPN);
+	InitParameter(GLOBAL_MAIN_NOTE_LIGHT_G_SHARP_NRPN);
+	InitParameter(GLOBAL_MAIN_NOTE_LIGHT_A_NRPN);
+	InitParameter(GLOBAL_MAIN_NOTE_LIGHT_A_SHARP_NRPN);
+	InitParameter(GLOBAL_MAIN_NOTE_LIGHT_B_NRPN);
+	InitParameter(GLOBAL_ACCENT_NOTE_LIGHT_C_NRPN);
+	InitParameter(GLOBAL_ACCENT_NOTE_LIGHT_C_SHARP_NRPN);
+	InitParameter(GLOBAL_ACCENT_NOTE_LIGHT_D_NRPN);
+	InitParameter(GLOBAL_ACCENT_NOTE_LIGHT_D_SHARP_NRPN);
+	InitParameter(GLOBAL_ACCENT_NOTE_LIGHT_E_NRPN);
+	InitParameter(GLOBAL_ACCENT_NOTE_LIGHT_F_NRPN);
+	InitParameter(GLOBAL_ACCENT_NOTE_LIGHT_F_SHARP_NRPN);
+	InitParameter(GLOBAL_ACCENT_NOTE_LIGHT_G_NRPN);
+	InitParameter(GLOBAL_ACCENT_NOTE_LIGHT_G_SHARP_NRPN);
+	InitParameter(GLOBAL_ACCENT_NOTE_LIGHT_A_NRPN);
+	InitParameter(GLOBAL_ACCENT_NOTE_LIGHT_A_SHARP_NRPN);
+	InitParameter(GLOBAL_ACCENT_NOTE_LIGHT_B_NRPN);
+	InitParameter(GLOBAL_ROW_OFFSET_NRPN);
+	InitParameter(GLOBAL_VELOCITY_SENSITIVITY_NRPN);
+	InitParameter(GLOBAL_PRESSURE_SENSITIVITY_NRPN);
+	InitParameter(GLOBAL_MIDI_DEVICE_IO_NRPN);
+	InitParameter(GLOBAL_ARP_DIRECTION_NRPN);
+	InitParameter(GLOBAL_ARP_TEMPO_NOTE_VALUE_NRPN);
+	InitParameter(GLOBAL_ARP_OCTAVE_EXTENSION_NRPN);
+	InitParameter(GLOBAL_CLOCK_BPM_NRPN);
+	InitParameter(GLOBAL_SETTINGS_PRESET_LOAD_NRPN);
+	InitParameter(GLOBAL_PRESSURE_AFTERTOUCH_NRPN);
+	InitParameter(DEVICE_USER_FIRMWARE_MODE_NRPN);
+	InitParameter(DEVICE_LEFT_HANDED_NRPN);
+	InitParameter(GLOBAL_ACTIVE_LIGHTS_PRESET_NRPN);
+	InitParameter(GLOBAL_MIN_VELOCITY_VALUE_NRPN);
+	InitParameter(GLOBAL_MAX_VELOCITY_VALUE_NRPN);
+	InitParameter(GLOBAL_FIXED_VELOCITY_VALUE_NRPN);
+	InitParameter(DEVICE_MIN_BYTE_INTERVAL_VALUE_NRPN);
+	InitParameter(GLOBAL_CUSTOM_ROW_OFFSET_NRPN);
+	InitParameter(DEVICE_MIDI_THRU_NRPN);
+	InitParameter(GLOBAL_GUITAR_NOTE_TUNING_ROW1_NRPN);
+	InitParameter(GLOBAL_GUITAR_NOTE_TUNING_ROW2_NRPN);
+	InitParameter(GLOBAL_GUITAR_NOTE_TUNING_ROW3_NRPN);
+	InitParameter(GLOBAL_GUITAR_NOTE_TUNING_ROW4_NRPN);
+	InitParameter(GLOBAL_GUITAR_NOTE_TUNING_ROW5_NRPN);
+	InitParameter(GLOBAL_GUITAR_NOTE_TUNING_ROW6_NRPN);
+	InitParameter(GLOBAL_GUITAR_NOTE_TUNING_ROW7_NRPN);
+	InitParameter(GLOBAL_GUITAR_NOTE_TUNING_ROW8_NRPN);
+}
+
+
+void LinnStrument::QueryOctaveTransposeSettings()
+{
+	InitParameter(SPLIT_LEFT_OCTAVE_NRPN);
+	InitParameter(SPLIT_LEFT_PITCH_TRANSPOSE_NRPN);
+	InitParameter(SPLIT_LEFT_TRANSPOSE_LIGHTS_NRPN);
+	InitParameter(SPLIT_RIGHT_OCTAVE_NRPN);
+	InitParameter(SPLIT_RIGHT_PITCH_TRANSPOSE_NRPN);
+	InitParameter(SPLIT_RIGHT_TRANSPOSE_LIGHTS_NRPN);
+}
+
+
+void LinnStrument::QuerySwitchSettings()
+{
+	InitParameter(SWITCH1_ASSIGN_NRPN);
+	InitParameter(SWITCH2_ASSIGN_NRPN);
+	InitParameter(FOOT_LEFT_ASSIGN_NRPN);
+	InitParameter(FOOT_RIGHT_ASSIGN_NRPN);
+	InitParameter(SWITCH1_BOTH_SPLITS_NRPN);
+	InitParameter(SWITCH2_BOTH_SPLITS_NRPN);
+	InitParameter(FOOT_LEFT_BOTH_SPLITS_NRPN);
+	InitParameter(FOOT_RIGHT_BOTH_SPLITS_NRPN);
+	// InitParameter( CC_FOR_CC65);  // Changes the CC for all switches - Legacy option, see NRPN 255 - 258
+	InitParameter(CC_FOR_LEFT_FOOT_CC65);
+	InitParameter(CC_FOR_RIGHT_FOOT_CC65);
+	InitParameter(CC_FOR_SWITCH1_CC65);
+	InitParameter(CC_FOR_SWITCH2_CC65);
+	InitParameter(CC_FOR_LEFT_FOOT_SUSTAIN);
+	InitParameter(CC_FOR_RIGHT_FOOT_SUSTAIN);
+	InitParameter(CC_FOR_SWITCH1_SUSTAIN);
+	InitParameter(CC_FOR_SWITCH2_SUSTAIN);
+}
+
+

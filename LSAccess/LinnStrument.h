@@ -10,6 +10,7 @@
 #include <queue>
 #include <functional>
 #include <future>
+#include <chrono>
 #include <thread>
 
 #ifdef __WINDOWS__
@@ -734,7 +735,7 @@ public:
 	bool IsUpdateMode();
 	void ProcessMessage(std::vector <unsigned char> vBytes);
 
-				void QueryNRPN(unsigned int nParameterNumber);
+				void QueryNRPN( unsigned int nParameterNumber, std::future <unsigned int> * pFuture);
 		void QueryLeftSplitSettings();
 		void QueryRightSplitSettings();
 		void QueryGlobalSettings();
@@ -3494,7 +3495,7 @@ void SendNRPN(unsigned int NRPNNumber, unsigned int NRPNValue);
 	void Speak(std::wstring wstrIn);
 
 	private:
-		void InitParameter(unsigned int nParameterNumber);
+		void InitParameter( unsigned int nParameterNumber);
 		void SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned int NRPNValue);
 	void SetLSParameter( unsigned int NRPNParameterIn, unsigned int NRPNValueIn);
 	void UpdateStatusBar();
