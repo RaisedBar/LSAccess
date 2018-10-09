@@ -2225,7 +2225,15 @@ void LinnStrument::InitParameter( unsigned int nParameterNumber)
 if (myQueryStatus == std::future_status::ready)
 	{
 		SetLSParameter(nParameterNumber, m_future.get());
+		if ((nParameterNumber == 0) && (m_GLOBAL_MIDI_DEVICE_IO == GetLS_MIDIDeviceIndex(LS_MIDIDevice::MIDI_DIN_JACKS)))
+		{
+			// Response received to first parameter query, so first indication that we have good MIDI DIN communication
+						Speak(L"LinnStrument connected via DIN jacks");
+		}
+
+
 	}
+m_thread.join();
 m_thread.detach();
 }
 
@@ -2233,7 +2241,7 @@ m_thread.detach();
 void LinnStrument::QueryNRPN(unsigned int nParameterNumber, std::future <unsigned int> * pFuture)
 {
 	SendNRPN(0, REQUEST_VALUE_OF_NRPN, nParameterNumber);
-	pFuture->get();
+	// pFuture->get();
 					}
 
 
@@ -2486,6 +2494,12 @@ void LinnStrument::InitMIDI(int nInputID, int nOutputID)
 			m_MIDIOut->openPort(m_OutputID);
 			m_MIDIIn->openPort(m_InputID);
 			m_MIDIIn->setCallback(&LSCallback, (void*)this);
+
+			if (m_GLOBAL_MIDI_DEVICE_IO == GetLS_MIDIDeviceIndex( LS_MIDIDevice::USB))
+			{
+				Speak(L"LinnStrument connected via USB");
+			}
+
 			QueryAll();
 		}  // end if DIN ports selected
 	}  // end if 0 input and output ports
