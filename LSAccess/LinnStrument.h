@@ -7,11 +7,10 @@
 
 #include <iostream>
 #include <sstream>
-#include <queue>
-#include <functional>
-#include <future>
 #include <chrono>
 #include <thread>
+#include <mutex>
+#include <condition_variable>
 
 #ifdef __WINDOWS__
 #define _ATL_APARTMENT_THREADED
@@ -735,7 +734,7 @@ public:
 	bool IsUpdateMode();
 	void ProcessMessage(std::vector <unsigned char> vBytes);
 
-				void QueryNRPN( unsigned int nParameterNumber, std::future <unsigned int> * pFuture);
+				void QueryNRPN( unsigned int nParameterNumber);
 		void QueryLeftSplitSettings();
 		void QueryRightSplitSettings();
 		void QueryGlobalSettings();
@@ -3499,26 +3498,20 @@ void SendNRPN(unsigned int NRPNNumber, unsigned int NRPNValue);
 		void SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned int NRPNValue);
 	void SetLSParameter( unsigned int NRPNParameterIn, unsigned int NRPNValueIn);
 	void UpdateStatusBar();
-	bool IsResponseReceived()
-	{
-		return m_ResponseReceived;
-	}
-
+	
 	// data
 	// Parent window
 	wxWindow * m_Parent;
 
 	// LinnStrument message tracking
-	std::queue <unsigned int> m_NRPNQueue;
-		unsigned int m_NRPNParameterIn, m_NRPNValueIn;
+			unsigned int m_NRPNParameterIn, m_NRPNValueIn;
 	bool m_ReceivedNRPNValueMSB, m_ReceivedNRPNValueLSB;
 
 // Query/response synchronization
-std::thread m_thread;
-std::future<unsigned int> m_future;
-std::promise <unsigned int> m_promise;
-	bool m_ResponseReceived;
-	
+	std::thread m_thread;
+	std::mutex m_mtx;
+	std::condition_variable m_cv;
+			
 	// Track note information;
 	bool m_NotesHeld[MAX_BYTE_VALUES];
 

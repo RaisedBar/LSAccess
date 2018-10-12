@@ -27,14 +27,13 @@ void LSCallback(double deltatime, std::vector< unsigned char > *message, void *p
 }
 
 
-	LinnStrument::LinnStrument():
-		m_Parent(NULL),
-		m_thread(),
-		m_ResponseReceived(false),
-		m_InputID(-1),
-		m_OutputID(-1),
-		m_SpeakMessages(false),
-		m_SpeakNotes(false),
+LinnStrument::LinnStrument() :
+	m_Parent(NULL),
+	m_InputID(-1),
+	m_OutputID(-1),
+	m_SpeakMessages(false),
+	m_SpeakNotes(false),
+	m_thread(),
 		m_ReceivedNRPNValueMSB(false),
 		m_ReceivedNRPNValueLSB(false),
 								m_CanDetectSerialPorts(true),
@@ -338,7 +337,7 @@ void LSCallback(double deltatime, std::vector< unsigned char > *message, void *p
 		m_LEFT_VOLUME(0),
 			m_RIGHT_VOLUME(0)
 	{
-			m_future = m_promise.get_future();    // engagement with future
+			// m_future = m_promise.get_future();    // engagement with future
 			// Initialise note tracking
 		for (unsigned int i = 0; i < MAX_BYTE_VALUES; i++)
 		{
@@ -369,8 +368,7 @@ void LSCallback(double deltatime, std::vector< unsigned char > *message, void *p
 
 LinnStrument::LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool blnSpeakMessages, bool blnSpeakNotes) :
 	m_Parent(parent),
-	// m_thread(),
-		m_InputID(nInputID),
+			m_InputID(nInputID),
 	m_OutputID(nOutputID),
 	m_SpeakMessages(blnSpeakMessages),
 	m_SpeakNotes(blnSpeakNotes),
@@ -779,6 +777,7 @@ int LinnStrument::GetUSBOutPortID()
 
 void LinnStrument::SetLSParameter(unsigned int NRPNParameterIn, unsigned int NRPNValueIn)
 {
+	std::unique_lock<std::mutex> lck(m_mtx);
 	DBOUT( L"Parameter = " + std::to_wstring(NRPNParameterIn) + L"\nValue = " + std::to_wstring(NRPNValueIn) + L"\n")
 // Update the appropriate member based on the provided NRPN parameter number
 			switch (NRPNParameterIn)
@@ -2024,6 +2023,7 @@ void LinnStrument::SetLSParameter(unsigned int NRPNParameterIn, unsigned int NRP
 	{}
 	break;
 		} // end switch
+		m_cv.notify_all(); 
 }
 
 
@@ -2087,14 +2087,7 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 			// We should now have enough information to change the value of a member
 			if (m_ReceivedNRPNValueMSB && m_ReceivedNRPNValueLSB)
 			{
-				// DBOUT(L"Received on channel " + std::to_wstring(nChannel) + L"\n" + "Parameter = " + std::to_wstring(m_NRPNQueue.front()) + L"\n" + L"Value = " + std::to_wstring(m_NRPNValueIn) + L"\n")
-				// SetLSParameter(m_NRPNQueue.front(), m_NRPNValueIn);
-				// m_NRPNQueue.pop();
-								// fulfill promise
-					m_promise.set_value(m_NRPNValueIn);
-				// Synchronizes with getting the future
-				// m_thread.join();
-// Resets
+																SetLSParameter(m_NRPNParameterIn, m_NRPNValueIn);
 				m_ReceivedNRPNValueMSB = false;
 				m_ReceivedNRPNValueLSB = false;
 							}
@@ -2163,20 +2156,12 @@ void LinnStrument::SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumbe
 	{
 		std::vector<unsigned char> myMessage;
 
-		DBOUT(L"Sending channel = " + std::to_wstring(nChannelNibble) + L"\n" + L"Parameter = " + std::to_wstring(NRPNNumber) + L"\n" + L"Value = " + std::to_wstring(NRPNValue) + L"\n")
-						unsigned char myStatusByte = (MIDI_CMD_CONTROL_CHANGE * 16) + nChannelNibble;
+								unsigned char myStatusByte = (MIDI_CMD_CONTROL_CHANGE * 16) + nChannelNibble;
 		unsigned char myNRPNParameterLSB = NRPNNumber % 128;
 		unsigned char myNRPNParameterMSB = (NRPNNumber - myNRPNParameterLSB) / 128;
 		unsigned char myNRPNValueLSB = NRPNValue % 128;
 		unsigned char myNRPNValueMSB = (NRPNValue - myNRPNValueLSB) / 128;
-
-		if (NRPNNumber == REQUEST_VALUE_OF_NRPN)
-		{
-			// Record the NRPN parameter we're querying
-			// m_NRPNQueue.push(NRPNValue);
-			}
-
-		myMessage.push_back(myStatusByte);
+						myMessage.push_back(myStatusByte);
 		myMessage.push_back(SET_NRPN_CC_MSB);
 		myMessage.push_back(myNRPNParameterMSB);
 		m_MIDIOut->sendMessage(&myMessage);
@@ -2218,31 +2203,23 @@ void LinnStrument::SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumbe
 
 void LinnStrument::InitParameter( unsigned int nParameterNumber)
 {
-		m_thread = std::thread(&LinnStrument::QueryNRPN, this, nParameterNumber, &m_future);
-	
-	std::future_status myQueryStatus = m_future.wait_for(std::chrono::milliseconds(1));
-	
-if (myQueryStatus == std::future_status::ready)
-	{
-		SetLSParameter(nParameterNumber, m_future.get());
-		if ((nParameterNumber == 0) && (m_GLOBAL_MIDI_DEVICE_IO == GetLS_MIDIDeviceIndex(LS_MIDIDevice::MIDI_DIN_JACKS)))
+	m_thread = std::thread(&LinnStrument::QueryNRPN, this, nParameterNumber);
+	std::unique_lock<std::mutex> lck(m_mtx);
+	m_cv.wait_for(lck, std::chrono::milliseconds(2));
+	m_thread.join();
+		
+	if ((nParameterNumber == 0) && (m_GLOBAL_MIDI_DEVICE_IO == GetLS_MIDIDeviceIndex(LS_MIDIDevice::MIDI_DIN_JACKS)))
 		{
 			// Response received to first parameter query, so first indication that we have good MIDI DIN communication
 						Speak(L"LinnStrument connected via DIN jacks");
 		}
-
-
-	}
-m_thread.join();
-m_thread.detach();
 }
 
 
-void LinnStrument::QueryNRPN(unsigned int nParameterNumber, std::future <unsigned int> * pFuture)
+void LinnStrument::QueryNRPN(unsigned int nParameterNumber)
 {
-	SendNRPN(0, REQUEST_VALUE_OF_NRPN, nParameterNumber);
-	// pFuture->get();
-					}
+		SendNRPN(0, REQUEST_VALUE_OF_NRPN, nParameterNumber);
+}
 
 
 void LinnStrument::QueryAll()
@@ -2439,7 +2416,8 @@ void LinnStrument::Speak(std::wstring wstrIn)
 
 bool LinnStrument::IsDINWorking()
 {
-	return ((m_GLOBAL_MIDI_DEVICE_IO == GetLS_MIDIDeviceIndex(LS_MIDIDevice::USB)) && (m_ResponseReceived));
+	return (m_GLOBAL_MIDI_DEVICE_IO == GetLS_MIDIDeviceIndex(LS_MIDIDevice::USB));
+		// && (m_ResponseReceived));
 }
 
 
