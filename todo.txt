@@ -1,3 +1,7 @@
+Installer:
+- Fails to create Desktop shortcut to LSAccess.exe
+- Fails to create Start menu group and shortcuts
+
 all:
 check announcement of radio box labels
 Switches:

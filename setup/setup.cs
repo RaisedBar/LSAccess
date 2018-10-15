@@ -19,19 +19,19 @@ class Script
             Feature binaries = new Feature("binaries");
             var LSAccessSetup = new ManagedProject("LSAccess",
     new Dir(new Id("ExeFolder"), @"%ProgramFilesFolder%\Raised Bar\LSAccess",
-    new WixSharp.Files(binaries, @"..\Files\Program Files\*.*"),
-                                                                                new FileShortcut(binaries, "LSAccess", @"%Desktop%")),
-             new ExeFileShortcut(binaries, "Uninstall LSAccess", "[SystemFolder]msiexec.exe", "/x [ProductCode]"),
+        new WixSharp.Files(binaries, @"..\Files\Program Files\*.*"),
+new ExeFileShortcut(binaries, "Uninstall LSAccess", "[SystemFolder]msiexec.exe", "/x [ProductCode]")),
 
             // Configuration files
             new Dir(new Id("DataFiles"), @"%CommonAppDataFolder%\Raised Bar\LSAccess",
             new DirPermission("Everyone", GenericPermission.All),
-                        new WixSharp.Files(@"..\Files\ProgramData\*.*")),
-
+                        new WixSharp.Files(@"..\Files\ProgramData\*.*")));
+            new FileShortcut(binaries, "LSAccess", @"%Desktop%");
+            
                         // Start menu and shortcuts
                         new Dir(@"%ProgramMenu%\Raised Bar\LSAccess",
                                                 new WixSharp.ExeFileShortcut("LSAccess", "[ExeFolder]LSAccess.exe", ""),
-                                                                                                    new WixSharp.ExeFileShortcut(binaries, "Uninstall LSAccess", "[SystemFolder]msiexec.exe", "/x [ProductCode]")));
+                                                                                                    new WixSharp.ExeFileShortcut(binaries, "Uninstall LSAccess", "[SystemFolder]msiexec.exe", "/x [ProductCode]"));
 
             if (args.Length != 0)
             {
@@ -46,7 +46,7 @@ class Script
             }
 
             LSAccessSetup.Platform = Platform.x86;
-            LSAccessSetup.LicenceFile = @"..\..\license";
+            LSAccessSetup.LicenceFile = @"..\files\programdata\license.rtf";
             LSAccessSetup.GUID = new Guid("2AEE6F7A-8AAE-4E91-9525-A2905E30DEB6");
             LSAccessSetup.InstallPrivileges = InstallPrivileges.elevated;
             LSAccessSetup.OutFileName = "LSAccess";
