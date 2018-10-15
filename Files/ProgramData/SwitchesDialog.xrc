@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<resource xmlns="http://www.wxwidgets.org/wxxrc" version="2.5.3.0">
+<object class="wxDialog" name="switches_dialog">
+<pos>-1,-1</pos>
+<size>1250,400</size>
+<style>wxDEFAULT_DIALOG_STYLE</style>
+<title>Switch Settings</title>
+<object class="wxNotebook" name="notebook_1">
+
+<object class="notebookpage">
+ <label>Panel</label>
+ <object class="wxPanel" name="panel_switches_panel">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+   <style>wxTAB_TRAVERSAL</style>
+       <object class="wxFlexGridSizer">
+<rows>9</rows>
+         <object class="sizeritem">
+       <flag>wxEXPAND</flag>
+       <object class="wxRadioBox" name="wrb_switch_1_assign">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+         <label>Switch &amp;1 assignment:</label>
+         <style>wxRA_SPECIFY_ROWS</style>
+         <dimension>18</dimension>
+         <content>
+<item>Octave Down</item>
+<item>Octave Up</item>
+<item>Sustain</item>
+<item>CC65</item>
+<item>Arp</item>
+<item>Alt Split</item>
+<item>Auto Octave</item>
+<item>Tap Tempo</item>
+<item>Legato</item>
+<item>Latch</item>
+<item>Preset Up</item>
+<item>Preset Down</item>
+<item>Reverse Pitch-X</item>
+<item>Sequencer Play</item>
+<item>Sequencer Previous</item>
+<item>Sequencer Next</item>
+<item>Send MIDI Clock</item>
+<item>Sequencer Mute</item>
+         </content>
+         <selection>0</selection>
+       </object>
+     </object>
+         <object class="sizeritem">
+           <object class="wxCheckBox" name="chk_switch_1_both_splits">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>Switch 1 affects both splits</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="switch_1_cc_for_sustain_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>CC for Switch 1 sustain:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_cc_for_switch_1_sustain">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <value>1</value>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="switch_1_cc_for_cc65_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>CC for Switch 1 CC65:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_cc_for_switch_1_cc65">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <value>1</value>
+           </object>
+         </object>
+         <object class="sizeritem">
+       <flag>wxEXPAND</flag>
+       <object class="wxRadioBox" name="wrb_switch_2_assign">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+         <label>Switch &amp;2 assignment:</label>
+         <style>wxRA_SPECIFY_ROWS</style>
+         <dimension>18</dimension>
+         <content>
+<item>Octave Down</item>
+<item>Octave Up</item>
+<item>Sustain</item>
+<item>CC65</item>
+<item>Arp</item>
+<item>Alt Split</item>
+<item>Auto Octave</item>
+<item>Tap Tempo</item>
+<item>Legato</item>
+<item>Latch</item>
+<item>Preset Up</item>
+<item>Preset Down</item>
+<item>Reverse Pitch-X</item>
+<item>Sequencer Play</item>
+<item>Sequencer Previous</item>
+<item>Sequencer Next</item>
+<item>Send MIDI Clock</item>
+<item>Sequencer Mute</item>
+         </content>
+         <selection>0</selection>
+       </object>
+     </object>
+         <object class="sizeritem">
+           <object class="wxCheckBox" name="chk_switch_2_both_splits">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>Switch 2 affects both splits</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="switch_2_cc_for_sustain_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>CC for Switch 2 sustain:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_cc_for_switch_2_sustain">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <value>1</value>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="switch_2_cc_for_cc65_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>CC for Switch 2 CC65:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_cc_for_switch_2_cc65">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <value>1</value>
+           </object>
+         </object>
+ </object>
+
+   </object>
+ </object>
+
+<object class="notebookpage">
+ <label>Foot</label>
+ <object class="wxPanel" name="foot_switches_panel">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+   <style>wxTAB_TRAVERSAL</style>
+       <object class="wxFlexGridSizer">
+<rows>9</rows>
+         <object class="sizeritem">
+       <flag>wxEXPAND</flag>
+       <object class="wxRadioBox" name="wrb_left_foot_assign">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+         <label>&amp;Left switch assignment:</label>
+         <style>wxRA_SPECIFY_ROWS</style>
+         <dimension>18</dimension>
+         <content>
+<item>Octave Down</item>
+<item>Octave Up</item>
+<item>Sustain</item>
+<item>CC65</item>
+<item>Arp</item>
+<item>Alt Split</item>
+<item>Auto Octave</item>
+<item>Tap Tempo</item>
+<item>Legato</item>
+<item>Latch</item>
+<item>Preset Up</item>
+<item>Preset Down</item>
+<item>Reverse Pitch-X</item>
+<item>Sequencer Play</item>
+<item>Sequencer Previous</item>
+<item>Sequencer Next</item>
+<item>Send MIDI Clock</item>
+<item>Sequencer Mute</item>
+         </content>
+         <selection>0</selection>
+       </object>
+     </object>
+         <object class="sizeritem">
+           <object class="wxCheckBox" name="chk_left_foot_both_splits">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>Left switch affects both splits</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="left_foot_cc_for_sustain_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>CC for left switch sustain:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_cc_for_left_foot_sustain">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <value>1</value>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="left_foot_cc_for_cc65_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>CC for left switch for CC65:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_cc_for_left_foot_cc65">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <value>1</value>
+           </object>
+         </object>
+         <object class="sizeritem">
+       <flag>wxEXPAND</flag>
+       <object class="wxRadioBox" name="wrb_right_foot_assign">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+         <label>&amp;Right switch assignment:</label>
+         <style>wxRA_SPECIFY_ROWS</style>
+         <dimension>18</dimension>
+         <content>
+<item>Octave Down</item>
+<item>Octave Up</item>
+<item>Sustain</item>
+<item>CC65</item>
+<item>Arp</item>
+<item>Alt Split</item>
+<item>Auto Octave</item>
+<item>Tap Tempo</item>
+<item>Legato</item>
+<item>Latch</item>
+<item>Preset Up</item>
+<item>Preset Down</item>
+<item>Reverse Pitch-X</item>
+<item>Sequencer Play</item>
+<item>Sequencer Previous</item>
+<item>Sequencer Next</item>
+<item>Send MIDI Clock</item>
+<item>Sequencer Mute</item>
+         </content>
+         <selection>0</selection>
+       </object>
+     </object>
+         <object class="sizeritem">
+           <object class="wxCheckBox" name="chk_right_foot_both_splits">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>Right switch affects both splits</label>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="right_foot_cc_for_sustain_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>CC for right switch sustain:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_cc_for_right_foot_sustain">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <value>1</value>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxStaticText" name="right_foot_cc_for_cc65_label">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <label>CC for right switch for CC65:</label>
+             <style>wxALIGN_RIGHT</style>
+           </object>
+         </object>
+         <object class="sizeritem">
+           <flag>wxALIGN_CENTER_VERTICAL</flag>
+           <object class="wxSpinCtrl" name="wsc_cc_for_right_foot_cc65">
+<pos>-1,-1</pos>
+<size>-1,-1</size>
+             <value>1</value>
+           </object>
+         </object>
+ </object>
+   </object>
+ </object>
+
+
+</object>
+</object>
+</resource>
