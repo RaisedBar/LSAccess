@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Xml;
+using Microsoft.Win32;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
-using Microsoft.Win32;
 using WixSharp;
 using WixSharp.CommonTasks;
 
@@ -16,22 +17,21 @@ class Script
     {
         try
         {
-            Feature binaries = new Feature("binaries");
-            var LSAccessSetup = new ManagedProject("LSAccess",
-    new Dir(new Id("ExeFolder"), @"%ProgramFilesFolder%\Raised Bar\LSAccess",
-        new WixSharp.Files(binaries, @"..\Files\Program Files\*.*"),
-new ExeFileShortcut(binaries, "Uninstall LSAccess", "[SystemFolder]msiexec.exe", "/x [ProductCode]")),
+            var LSAccessSetup = new Project("LSAccess",
+new Dir(new Id("ExeFolder"), @"%ProgramFilesFolder%\Raised Bar\LSAccess",
+new WixSharp.File(@"..\Files\Program Files\LSAccess.exe",
+new WixSharp.FileShortcut("LSAccess", @"%Desktop%")),
+                    // new ExeFileShortcut("Uninstall LSAccess", "[SystemFolder]msiexec.exe", "/x [ProductCode]")),
 
             // Configuration files
             new Dir(new Id("DataFiles"), @"%CommonAppDataFolder%\Raised Bar\LSAccess",
             new DirPermission("Everyone", GenericPermission.All),
-                        new WixSharp.Files(@"..\Files\ProgramData\*.*")));
-            new FileShortcut(binaries, "LSAccess", @"%Desktop%");
-            
+                        new WixSharp.Files(@"..\Files\ProgramData\*.*")),
+
                         // Start menu and shortcuts
-                        new Dir(@"%ProgramMenu%\Raised Bar\LSAccess",
-                                                new WixSharp.ExeFileShortcut("LSAccess", "[ExeFolder]LSAccess.exe", ""),
-                                                                                                    new WixSharp.ExeFileShortcut(binaries, "Uninstall LSAccess", "[SystemFolder]msiexec.exe", "/x [ProductCode]"));
+                        new Dir(@"%ProgramMenu%\Raised Bar\LSAccess")));
+                                                // new ExeFileShortcut("LSAccess", "[ExeFolder]LSAccess.exe", ""),
+                                                                                                    // new ExeFileShortcut("Uninstall LSAccess", "[SystemFolder]msiexec.exe", "/x [ProductCode]"))));
 
             if (args.Length != 0)
             {
