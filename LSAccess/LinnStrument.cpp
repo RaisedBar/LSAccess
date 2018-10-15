@@ -29,8 +29,9 @@ void LSCallback(double deltatime, std::vector< unsigned char > *message, void *p
 
 LinnStrument::LinnStrument() :
 	m_Parent(NULL),
-	m_InputID(-1),
-	m_OutputID(-1),
+	m_InputID(NO_PORT),
+	m_OutputID(NO_PORT),
+	m_TimeOut( DEFAULT_TIME_OUT),
 	m_SpeakMessages(false),
 	m_SpeakNotes(false),
 	m_thread(),
@@ -337,8 +338,7 @@ LinnStrument::LinnStrument() :
 		m_LEFT_VOLUME(0),
 			m_RIGHT_VOLUME(0)
 	{
-			// m_future = m_promise.get_future();    // engagement with future
-			// Initialise note tracking
+						// Initialise note tracking
 		for (unsigned int i = 0; i < MAX_BYTE_VALUES; i++)
 		{
 			m_NotesHeld[i] = false;
@@ -370,6 +370,7 @@ LinnStrument::LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool 
 	m_Parent(parent),
 			m_InputID(nInputID),
 	m_OutputID(nOutputID),
+	m_TimeOut( DEFAULT_TIME_OUT),
 	m_SpeakMessages(blnSpeakMessages),
 	m_SpeakNotes(blnSpeakNotes),
 	m_ReceivedNRPNValueMSB(false),
@@ -750,7 +751,7 @@ int LinnStrument::GetUSBInPortID()
 		}
 	}  // end for
 		
-	return -1;
+	return NO_PORT;
 }
 
 
@@ -771,13 +772,14 @@ int LinnStrument::GetUSBOutPortID()
 		}
 	}  // end for
 
-	return -1;
+	return NO_PORT;
 }
 
 
 void LinnStrument::SetLSParameter(unsigned int NRPNParameterIn, unsigned int NRPNValueIn)
 {
 	std::unique_lock<std::mutex> lck(m_mtx);
+	NRPNParameterIn = m_parameter;
 	DBOUT( L"Parameter = " + std::to_wstring(NRPNParameterIn) + L"\nValue = " + std::to_wstring(NRPNValueIn) + L"\n")
 // Update the appropriate member based on the provided NRPN parameter number
 			switch (NRPNParameterIn)
@@ -2088,9 +2090,11 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 			if (m_ReceivedNRPNValueMSB && m_ReceivedNRPNValueLSB)
 			{
 																SetLSParameter(m_NRPNParameterIn, m_NRPNValueIn);
-				m_ReceivedNRPNValueMSB = false;
-				m_ReceivedNRPNValueLSB = false;
-							}
+																// m_ReceivedNRPNParameterMSB = false;
+																				// m_ReceivedNRPNParameterLSB = false;
+																				m_ReceivedNRPNValueMSB = false;
+																				m_ReceivedNRPNValueLSB = false;
+																				}
 		}
 		break;
 
@@ -2203,10 +2207,17 @@ void LinnStrument::SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumbe
 
 void LinnStrument::InitParameter( unsigned int nParameterNumber)
 {
-	m_thread = std::thread(&LinnStrument::QueryNRPN, this, nParameterNumber);
+	m_parameter = nParameterNumber;
+		m_thread = std::thread(&LinnStrument::QueryNRPN, this, m_parameter);
 	std::unique_lock<std::mutex> lck(m_mtx);
-	m_cv.wait_for(lck, std::chrono::milliseconds(2));
-	m_thread.join();
+	std::cv_status myCVStatus =  m_cv.wait_for(lck, std::chrono::milliseconds( m_TimeOut));
+	
+	if (myCVStatus == std::cv_status::timeout)
+	{
+		DBOUT(L"Timed out for NRPN " + std::to_wstring(m_parameter));
+		} 
+	
+		m_thread.join();
 		
 	if ((nParameterNumber == 0) && (m_GLOBAL_MIDI_DEVICE_IO == GetLS_MIDIDeviceIndex(LS_MIDIDevice::MIDI_DIN_JACKS)))
 		{
@@ -2438,15 +2449,15 @@ void LinnStrument::InitMIDI(int nInputID, int nOutputID)
 
 	if ((m_MIDIIn->getPortCount() == 0) || (m_MIDIOut->getPortCount() == 0))
 	{
-		m_InputID = -1;
-		m_OutputID = -1;
+		m_InputID = NO_PORT;
+		m_OutputID = NO_PORT;
 	}
 	else
 	{
 		int nUSBInID = GetUSBInPortID();
 		int nUSBOutID = GetUSBOutPortID();
 
-		if ((nUSBInID != -1) && (nUSBOutID != -1))
+		if ((nUSBInID != NO_PORT) && (nUSBOutID != NO_PORT))
 		{
 			// USB connection detected, so ignore any saved port ID values and override
 			m_GLOBAL_MIDI_DEVICE_IO = GetLS_MIDIDeviceIndex(LS_MIDIDevice::USB);
@@ -2454,7 +2465,7 @@ void LinnStrument::InitMIDI(int nInputID, int nOutputID)
 			m_OutputID = nUSBOutID;
 		}
 
-		if ((m_InputID == -1) || (m_OutputID == -1))
+		if ((m_InputID == NO_PORT) || (m_OutputID == NO_PORT))
 		{
 			// No USB connection detected and no MIDI I/O ports saved, so get user to specify DIN connections
 			MIDIDialog * pMIDIDialog = new MIDIDialog(L"LinnStrument MIDI I/O jacks");
@@ -2467,7 +2478,7 @@ void LinnStrument::InitMIDI(int nInputID, int nOutputID)
 		}
 
 		// Now we have valid port ID values, so open the ports and initialise parameter values
-		if ((m_OutputID != -1) && (m_InputID != -1))
+		if ((m_OutputID != NO_PORT) && (m_InputID != NO_PORT))
 		{
 			m_MIDIOut->openPort(m_OutputID);
 			m_MIDIIn->openPort(m_InputID);
@@ -2483,8 +2494,8 @@ void LinnStrument::InitMIDI(int nInputID, int nOutputID)
 	}  // end if 0 input and output ports
 
 	if ((m_SpeakMessages)
-		&& (m_InputID == -1)
-		&& (m_OutputID == -1))
+		&& (m_InputID == NO_PORT)
+		&& (m_OutputID == NO_PORT))
 	{
 		Speak(L"LinnStrument not connected");
 	}
@@ -2551,11 +2562,15 @@ void LinnStrument::QueryLeftSplitSettings()
 	InitParameter(SPLIT_LEFT_INITIAL_RELATIVE_VALUE_FOR_Y_NRPN);
 	InitParameter(SPLIT_LEFT_CHANNEL_PER_ROW_ORDER_NRPN);
 	InitParameter(SPLIT_LEFT_TOUCH_ANIMATION_NRPN);
-	InitParameter(SPLIT_LEFT_SEQUENCER_TOGGLE_PLAY_NRPN);
-	InitParameter(SPLIT_LEFT_SEQUENCER_PREVIOUS_PATTERN_NRPN);
-	InitParameter(SPLIT_LEFT_SEQUENCER_NEXT_PATTERN_NRPN);
+	// Parameter does not respond to queries currently
+	// InitParameter(SPLIT_LEFT_SEQUENCER_TOGGLE_PLAY_NRPN);
+// Parameter does not respond to queries currently
+		// InitParameter(SPLIT_LEFT_SEQUENCER_PREVIOUS_PATTERN_NRPN);
+// Parameter does not respond to queries currently
+		// InitParameter(SPLIT_LEFT_SEQUENCER_NEXT_PATTERN_NRPN);
 	InitParameter(SPLIT_LEFT_SEQUENCER_PATTERN_NRPN);
-	InitParameter(SPLIT_LEFT_SEQUENCER_TOGGLE_MUTE_NRPN);
+	// Parameter does not respond to queries currently
+	// InitParameter(SPLIT_LEFT_SEQUENCER_TOGGLE_MUTE_NRPN);
 }
 
 void LinnStrument::QueryRightSplitSettings()
@@ -2620,11 +2635,15 @@ void LinnStrument::QueryRightSplitSettings()
 	InitParameter(SPLIT_RIGHT_INITIAL_RELATIVE_VALUE_FOR_Y_NRPN);
 	InitParameter(SPLIT_RIGHT_CHANNEL_PER_ROW_ORDER_NRPN);
 	InitParameter(SPLIT_RIGHT_TOUCH_ANIMATION_NRPN);
-	InitParameter(SPLIT_RIGHT_SEQUENCER_TOGGLE_PLAY_NRPN);
-	InitParameter(SPLIT_RIGHT_SEQUENCER_PREVIOUS_PATTERN_NRPN);
-	InitParameter(SPLIT_RIGHT_SEQUENCER_NEXT_PATTERN_NRPN);
+	// Parameter does not respond to queries currently
+// 	InitParameter(SPLIT_RIGHT_SEQUENCER_TOGGLE_PLAY_NRPN);
+// Parameter does not respond to queries currently
+// 	InitParameter(SPLIT_RIGHT_SEQUENCER_PREVIOUS_PATTERN_NRPN);
+// Parameter does not respond to queries currently
+	// 	InitParameter(SPLIT_RIGHT_SEQUENCER_NEXT_PATTERN_NRPN);
 	InitParameter(SPLIT_RIGHT_SEQUENCER_PATTERN_NRPN);
-	InitParameter(SPLIT_RIGHT_SEQUENCER_TOGGLE_MUTE_NRPN);
+	// Parameter does not respond to queries currently
+// 	InitParameter(SPLIT_RIGHT_SEQUENCER_TOGGLE_MUTE_NRPN);
 }
 
 void LinnStrument::QueryGlobalSettings()
@@ -2716,6 +2735,16 @@ void LinnStrument::QuerySwitchSettings()
 	InitParameter(CC_FOR_RIGHT_FOOT_SUSTAIN);
 	InitParameter(CC_FOR_SWITCH1_SUSTAIN);
 	InitParameter(CC_FOR_SWITCH2_SUSTAIN);
+}
+
+void LinnStrument::SetTimeOut(unsigned int nTimeOut)
+{
+	m_TimeOut = nTimeOut;
+}
+
+unsigned int LinnStrument::GetTimeOut()
+{
+	return m_TimeOut;
 }
 
 

@@ -12,6 +12,5 @@ focus does not land on the tab
 dialog does not close with alt+f4
 Test refresh of status bar when note pads are pressed.
 Test detection of O/S update state
-Research slots/signals for parameter initialisation.
 Research handling of device changes on Mac.
 code beautify

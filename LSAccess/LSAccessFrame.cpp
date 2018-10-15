@@ -22,6 +22,7 @@ LSAccessFrame::LSAccessFrame(const wxString& title)
 
 	int nInputID = -1;
 	int nOutputID = -1;
+	unsigned int nTimeOut = DEFAULT_TIME_OUT;
 	std::wstring wstrIniPath = wstrConfigPath + L"\\" + wstrAppName + L".ini";
 	m_IniFile.SetPath(wstrIniPath);
 	m_Config = new wxFileConfig(wstrVendor, wstrAppName, wstrIniPath);
@@ -33,22 +34,31 @@ LSAccessFrame::LSAccessFrame(const wxString& title)
 		
 		if (m_Config->HasEntry(strInPort))
 		{
-			nInputID = m_Config->ReadLong(strInPort, -1);
+			nInputID = m_Config->ReadLong(strInPort, NO_PORT);
 		}
 		else
 		{
-			nInputID = -1;
+			nInputID = NO_PORT;
 		}
 
 		if (m_Config->HasEntry(strOutPort))
 		{
-			nOutputID = m_Config->ReadLong(strOutPort, -1);
+			nOutputID = m_Config->ReadLong(strOutPort, NO_PORT);
 		}
 		else
 		{
-			nOutputID = -1;
+			nOutputID = NO_PORT;
 		}
-	}
+
+			if (m_Config->HasEntry(strTimeOut))
+			{
+				nTimeOut = m_Config->ReadLong(strTimeOut, DEFAULT_TIME_OUT);
+			}
+			else
+			{
+				nTimeOut = DEFAULT_TIME_OUT;
+			}
+					}
 	
 	bool blnSpeakMessages;
 	bool blnSpeakNotes;
@@ -75,6 +85,7 @@ LSAccessFrame::LSAccessFrame(const wxString& title)
 		m_LinnStrument.SetSpeakMessages(blnSpeakMessages);
 		m_LinnStrument.SetSpeakNotes(blnSpeakNotes);
 		m_LinnStrument.InitMIDI(nInputID, nOutputID);
+		m_LinnStrument.SetTimeOut(nTimeOut);
 	}
 catch (RtMidiError &error)
 {
@@ -132,7 +143,8 @@ LSAccessFrame::~LSAccessFrame()
 	m_Config->SetPath( strMIDIOptions);
 	m_Config->Write(strInPort, m_LinnStrument.GetMIDIInID());
 	m_Config->Write(strOutPort, m_LinnStrument.GetMIDIOutID());
-	m_Config->Flush();
+	m_Config->Write(strTimeOut, m_LinnStrument.GetTimeOut());
+		m_Config->Flush();
 	delete m_Config;
 	}
 
