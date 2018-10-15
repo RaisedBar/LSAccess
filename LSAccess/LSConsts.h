@@ -18,7 +18,7 @@ const std::string strSpeechOptions = "/SpeechOptions";
 const std::string strSpeakMessages = "SpeakMessages";
 const std::string strSpeakNotes = "SpeakNotes";
 const int NO_PORT = -1;
-const unsigned int DEFAULT_TIME_OUT = 5;
+const unsigned int DEFAULT_TIME_OUT = 10;
 
 // Strings for the About dialog
 const std::wstring wstrRBCredit = L"Author: Tim Burgess\n\nRaised Bar Ltd.\nhttp://www.raisedbar.net\n\n";

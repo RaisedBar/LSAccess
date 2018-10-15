@@ -2090,9 +2090,7 @@ void LinnStrument::ProcessMessage(std::vector <unsigned char> myMessage)
 			if (m_ReceivedNRPNValueMSB && m_ReceivedNRPNValueLSB)
 			{
 																SetLSParameter(m_NRPNParameterIn, m_NRPNValueIn);
-																// m_ReceivedNRPNParameterMSB = false;
-																				// m_ReceivedNRPNParameterLSB = false;
-																				m_ReceivedNRPNValueMSB = false;
+																m_ReceivedNRPNValueMSB = false;
 																				m_ReceivedNRPNValueLSB = false;
 																				}
 		}
