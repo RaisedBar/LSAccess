@@ -21,7 +21,7 @@ class Script
 new Dir(new Id("ExeFolder"), @"%ProgramFilesFolder%\Raised Bar\LSAccess",
 new WixSharp.File(@"..\Files\Program Files\LSAccess.exe",
 new WixSharp.FileShortcut("LSAccess", @"%Desktop%")),
-                    // new ExeFileShortcut("Uninstall LSAccess", "[SystemFolder]msiexec.exe", "/x [ProductCode]")),
+            new ExeFileShortcut("Uninstall LSAccess", "[SystemFolder]msiexec.exe", "/x [ProductCode]"),
 
             // Configuration files
             new Dir(new Id("DataFiles"), @"%CommonAppDataFolder%\Raised Bar\LSAccess",
@@ -29,11 +29,11 @@ new WixSharp.FileShortcut("LSAccess", @"%Desktop%")),
                         new WixSharp.Files(@"..\Files\ProgramData\*.*")),
 
                         // Start menu and shortcuts
-                        new Dir(@"%ProgramMenu%\Raised Bar\LSAccess")));
-                                                // new ExeFileShortcut("LSAccess", "[ExeFolder]LSAccess.exe", ""),
-                                                                                                    // new ExeFileShortcut("Uninstall LSAccess", "[SystemFolder]msiexec.exe", "/x [ProductCode]"))));
+                        new Dir(@"%ProgramMenu%\Raised Bar\LSAccess",
+                                                                                                new ExeFileShortcut("LSAccess", "[ExeFolder]LSAccess.exe", ""),
+                                                                                                new ExeFileShortcut("Uninstall LSAccess", "[SystemFolder]msiexec.exe", "/x [ProductCode]"))));
 
-            if (args.Length != 0)
+                                    if (args.Length != 0)
             {
                 switch (args[0])
                 {
