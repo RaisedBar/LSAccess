@@ -61,6 +61,7 @@ public:
 		void OnSpeakMessages(wxCommandEvent& event);
 		void OnSpeakNotes(wxCommandEvent& event);
 void OnRefreshAll(wxCommandEvent& event);
+void OnMIDIOptions(wxCommandEvent& event);
 
 // Help menu
 	void OnAbout(wxCommandEvent& event);

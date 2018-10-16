@@ -2440,7 +2440,7 @@ unsigned int GetSEQUENCER_TOGGLE_MUTE(LSSplitType split)
 
 	// Global settings
 	
-	LS_MIDIDevice GetLS_MIDIDeviceType(unsigned int nDevice)
+	static LS_MIDIDevice GetLS_MIDIDeviceType(unsigned int nDevice)
 	{
 		switch (nDevice)
 		{
@@ -2464,7 +2464,7 @@ unsigned int GetSEQUENCER_TOGGLE_MUTE(LSSplitType split)
 		}
 	};
 
-	unsigned int GetLS_MIDIDeviceIndex(LS_MIDIDevice device)
+	static unsigned int GetLS_MIDIDeviceIndex(LS_MIDIDevice device)
 	{
 		switch (device)
 		{

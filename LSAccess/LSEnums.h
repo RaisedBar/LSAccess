@@ -36,6 +36,7 @@ enum
 	ID_SpeakMessages,
 	ID_SpeakNotes,
 	ID_RefreshAll,
+	ID_MIDIOptions,
 	
 	// Help menu
 	ID_About,

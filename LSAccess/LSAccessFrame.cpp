@@ -20,8 +20,8 @@ LSAccessFrame::LSAccessFrame(const wxString& title)
 		myDir.Make(wstrConfigPath);
 	}
 
-	int nInputID = -1;
-	int nOutputID = -1;
+	int nInputID = NO_PORT;
+	int nOutputID = NO_PORT;
 	unsigned int nTimeOut = DEFAULT_TIME_OUT;
 	std::wstring wstrIniPath = wstrConfigPath + L"\\" + wstrAppName + L".ini";
 	m_IniFile.SetPath(wstrIniPath);
@@ -109,7 +109,8 @@ catch (RtMidiError &error)
 OptionsMenu->AppendCheckItem( ID_SpeakMessages, "&Speak messages\tF9", "Enable speech output of status information");
 	OptionsMenu->AppendCheckItem(ID_SpeakNotes, "Speak &note names\tF10", "Announce the names of notes when LinnStrument pads are played");
 	OptionsMenu->Append(ID_RefreshAll, "&Refresh all parameters\tF11", "Request all parameters from the LinnStrument to update the editor");
-	
+	OptionsMenu->Append(ID_MIDIOptions, "&MIDI ports...\tF12", "Pick which MIDI ports are connected to the LinnStrument");
+
 	// Initialise checkable items
 	OptionsMenu->Check( ID_SpeakMessages, blnSpeakMessages);
 	OptionsMenu->Check(ID_SpeakNotes, blnSpeakNotes);
@@ -235,11 +236,11 @@ WXLRESULT LSAccessFrame::MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lP
 				// Check for LinnStrument serial port (i.e. O/S update mode
 				if (m_LinnStrument.IsUpdateMode())
 				{
-					m_LinnStrument.Speak(L"Firmware update mode");
+					m_LinnStrument.Speak(wstrFirmwareMode);
 				}
 				else
 				{
-					m_LinnStrument.Speak(L"No USB connection to a LinnStrument");
+					m_LinnStrument.Speak( wstrNoUSBConnection);
 				}
 			}  // end if USB
 		}
@@ -276,13 +277,13 @@ void LSAccessFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 
 void LSAccessFrame::OnLeftSplitSettings(wxCommandEvent& event)
 {
-	PerSplitDialog * pLeftSplit = new PerSplitDialog( this, L"Left Split", &m_LinnStrument, LSSplitType::LEFT);
+	PerSplitDialog * pLeftSplit = new PerSplitDialog( this, wstrLeftSplit, &m_LinnStrument, LSSplitType::LEFT);
 										pLeftSplit->ShowModal();
 		}
 
 void LSAccessFrame::OnRightSplitSettings(wxCommandEvent& event)
 {
-	PerSplitDialog * pRightSplit = new PerSplitDialog( this, L"Right Split", &m_LinnStrument, LSSplitType::RIGHT);
+	PerSplitDialog * pRightSplit = new PerSplitDialog( this, wstrRightSplit, &m_LinnStrument, LSSplitType::RIGHT);
 		pRightSplit->ShowModal();
 	}
 
@@ -310,7 +311,7 @@ void LSAccessFrame::OnSwitchSettings(wxCommandEvent& event)
 
 void LSAccessFrame::OnGlobalSettings(wxCommandEvent& event)
 {
-	GlobalsDialog * pGlobalsDialog = new GlobalsDialog( this, L"Globals", &m_LinnStrument);
+	GlobalsDialog * pGlobalsDialog = new GlobalsDialog( this, wstrGlobalsTitle, &m_LinnStrument);
 	pGlobalsDialog->ShowModal();
 }
 
@@ -338,16 +339,28 @@ void LSAccessFrame::OnSpeakNotes(wxCommandEvent& event)
 
 void LSAccessFrame::OnRefreshAll(wxCommandEvent& event)
 {
-	std::wstring wstrMessage = L"All editor parameters refreshed.";
-		
-	m_LinnStrument.QueryAll();
-	SetStatusText( wstrMessage);
+m_LinnStrument.QueryAll();
+	SetStatusText(wstrRefreshedValues);
 
 	if (m_LinnStrument.GetSpeakMessages())
 	{
-		m_LinnStrument.Speak(wstrMessage);
+		m_LinnStrument.Speak(wstrRefreshedValues);
 	}
 	}
+
+
+void LSAccessFrame::OnMIDIOptions(wxCommandEvent& event)
+{
+	MIDIDialog * pMIDIDialog = new MIDIDialog( wstrMIDIDlgTitle);
+
+if (pMIDIDialog->ShowModal() == wxID_OK)
+{
+	m_LinnStrument.SetMIDIOutID( pMIDIDialog->GetSelectedOutput());
+	m_LinnStrument.SetMIDIInID( pMIDIDialog->GetSelectedInput());
+	m_LinnStrument.SetGLOBAL_MIDI_DEVICE_IO( LinnStrument::GetLS_MIDIDeviceIndex( LS_MIDIDevice::MIDI_DIN_JACKS));
+}  // End of manual DIN selection
+		}
+
 
 void LSAccessFrame::OnAbout(wxCommandEvent& event)
 {
@@ -379,6 +392,7 @@ EVT_MENU(ID_LeftSplitSettings, LSAccessFrame::OnLeftSplitSettings)
 EVT_MENU( ID_SpeakMessages, LSAccessFrame::OnSpeakMessages)
 EVT_MENU( ID_SpeakNotes, LSAccessFrame::OnSpeakNotes)
 EVT_MENU(ID_RefreshAll, LSAccessFrame::OnRefreshAll)
+EVT_MENU(ID_MIDIOptions, LSAccessFrame::OnMIDIOptions)
 
 	// Help menu
 EVT_MENU(ID_About, LSAccessFrame::OnAbout)

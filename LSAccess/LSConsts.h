@@ -25,6 +25,14 @@ const std::wstring wstrRBCredit = L"Author: Tim Burgess\n\nRaised Bar Ltd.\nhttp
 const std::wstring wstrSerialCodeCopyright = L"Serial port libraries used by LSAccess are Copyright (c) 1998 - 2018 by PJ Naughter (Web: www.naughter.com, Email: pjna@naughter.com)\nAll rights reserved.\n\n";
 const std::wstring wstrSerialCopyrightTerms = L"Usage Details :\n\nYou are allowed to include the source code in any product(commercial, shareware, freeware or otherwise) when your product is released in binary form.You are allowed to modify the source code in any way you want except you cannot modify the copyright details at the top of each module.If you want to distribute source code with your application, then you are only allowed to distribute versions released by the author.This is to maintain a single distribution point for the source code.";
 
+// Application message strings
+const std::wstring wstrFirmwareMode = L"Firmware update mode";
+const std::wstring wstrMIDIDlgTitle = L"LinnStrument MIDI I/O jacks";
+const std::wstring wstrNoUSBConnection = L"No USB connection to a LinnStrument";
+const std::wstring wstrLeftSplit = L"Left Split";
+const std::wstring wstrRightSplit = L"Right Split";
+const std::wstring wstrGlobalsTitle = L"Globals";
+const std::wstring wstrRefreshedValues = L"All editor parameters refreshed.";
 
 /*
 The following definitions are derived from:
