@@ -2220,7 +2220,7 @@ void LinnStrument::InitParameter( unsigned int nParameterNumber)
 	if ((nParameterNumber == 0) && (m_GLOBAL_MIDI_DEVICE_IO == GetLS_MIDIDeviceIndex(LS_MIDIDevice::MIDI_DIN_JACKS)))
 		{
 			// Response received to first parameter query, so first indication that we have good MIDI DIN communication
-						Speak(L"LinnStrument connected via DIN jacks");
+						Speak(wstrDINConnected);
 		}
 }
 
@@ -2466,7 +2466,7 @@ void LinnStrument::InitMIDI(int nInputID, int nOutputID)
 		if ((m_InputID == NO_PORT) || (m_OutputID == NO_PORT))
 		{
 			// No USB connection detected and no MIDI I/O ports saved, so get user to specify DIN connections
-			MIDIDialog * pMIDIDialog = new MIDIDialog(L"LinnStrument MIDI I/O jacks");
+			MIDIDialog * pMIDIDialog = new MIDIDialog(wstrMIDIDlgTitle);
 			if (pMIDIDialog->ShowModal() == wxID_OK)
 			{
 				m_OutputID = pMIDIDialog->GetSelectedOutput();
@@ -2484,7 +2484,7 @@ void LinnStrument::InitMIDI(int nInputID, int nOutputID)
 
 			if (m_GLOBAL_MIDI_DEVICE_IO == GetLS_MIDIDeviceIndex( LS_MIDIDevice::USB))
 			{
-				Speak(L"LinnStrument connected via USB");
+				Speak(wstrUSBConnected);
 			}
 
 			QueryAll();
@@ -2495,7 +2495,7 @@ void LinnStrument::InitMIDI(int nInputID, int nOutputID)
 		&& (m_InputID == NO_PORT)
 		&& (m_OutputID == NO_PORT))
 	{
-		Speak(L"LinnStrument not connected");
+		Speak(wstrNotConnected);
 	}
 }
 void LinnStrument::QueryLeftSplitSettings()

@@ -9,7 +9,7 @@
 
 
 PresetsVolumesDialog::PresetsVolumesDialog(wxWindow* parent, LinnStrument * pLinnStrument)
-	: wxDialog(NULL, wxID_ANY, L""),
+	: wxDialog(NULL, wxID_ANY, wxEmptyString),
 	pMyLinnStrument(pLinnStrument)
 {
 	if (wxXmlResource::Get()->LoadDialog(this, parent, wxT( "presets_volumes_dialog")))

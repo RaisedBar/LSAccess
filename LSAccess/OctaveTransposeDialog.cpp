@@ -9,7 +9,7 @@
 
 
 OctaveTransposeDialog::OctaveTransposeDialog(wxWindow* parent, LinnStrument * pLinnStrument)
-	: wxDialog(NULL, wxID_ANY, L""),
+	: wxDialog(NULL, wxID_ANY, wxEmptyString),
 	pMyLinnStrument(pLinnStrument)
 {
 	if (wxXmlResource::Get()->LoadDialog(this, parent, wxT("octave_transpose_dialog")))

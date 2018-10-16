@@ -33,6 +33,10 @@ const std::wstring wstrLeftSplit = L"Left Split";
 const std::wstring wstrRightSplit = L"Right Split";
 const std::wstring wstrGlobalsTitle = L"Globals";
 const std::wstring wstrRefreshedValues = L"All editor parameters refreshed.";
+const std::wstring wstrNoFile = L"Could not find file: ";
+const std::wstring wstrDINConnected = L"LinnStrument connected via DIN jacks";
+const std::wstring wstrUSBConnected = L"LinnStrument connected via USB";
+const std::wstring wstrNotConnected = L"LinnStrument not connected";
 
 /*
 The following definitions are derived from:

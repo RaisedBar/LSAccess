@@ -8,7 +8,7 @@
 
 
 AboutDialog::AboutDialog(wxWindow* parent)
-	: wxDialog(NULL, wxID_ANY, L"")
+	: wxDialog(NULL, wxID_ANY, wxEmptyString)
 	{
 	if (wxXmlResource::Get()->LoadDialog(this, parent, wxT("help_about_dialog")))
 	{
@@ -33,7 +33,7 @@ void AboutDialog::OnOK(wxCommandEvent& event)
 
 void AboutDialog::OnLSLicense( wxCommandEvent& event)
 {
-	wxString        wxstrFile( AppDataPath() + L"\\" + L"LICENSE");
+	wxString        wxstrFile( AppDataPath() + L"\\LICENSE");
 		wxString        strLicense;
 
 		// Attempt to open the file
@@ -41,7 +41,7 @@ void AboutDialog::OnLSLicense( wxCommandEvent& event)
 
 	if (!tFile.Exists())
 	{
-		wxMessageBox(L"Could not find " + wxstrFile, wstrErrorTitle, wxOK | wxICON_ERROR);
+		wxMessageBox( wstrNoFile + wxstrFile, wstrErrorTitle, wxOK | wxICON_ERROR);
 	}
 	else
 	{
