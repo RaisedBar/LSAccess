@@ -36,21 +36,21 @@ private:
 	DECLARE_EVENT_TABLE()
 
 	void OnSWITCH1_ASSIGN(wxCommandEvent& event);
-	void OnSWITCH1_BOTH_SPLITS(wxCommandEvent& event);
 	void OnSWITCH2_ASSIGN(wxCommandEvent& event);
-	void OnSWITCH2_BOTH_SPLITS(wxCommandEvent& event);
+	void OnSWITCH1_BOTH_SPLITS(wxCommandEvent& event);
+		void OnSWITCH2_BOTH_SPLITS(wxCommandEvent& event);
 	void OnCC_FOR_SWITCH1_SUSTAIN(wxSpinEvent& event);
-	void OnCC_FOR_SWITCH1_CC65(wxSpinEvent& event);
 	void OnCC_FOR_SWITCH2_SUSTAIN(wxSpinEvent& event);
-	void OnCC_FOR_SWITCH2_CC65(wxSpinEvent& event);
+	void OnCC_FOR_SWITCH1_CC65(wxSpinEvent& event);
+		void OnCC_FOR_SWITCH2_CC65(wxSpinEvent& event);
 		void OnFOOT_LEFT_ASSIGN(wxCommandEvent& event);
-	void OnFOOT_LEFT_BOTH_SPLITS(wxCommandEvent& event);
-	void OnCC_FOR_LEFT_FOOT_SUSTAIN(wxSpinEvent& event);
-	void OnCC_FOR_LEFT_FOOT_CC65(wxSpinEvent& event);
-	void OnFOOT_RIGHT_ASSIGN(wxCommandEvent& event);
-	void OnFOOT_RIGHT_BOTH_SPLITS(wxCommandEvent& event);
-	void OnCC_FOR_RIGHT_FOOT_SUSTAIN(wxSpinEvent& event);
-	void OnCC_FOR_RIGHT_FOOT_CC65(wxSpinEvent& event);
+		void OnFOOT_RIGHT_ASSIGN(wxCommandEvent& event);
+		void OnFOOT_LEFT_BOTH_SPLITS(wxCommandEvent& event);
+		void OnFOOT_RIGHT_BOTH_SPLITS(wxCommandEvent& event);
+		void OnCC_FOR_LEFT_FOOT_SUSTAIN(wxSpinEvent& event);
+		void OnCC_FOR_RIGHT_FOOT_SUSTAIN(wxSpinEvent& event);
+		void OnCC_FOR_LEFT_FOOT_CC65(wxSpinEvent& event);
+void OnCC_FOR_RIGHT_FOOT_CC65(wxSpinEvent& event);
 	
 	// data
 	LinnStrument * pMyLinnStrument;

@@ -91,7 +91,6 @@ void PresetsVolumesDialog::OnRightVolume(wxSpinEvent& event)
 
 
 // Event table
-
 BEGIN_EVENT_TABLE(PresetsVolumesDialog, wxDialog)
 // global
 //left

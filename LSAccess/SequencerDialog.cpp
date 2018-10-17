@@ -114,7 +114,7 @@ void SequencerDialog::OnTrack2SEQUENCER_PATTERN(wxSpinEvent& event)
 
 
 // Event table
-BEGIN_EVENT_TABLE(SequencerDialog, wxPanel)
+BEGIN_EVENT_TABLE(SequencerDialog, wxDialog)
 EVT_SPIN(XRCID("wsc_track_1_pattern"), SequencerDialog::OnTrack1SEQUENCER_PATTERN)
 EVT_CHECKBOX(XRCID("chk_play_track_1"), SequencerDialog::OnTrack1SEQUENCER_TOGGLE_PLAY)
 EVT_CHECKBOX(XRCID("chk_mute_track_1"), SequencerDialog::OnTrack1SEQUENCER_TOGGLE_MUTE)

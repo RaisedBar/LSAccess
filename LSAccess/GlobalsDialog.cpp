@@ -529,7 +529,7 @@ void GlobalsDialog::OnGLOBAL_MIN_VELOCITY_VALUE(wxSpinEvent& event)
 
 
 // event table
-BEGIN_EVENT_TABLE(GlobalsDialog, wxPanel)
+BEGIN_EVENT_TABLE(GlobalsDialog, wxDialog)
 // Split page
 EVT_CHECKBOX(XRCID("chk_global_split_active"), GlobalsDialog::OnGLOBAL_SPLIT_ACTIVE)
 EVT_CHECKBOX(XRCID("chk_device_left_handed"), GlobalsDialog::OnDEVICE_LEFT_HANDED)

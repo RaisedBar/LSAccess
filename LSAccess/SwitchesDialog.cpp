@@ -14,8 +14,8 @@ SwitchesDialog::SwitchesDialog(wxWindow* parent, LinnStrument * pLinnStrument)
 {
 	if (wxXmlResource::Get()->LoadDialog(this, parent, wxT("switches_dialog")))
 	{
-				InitPanelSwitches();
-		InitFootSwitches();
+				// InitPanelSwitches();
+		// InitFootSwitches();
 }
 else
 	{
@@ -182,7 +182,7 @@ void SwitchesDialog::OnCC_FOR_RIGHT_FOOT_CC65(wxSpinEvent& event)
 
 
 // Event table
-BEGIN_EVENT_TABLE(SwitchesDialog, wxPanel)
+BEGIN_EVENT_TABLE(SwitchesDialog, wxDialog)
 EVT_CHECKBOX(XRCID("chk_switch_1_both_splits"), SwitchesDialog::OnSWITCH1_BOTH_SPLITS)
 EVT_CHECKBOX(XRCID("chk_switch_2_both_splits"), SwitchesDialog::OnSWITCH2_BOTH_SPLITS)
 EVT_SPIN(XRCID("wsc_cc_for_switch_1_sustain"), SwitchesDialog::OnCC_FOR_SWITCH1_SUSTAIN)
