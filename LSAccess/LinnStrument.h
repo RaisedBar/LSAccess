@@ -3129,10 +3129,14 @@ void SendNRPN(unsigned int NRPNNumber, unsigned int NRPNValue);
 
 // Application options
 	bool m_SpeakMessages, m_SpeakNotes;
+
+#ifdef __WINDOWS__
 		CComPtr<ISpVoice> pSpeech;
-	
-// Serial port detection
+#endif
+		
+		// Serial port detection
 		bool m_CanDetectSerialPorts;
+		
 		// MIDI devices
 		RtMidiIn * m_MIDIIn;
 		RtMidiOut * m_MIDIOut;

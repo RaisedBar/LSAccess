@@ -344,22 +344,23 @@ LinnStrument::LinnStrument() :
 			m_NotesHeld[i] = false;
 		}
 
+#ifdef __WINDOWS__
 		// Initialise COM
 		HRESULT hr = CoInitialize(NULL);
-
 		// Declare the smart pointer for speech output.
 		// Use its member function CoCreateInstance to
 	// create the COM object and obtain the ISpVoice pointer.
 		hr = pSpeech.CoCreateInstance(CLSID_SpVoice);
 		if (FAILED(hr))
 		{			}
-
+		
 		//Initialize COM security (Required by CEnumerateSerial::UsingWMI)
 		hr = CoInitializeSecurity(nullptr, -1, nullptr, nullptr, RPC_C_AUTHN_LEVEL_DEFAULT, RPC_C_IMP_LEVEL_IMPERSONATE, nullptr, EOAC_NONE, nullptr);
 		if (FAILED(hr))
 		{
 			m_CanDetectSerialPorts = false;
 		}
+#endif
 
 		m_MIDIIn = new RtMidiIn();
 		m_MIDIOut = new RtMidiOut();
@@ -683,9 +684,9 @@ LinnStrument::LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool 
 		m_NotesHeld[i] = false;
 	}
 	
+#ifdef __WINDOWS__
 	// Initialise COM
 	HRESULT hr = CoInitialize(NULL);
-	
 	// Declare the smart pointer for speech output.
 	// Use its member function CoCreateInstance to
 // create the COM object and obtain the ISpVoice pointer.
@@ -702,7 +703,8 @@ LinnStrument::LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool 
 	{
 		m_CanDetectSerialPorts = false;
 					}
-	
+#endif
+
 			m_MIDIIn = new RtMidiIn();
 	m_MIDIOut = new RtMidiOut();
 	InitMIDI( m_InputID, m_OutputID);
@@ -2419,7 +2421,9 @@ bool LinnStrument::IsUpdateMode()
 
 void LinnStrument::Speak(std::wstring wstrIn)
 {
+#ifdef __WINDOWS__
 	HRESULT hr = pSpeech->Speak((LPCWSTR)wstrIn.c_str(), 0, NULL);
+#endif
 }
 
 
@@ -2744,5 +2748,3 @@ unsigned int LinnStrument::GetTimeOut()
 {
 	return m_TimeOut;
 }
-
-

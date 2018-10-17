@@ -152,6 +152,7 @@ LSAccessFrame::~LSAccessFrame()
 
 // event handlers
 
+#ifdef __WINDOWS__
 WXLRESULT LSAccessFrame::MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam) 
 {
 	wxLogDebug(wxT("MSWWindowProc %08x %08x %08x"), nMsg, wParam, lParam);
@@ -267,6 +268,7 @@ WXLRESULT LSAccessFrame::MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lP
 			}  // end if wm_devicechange
 	return wxFrame::MSWWindowProc(nMsg, wParam, lParam);
 }
+#endif
 
 
 void LSAccessFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
