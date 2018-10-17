@@ -26,17 +26,17 @@ const std::wstring wstrSerialCodeCopyright = L"Serial port libraries used by LSA
 const std::wstring wstrSerialCopyrightTerms = L"Usage Details :\n\nYou are allowed to include the source code in any product(commercial, shareware, freeware or otherwise) when your product is released in binary form.You are allowed to modify the source code in any way you want except you cannot modify the copyright details at the top of each module.If you want to distribute source code with your application, then you are only allowed to distribute versions released by the author.This is to maintain a single distribution point for the source code.";
 
 // Application message strings
-const std::wstring wstrFirmwareMode = L"Firmware update mode";
+const std::wstring wstrLeftSplitDlgTitle= L"Left Split";
+const std::wstring wstrRightSplitDlgTitle = L"Right Split";
+const std::wstring wstrGlobalsDlgTitle = L"Globals";
 const std::wstring wstrMIDIDlgTitle = L"LinnStrument MIDI I/O jacks";
-const std::wstring wstrNoUSBConnection = L"No USB connection to a LinnStrument";
-const std::wstring wstrLeftSplit = L"Left Split";
-const std::wstring wstrRightSplit = L"Right Split";
-const std::wstring wstrGlobalsTitle = L"Globals";
-const std::wstring wstrRefreshedValues = L"All editor parameters refreshed.";
-const std::wstring wstrNoFile = L"Could not find file: ";
 const std::wstring wstrDINConnected = L"LinnStrument connected via DIN jacks";
 const std::wstring wstrUSBConnected = L"LinnStrument connected via USB";
+const std::wstring wstrNoUSBConnection = L"No USB connection to a LinnStrument";
 const std::wstring wstrNotConnected = L"LinnStrument not connected";
+const std::wstring wstrFirmwareMode = L"Firmware update mode";
+const std::wstring wstrRefreshedValues = L"All editor parameters refreshed.";
+const std::wstring wstrNoFile = L"Could not find file: ";
 
 /*
 The following definitions are derived from:

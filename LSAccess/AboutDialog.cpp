@@ -8,8 +8,7 @@
 
 
 AboutDialog::AboutDialog(wxWindow* parent)
-	: wxDialog(NULL, wxID_ANY, wxEmptyString)
-	{
+		{
 	if (wxXmlResource::Get()->LoadDialog(this, parent, wxT("help_about_dialog")))
 	{
 		XRCCTRL(*this, "txt_credits", wxTextCtrl)->SetValue(wstrRBCredit + wstrSerialCodeCopyright);

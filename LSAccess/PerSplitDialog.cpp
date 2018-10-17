@@ -9,8 +9,8 @@
 
 
 PerSplitDialog::PerSplitDialog(wxWindow* parent, const wxString& title, LinnStrument * pLinnStrument, const LSSplitType split)
-	: wxDialog(NULL, wxID_ANY, title),
-pMyLinnStrument(pLinnStrument),
+	: 
+	pMyLinnStrument(pLinnStrument),
 m_Split( split)
 {
 	if (wxXmlResource::Get()->LoadDialog(this, parent, wxT("per_split_dialog")))

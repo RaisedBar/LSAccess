@@ -9,7 +9,7 @@
 
 
 GlobalsDialog::GlobalsDialog(wxWindow* parent, const wxString& title, LinnStrument * pLinnStrument)
-	: wxDialog(NULL, wxID_ANY, title),
+	: 
 	pMyLinnStrument( pLinnStrument)
 {
 	if (wxXmlResource::Get()->LoadDialog(this, parent, wxT("globals_dialog")))

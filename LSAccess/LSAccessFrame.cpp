@@ -277,13 +277,13 @@ void LSAccessFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 
 void LSAccessFrame::OnLeftSplitSettings(wxCommandEvent& event)
 {
-	PerSplitDialog * pLeftSplit = new PerSplitDialog( this, wstrLeftSplit, &m_LinnStrument, LSSplitType::LEFT);
+	PerSplitDialog * pLeftSplit = new PerSplitDialog( this, wstrLeftSplitDlgTitle, &m_LinnStrument, LSSplitType::LEFT);
 										pLeftSplit->ShowModal();
 		}
 
 void LSAccessFrame::OnRightSplitSettings(wxCommandEvent& event)
 {
-	PerSplitDialog * pRightSplit = new PerSplitDialog( this, wstrRightSplit, &m_LinnStrument, LSSplitType::RIGHT);
+	PerSplitDialog * pRightSplit = new PerSplitDialog( this, wstrRightSplitDlgTitle, &m_LinnStrument, LSSplitType::RIGHT);
 		pRightSplit->ShowModal();
 	}
 
@@ -311,7 +311,7 @@ void LSAccessFrame::OnSwitchSettings(wxCommandEvent& event)
 
 void LSAccessFrame::OnGlobalSettings(wxCommandEvent& event)
 {
-	GlobalsDialog * pGlobalsDialog = new GlobalsDialog( this, wstrGlobalsTitle, &m_LinnStrument);
+	GlobalsDialog * pGlobalsDialog = new GlobalsDialog( this, wstrGlobalsDlgTitle, &m_LinnStrument);
 	pGlobalsDialog->ShowModal();
 }
 

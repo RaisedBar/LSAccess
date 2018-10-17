@@ -4,16 +4,20 @@ Installer:
 
 all:
 check announcement of radio box labels
+
 Switches:
 Focus not set to the tab at load
 Label for switch assignment not announced
 dialog does not close with alt+f4
-sequencer:
-focus does not land on the tab
-dialog does not close with alt+f4
+
 globals:
 focus does not land on the tab
 dialog does not close with alt+f4
+
+sequencer:
+focus does not land on the tab
+dialog does not close with alt+f4
+
 Test refresh of status bar when note pads are pressed.
 Test detection of O/S update state
 Research handling of device changes on Mac.
