@@ -33,28 +33,28 @@
            </object>
          </object>
          <object class="sizeritem">
-           <object class="wxCheckBox" name="chk_play_track_1">
+           <object class="wxButton" name="btn_play_track_1">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
              <label>&amp;Play</label>
            </object>
          </object>
          <object class="sizeritem">
-           <object class="wxCheckBox" name="chk_mute_track_1">
+           <object class="wxButton" name="btn_mute_track_1">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
              <label>&amp;Mute</label>
            </object>
          </object>
          <object class="sizeritem">
-           <object class="wxButton" name="last_track_1_pattern_button">
+           <object class="wxButton" name="btn_last_track_1_pattern">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
              <label>&amp;Last</label>
            </object>
          </object>
          <object class="sizeritem">
-           <object class="wxButton" name="next_track_1_pattern_button">
+           <object class="wxButton" name="btn_next_track_1_pattern">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
              <label>&amp;Next</label>
@@ -91,28 +91,28 @@
            </object>
          </object>
          <object class="sizeritem">
-           <object class="wxCheckBox" name="chk_play_track_2">
+           <object class="wxButton" name="btn_play_track_2">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
              <label>&amp;Play</label>
            </object>
          </object>
          <object class="sizeritem">
-           <object class="wxCheckBox" name="chk_mute_track_2">
+           <object class="wxButton" name="btn_mute_track_2">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
              <label>&amp;Mute</label>
            </object>
          </object>
          <object class="sizeritem">
-           <object class="wxButton" name="last_track_2_pattern_button">
+           <object class="wxButton" name="btn_last_track_2_pattern">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
              <label>&amp;Last</label>
            </object>
          </object>
          <object class="sizeritem">
-           <object class="wxButton" name="next_track_2_pattern_button">
+           <object class="wxButton" name="btn_next_track_2_pattern">
 <pos>-1,-1</pos>
 <size>-1,-1</size>
              <label>&amp;Next</label>

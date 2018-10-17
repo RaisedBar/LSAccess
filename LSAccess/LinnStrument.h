@@ -1222,22 +1222,19 @@ public:
 	}
 
 
-	/*
-	Can't query this parameter currently
-	// Toggle:
-	unsigned int GetSEQUENCER_TOGGLE_PLAY(LSSplitType split)
+		// Toggle:
+	bool GetSEQUENCER_TOGGLE_PLAY(LSSplitType split)
 	{
 		if (split == LSSplitType::LEFT)
 		{
-			return m_LEFT_SEQUENCER_TOGGLE_PLAY;
+			return LSToggle( m_LEFT_SEQUENCER_TOGGLE_PLAY);
 		}
 		else
 		{
-			return m_RIGHT_SEQUENCER_TOGGLE_PLAY;
+			return LSToggle( m_RIGHT_SEQUENCER_TOGGLE_PLAY);
 		}
 	}
-	*/
-
+	
 
 /*
 Can't query this parameter currently:
@@ -1284,20 +1281,17 @@ unsigned int GetSEQUENCER_NEXT_PATTERN(LSSplitType split)
 	}
 
 
-/*
-Can't query this parameter currently:
-unsigned int GetSEQUENCER_TOGGLE_MUTE(LSSplitType split)
+bool GetSEQUENCER_TOGGLE_MUTE(LSSplitType split)
 	{
 		if (split == LSSplitType::LEFT)
 		{
-			return m_LEFT_SEQUENCER_TOGGLE_MUTE;
+			return LSToggle( m_LEFT_SEQUENCER_TOGGLE_MUTE);
 		}
 		else
 		{
-			return m_RIGHT_SEQUENCER_TOGGLE_MUTE;
+			return LSToggle( m_RIGHT_SEQUENCER_TOGGLE_MUTE);
 		}
 	}
-*/
 
 		// Setters:
 
@@ -2136,8 +2130,8 @@ unsigned int GetSEQUENCER_TOGGLE_MUTE(LSSplitType split)
 
 
 	// Toggle:
-	void SetSEQUENCER_TOGGLE_PLAY(unsigned int nValue, LSSplitType split)
-	{
+			void SetSEQUENCER_TOGGLE_PLAY(unsigned int nValue, LSSplitType split)
+							   {
 		if (split == LSSplitType::LEFT)
 		{
 			m_LEFT_SEQUENCER_TOGGLE_PLAY = nValue;

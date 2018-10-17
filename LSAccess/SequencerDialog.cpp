@@ -45,15 +45,15 @@ void SequencerDialog::InitTrack2()
 
 void SequencerDialog::OnTrack1SEQUENCER_TOGGLE_PLAY(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetSEQUENCER_TOGGLE_PLAY(LinnStrument::LSToggle(XRCCTRL(*this, "chk_play_track_1", wxCheckBox)->GetValue()), LSSplitType::LEFT);
-		pMyLinnStrument->SendNRPN(SPLIT_LEFT_SEQUENCER_TOGGLE_PLAY_NRPN, LinnStrument::LSToggle(XRCCTRL(*this, "chk_play_track_1", wxCheckBox)->GetValue()));
-}
+	pMyLinnStrument->SetSEQUENCER_TOGGLE_PLAY(!pMyLinnStrument->GetSEQUENCER_TOGGLE_PLAY(LSSplitType::LEFT), LSSplitType::LEFT);
+	pMyLinnStrument->SendNRPN(SPLIT_LEFT_SEQUENCER_TOGGLE_PLAY_NRPN, LinnStrument::LSToggle( pMyLinnStrument->GetSEQUENCER_TOGGLE_PLAY(LSSplitType::LEFT)));
+	}
 
 
 void SequencerDialog::OnTrack1SEQUENCER_TOGGLE_MUTE(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetSEQUENCER_TOGGLE_MUTE(LinnStrument::LSToggle(XRCCTRL(*this, "chk_mute_track_1", wxCheckBox)->GetValue()), LSSplitType::LEFT);
-		pMyLinnStrument->SendNRPN(SPLIT_LEFT_SEQUENCER_TOGGLE_MUTE_NRPN, XRCCTRL(*this, "chk_mute_track_1", wxCheckBox)->GetValue());
+	pMyLinnStrument->SetSEQUENCER_TOGGLE_MUTE(!pMyLinnStrument->GetSEQUENCER_TOGGLE_MUTE(LSSplitType::LEFT), LSSplitType::LEFT);
+	pMyLinnStrument->SendNRPN(SPLIT_LEFT_SEQUENCER_TOGGLE_MUTE_NRPN, LinnStrument::LSToggle(pMyLinnStrument->GetSEQUENCER_TOGGLE_MUTE(LSSplitType::LEFT)));
 }
 
 
@@ -78,19 +78,18 @@ void SequencerDialog::OnTrack1SEQUENCER_PATTERN(wxSpinEvent& event)
 	}
 
 
-// Event table
 void SequencerDialog::OnTrack2SEQUENCER_TOGGLE_PLAY(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetSEQUENCER_TOGGLE_PLAY(LinnStrument::LSToggle(XRCCTRL(*this, "chk_play_track_2", wxCheckBox)->GetValue()), LSSplitType::RIGHT);
-		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_SEQUENCER_TOGGLE_PLAY_NRPN, LinnStrument::LSToggle(XRCCTRL(*this, "chk_play_track_2", wxCheckBox)->GetValue()));
+	pMyLinnStrument->SetSEQUENCER_TOGGLE_PLAY(!pMyLinnStrument->GetSEQUENCER_TOGGLE_PLAY(LSSplitType::RIGHT), LSSplitType::RIGHT);
+	pMyLinnStrument->SendNRPN(SPLIT_RIGHT_SEQUENCER_TOGGLE_PLAY_NRPN, LinnStrument::LSToggle(pMyLinnStrument->GetSEQUENCER_TOGGLE_PLAY(LSSplitType::RIGHT)));
 }
 
 
 void SequencerDialog::OnTrack2SEQUENCER_TOGGLE_MUTE(wxCommandEvent& event)
 {
-	pMyLinnStrument->SetSEQUENCER_TOGGLE_MUTE(LinnStrument::LinnStrument::LSToggle(XRCCTRL(*this, "chk_mute_track_2", wxCheckBox)->GetValue()), LSSplitType::RIGHT);
-		pMyLinnStrument->SendNRPN(SPLIT_RIGHT_SEQUENCER_TOGGLE_MUTE_NRPN, LinnStrument::LinnStrument::LSToggle(XRCCTRL(*this, "chk_mute_track_2", wxCheckBox)->GetValue()));
-	}
+	pMyLinnStrument->SetSEQUENCER_TOGGLE_MUTE(!pMyLinnStrument->GetSEQUENCER_TOGGLE_MUTE(LSSplitType::RIGHT), LSSplitType::RIGHT);
+	pMyLinnStrument->SendNRPN(SPLIT_RIGHT_SEQUENCER_TOGGLE_MUTE_NRPN, LinnStrument::LSToggle(pMyLinnStrument->GetSEQUENCER_TOGGLE_MUTE(LSSplitType::RIGHT)));
+}
 
 
 void SequencerDialog::OnTrack2SEQUENCER_PREVIOUS_PATTERN(wxCommandEvent& event)

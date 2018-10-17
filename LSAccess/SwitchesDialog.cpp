@@ -14,9 +14,9 @@ SwitchesDialog::SwitchesDialog(wxWindow* parent, LinnStrument * pLinnStrument)
 {
 	if (wxXmlResource::Get()->LoadDialog(this, parent, wxT("switches_dialog")))
 	{
-		InitPanelSwitches();
+				InitPanelSwitches();
 		InitFootSwitches();
-	}
+}
 else
 	{
 	wxMessageBox("Could not load Switche Settings dialog from XRC", wstrErrorTitle, wxOK | wxICON_ERROR);
