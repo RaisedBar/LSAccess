@@ -1,7 +1,6 @@
-all:
 Refine dialog layouts
 check announcement of radio box labels
-
+Improve responsiveness of speech output.
 Test refresh of status bar when note pads are pressed.
 Test detection of O/S update state
 Research handling of device changes on Mac.

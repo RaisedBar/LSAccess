@@ -696,6 +696,7 @@ LinnStrument::LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool 
 		// m_SpeakMessages = false;
 				// m_SpeakNotes = false;
 	}
+		
 
 	//Initialize COM security (Required by CEnumerateSerial::UsingWMI)
 	hr = CoInitializeSecurity(nullptr, -1, nullptr, nullptr, RPC_C_AUTHN_LEVEL_DEFAULT, RPC_C_IMP_LEVEL_IMPERSONATE, nullptr, EOAC_NONE, nullptr);
@@ -2422,8 +2423,10 @@ bool LinnStrument::IsUpdateMode()
 void LinnStrument::Speak(std::wstring wstrIn)
 {
 #ifdef __WINDOWS__
-	HRESULT hr = pSpeech->Speak((LPCWSTR)wstrIn.c_str(), 0, NULL);
-#endif
+	// HRESULT hr = pSpeech->Speak((LPCWSTR)wstrIn.c_str(), 0, NULL);
+	HRESULT 		hr = pSpeech->Speak( (LPCWSTR) L"", SVSFPurgeBeforeSpeak, NULL);
+		hr = pSpeech->Speak((LPCWSTR)wstrIn.c_str(), SVSFlagsAsync, NULL);
+	#endif
 }
 
 
