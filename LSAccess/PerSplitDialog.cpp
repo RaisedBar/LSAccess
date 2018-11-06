@@ -36,7 +36,9 @@ InitFadersPage();
 void PerSplitDialog::InitMIDIPage()
 {
 	XRCCTRL(*this, "wrb_split_mode", wxRadioBox)->SetSelection(pMyLinnStrument->GetSPLIT_MODE(m_Split));
-	XRCCTRL(*this, "wsc_main_channel", wxSpinCtrl)->SetValue(pMyLinnStrument->GetMIDI_MAIN_CHANNEL(m_Split));
+	int myY = XRCCTRL(*this, "wrb_split_mode", wxRadioBox)->GetPosition().y;
+		XRCCTRL(*this, "main_channel_label", wxStaticText)->SetPosition( wxPoint( -1, myY));
+		XRCCTRL(*this, "wsc_main_channel", wxSpinCtrl)->SetValue(pMyLinnStrument->GetMIDI_MAIN_CHANNEL(m_Split));
 	XRCCTRL(*this, "wsc_main_channel", wxSpinCtrl)->SetMin(MIN_MIDI_CHANNEL);
 	XRCCTRL(*this, "wsc_main_channel", wxSpinCtrl)->SetMax(MAX_MIDI_CHANNEL);
 		XRCCTRL(*this, "wsc_midi_per_row_lowest_channel", wxSpinCtrl)->SetValue(pMyLinnStrument->GetMIDI_PER_ROW_LOWEST_CHANNEL(m_Split));

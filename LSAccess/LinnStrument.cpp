@@ -4,6 +4,7 @@
 #include "LinnStrument.h"
 
 wxDEFINE_EVENT(NoteEvent, wxCommandEvent);
+wxDEFINE_EVENT(MIDIErrorEvent, wxCommandEvent);
 
 
 std::wstring widen(const std::string& s)
@@ -27,7 +28,8 @@ void LSCallback(double deltatime, std::vector< unsigned char > *message, void *p
 }
 
 
-LinnStrument::LinnStrument() :
+LinnStrument::LinnStrument() 
+	:
 	m_Parent(NULL),
 	m_InputID(NO_PORT),
 	m_OutputID(NO_PORT),
@@ -367,348 +369,15 @@ LinnStrument::LinnStrument() :
 					   }
 
 
-LinnStrument::LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool blnSpeakMessages, bool blnSpeakNotes) :
-	m_Parent(parent),
-			m_InputID(nInputID),
-	m_OutputID(nOutputID),
-	m_TimeOut( DEFAULT_TIME_OUT),
-	m_SpeakMessages(blnSpeakMessages),
-	m_SpeakNotes(blnSpeakNotes),
-	m_ReceivedNRPNValueMSB(false),
-	m_ReceivedNRPNValueLSB(false),
-				m_CanDetectSerialPorts( true),
-	// left split
-	m_LEFT_SPLIT_MODE(0),
-	m_LEFT_MIDI_MAIN_CHANNEL(0),
-	m_LEFT_CHANNEL_PER_NOTE_1(0),
-	m_LEFT_CHANNEL_PER_NOTE_2(0),
-	m_LEFT_CHANNEL_PER_NOTE_3(0),
-	m_LEFT_CHANNEL_PER_NOTE_4(0),
-	m_LEFT_CHANNEL_PER_NOTE_5(0),
-	m_LEFT_CHANNEL_PER_NOTE_6(0),
-	m_LEFT_CHANNEL_PER_NOTE_7(0),
-	m_LEFT_CHANNEL_PER_NOTE_8(0),
-	m_LEFT_CHANNEL_PER_NOTE_9(0),
-	m_LEFT_CHANNEL_PER_NOTE_10(0),
-	m_LEFT_CHANNEL_PER_NOTE_11(0),
-	m_LEFT_CHANNEL_PER_NOTE_12(0),
-	m_LEFT_CHANNEL_PER_NOTE_13(0),
-	m_LEFT_CHANNEL_PER_NOTE_14(0),
-	m_LEFT_CHANNEL_PER_NOTE_15(0),
-	m_LEFT_CHANNEL_PER_NOTE_16(0),
-	// Value is a MIDI channel number:
-	m_LEFT_MIDI_PER_ROW_LOWEST_CHANNEL(0),
-	// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
-	m_LEFT_BEND_RANGE(0),
-	// Toggles:
-	m_LEFT_BEND_TOGGLE(0),
-	m_LEFT_BEND_QUANTIZE_TOGGLE(0),
-	// Value is from LSPitchQuantize
-	m_LEFT_PITCH_QUANTIZE(0),
-	// Toggles:
-	m_LEFT_RESET_PITCH_ON_RELEASE(0),
-	// Values are constrained by MIN_CC and MAX_CC
-	// CC 1 or CC 74 are recommended, any CC is possible though
-	m_LEFT_CC_FOR_Y(0),
-	// Toggle:
-	m_LEFT_RELATIVE_Y(0),
-	m_LEFT_RELATIVE_Z(0),
-	// Value is an LSExpressionZ
-	m_LEFT_EXPRESSION_FOR_Z(0),
-	// Values are constrained by MIN_CC and MAX_CC
-	// CC 11 is recommended, any CC is possible though
-	m_LEFT_CC_FOR_Z(0),
-	// Values are defined in LSColor
-	m_LEFT_COLOR_MAIN(0),
-	m_LEFT_COLOR_ACCENT(0),
-	m_LEFT_COLOR_PLAYED(0),
-	m_LEFT_COLOR_LOWROW(0),
-	// Value is an LSLowRowMode
-	m_LEFT_LOWROW_MODE(0),
-	// Value is an LSSpecial:
-	m_LEFT_SPECIAL(0),
-	// Value is an LSOctave
-	m_LEFT_OCTAVE(0),
-	// Values are from LSPitch
-	m_LEFT_PITCH_TRANSPOSE(0),
-	m_LEFT_TRANSPOSE_LIGHTS(0),
-	// Value is an LSExpressionY
-	m_LEFT_EXPRESSION_FOR_Y(0),
-	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	m_LEFT_CC_FOR_FADER1(0),
-	m_LEFT_CC_FOR_FADER2(0),
-	m_LEFT_CC_FOR_FADER3(0),
-	m_LEFT_CC_FOR_FADER4(0),
-	m_LEFT_CC_FOR_FADER5(0),
-	m_LEFT_CC_FOR_FADER6(0),
-	m_LEFT_CC_FOR_FADER7(0),
-	m_LEFT_CC_FOR_FADER8(0),
-	// Value is an LSLowRowBehaviour
-	m_LEFT_LOWROW_X_BEHAVIOUR(0),
-	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	m_LEFT_CC_FOR_LOWROW(0),
-	// Value is an LSLowRowBehaviour
-	m_LEFT_LOWROW_XYZ_BEHAVIOUR(0),
-	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	m_LEFT_CC_FOR_LOWROW_XYZ(0),
-	m_LEFT_CC_FOR_LOWROW_XYZ_Y(0),
-	m_LEFT_CC_FOR_LOWROW_XYZ_Z(0),
-	// Values are constrained by MIN_CC and MAX_CC
-	m_LEFT_MIN_CC_FOR_Y(0),
-	m_LEFT_MAX_CC_FOR_Y(0),
-	m_LEFT_MIN_CC_FOR_Z(0),
-	m_LEFT_MAX_CC_FOR_Z(0),
-	m_LEFT_14BIT_CC_VALUE_FOR_Z(0),
-	m_LEFT_INITIAL_RELATIVE_VALUE_FOR_Y(0),
-	// Value is an LSChannelOrder
-	m_LEFT_CHANNEL_PER_ROW_ORDER(0),
-	// Value is an LSAnimation
-	m_LEFT_TOUCH_ANIMATION(0),
-	// Toggle:
-	m_LEFT_SEQUENCER_TOGGLE_PLAY(0),
-	m_LEFT_SEQUENCER_PREVIOUS_PATTERN(0),
-	m_LEFT_SEQUENCER_NEXT_PATTERN(0),
-	// Value is an LSPatternNumber
-	m_LEFT_SEQUENCER_PATTERN(0),
-	m_LEFT_SEQUENCER_TOGGLE_MUTE(0),
-	// Right split
-	m_RIGHT_SPLIT_MODE(0),
-	m_RIGHT_MIDI_MAIN_CHANNEL(0),
-	m_RIGHT_SPLIT_RIGHT_MAIN_MODE(0),
-	m_RIGHT_SPLIT_RIGHT_MAIN_CHANNEL(0),
-	m_RIGHT_CHANNEL_PER_NOTE_1(0),
-	m_RIGHT_CHANNEL_PER_NOTE_2(0),
-	m_RIGHT_CHANNEL_PER_NOTE_3(0),
-	m_RIGHT_CHANNEL_PER_NOTE_4(0),
-	m_RIGHT_CHANNEL_PER_NOTE_5(0),
-	m_RIGHT_CHANNEL_PER_NOTE_6(0),
-	m_RIGHT_CHANNEL_PER_NOTE_7(0),
-	m_RIGHT_CHANNEL_PER_NOTE_8(0),
-	m_RIGHT_CHANNEL_PER_NOTE_9(0),
-	m_RIGHT_CHANNEL_PER_NOTE_10(0),
-	m_RIGHT_CHANNEL_PER_NOTE_11(0),
-	m_RIGHT_CHANNEL_PER_NOTE_12(0),
-	m_RIGHT_CHANNEL_PER_NOTE_13(0),
-	m_RIGHT_CHANNEL_PER_NOTE_14(0),
-	m_RIGHT_CHANNEL_PER_NOTE_15(0),
-	m_RIGHT_CHANNEL_PER_NOTE_16(0),
-	// Value is a MIDI channel number:
-	m_RIGHT_MIDI_PER_ROW_LOWEST_CHANNEL(0),
-	// Value is constrained by MIN_BEND_RANGE and MAX_BEND_RANGE
-	m_RIGHT_BEND_RANGE(0),
-	// Toggles:
-	m_RIGHT_BEND_TOGGLE(0),
-	m_RIGHT_BEND_QUANTIZE_TOGGLE(0),
-	// Value is from LSPitchQuantize
-	m_RIGHT_PITCH_QUANTIZE(0),
-	// Toggles:
-	m_RIGHT_RESET_PITCH_ON_RELEASE(0),
-	m_LEFT_SEND_Y(0),
-		m_RIGHT_SEND_Y(0),
-	// Values are constrained by MIN_CC and MAX_CC
-	// CC 1 or CC 74 are recommended, any CC is possible though
-	m_RIGHT_CC_FOR_Y(0),
-	// Toggle:
-	m_RIGHT_RELATIVE_Y(0),
-	m_RIGHT_RELATIVE_Z(0),
-	// Value is an LSExpressionZ
-	m_RIGHT_EXPRESSION_FOR_Z(0),
-	// Values are constrained by MIN_CC and MAX_CC
-	// CC 11 is recommended, any CC is possible though
-	m_RIGHT_CC_FOR_Z(0),
-	// Values are defined in LSColor
-	m_RIGHT_COLOR_MAIN(0),
-	m_RIGHT_COLOR_ACCENT(0),
-	m_RIGHT_COLOR_PLAYED(0),
-	m_RIGHT_COLOR_LOWROW(0),
-	// Value is an LSLowRowMode
-	m_RIGHT_LOWROW_MODE(0),
-	// Value is an LSSpecial:
-	m_RIGHT_SPECIAL(0),
-	// Value is an LSOctave
-	m_RIGHT_OCTAVE(0),
-	// Values are from LSPitch
-	m_RIGHT_PITCH_TRANSPOSE(0),
-	m_RIGHT_TRANSPOSE_LIGHTS(0),
-	// Value is an LSExpressionY
-	m_RIGHT_EXPRESSION_FOR_Y(0),
-	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	m_RIGHT_CC_FOR_FADER1(0),
-	m_RIGHT_CC_FOR_FADER2(0),
-	m_RIGHT_CC_FOR_FADER3(0),
-	m_RIGHT_CC_FOR_FADER4(0),
-	m_RIGHT_CC_FOR_FADER5(0),
-	m_RIGHT_CC_FOR_FADER6(0),
-	m_RIGHT_CC_FOR_FADER7(0),
-	m_RIGHT_CC_FOR_FADER8(0),
-	// Value is an LSLowRowBehaviour
-	m_RIGHT_LOWROW_X_BEHAVIOUR(0),
-	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	m_RIGHT_CC_FOR_LOWROW(0),
-	// Value is an LSLowRowBehaviour
-	m_RIGHT_LOWROW_XYZ_BEHAVIOUR(0),
-	// Value is constrained by MIN_FADER_CC and MAX_FADER_CC
-	m_RIGHT_CC_FOR_LOWROW_XYZ(0),
-	m_RIGHT_CC_FOR_LOWROW_XYZ_Y(0),
-	m_RIGHT_CC_FOR_LOWROW_XYZ_Z(0),
-	// Values are constrained by MIN_CC and MAX_CC
-	m_RIGHT_MIN_CC_FOR_Y(0),
-	m_RIGHT_MAX_CC_FOR_Y(0),
-	m_RIGHT_MIN_CC_FOR_Z(0),
-	m_RIGHT_MAX_CC_FOR_Z(0),
-	m_RIGHT_14BIT_CC_VALUE_FOR_Z(0),
-	m_RIGHT_INITIAL_RELATIVE_VALUE_FOR_Y(0),
-	// Value is an LSChannelOrder
-	m_RIGHT_CHANNEL_PER_ROW_ORDER(0),
-	// Value is an LSAnimation
-	m_RIGHT_TOUCH_ANIMATION(0),
-	// Toggle:
-	m_RIGHT_SEQUENCER_TOGGLE_PLAY(0),
-	m_RIGHT_SEQUENCER_PREVIOUS_PATTERN(0),
-	m_RIGHT_SEQUENCER_NEXT_PATTERN(0),
-	// Value is an LSPatternNumber
-	m_RIGHT_SEQUENCER_PATTERN(0),
-	m_RIGHT_SEQUENCER_TOGGLE_MUTE(0),
-	m_LEFT_SEND_Z(0),
-		m_RIGHT_SEND_Z(0),
-			// Foot and panel switches
-	// Value is LSSwitchAssignment
-	m_SWITCH1_ASSIGN(0),
-	m_SWITCH2_ASSIGN(0),
-	m_FOOT_LEFT_ASSIGN(0),
-	m_FOOT_RIGHT_ASSIGN(0),
-	// Toggle:
-	m_SWITCH1_BOTH_SPLITS(0),
-	m_SWITCH2_BOTH_SPLITS(0),
-	m_FOOT_LEFT_BOTH_SPLITS(0),
-	m_FOOT_RIGHT_BOTH_SPLITS(0),
-	// Values are constrained by MIN_CC and MAX_CC
-	m_CC_FOR_LEFT_FOOT_CC65(0),
-	m_CC_FOR_RIGHT_FOOT_CC65(0),
-	m_CC_FOR_SWITCH1_CC65(0),
-	m_CC_FOR_SWITCH2_CC65(0),
-	m_CC_FOR_LEFT_FOOT_SUSTAIN(0),
-	m_CC_FOR_RIGHT_FOOT_SUSTAIN(0),
-	m_CC_FOR_SWITCH1_SUSTAIN(0),
-	m_CC_FOR_SWITCH2_SUSTAIN(0),
-
-	// Octave/transpose settings
-	m_LeftOctave(0),
-		m_LeftTransposePitch(0),
-		m_LeftTransposeLights(0),
-	m_RightOctave(0),
-		m_RightTransposePitch(0),
-		m_RightTransposeLights(0),
-			// Global settings
-	m_GLOBAL_SPLIT_ACTIVE(0),
-	// Value is LSSplitType
-	m_GLOBAL_SELECTED_SPLIT(0),
-	// Value is constrained by MIN_SPLIT_COLUMN and MAX_SPLIT_COLUMN  
-	m_GLOBAL_SPLIT_COLUMN(0),
-	// Toggles:
-	m_GLOBAL_MAIN_NOTE_LIGHT_C(0),
-	m_GLOBAL_MAIN_NOTE_LIGHT_C_SHARP(0),
-	m_GLOBAL_MAIN_NOTE_LIGHT_D(0),
-	m_GLOBAL_MAIN_NOTE_LIGHT_D_SHARP(0),
-	m_GLOBAL_MAIN_NOTE_LIGHT_E(0),
-	m_GLOBAL_MAIN_NOTE_LIGHT_F(0),
-	m_GLOBAL_MAIN_NOTE_LIGHT_F_SHARP(0),
-	m_GLOBAL_MAIN_NOTE_LIGHT_G(0),
-	m_GLOBAL_MAIN_NOTE_LIGHT_G_SHARP(0),
-	m_GLOBAL_MAIN_NOTE_LIGHT_A(0),
-	m_GLOBAL_MAIN_NOTE_LIGHT_A_SHARP(0),
-	m_GLOBAL_MAIN_NOTE_LIGHT_B(0),
-	m_GLOBAL_ACCENT_NOTE_LIGHT_C(0),
-	m_GLOBAL_ACCENT_NOTE_LIGHT_C_SHARP(0),
-	m_GLOBAL_ACCENT_NOTE_LIGHT_D(0),
-	m_GLOBAL_ACCENT_NOTE_LIGHT_D_SHARP(0),
-	m_GLOBAL_ACCENT_NOTE_LIGHT_E(0),
-	m_GLOBAL_ACCENT_NOTE_LIGHT_F(0),
-	m_GLOBAL_ACCENT_NOTE_LIGHT_F_SHARP(0),
-	m_GLOBAL_ACCENT_NOTE_LIGHT_G(0),
-	m_GLOBAL_ACCENT_NOTE_LIGHT_G_SHARP(0),
-	m_GLOBAL_ACCENT_NOTE_LIGHT_A(0),
-	m_GLOBAL_ACCENT_NOTE_LIGHT_A_SHARP(0),
-	m_GLOBAL_ACCENT_NOTE_LIGHT_B(0),
-	// Value is LSRowOffsetType
-	m_GLOBAL_ROW_OFFSET(0),
-	// Value is LSVelocityRange
-	m_GLOBAL_VELOCITY_SENSITIVITY(0),
-	// Value is LSPressureRange
-	m_GLOBAL_PRESSURE_SENSITIVITY(0),
-	// Value is LSMIDIDevice
-	m_GLOBAL_MIDI_DEVICE_IO(0),
-	// Value is LSArpDirection
-	m_GLOBAL_ARP_DIRECTION(0),
-	// Value is LSArpTempoNoteType
-	m_GLOBAL_ARP_TEMPO_NOTE_VALUE(0),
-	// Value is LSGlobalArpOctaveExtension
-	m_GLOBAL_ARP_OCTAVE_EXTENSION(0),
-	// Value = 1 - 360  (applies when receiving no MIDI clock)
-	m_GLOBAL_CLOCK_BPM(1),
-	// Value is LSPresetNumber
-	m_GLOBAL_SETTINGS_PRESET_LOAD(0),
-	// Toggles:
-	m_GLOBAL_PRESSURE_AFTERTOUCH(0),
-	m_DEVICE_USER_FIRMWARE_MODE(0),
-	m_DEVICE_LEFT_HANDED(0),
-	// Value is constrained by MIN_LIGHTS_PRESET and MAX_LIGHTS_PRESET 
-	m_GLOBAL_ACTIVE_LIGHTS_PRESET(0),
-	// Values are constrained by MIN_CC and MAX_CC
-	m_GLOBAL_MIN_VELOCITY_VALUE(0),
-	m_GLOBAL_MAX_VELOCITY_VALUE(0),
-	m_GLOBAL_FIXED_VELOCITY_VALUE(0),
-	// Value range =     0 - 512  
-	m_DEVICE_MIN_BYTE_INTERVAL_VALUE(0),
-	// Value is LSCustomRowOffset
-	m_GLOBAL_CUSTOM_ROW_OFFSET(0),
-	// Toggle:
-	m_DEVICE_MIDI_THRU(0),
-	m_GLOBAL_GUITAR_NOTE_TUNING_ROW1(0),
-	m_GLOBAL_GUITAR_NOTE_TUNING_ROW2(0),
-	m_GLOBAL_GUITAR_NOTE_TUNING_ROW3(0),
-	m_GLOBAL_GUITAR_NOTE_TUNING_ROW4(0),
-	m_GLOBAL_GUITAR_NOTE_TUNING_ROW5(0),
-	m_GLOBAL_GUITAR_NOTE_TUNING_ROW6(0),
-	m_GLOBAL_GUITAR_NOTE_TUNING_ROW7(0),
-	m_GLOBAL_GUITAR_NOTE_TUNING_ROW8(0),
-	m_LSPresetNumber(0),
-	m_LEFT_PROGRAM(0),
-	m_RIGHT_PROGRAM(0),
-	m_LEFT_VOLUME(0),
-		m_RIGHT_VOLUME(0)
+LinnStrument::LinnStrument(wxWindow * parent, int nInputID, int nOutputID, bool blnSpeakMessages, bool blnSpeakNotes) 
+	: LinnStrument()
 {
-	// Initialise note tracking
-	for (unsigned int i= 0; i < MAX_BYTE_VALUES; i++)
-	{
-		m_NotesHeld[i] = false;
-	}
-	
-#ifdef __WINDOWS__
-	// Initialise COM
-	HRESULT hr = CoInitialize(NULL);
-	// Declare the smart pointer for speech output.
-	// Use its member function CoCreateInstance to
-// create the COM object and obtain the ISpVoice pointer.
-	hr = pSpeech.CoCreateInstance(CLSID_SpVoice);
-	if (FAILED(hr))
-	{
-		// m_SpeakMessages = false;
-				// m_SpeakNotes = false;
-	}
-		
-
-	//Initialize COM security (Required by CEnumerateSerial::UsingWMI)
-	hr = CoInitializeSecurity(nullptr, -1, nullptr, nullptr, RPC_C_AUTHN_LEVEL_DEFAULT, RPC_C_IMP_LEVEL_IMPERSONATE, nullptr, EOAC_NONE, nullptr);
-	if (FAILED(hr))
-	{
-		m_CanDetectSerialPorts = false;
-					}
-#endif
-
-			m_MIDIIn = new RtMidiIn();
-	m_MIDIOut = new RtMidiOut();
-	InitMIDI( m_InputID, m_OutputID);
+	m_Parent = parent;
+		m_InputID = nInputID;
+		m_OutputID = nOutputID;
+		m_SpeakMessages = blnSpeakMessages;
+		m_SpeakNotes = blnSpeakNotes;
+				InitMIDI( m_InputID, m_OutputID);
 		}
 
 	
@@ -2143,6 +1812,14 @@ void LinnStrument::SetSpeakNotes(bool blnSpeakNotes)
 	m_SpeakNotes = blnSpeakNotes;
 		}
 
+void LinnStrument::HandleMIDIError(std::string strError)
+{
+	wxCommandEvent myMIDIErrorEvent(MIDIErrorEvent, MIDI_ERROR_ID);
+	myMIDIErrorEvent.SetString(strError);
+	m_Parent->GetEventHandler()->ProcessEvent(myMIDIErrorEvent);
+	}
+
+
 void LinnStrument::SendNRPN( unsigned int NRPNNumber, unsigned int NRPNValue)
 {
 	SendNRPN(GetMIDI_MAIN_CHANNEL(LSSplitType::LEFT), NRPNNumber, NRPNValue);
@@ -2169,38 +1846,86 @@ void LinnStrument::SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumbe
 						myMessage.push_back(myStatusByte);
 		myMessage.push_back(SET_NRPN_CC_MSB);
 		myMessage.push_back(myNRPNParameterMSB);
-		m_MIDIOut->sendMessage(&myMessage);
-		myMessage.clear();
+			
+		try
+		{
+			m_MIDIOut->sendMessage(&myMessage);
+		}
+		catch (RtMidiError &error)
+		{
+			HandleMIDIError( error.getMessage());
+		}
 
-		myMessage.push_back(myStatusByte);
+				myMessage.clear();
+								myMessage.push_back(myStatusByte);
 		myMessage.push_back(SET_NRPN_CC_LSB);
 		myMessage.push_back(myNRPNParameterLSB);
-		m_MIDIOut->sendMessage(&myMessage);
-		myMessage.clear();
+		
+		try
+		{
+			m_MIDIOut->sendMessage(&myMessage);
+		}
+		catch (RtMidiError &error)
+		{
+			HandleMIDIError(error.getMessage());
+		}
 
-		myMessage.push_back(myStatusByte);
+		myMessage.clear();
+				myMessage.push_back(myStatusByte);
 		myMessage.push_back(CC_NRPN_VALUE_MSB);
 		myMessage.push_back(myNRPNValueMSB);
-		m_MIDIOut->sendMessage(&myMessage);
-		myMessage.clear();
 
+try
+{
+	m_MIDIOut->sendMessage(&myMessage);
+}
+catch (RtMidiError &error)
+{
+	HandleMIDIError(error.getMessage());
+}
+
+myMessage.clear();
 		myMessage.push_back(myStatusByte);
 		myMessage.push_back(CC_NRPN_VALUE_LSB);
 		myMessage.push_back(myNRPNValueLSB);
-		m_MIDIOut->sendMessage(&myMessage);
-		myMessage.clear();
+		
+		try
+		{
+			m_MIDIOut->sendMessage(&myMessage);
+		}
+		catch (RtMidiError &error)
+		{
+			HandleMIDIError(error.getMessage());
+		}
 
-		// Always send the reset or bad things can happen
+		myMessage.clear();
+				// Always send the reset or bad things can happen
 		myMessage.push_back(myStatusByte);
 		myMessage.push_back(RESET_NRPN_CC_MSB);
 		myMessage.push_back(127);
-		m_MIDIOut->sendMessage(&myMessage);
-		myMessage.clear();
 
+try
+{
+	m_MIDIOut->sendMessage(&myMessage);
+}
+catch (RtMidiError &error)
+{
+	HandleMIDIError(error.getMessage());
+}
+
+myMessage.clear();
 		myMessage.push_back(myStatusByte);
 		myMessage.push_back(RESET_NRPN_CC_LSB);
 		myMessage.push_back(127);
-		m_MIDIOut->sendMessage(&myMessage);
+		try
+		{
+			m_MIDIOut->sendMessage(&myMessage);
+		}
+		catch (RtMidiError &error)
+		{
+			HandleMIDIError(error.getMessage());
+		}
+
 		myMessage.clear();
 	}  // Is the output port open?
 	}
@@ -2439,7 +2164,9 @@ bool LinnStrument::IsDINWorking()
 
 void LinnStrument::InitMIDI(int nInputID, int nOutputID)
 {
-	if (m_MIDIIn->isPortOpen())
+	try
+	{
+		if (m_MIDIIn->isPortOpen())
 	{
 		m_MIDIIn->cancelCallback();
 		m_MIDIIn->closePort();
@@ -2497,6 +2224,12 @@ void LinnStrument::InitMIDI(int nInputID, int nOutputID)
 			QueryAll();
 		}  // end if DIN ports selected
 	}  // end if 0 input and output ports
+	}
+	catch (RtMidiError &error)
+	{
+		HandleMIDIError(error.getMessage());
+	}
+
 
 	if ((m_SpeakMessages)
 		&& (m_InputID == NO_PORT)

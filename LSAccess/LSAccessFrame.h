@@ -78,6 +78,7 @@ private:
 // Mac:
 
 	void onStatusUpdate(wxCommandEvent& event);
+	void onMIDIError(wxCommandEvent& event);
 	
 		// Menus
 	wxMenu * FileMenu, *SettingsMenu, *OptionsMenu, *HelpMenu;

@@ -38,9 +38,9 @@ extern CComModule _Module;
    OutputDebugStringW( os_.str().c_str() );  \
 }
 
-// Custom event
+// Custom events
 wxDECLARE_EVENT(NoteEvent, wxCommandEvent);
-
+wxDECLARE_EVENT(MIDIErrorEvent, wxCommandEvent);
 
 class LinnStrument
 {
@@ -3106,6 +3106,7 @@ void SendNRPN(unsigned int NRPNNumber, unsigned int NRPNValue);
 
 	private:
 		void InitParameter(unsigned int nParameterNumber);
+		void HandleMIDIError(std::string strError);
 		void SendNRPN(unsigned char nChannelNibble, unsigned int NRPNNumber, unsigned int NRPNValue);
 	void SetLSParameter( unsigned int NRPNParameterIn, unsigned int NRPNValueIn);
 	void UpdateStatusBar();

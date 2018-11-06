@@ -376,6 +376,12 @@ void LSAccessFrame::onStatusUpdate(wxCommandEvent& event)
 SetStatusText(event.GetString());
 }
 
+
+void LSAccessFrame::onMIDIError(wxCommandEvent& event)
+{
+	wxMessageBox(event.GetString(), wstrErrorTitle, wxOK | wxICON_ERROR);
+}
+
 // event tables and other macros for wxWidgets
 wxBEGIN_EVENT_TABLE(LSAccessFrame, wxFrame)
 // File menu
@@ -402,4 +408,6 @@ EVT_MENU(ID_About, LSAccessFrame::OnAbout)
 // Custom events
 // Update the status bar with note information from the LinnStrument
 EVT_COMMAND(STATUS_UPDATE_ID, NoteEvent, LSAccessFrame::onStatusUpdate)
+// Handle MIDI errors
+EVT_COMMAND(MIDI_ERROR_ID, MIDIErrorEvent, LSAccessFrame::onMIDIError)
 wxEND_EVENT_TABLE()

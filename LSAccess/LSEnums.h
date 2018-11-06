@@ -42,7 +42,9 @@ enum
 	ID_About,
 
 	// Status bar update message ID
-	STATUS_UPDATE_ID
+	STATUS_UPDATE_ID,
+	// MIDI error ID
+	MIDI_ERROR_ID
 };
 
 	
