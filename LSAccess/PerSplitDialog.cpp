@@ -35,12 +35,25 @@ InitFadersPage();
 
 void PerSplitDialog::InitMIDIPage()
 {
+	/*
 	XRCCTRL(*this, "wrb_split_mode", wxRadioBox)->SetSelection(pMyLinnStrument->GetSPLIT_MODE(m_Split));
-	int myY = XRCCTRL(*this, "wrb_split_mode", wxRadioBox)->GetPosition().y;
-		XRCCTRL(*this, "main_channel_label", wxStaticText)->SetPosition( wxPoint( -1, myY));
+	int myY = 200;
+	XRCCTRL(*this, "wrb_split_mode", wxRadioBox)->
+	XRCCTRL(*this, "wrb_split_mode", wxRadioBox)->SetPosition( wxPoint( -1, myY));
+	*/
+		wxPoint myPoint = XRCCTRL(*this, "wrbOneChannel", wxRadioButton)->GetPosition();
+		DBOUT(L"wrbOneChannel X = " + std::to_wstring(myPoint.x) + L"\nwrbOneChannel Y = " + std::to_wstring(myPoint.y) + L"\n")
+
+				myPoint = XRCCTRL(*this, "main_channel_label", wxStaticText)->GetPosition();
+		DBOUT(L"Main channel label X = " + std::to_wstring(myPoint.x) + L"\nwrbOneChannel Y = " + std::to_wstring(myPoint.y) + L"\n")
+
+		myPoint = XRCCTRL(*this, "wsc_main_channel", wxSpinCtrl)->GetPosition();
+		DBOUT(L"wsc_main_channel X = " + std::to_wstring(myPoint.x) + L"\nwrbOneChannel Y = " + std::to_wstring(myPoint.y) + L"\n")
+
 		XRCCTRL(*this, "wsc_main_channel", wxSpinCtrl)->SetValue(pMyLinnStrument->GetMIDI_MAIN_CHANNEL(m_Split));
 	XRCCTRL(*this, "wsc_main_channel", wxSpinCtrl)->SetMin(MIN_MIDI_CHANNEL);
 	XRCCTRL(*this, "wsc_main_channel", wxSpinCtrl)->SetMax(MAX_MIDI_CHANNEL);
+
 		XRCCTRL(*this, "wsc_midi_per_row_lowest_channel", wxSpinCtrl)->SetValue(pMyLinnStrument->GetMIDI_PER_ROW_LOWEST_CHANNEL(m_Split));
 	XRCCTRL(*this, "wrb_channel_per_row_order", wxRadioBox)->SetSelection(pMyLinnStrument->GetCHANNEL_PER_ROW_ORDER(m_Split));
 	XRCCTRL(*this, "chk_1", wxCheckBox)->SetValue(pMyLinnStrument->GetCHANNEL_PER_NOTE_1(m_Split));

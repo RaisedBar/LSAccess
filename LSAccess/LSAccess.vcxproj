@@ -72,16 +72,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Program Files (x86)\WiX Toolset v3.11\SDK\VS2017\inc\;C:\Program Files\rtmidi\;C:\wxWidgets-3.1.0\lib\vc_lib\mswud\;C:\wxWidgets-3.1.0\include\;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>C:\Program Files\rtmidi\lib\X86\;C:\wxWidgets-3.1.0\lib\vc_lib\;C:\Program Files (x86)\WiX Toolset v3.11\SDK\VS2017\lib\x86\;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
+    <IncludePath>C:\Program Files (x86)\WiX Toolset v3.11\SDK\VS2017\inc\;C:\Program Files\rtmidi\;C:\wxWidgets-3.1.2\lib\vc_lib\mswud\;C:\wxWidgets-3.1.2\include\;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>C:\Program Files\rtmidi\lib\X86\;C:\wxWidgets-3.1.2\lib\vc_lib\;C:\Program Files (x86)\WiX Toolset v3.11\SDK\VS2017\lib\x86\;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Program Files (x86)\WiX Toolset v3.11\SDK\VS2017\inc\;C:\Program Files\rtmidi\;C:\wxWidgets-3.1.0\lib\vc_lib\mswud\;C:\wxWidgets-3.1.0\include\;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>C:\Program Files\rtmidi\lib\X86\;C:\wxWidgets-3.1.0\lib\vc_lib\;C:\Program Files (x86)\WiX Toolset v3.11\SDK\VS2017\lib\x86\;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
+    <IncludePath>C:\Program Files (x86)\WiX Toolset v3.11\SDK\VS2017\inc\;C:\Program Files\rtmidi\;C:\wxWidgets-3.1.2\lib\vc_lib\mswud\;C:\wxWidgets-3.1.2\include\;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>C:\Program Files\rtmidi\lib\X86\;C:\wxWidgets-3.1.2\lib\vc_lib\;C:\Program Files (x86)\WiX Toolset v3.11\SDK\VS2017\lib\x86\;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
     <OutDir>$(SolutionDir)files\program files\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -201,6 +201,9 @@
   <ItemGroup>
     <Image Include="LSAccess.ico" />
     <Image Include="small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\..\wxWidgets-3.1.2\wxwidgets.props" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

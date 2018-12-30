@@ -1311,73 +1311,73 @@ std::wstring MIDI::GetWideNoteName(unsigned char nNoteNumber)
 	{
 	case 0:
 	{
-		wstrNoteName = L"C#";
+		wstrNoteName = L"C";
 	}
 	break;
 
 	case 1:
 	{
-		wstrNoteName = L"D";
+		wstrNoteName = L"C sharp";
 	}
 	break;
 
 	case 2:
 	{
-		wstrNoteName = L"D#";
+		wstrNoteName = L"D";
 	}
 	break;
 
 	case 3:
 	{
-		wstrNoteName = L"E";
+		wstrNoteName = L"D sharp";
 	}
 	break;
 
 	case 4:
 	{
-		wstrNoteName = L"F";
+		wstrNoteName = L"E";
 	}
 	break;
 
 	case 5:
 	{
-		wstrNoteName = L"F#";
+		wstrNoteName = L"F";
 	}
 	break;
 
 	case 6:
 	{
-		wstrNoteName = L"G";
+		wstrNoteName = L"F sharp";
 	}
 	break;
 
 	case 7:
 	{
-		wstrNoteName = L"G#";
+		wstrNoteName = L"G";
 	}
 	break;
 
 	case 8:
 	{
-		wstrNoteName = L"A";
+		wstrNoteName = L"G sharp";
 	}
 	break;
 
 	case 9:
 	{
-		wstrNoteName = L"A#";
+		wstrNoteName = L"A";
 	}
 	break;
 
 	case 10:
 	{
-		wstrNoteName = L"B";
+		wstrNoteName = L"A sharp";
 	}
 	break;
 
 	case 11:
 	{
-		wstrNoteName = L"C";
+		wstrNoteName = L"B";
 	}
 	break;
 
