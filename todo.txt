@@ -1,6 +1,10 @@
 Refine dialog layouts
-check announcement of radio box labels
-Improve responsiveness of speech output.
+wrbOneChannel X = 5
+wrbOneChannel Y = 20
+Main channel label X = 366
+Main channel label Y = 28
+wsc_main_channel X = 443
+wsc_main_channel Y = 25check announcement of radio box labels
 Test refresh of status bar when note pads are pressed.
 Test detection of O/S update state
 Research handling of device changes on Mac.
